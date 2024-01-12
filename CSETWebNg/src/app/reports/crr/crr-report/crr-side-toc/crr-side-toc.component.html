@@ -1,0 +1,114 @@
+<!---------------------- 
+
+   Copyright 2023 Battelle Energy Alliance, LLC  
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy 
+  of this software and associated documentation files (the "Software"), to deal 
+  in the Software without restriction, including without limitation the rights 
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+  copies of the Software, and to permit persons to whom the Software is 
+  furnished to do so, subject to the following conditions: 
+ 
+  The above copyright notice and this permission notice shall be included in all 
+  copies or substantial portions of the Software. 
+ 
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+  SOFTWARE. 
+-------------------------->
+<style>
+  @media only screen and (max-width: 900px) {
+      .side-toc {
+          display: none;
+      }
+  }
+
+  @media print {
+      .side-toc {
+          display: none;
+      }
+  }
+
+  .side-toc {
+      background-color: #fff;
+      box-sizing: border-box;
+      border-right: solid 1px #E5E4E2;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+      position: fixed;
+      left: 0;
+      top: 60px;
+      height: 100vh;
+      padding: 0.75rem;
+      overflow-y: auto;
+      width: 15vw;
+      min-width: 250px;
+      z-index: 100;
+  }
+
+  .side-toc a {
+      font-size: 12px;
+      word-break: break-word;
+      text-decoration: none;
+  }
+
+  .side-toc div {
+      margin: 10px;
+  }
+
+  a:hover {
+      cursor:pointer;
+  }
+</style>
+
+<div class="side-toc">
+    <div>
+        <a class="link-primary" (click)="scrollToElement('toc-top')">Вгору</a>
+    </div>
+    <div>
+        <a class="link-primary" (click)="scrollToElement('toc-intro')">Вступ</a>
+    </div>
+    <div>
+        <a class="link-primary" (click)="scrollToElement('toc-mil1-ps')">Зведення результатів CRR MIL-1</a>
+    </div>
+    <div>
+        <a class="link-primary" (click)="scrollToElement('toc-crr-ps')">Зведення результатів CRR</a>
+    </div>
+    <div>
+        <a class="link-primary" (click)="scrollToElement('toc-nist-csf')">Зведення Національного кібербезпеки Фреймворку NIST</a>
+    </div>
+    <div>
+        <a class="link-primary" (click)="scrollToElement('toc-mil1-performance')">Виконання CRR MIL-1</a>
+    </div>
+    <div>
+        <a class="link-primary" (click)="scrollToElement('toc-summary-results')">Зведення результатів</a>
+    </div>
+    <div>
+        <a class="link-primary" (click)="scrollToElement('toc-percentage-practices')">Відсоток виконаних практик за областями</a>
+    </div>
+    <div>
+        <a class="link-primary" (click)="scrollToElement('toc-domain-detail')">Деталі питань</a>
+    </div>
+    <div>
+        <a class="link-primary" (click)="scrollToElement('toc-resources-referenced')">Список посилань на ресурси</a>
+    </div>
+    <div>
+        <a class="link-primary" (click)="scrollToElement('toc-contact-information')">Інформація для зв'язку з питаннями</a>
+    </div>
+    <div>
+        <a class="link-primary" (click)="scrollToElement('toc-additional-views')">Додаток А: Додаткові види даних</a>
+    </div>
+    <div>
+        <a class="link-primary" (click)="scrollToElement('toc-crr-performance-app-a')">Додаток А: Виконання CRR</a>
+    </div>
+    <div>
+        <a class="link-primary" (click)="scrollToElement('toc-nist-framework-summary-app-a')">Додаток А: Зведення категорій Національного кібербезпеки Фреймворку NIST</a>
+    </div>
+    <div>
+        <a class="link-primary" (click)="scrollToElement('toc-nist-framework-performance-app-a')">Додаток А: Виконання категорій Національного кібербезпеки Фреймворку NIST</a>
+    </div>
+  </div>
+  

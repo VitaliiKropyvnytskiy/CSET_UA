@@ -1,0 +1,77 @@
+<!---------------------- 
+
+   Copyright 2023 Battelle Energy Alliance, LLC  
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy 
+  of this software and associated documentation files (the "Software"), to deal 
+  in the Software without restriction, including without limitation the rights 
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+  copies of the Software, and to permit persons to whom the Software is 
+  furnished to do so, subject to the following conditions: 
+ 
+  The above copyright notice and this permission notice shall be included in all 
+  copies or substantial portions of the Software. 
+ 
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+  SOFTWARE. 
+-------------------------->
+<div [class.page-break]="usage == 'main'">
+
+    <h1 *ngIf="usage == 'main'">Зміст</h1>
+
+    <div>
+        <div *ngIf="usage == 'sidenav'">
+            <button class="btn btn-link" (click)="scroll('toc_top')">Top</button>
+        </div>
+        <div>
+            <button class="btn btn-link" (click)="scroll('toc_notification')">Сповіщення</button>
+        </div>
+        <div>
+            <button class="btn btn-link" (click)="scroll('toc_introduction')">Вступ</button>
+        </div>
+        <div>
+            <button class="btn btn-link" (click)="scroll('toc_overview')">Огляд та обсяг оцінки EDM</button>
+        </div>
+        <div>
+            <button class="btn btn-link" (click)="scroll('toc_interpreting')">Інтерпретація цього звіту</button>
+        </div>
+        <div>
+            <button class="btn btn-link" (click)="scroll('toc_summary_results')">Підсумок результатів</button>
+        </div>
+        <div>
+            <button class="btn btn-link" (click)="scroll('toc_rf')">Детальні результати та варіанти для
+                розгляду</button>
+        </div>
+        <div class="pl-3">
+            <div>
+                <button class="btn btn-link" (click)="scroll('toc_rf')">1 Формування відношень</button>
+            </div>
+            <div>
+                <button class="btn btn-link" (click)="scroll('toc_rmg')">2 Управлення відношеннями</button>
+            </div>
+            <div>
+                <button class="btn btn-link" (click)="scroll('toc_sps')">3 Захист і підтримка послуг</button>
+            </div>
+            <div>
+                <button class="btn btn-link" (click)="scroll('toc_mil')">4 Рівні індикатора зрілості 2-5</button>
+            </div>
+        </div>
+        <div>
+            <button class="btn btn-link" (click)="scroll('toc_glossary')">Глосарій</button>
+        </div>
+        <div>
+            <button class="btn btn-link" (click)="scroll('toc_acronyms')">Акроніми EDM оцінювання</button>
+        </div>
+        <div>
+            <button class="btn btn-link" (click)="scroll('toc_references')">Джерела, на які посилається цей звіт</button>
+        </div>
+        <div>
+            <button class="btn btn-link" (click)="scroll('toc_appendix_a')">Додаток A: Додаткові дані</button>
+        </div>
+    </div>
+</div>

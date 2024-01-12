@@ -1,0 +1,164 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="report-body mb-5">
+
+  <div class="flex-container">
+    <div class="column mt-3">
+      <p class="report-title">
+        ЗВІТ З ПИТАНЬ З ВІДКРИТИМИ ВІДПОВІДЯМИ
+      </p>
+      <p class="report-title" style="font-size: 36px">
+        Перевірка Перевіреної Архітектури Дизайну (VADR)
+      </p>
+    </div>
+    <div class="column">
+      <p style="text-align: center">
+        <img width="471" height="529" src="assets/images/ExecutiveFiles/image002.jpg">
+      </p>
+    </div>
+
+    <div class="cover-page-bottom">
+      <app-logo-for-reports></app-logo-for-reports>
+      <app-info-block [response]="response" />
+    </div>
+  </div>
+  <div class="page-break">
+
+    <div class="disclaimer-blurb m-4">
+      <p class="text-start"> Звіт "Питання з відкритими відповідями" містить перелік питань поточної оцінки та надає
+        користувачам 2 варіанти:</p>
+      <span>
+        <ul class="mb-2">
+          <li> Тільки "відкриті" питання, на які надані відповіді (за замовчуванням)</li>
+          <li> Всі питання та відповіді в поточній оцінці</li>
+        </ul>
+      </span>
+      <p class="text-start">
+        Звіт показує категорію, "основне" питання та відповідь (так, ні, без відповіді чи альтернатива), а також
+        "вторинне" відкрите питання та відповідь, якщо вони надані.</p>
+      <p class="text-start">
+        Цей звіт допоможе зібрати всі відповіді та коментарі, що стосуються відповідей на "вторинні" чи "відкриті"
+        питання в оцінці.
+      </p>
+    </div>
+
+    <div class="d-flex flex-row justify-content-between align-items-end">
+
+      <h1 *ngIf="openEndedQuestion &&!noData" class="page-title">Питання з відкритими відповідями (Всі питання та
+        відповіді)</h1>
+      <h1 *ngIf="!openEndedQuestion &&!noData" class="page-title">Питання з відкритими відповідями (Тільки відповіді на
+        питання)</h1>
+    </div>
+    <hr class="page-line m-0">
+
+    <div class="row mt-3">
+      <div class="d-grid gap-2 col-6 mx-auto text-center">
+        <div (click)="toggleShow()" type="checkbox">
+          <button class="btn btn-outline-secondary btn-button exportBtb noprint" data-bs-toggle="tooltip"
+            title="Показує лише відповіді на відкриті питання." *ngIf="openEndedQuestion &&!noData"> Тільки
+            відповіді</button>
+          <button class="btn btn-outline-secondary btn-button exportBtb noprint" data-bs-toggle="tooltip"
+            title="Показує всі питання та відповіді в оцінці" *ngIf="!openEndedQuestion &&!noData"> Показати ВСЕ
+          </button>
+        </div>
+      </div>
+      <div class="d-grid gap-2 col-6 mx-auto text-center">
+        <button *ngIf="openEndedQuestion &&!noData" class="btn btn-outline-secondary btn-button exportBtb noprint"
+          data-bs-toggle="tooltip" title="Експортує лише відповіді на відкриті питання в оцінці"
+          (click)="convertTocSvAll()"> <i class="far fa-file-excel"></i> Експорт в Excel</button>
+        <button *ngIf="!openEndedQuestion &&!noData" class="btn btn-outline-secondary btn-button exportBtb noprint"
+          data-bs-toggle="tooltip" title="Експортує лише відповіді на відкриті питання в оцінці"
+          (click)="convertTocSvOnlyAnswered()"> <i class="far fa-file-excel"></i> Експорт в Excel</button>
+      </div>
+
+      <div *ngIf="noData"> Будь ласка, надайте відповіді на деякі питання, щоб побачити дані в цьому звіті </div>
+    </div>
+    <div *ngIf="openEndedQuestion" class="" id="divshow">
+
+      <ng-template ngFor let-onlyOpenQuestionData [ngForOf]="onlyOpenQuestionData">
+        <h2 class="m-3 subcat-header" *ngIf="onlyOpenQuestionData.questions.length>1">{{onlyOpenQuestionData.title}}
+        </h2>
+        <div *ngFor="let q of onlyOpenQuestionData.questions">
+
+          <div class="row" [class.mt-3]="!q.parentQuestionId" [class.ml-3.mb-2]="!!q.parentQuestionId"
+            [class.border-bottom]="!!q.parentQuestionId">
+            <!-- [class.d-none]="q.parentQuestionId==null && !q.isParentQuestion"> -->
+            <div class="col-sm-2 ml-4">
+              {{q.displayNumber}}
+            </div>
+            <div class="col-sm-8">
+              <div>
+                {{q.questionText}}
+                <p class="m-2" *ngIf="!q.parentQuestionId ">Ваша відповідь: <span *ngIf="q.answer=='Y'">Так</span>
+                  <span *ngIf="q.answer=='N'">Ні</span>
+                  <span *ngIf="q.answer=='U'">Без відповіді</span>
+                  <span *ngIf="!q.parentQuestionId && q.answer=='A'"> Альтернативна <p
+                      class="overflow-auto pl-0 col-12">{{q.altAnswerText}}</p></span>
+                </p>
+
+
+              </div>
+              <div class="mt-3" [class.d-none]="!q.parentQuestionId">
+                <h6>Ваша відповідь:</h6>
+                <p class="overflow-auto pl-0 col-12"><span *ngIf="q.freeResponseAnswer">{{q.freeResponseAnswer}}</span>
+                  <span *ngIf="!q.freeResponseAnswer">Без відповіді</span> </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+    </div>
+    <div *ngIf="!openEndedQuestion" class="" id="divshow">
+      <ng-template ngFor let-data2 [ngForOf]="data2">
+        <h2 class="m-3 subcat-header">{{data2.title}}</h2>
+        <div *ngFor="let q of data2.myArray">
+
+          <div class="row" [class.mt-3]="!q.parentQuestionId" [class.ml-3.mb-2]="!!q.parentQuestionId"
+            [class.border-bottom]="!!q.parentQuestionId"
+            [class.d-none]="q.parentQuestionId==null && !q.isParentQuestion">
+            <div class="col-sm-2 ml-4">
+              {{q.displayNumber}}
+            </div>
+            <div class="col-sm-8">
+              <div>
+                {{q.questionText}}
+
+                <p class="m-2" *ngIf="!q.parentQuestionId ">Ваша відповідь: <span *ngIf="q.answer=='Y'">Так</span>
+                  <span *ngIf="q.answer=='N'">Ні</span>
+                  <span *ngIf="q.answer=='U'">Без відповіді</span>
+                  <span *ngIf="!q.parentQuestionId && q.answer=='A'"> Альтернативна <p class="overflow-auto pl-0 col-12"
+                      [class.d-none]="!q.altAnswerText">{{q.altAnswerText}}</p></span>
+                </p>
+
+              </div>
+              <div class="mt-3" [class.d-none]="!q.parentQuestionId">
+                <h6>Ваша відповідь:</h6>
+                <p class="overflow-auto pl-0 col-12">{{q.freeResponseAnswer}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>

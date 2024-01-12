@@ -1,0 +1,109 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="report-body mb-5">
+
+    <div class="flex-container">
+        <div class="column mt-3">
+            <p class="report-title">
+                АРКУШНА ВИРІЗКА СПОСЕРЕДЖЕНЬ
+            </p>
+        </div>
+        <div class="column">
+            <p style="text-align:center;">
+                <img width="471" height="529" alt="cset" src="assets/images/TearOutFiles/image002.jpg">
+            </p>
+        </div>
+
+        <div class="cover-page-bottom">
+          <app-logo-for-reports></app-logo-for-reports>
+          <app-info-block [response]="response"/>
+        </div>
+    </div>
+
+    <div class="page-break" *ngIf="configSvc.behaviors.showDisclaimer">
+        <app-report-disclaimer></app-report-disclaimer>
+    </div>
+
+    <div class="page-break">
+        <app-report-advisory></app-report-advisory>
+    </div>
+
+    <div class="page-break">
+        <div style="margin-bottom: 3em;">
+            <h1>Інформація про сайт</h1>
+            <app-site-information [response]="response"></app-site-information>
+        </div>
+
+        <div *ngIf="response?.individuals.length === 0" style="font-style: italic; font-weight: bold;">
+            Оцінка не містить жодних спостережень, які призначені для індивідуалів.
+        </div>
+    </div>
+
+    <div *ngFor="let individual of response?.individuals">
+        <div class="page-break">
+            <div id="indiv_{{individual.individualfullname.replace(' ','_')}}"
+                style="font-weight: bold; color: #0A5278; margin-bottom: .5em;">{{individual.individualfullname}}
+            </div>
+
+            <table class="finding-table" *ngFor="let finding of individual.findings">
+                <tr>
+                    <td colspan="4" class="tint1">{{finding.finding}}</td>
+                </tr>
+                <tr>
+                    <td class="tint2">Ідентифікатор питання:</td>
+                    <td colspan="3">{{finding.questionIdentifier}}</td>
+                </tr>
+                <tr>
+                    <td class="tint2">Текст питання:</td>
+                    <td colspan="3" [innerHTML]="finding.questionText"></td>
+                </tr>
+                <tr>
+                    <td class="tint2" style="width: 25%">Важливість:</td>
+                    <td style="width: 25%">{{finding.importance}}</td>
+                    <td class="tint2" style="width: 25%">Дата вирішення:</td>
+                    <td style="width: 25%">{{finding.resolutionDate | date:'dd.MM.yyyy'}}</td>
+                </tr>
+                <tr>
+                    <td class="tint2">Проблема:</td>
+                    <td colspan="3">{{finding.issue}}</td>
+                </tr>
+                <tr>
+                    <td class="tint2">Впливи:</td>
+                    <td colspan="3">{{finding.impact}}</td>
+                </tr>
+                <tr>
+                    <td class="tint2">Рекомендації:</td>
+                    <td colspan="3">{{finding.recommendations}}</td>
+                </tr>
+                <tr>
+                    <td class="tint2">Вразливості:</td>
+                    <td colspan="3">{{finding.vulnerabilities}}</td>
+                </tr>
+                <tr>
+                    <td class="tint2">Контакти:</td>
+                    <td colspan="3">{{finding.otherContacts.replace(',',', ')}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

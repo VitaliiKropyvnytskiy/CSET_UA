@@ -1,0 +1,106 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="white-panel d-flex justify-content-start flex-column flex-11a tutorial">
+    <h3 class="wrap-text mb-3">Огляд кіберінфраструктури (CIS) конфігурація</h3>
+
+    <div class="mb-4">
+        <h4>Назва оцінки CIS</h4>
+        <p>Щоб усвідомити всі переваги CIS, користувачі, які повертаються, мають можливість імпортувати попередні
+            відповіді, а також порівнювати раніше виконане оцінювання як базове.</p>
+        <p>
+            Усі користувачі CIS повинні спочатку назвати та зберегти свою оцінку відповідно. Назва оцінювання CIS
+            відбувається на екрані налаштування оцінювання. Під час збереження слід враховувати угоди про найменування,
+            щоб у майбутньому було легше знайти конкретну оцінку.
+        </p>
+        <label for="name">Назва оцінювання</label>
+        <input type="text" maxlength="100" class="form-control" id="name" name="name"
+            [(ngModel)]="assessment.assessmentName" (change)="updateAssessment()">
+    </div>
+
+    <div class="mb-4">
+        <h4>Новий CIS Користувач</h4>
+        <p>Якщо ви новий користувач, поля <strong>Імпортувати</strong> та <strong>Вибрати базис</strong> нижче
+            будуть порожніми. Натисніть «Далі», щоб розпочати оцінювання CIS. </p>
+    </div>
+
+    <div class="mb-4">
+        <h4>Користувач CIS, який повернувся</h4>
+        <p>Після повернення користувач матиме можливість вибору попередніх оцінок CIS на своїй панелі керування.</p>
+        <p>Після завершення початкового CIS у користувача буде можливість викликати оцінювання повторно для: </p>
+        <ul>
+            <li><strong>Збільшення швидкості</strong> заповнення майбутньої оцінки шляхом імпортування відповідей з
+                попередньої оцінки CIS.
+            </li>
+            <li><strong>Відстеження прогресу</strong>, обираючи раніше завершений CIS для використання у якості базової
+                оцінки для порівняння з новою оцінкою.</li>
+        </ul>
+        <p>
+            Якщо ви є користувачем, який повернувся до системи, нижче наведені поля пропонують можливість
+            <strong>імпорту</strong>
+            попередньої оцінки та/або <strong>вибір базового опитування</strong> з раніше збереженої оцінки CIS.
+        </p>
+
+    </div>
+
+    <div class="mb-4">
+        <h4>Імпортуйте CIS відповіді</h4>
+        <p>
+            Імпортуйте всі відповіді з попереднього опитування CIS. Усі відповіді на опитування, коментарі та артефакти,
+            які зараз оцінюються, будуть накладені.
+        </p>
+
+        <div class="d-flex flex-row">
+            <select class="form-control mr-1" #import>
+                <option value="">-- Виберіть Опитування для імпорту --</option>
+                <option *ngFor="let c of importSourceCandidates" [value]="c.id">
+                    {{c.assessmentName}} [{{c.assessmentDate | date}}]
+                </option>
+            </select>
+            <button class="btn btn-primary text-nowrap" [disabled]="import.value == ''"
+                (click)="confirmImportSurvey(import)">
+                <i class="fs-base cset-icons-import"></i>
+                Імопортувати</button>
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <h4>Виберіть базове оцінювання</h4>
+        <p>За бажанням виберіть інше раніше завершене оцінювання CIS для порівняння у якості базового. Результати,
+            наведені у розділі базового оцінювання, будуть відображені поруч з результатами поточного під час
+            опитування. У звітах відповіді базового оцінювання будуть включені для порівняння.
+        </p>
+        <p>Щоб видалити базове оцінювання, виберіть верхню опцію "Немає базового оцінювання".</p>
+
+        <div>
+            <select class="form-control" (change)="changeBaseline($event)" [(ngModel)]="baselineAssessmentId">
+                <option [ngValue]="null">-- Немає базового оцінювання --</option>
+                <option *ngFor="let c of baselineCandidates" [value]="c.id">
+                    {{c.assessmentName}} [{{c.assessmentDate | date}}]
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <app-nav-back-next [page]="'config-cis'"></app-nav-back-next>
+
+</div>

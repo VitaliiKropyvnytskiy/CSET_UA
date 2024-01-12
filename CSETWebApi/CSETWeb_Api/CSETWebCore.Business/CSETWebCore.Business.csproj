@@ -1,0 +1,135 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="App_Data\assessmentInviteTemplate_ACET.html" />
+    <None Remove="App_Data\assessmentInviteTemplate_CF.html" />
+    <None Remove="App_Data\assessmentInviteTemplate_CSET.html" />
+    <None Remove="App_Data\assessmentInviteTemplate_RRA.html" />
+    <None Remove="App_Data\assessmentInviteTemplate_TSA.html" />
+    <None Remove="App_Data\EmailFooter.html" />
+    <None Remove="App_Data\EmailFooter_ACET.html" />
+    <None Remove="App_Data\EmailFooter_CF.html" />
+    <None Remove="App_Data\inlineStylesheet.html" />
+    <None Remove="App_Data\invitedPasswordCreationTemplate_ACET.html" />
+    <None Remove="App_Data\invitedPasswordCreationTemplate_CF.html" />
+    <None Remove="App_Data\invitedPasswordCreationTemplate_CSET_CF.html" />
+    <None Remove="App_Data\invitedPasswordCreationTemplate_CSET.html" />
+    <None Remove="App_Data\invitedPasswordCreationTemplate_RRA.html" />
+    <None Remove="App_Data\invitedPasswordCreationTemplate_TSA.html" />
+    <None Remove="App_Data\passwordCreationTemplate_ACET.html" />
+    <None Remove="App_Data\passwordCreationTemplate_CF.html" />
+    <None Remove="App_Data\passwordCreationTemplate_CSET_CF.html" />
+    <None Remove="App_Data\passwordCreationTemplate_CSET.html" />
+    <None Remove="App_Data\passwordCreationTemplate_TSA.html" />
+    <None Remove="App_Data\passwordResetTemplate_ACET.html" />
+    <None Remove="App_Data\passwordResetTemplate_CF.html" />
+    <None Remove="App_Data\passwordResetTemplate_CSET.html" />
+    <None Remove="App_Data\passwordResetTemplate_TSA.html" />
+    <None Remove="AssessmentIO\Import\ColumnImportRules.xml" />
+    <None Remove="Dashboard\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="App_Data\assessmentInviteTemplate_ACET.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\assessmentInviteTemplate_CF.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\assessmentInviteTemplate_TSA.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\assessmentInviteTemplate_RRA.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\assessmentInviteTemplate_CSET.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\EmailFooter_CF.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\EmailFooter.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\EmailFooter_ACET.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\inlineStylesheet.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\invitedPasswordCreationTemplate_CF.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\invitedPasswordCreationTemplate_TSA.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\invitedPasswordCreationTemplate_RRA.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\invitedPasswordCreationTemplate_ACET.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\invitedPasswordCreationTemplate_CSET.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\passwordCreationTemplate_ACET.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\passwordCreationTemplate_CF.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\passwordCreationTemplate_TSA.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\passwordCreationTemplate_CSET.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\passwordResetTemplate_ACET.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\passwordResetTemplate_CF.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\passwordResetTemplate_TSA.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_Data\passwordResetTemplate_CSET.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AssessmentIO\Import\ColumnImportRules.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper.Excel.Core" Version="27.2.1" />
+    <PackageReference Include="DocumentFormat.OpenXml" Version="2.20.0" />
+    <PackageReference Include="DotNetZip" Version="1.16.0" />
+    <PackageReference Include="Lucene.Net" Version="4.8.0-beta00016" />
+    <PackageReference Include="Lucene.Net.Analysis.Common" Version="4.8.0-beta00016" />
+    <PackageReference Include="Lucene.Net.Queries" Version="4.8.0-beta00016" />
+    <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00016" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.10" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="NJsonSchema" Version="10.9.0" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="5.3.3" />
+    <PackageReference Include="NSoupCore" Version="1.0.0" />
+    <PackageReference Include="System.Data.OleDb" Version="7.0.0" />
+    <PackageReference Include="TinyMapper" Version="3.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CSETWebCore.Constants\CSETWebCore.Constants.csproj" />
+    <ProjectReference Include="..\CSETWebCore.DataLayer\CSETWebCore.DataLayer.csproj" />
+    <ProjectReference Include="..\CSETWebCore.Helpers\CSETWebCore.Helpers.csproj" />
+    <ProjectReference Include="..\CSETWebCore.Interfaces\CSETWebCore.Interfaces.csproj" />
+    <ProjectReference Include="..\CSETWebCore.Model\CSETWebCore.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dashboard\" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,253 @@
+<!---------------------- 
+
+   Copyright 2023 Battelle Energy Alliance, LLC  
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy 
+  of this software and associated documentation files (the "Software"), to deal 
+  in the Software without restriction, including without limitation the rights 
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+  copies of the Software, and to permit persons to whom the Software is 
+  furnished to do so, subject to the following conditions: 
+ 
+  The above copyright notice and this permission notice shall be included in all 
+  copies or substantial portions of the Software. 
+ 
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+  SOFTWARE. 
+-------------------------->
+<div style="max-width:700px; padding-right:20px;">
+  <h1 class="pageHeader">Результати укладення</h1>
+  <div class="sr-header-section">
+      <div class="sr-subtitle">
+          Відсоток завершених практик за стандартом MIL
+      </div>
+      <div class="sr-legend">
+          <div class='sr-legend-column'>
+              <div class="sr-legend-cell">
+                  Легенда
+              </div>
+              <div class="sr-legend-cell sr-percent-graph-bar">
+                  &nbsp;
+              </div>
+              <div class="sr-legend-cell mat-indic-lvl-body-graph-bar">
+                  &nbsp;
+              </div>
+          </div>
+          <div class='sr-legend-column'>
+              <div class="sr-legend-cell">
+                  &nbsp;
+              </div>
+              <div class="sr-legend-cell">
+                  % ТАК
+              </div>
+              <div class="sr-legend-cell">
+                  Бали MIL
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="sr-body-container" style="width:714px;">
+      <div class="sr-body-axis-container">
+          <div class="sr-body-axis">
+              <table class="w-100">
+                  <tr>
+                      <td style="width: 10%; text-align: center;" *ngFor="let item of [].constructor(11); let i = index">{{i * 10}}%</td>
+                  </tr>
+              </table>
+          </div>
+      </div>
+      <div class="sr-body">
+          <div class="sr-body-col-one">
+              <div class="sr-arrow-body">
+                  Рівень індикатора зрілості - Організаційна спроможність
+              </div>
+              <div class="sr-arrow-tip">
+
+              </div>
+          </div>
+          <div *ngIf="flat_data" class="sr-body-col-two">
+              <div class="sr-body-mil-one">
+                  <div class="sr-body-mil-one-labels">
+                      <div class="sr-body-mil-one-arrow">
+                          <div class="sr-mil-1-text" style="justify-content: center;">
+                              MIL-1
+                          </div>
+                          <div class="sr-arrow-body">
+                              ЖИТТЄВИЙ ЦИКЛ СТОСУНКІВ
+                          </div>
+                          <div class="sr-arrow-tip">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="sr-body-mil-one-data">
+                      <div class=sr-body-mil-one-data-row>
+                          <div class="sr-body-label">
+                              <div class="sr-body-text">
+                                  Утворення стосунків
+                              </div>
+                              <div class="sr-body-subtext">
+                                  {{flat_data[0]['children'][0].percentageCountRight}} з
+                                  {{flat_data[0]['children'][0].percentageTotalCount}} практик
+                              </div>
+                          </div>
+                          <div class="sr-body-mil-one-bar-container">
+                              <div class="sr-body-mil-one-bar sr-percent-graph-bar"
+                                  [ngStyle]="getBarWidth(flat_data[0]['children'][0])">
+                                  &nbsp;
+                              </div>
+                          </div>
+                      </div>
+                      <div class=sr-body-mil-one-data-row>
+                          <div class="sr-body-label">
+                              <div class="sr-body-text">
+                                  Управління та управління стосунками
+                              </div>
+                              <div class="sr-body-subtext">
+                                  {{flat_data[0]['children'][1].percentageCountRight}} з
+                                  {{flat_data[0]['children'][1].percentageTotalCount}} практик
+                              </div>
+                          </div>
+                          <div class="sr-body-mil-one-bar-container">
+                              <div class="sr-body-mil-one-bar sr-percent-graph-bar"
+                                  [ngStyle]="getBarWidth(flat_data[0]['children'][1])">
+                                  &nbsp;
+                              </div>
+                          </div>
+                      </div>
+                      <div class=sr-body-mil-one-data-row>
+                          <div class="sr-body-label">
+                              <div class="sr-body-text">
+                                  Захист та забезпечення послуг
+                              </div>
+                              <div class="sr-body-subtext">
+                                  {{flat_data[0]['children'][2].percentageCountRight}} з
+                                  {{flat_data[0]['children'][2].percentageTotalCount}} практик
+                              </div>
+                          </div>
+                          <div class="sr-body-mil-one-bar-container">
+                              <div class="sr-body-mil-one-bar sr-percent-graph-bar"
+                                  [ngStyle]="getBarWidth(flat_data[0]['children'][2])">
+                                  &nbsp;
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="sr-body-mil-two-five">
+                  <div class="sr-body-mil-two-five-data">
+                      <div class="sr-body-mil-two-to-five-data-row">
+                          <div class="sr-body-label">
+                              <div class="sr-body-text">
+                                  MIL-2 Запланований
+                              </div>
+                              <div class="sr-body-subtext">
+                                  {{flat_data[1].percentageCountRight}} з {{flat_data[1].percentageTotalCount}} практик
+                              </div>
+                          </div>
+                          <div class="sr-body-mil-one-bar-container">
+                              <div class="sr-body-mil-one-bar sr-percent-graph-bar" [ngStyle]="getBarWidth(flat_data[1])">
+                                  &nbsp;
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="sr-body-mil-two-five-data">
+                      <div class="sr-body-mil-two-to-five-data-row">
+                          <div class="sr-body-label">
+                              <div class="sr-body-text">
+                                  MIL-3 Управління
+                              </div>
+                              <div class="sr-body-subtext">
+                                  {{flat_data[2].percentageCountRight}} з {{flat_data[2].percentageTotalCount}} практик
+                              </div>
+                          </div>
+                          <div class="sr-body-mil-one-bar-container">
+                              <div class="sr-body-mil-one-bar sr-percent-graph-bar" [ngStyle]="getBarWidth(flat_data[2])">
+                                  &nbsp;
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="sr-body-mil-two-five-data">
+                      <div class="sr-body-mil-two-to-five-data-row">
+                          <div class="sr-body-label">
+                              <div class="sr-body-text">
+                                  MIL-4 Виміряний
+                              </div>
+                              <div class="sr-body-subtext">
+                                  {{flat_data[3].percentageCountRight}} з {{flat_data[3].percentageTotalCount}} практик
+                              </div>
+                          </div>
+                          <div class="sr-body-mil-one-bar-container">
+                              <div class="sr-body-mil-one-bar sr-percent-graph-bar" [ngStyle]="getBarWidth(flat_data[3])">
+                                  &nbsp;
+                              </div>
+                          </div>
+                      </div>
+                      <div class="sr-body-mil-two-five-data">
+                          <div class="sr-body-mil-two-to-five-data-row">
+                              <div class="sr-body-label">
+                                  <div class="sr-body-text">
+                                      MIL-5 Визначений
+                                  </div>
+                                  <div class="sr-body-subtext">
+                                      {{flat_data[4].percentageCountRight}} з {{flat_data[4].percentageTotalCount}} практик
+                                  </div>
+                              </div>
+                              <div class="sr-body-mil-one-bar-container">
+                                  <div class="sr-body-mil-one-bar sr-percent-graph-bar" [ngStyle]="getBarWidth(flat_data[4])">
+                                      &nbsp;
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="sr-body-axis-container">
+                  <div class="sr-body-axis">
+                      <table class="w-100">
+                          <tr>
+                              <td style="width: 10%; text-align: center;" *ngFor="let item of [].constructor(11); let i = index">{{i * 10}}%</td>
+                          </tr>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="mat-indic-lvl">
+      <div class="mat-indic-lvl-title"> Рівень індикатора зрілості *</div>
+      <div class="mat-indic-lvl-body" style="width:700px;">
+          <div class="mat-indic-lvl-body-label">Ваша організація</div>
+          <div class="mat-indic-lvl-body-data">
+              <div class="mat-indic-lvl-body-graph-container">
+                  <div class="mat-indic-lvl-body-graph-bar" [ngStyle]="getBlueBarWidth(blueBarValue)">.</div>
+              </div>
+              <div class="mat-indic-lvl-body-graph-labels">
+                  <div>0</div>
+                  <div>0.25</div>
+                  <div>0.50</div>
+                  <div>0.75</div>
+                  <div>MIL-1</div>
+                  <div>MIL-2</div>
+                  <div>MIL-3</div>
+                  <div>MIL-4</div>
+                  <div>MIL-5</div>
+              </div>
+          </div>
+      </div>
+      <div class="mat-indic-lvl-detail-text">
+          Рівні індикаторів зрілості надають комбіноване вимірювання завершеності практик EDM, а також управлінської
+          діяльності підприємства, необхідної для забезпечення сталості цієї здатності з плином часу, незважаючи на
+          прогалини або зміни в організації. Шкала MIL є накопичувальною; кожний рівень MIL повинен бути завершеним,
+          перш ніж буде можливим досягнення вищого рівня MIL. Усі ці зображення разом надають розуміння загальної
+          продуктивності. Незважаючи на те, що досягнення певного рівня індикатора зрілості є можливою метою
+          вдосконалення процесів, це може бути не найважливішою метою для кожної організації в кожному контексті.
+      </div>
+  </div>
+</div>

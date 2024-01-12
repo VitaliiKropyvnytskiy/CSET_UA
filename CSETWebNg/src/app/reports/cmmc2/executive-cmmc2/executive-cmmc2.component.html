@@ -1,0 +1,145 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="report-body mb-5">
+
+  <div class="flex-container">
+    <div class="column mt-3">
+      <p class="report-title">
+        ПІДСУМКОВИЙ ЗВІТ <span class="text-nowrap">CMMC 2.0</span>
+      </p>
+    </div>
+    <div class="column">
+      <p style="text-align: center">
+        <img width="471" height="529" alt="cset" src="assets/images/ExecutiveFiles/image002.jpg">
+      </p>
+    </div>
+
+    <div class="cover-page-bottom">
+      <app-logo-for-reports />
+      <app-info-block [response]="responseGeneral" />
+    </div>
+  </div>
+
+  <div class="page-break" *ngIf="configSvc.behaviors.showDisclaimer">
+    <app-report-disclaimer></app-report-disclaimer>
+  </div>
+
+  <div class="page-break">
+    <app-report-advisory></app-report-advisory>
+  </div>
+
+  <div class="page-break"
+    *ngIf="responseGeneral?.information.assessment_Description || responseGeneral?.information?.Executive_Summary">
+    <h1 class="pageHeader" *ngIf="responseGeneral?.information.assessment_Description">Високорівневий опис асесменту
+    </h1>
+    <p [innerHTML]="reportSvc.formatLinebreaks(responseGeneral?.information.Assessment_Description)">
+    </p>
+
+    <h1 class="midBlackTitle" *ngIf="responseGeneral?.information?.Executive_Summary">Виконавчий підсумок</h1>
+    <div [innerHTML]="reportSvc.formatLinebreaks(responseGeneral?.information?.Executive_Summary)">
+    </div>
+  </div>
+
+  <div class="page-break">
+    <h1 class="pageHeader">
+      Відповідність за рівнями
+    </h1>
+    <p>На фігурі показано прогрес організації в рамках CMMC на основі окремих цільових рівнів та
+      загальної оцінки кібербезпеки.</p>
+
+    <div class="d-flex flex-row" *ngFor="let l of responseLevels">
+      <!-- pie charts for compliance at each level -->
+      <div class="mr-5 d-flex" style="align-items: center; justify-content: center;">
+        <div style="border-radius: .5rem; padding: 1.5rem; text-align: center; font-weight: bold"
+          [class]="'cmmc2-level-' + l.levelValue">
+          {{l.name}}
+        </div>
+      </div>
+      <div id="chart" class="mb-3">
+        <canvas id="{{'level' + l.levelValue }}" style="max-width: 800px; margin: 0 auto;">{{l.chart}}</canvas>
+      </div>
+      <div class="d-none">
+        <div>Відповідає: {{l.compliancePercent}}%</div>
+        <div>Не відповідає {{l.nonCompliancePercent}}%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break">
+    <h1 class="pageHeader">Відповідність за доменами</h1>
+
+    <p>Наступна діаграма показує відсоток практик, що виконані для кожного
+      домену на цільовому рівні {{targetLevel}}.</p>
+
+    <div class="d-block mb-5">
+      <canvas id="domainResults">{{chartDomain}}</canvas>
+    </div>
+  </div>
+
+  <div *ngIf="targetLevel == 0">
+    <div class="spinner-container" style="margin-left: auto; margin-right: auto;">
+      <div style="max-width: 50px; max-height: 50px;"></div>
+    </div>
+  </div>
+
+  <div class="page-break" *ngIf="targetLevel > 1">
+    <h1 class="pageHeader">Картка оцінки SPRS</h1>
+
+    <div class="mt-3 text-center" [innerHTML]="sprsGauge | safe"></div>
+    <div class="text-center mb-5">Ваша оцінка SPRS складає <strong>{{responseSprs.sprsScore}}</strong></div>
+
+    <p>
+      Наступна таблиця є обліком відповідей на вимоги для Цільового рівня 2.
+      Жирним шрифтом виділені практики, які не виконані. Стовпець "Значення" вказує кількість балів,
+      віднятих від максимально можливого балу 110.
+    </p>
+
+    <table class="cset-table">
+      <tr>
+        <th>Практика</th>
+        <th></th>
+        <th>
+          Відповідь
+        </th>
+        <th>
+          Значення
+        </th>
+      </tr>
+
+      <ng-template ngFor let-d [ngForOf]="responseSprs.domains">
+        <tr style="border-top: 1px solid #000; border-bottom: 1px solid #000; background-color: #fff;;">
+          <td colspan="4" class="h5">{{d.domainName}}</td>
+        </tr>
+
+        <ng-template ngFor let-q [ngForOf]="d.questions">
+          <tr>
+            <td class="text-nowrap align-top" [class.font-weight-bold]="q.score != 0">{{q.id}}</td>
+            <td class="align-top" [class.font-weight-bold]="q.score != 0" [innerHtml]="q.questionText | safe"></td>
+            <td class="align-top" [class.font-weight-bold]="q.score != 0">{{renderAnswer(q.answerText)}}</td>
+            <td class="align-top" [class.font-weight-bold]="q.score != 0">{{q.score == 0 ? '' : q.score}}</td>
+          </tr>
+        </ng-template>
+      </ng-template>
+    </table>
+  </div>
+</div>

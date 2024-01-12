@@ -1,0 +1,147 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="assess-component d-flex flex-column justify-content-start flex-11a mb-4">
+  <div class="white-panel d-flex flex-column justify-content-start flex-11a">
+    <h3 class="mb-3">Конфігурація оцінювання</h3>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+
+        <label class="mb-1" for="name">Назва оцінювання</label>
+        <input type="text" maxlength="100" class="form-control" id="name" name="name" required focusOnInit="true"
+          [(ngModel)]="assessment.assessmentName" (ngModelChange)="assessment.assessmentName" (change)="update($event)"
+          autofocus tabindex="0">
+      </div>
+      <div class="form-group col-md-6">
+        <label class="mb-1" for="date">Дата оцінювання</label>
+        <input matInput MatDatepickerInput class="form-control" id="date" name="date"
+          [(ngModel)]="assessment.assessmentDate" [min]="minDate" [matDatepicker]="picker" (focus)="picker.open()"
+          (blur)="update($event)" (click)="picker.open()" (ngModelChange)="update($event)" tabindex="0">
+        <mat-datepicker #picker></mat-datepicker>
+      </div>
+    </div>
+
+    <app-assessment-contacts (triggerChange)="refreshContacts()"></app-assessment-contacts>
+
+    <hr class="w-100 hr-sal my-5" />
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label class="mb-1" for="criticalService">Критична служба</label>
+        <textarea [ngClass]="{ 'alert-danger' : !demographics.criticalService }" appAutoSize class="form-control"
+          autocomplete="off" tabindex="0" maxlength="100" name="criticalService" id="criticalService"
+          [(ngModel)]="demographics.criticalService" placeholder="Критична служба"
+          (blur)="changeCriticalService($event)"></textarea>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label class="mb-1" for="criticalService">Критична залежність для підтримки реагування на інциденти</label>
+        <textarea [ngClass]="{ 'alert-danger' : !iodDemographics.criticalDependencyIncidentResponseSupport }"
+          appAutoSize class="form-control" autocomplete="off" tabindex="0" maxlength="100" name="criticalDependency"
+          id="criticalDependency" [(ngModel)]="iodDemographics.criticalDependencyIncidentResponseSupport"
+          placeholder="Критична залежність для підтримки реагування на інциденти" (blur)="updateIodDemographics()"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="mb-1" for="critSvcPointOfContact">Важлива контактна особа служби підтримки</label>
+      <select class="form-control" id="critSvcPointOfContact" tabindex="0" name="critSvcPointOfContact"
+        (change)="changePointOfContact($event)" [(ngModel)]="demographics.pointOfContact">
+        <option [ngValue]="null">-- Виберіть контактну особу --</option>
+        <option *ngFor="let contact of contacts" [ngValue]="contact.assessmentContactId">
+          {{ contact.firstName }} {{ contact.lastName }}
+        </option>
+      </select>
+    </div>
+    <!-- #4 -->
+    <div class="form-group mb-4">
+      <label for="percentageRevenue">
+        Оцініть відсоток річного доходу вашої організації, який залежить від критично важливої послуги.
+      </label>
+      <select [ngClass]="{ 'alert-danger' : !iodDemographics.criticalServiceRevenuePercent }" class="form-control"
+        id="percentageRevenue" tabindex="0" name="percentageRevenue"
+        [(ngModel)]="iodDemographics.criticalServiceRevenuePercent" (change)="updateIodDemographics()">
+        <option [ngValue]="null">-- Виберіть--</option>
+        <option *ngFor="let i of iodDemographics.listRevenuePercentages" [ngValue]="i.optionValue"
+          [selected]="i.optionValue === iodDemographics.criticalServiceRevenuePercent">
+          {{ i.optionText }}
+        </option>
+      </select>
+    </div>
+
+    <!-- #5 -->
+    <div class="form-group mb-4">
+      <label for="NumberPeopleServedByCritSvc">
+        Якщо можливо, оцініть кількість людей, які щорічно обслуговуються критично важливою службою. Якщо оцінка
+        недоступна, виберіть Н/Д.
+      </label>
+      <select [ngClass]="{ 'alert-danger' : !iodDemographics.numberPeopleServedByCritSvc }" class="form-control"
+        id="numberPeopleServedByCritSvc" tabindex="0" name="numberPeopleServedByCritSvc"
+        [(ngModel)]="iodDemographics.numberPeopleServedByCritSvc" (change)="updateIodDemographics()">
+        <option [ngValue]="null">-- Виберіть--</option>
+        <option *ngFor="let i of iodDemographics.listNumberPeopleServed" [ngValue]="i.optionValue"
+          [selected]="i.optionValue === iodDemographics.numberPeopleServedByCritSvc">
+          {{ i.optionText }}
+        </option>
+      </select>
+    </div>
+
+    <!-- #6 -->
+    <div class="form-group mb-5">
+      <label for="disruptedSectors">
+        Будь ласка, виберіть у порядку критичності два критичних сектори інфраструктури, які, якби вони були недоступні
+        або перервані протягом одного тижня або більше, найбільше вплинули б на вашу здатність підтримувати критично
+        важливу службу.
+      </label>
+
+      <div>
+        <div>
+          Найбільш важливо:
+          <select [ngClass]="{ 'alert-danger' : !iodDemographics.disruptedSector1 }" class="form-control mb-3"
+            name="disruptedSector1" tabindex="0" [(ngModel)]="iodDemographics.disruptedSector1"
+            (change)="updateIodDemographics()">
+            <option [ngValue]="null">-- Виберіть--</option>
+            <option *ngFor="let i of iodDemographics.listSectors" [ngValue]="i.optionValue"
+              [selected]="i.optionValue === iodDemographics.disruptedSector1">
+              {{ i.optionText }}
+            </option>
+          </select>
+        </div>
+        <div>
+          Друге за важливістю:
+          <select [ngClass]="{ 'alert-danger' : !iodDemographics.disruptedSector2 }" class="form-control mb-3"
+            name="disruptedSector2" tabindex="0" [(ngModel)]="iodDemographics.disruptedSector2"
+            (change)="updateIodDemographics()">
+            <option [ngValue]="null">-- Виберіть--</option>
+            <option *ngFor="let i of iodDemographics.listSectors" [ngValue]="i.optionValue"
+              [selected]="i.optionValue === iodDemographics.disruptedSector2">
+              {{ i.optionText }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <app-nav-back-next [page]="'info-config-iod'"></app-nav-back-next>
+  </div>
+</div>

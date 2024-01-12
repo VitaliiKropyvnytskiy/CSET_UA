@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <AssemblyVersion>12.0.3.2</AssemblyVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<None Include="VersionUpgrader\SQL\**" CopyToOutputDirectory="PreserveNewest" LinkBase="VersionUpgrader\" />
+	<None Include="..\.editorconfig" />
+  </ItemGroup>
+
+</Project>

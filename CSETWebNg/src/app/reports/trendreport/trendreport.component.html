@@ -1,0 +1,163 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<<div class="report-body mb-5">
+
+  <div class="flex-container">
+    <div class="column mt-3">
+      <p
+        class="report-title">
+        ЗВІТ ПРО ТЕНДЕНЦІЇ ЗАБЕЗПЕЧЕННЯ БЕЗПЕКИ
+      </p>
+    </div>
+
+    <div class="column">
+      <p style="text-align: center">
+        <img width="471" height="529" alt="cset" src="assets/images/ExecutiveFiles/image002.jpg">
+      </p>
+    </div>
+
+    <div class="cover-page-bottom">
+      <app-logo-for-reports></app-logo-for-reports>
+      <div style="flex-direction: column; line-height: 150%; padding-right: 2em">
+        <div>{{response?.information.assessment_Name}}</div>
+        <div>
+          {{response?.information.assessment_Date | date:'dd.MM.yyyy'}}
+        </div>
+        <div>
+          {{response?.information.assessor_Name}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break" *ngIf="configSvc.behaviors.showDisclaimer">
+    <app-report-disclaimer></app-report-disclaimer>
+  </div>
+
+  <div class="page-break">
+    <app-report-advisory></app-report-advisory>
+  </div>
+
+  <div class="page-break">
+    <h1>Рівень безпеки (SAL)</h1>
+    <p>Конфіденційність, цілісність та доступність можна налаштувати лише за допомогою майстра визначення рівня SAL NIST FIPS 199. Рівень SAL, який використовується для розрахунку питань та відсотків, - це загальний рівень безпеки.</p>
+
+    <table class="cset-table">
+      <tr>
+        <th style="width: 20%">Псевдонім</th>
+        <th style="width: 20%">Загальний</th>
+        <th style="width: 20%">Конфіденційність</th>
+        <th style="width: 20%">Цілісність</th>
+        <th style="width: 20%">Доступність</th>
+      </tr>
+      <tr *ngFor="let a of response?.salList">
+        <td>{{a.alias}}</td>
+        <td>{{a.oSV}}</td>
+        <td>{{a.q_CV}}</td>
+        <td>{{a.q_IV}}</td>
+        <td>{{a.q_AV}}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="page-break">
+    <h1>Загальний бал відповідності</h1>
+    <div class="cset-container" style="width: 500px; margin: 0 auto 2em auto; display: block;">
+      <div>ЗАГАЛЬНИЙ ВІДСОТОК БАЛУ ВІДПОВІДНОСТІ</div>
+      <div><canvas id="canvasOverallCompliance"> {{ chartOverallCompl }} </canvas></div>
+    </div>
+
+    <h1>Зведення відповідей на оцінку</h1>
+    <div class="chart d-flex flex-column flex-00a">
+
+      <table class="cset-table table-bordered assessment-summary">
+        <tr>
+          <th class="text-left p-2">Псевдонім оцінювання</th>
+          <th class="text-right p-2 pl-3">Загалом</th>
+          <th class="text-right p-2 pl-3">Так</th>
+          <th class="text-right p-2 pl-3">Ні</th>
+          <th class="text-right p-2 pl-3">Н/Д</th>
+          <th class="text-right p-2 pl-3">Альт</th>
+          <th class="text-right p-2 pl-3">Без відповіді</th>
+        </tr>
+        <tr *ngFor="let a of answerCounts">
+          <td class="text-left p-2">{{ a.alias }}</td>
+          <td class="text-right p-2 pl-3" style="width: 10%">{{ a.total }}</td>
+          <td class="text-right p-2 pl-3" style="width: 10%">{{ a.y }}</td>
+          <td class="text-right p-2 pl-3" style="width: 10%">{{ a.n }}</td>
+          <td class="text-right p-2 pl-3" style="width: 10%">{{ a.nA }}</td>
+          <td class="text-right p-2 pl-3" style="width: 10%">{{ a.a }}</td>
+          <td class="text-right p-2 pl-3" style="width: 10%">{{ a.u }}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div *ngIf="answerCounts == null">
+      <div class="spinner-container" style="margin: 2em auto">
+        <div style="max-width: 50px; max-height: 50px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-break">
+    <h1>П'ять найбільш покращених областей</h1>
+    <div class="cset-container" style="width: 500px; margin: 0 auto 2em auto; display: block;">
+      <div>5 НАЙБІЛЬШ ПОКРАЩЕНИХ ОБЛАСТЕЙ</div>
+      <div><canvas id="canvasTop5"> {{ chartTop5 }} </canvas></div>
+    </div>
+  </div>
+
+  <div class="page-break">
+    <h1>П'ять останніх (Області, що хвилюють)</h1>
+    <div class="cset-container" style="width: 500px; margin: 0 auto 2em auto; display: block;">
+      <div>5 ОБЛАСТЕЙ, ЩО ХВИЛЮЮТЬ</div>
+      <div><canvas id="canvasBottom5"> {{ chartBottom5 }} </canvas></div>
+    </div>
+  </div>
+
+  <div class="page-break">
+    <h1>Порівняння індивідуальних категорій</h1>
+
+    <div><canvas id="canvasCategoryPercent"> {{ chartCategoryPercent }} </canvas></div>
+
+  </div>
+
+  <div class="page-break mb-5">
+    <h1>Бібліотека документів</h1>
+
+    <table class="cset-table-3">
+      <tr>
+        <th>Назва</th>
+        <th>Ім'я файлу</th>
+      </tr>
+      <tr *ngFor="let doc of response?.documentLibraryTable">
+        <td>{{doc.documenttitle}}</td>
+        <td>{{doc.fileName}}</td>
+      </tr>
+      <tr *ngIf="response?.documentLibraryTable.length === 0">
+        <td></td>
+        <td>Немає документів для відображення</td>
+      </tr>
+    </table>
+  </div>
+</div>

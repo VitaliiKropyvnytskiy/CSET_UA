@@ -1,0 +1,78 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div style="text-align: center;">
+    <div class="row">
+        <div class="col">
+            <img [src]="logoUrl" style="width: 267px; margin: 30px 0;">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h3 style="font-weight: lighter;">
+                ОГЛЯД КІБЕРСТІЙКОСТІ v4.0
+                <br />
+                <br />
+                ЗВІТ САМООЦІНКИ
+                <br />
+                <br />
+                ДЛЯ
+            </h3>
+            <br />
+            <h3 style="font-weight: lighter;">{{ model?.assessmentDetails.facilityName ?? '[Facility Name]' }}</h3>
+            <br />
+            <br />
+        <h3 style="font-weight: lighter;">{{ model?.assessmentDetails.assessmentDate | date:'dd.MM.yyyy' }}</h3>
+        </div>
+    </div>
+  </div>
+  
+  <div class="page-break"></div>
+  
+  <div class="report-notification">
+    <h4 style="color: black; text-align: center;">Повідомлення</h4>
+    <p>
+        Цей звіт надається "як є" виключно для інформаційних цілей. Агентство кібербезпеки та інфраструктурної безпеки (CISA)
+        не надає жодних гарантій будь-якого виду стосовно будь-якої інформації,
+        що міститься в ньому. В жодному разі уряд Сполучених Штатів або його підрядники або субпідрядники
+        не несуть відповідальності за будь-які збитки, включаючи, але не обмежуючись, прямі, опосередковані,
+        спеціальні або обумовлені обставинами збитки, включаючи збитки на підставі будь-якого недбалості
+        уряду Сполучених Штатів або його підрядників або субпідрядників, виниклих з, спричинених або яким-небудь
+        чином пов'язаних з цим звітом, незалежно від того, чи базувалися вони на гарантії,
+        договорі, торгівлі, чи інакше, незалежно від того, чи спричинено збитки або виникли з результату або
+        покладаються на цей звіт.
+    </p>
+    <p>
+        CISA не рекомендує жодних комерційних продуктів або послуг, включаючи предмет аналізу цього звіту. Будь-яке посилання
+        на конкретні комерційні продукти, процеси або послуги за допомогою службової марки, торгової марки,
+        виробника або іншим чином не становить або не передбачає їхнього затвердження, рекомендації
+        або підтримки з боку CISA.
+    </p>
+    <p>
+        Відображення офіційного герба CISA або інших ознак CISA в цьому звіті не повинно тлумачитися як надання організації-одержувачу
+        права на використання офіційного герба, ініціалів або інших ознак Департаменту державної безпеки. Герб CISA,
+        відзнаки або інші ознаки CISA не повинні використовуватися жодним чином для підтвердження будь-якого
+        комерційного продукту чи діяльності з боку CISA чи уряду Сполучених Штатів. Використання герба CISA
+        без належного дозволу порушує федеральне законодавство (наприклад, 18 U.S.C. §§ 506, 701, 1017) і
+        суперечить політиці CISA щодо використання її герба.
+    </p>
+  </div>

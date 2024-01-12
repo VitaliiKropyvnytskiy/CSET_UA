@@ -1,0 +1,46 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<table matSort (matSortChange)="sortData($event)" class="assessment-summary" style='overflow:auto'>
+    <th mat-sort-header="label">Назва</th>
+    <th mat-sort-header="subnetName" style="width:15%;">Назва(и) підмережі</th>
+    <th mat-sort-header="linkType" style="width:15%;">Тип посилання</th>
+    <th mat-sort-header="security" style="width:20%;">Безпека</th>
+    <th mat-sort-header="layer">Шар</th>
+    <th mat-sort-header="visible">Видимий</th>
+
+    <tr *ngFor="let link of links; let i = index">
+        <td>{{link.label}}</td>
+        <td>{{link.subnetName}}</td>
+        <td>{{link.linkType}}</td>
+        <td>{{link.security}}</td>
+        <td>{{link.layerName}}</td>
+        <td>
+            <input type="checkbox" name="{{ link.visibleField }}" class="mt-1" [(ngModel)]="link.visible"
+              [checked]="link.visible" [disabled]="true" >
+         </td>
+    </tr>
+
+    <tr *ngIf="links.length == 0">
+      <td colspan="6" style="text-align: center;">На цій діаграмі мережі немає посилань.</td>
+    </tr>
+</table>

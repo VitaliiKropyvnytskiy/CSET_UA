@@ -1,0 +1,239 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "csetweb-ng": {
+      "root": "",
+      "sourceRoot": "src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "aot": true,
+            "outputPath": "dist",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "tsConfig": "src/tsconfig.app.json",
+            "polyfills": "src/polyfills.ts",
+            "customWebpackConfig": {
+              "path": "./webpack/monaco-custom-webpack.config.js"
+            },
+            "allowedCommonJsDependencies": [
+              "jquery",
+              "lodash",
+              "rxjs/Subscription",
+              "rxjs/observable/forkJoin",
+              "rxjs/operators/startWith",
+              "rxjs/operators/debounce",
+              "rxjs/operators",
+              "rxjs/Subject",
+              "file-saver",
+              "chart.js",
+              "mousetrap"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/sass"
+              ]
+            },
+            "assets": [
+              {
+                "glob": "**/*.js",
+                "input": "./node_modules/@goecmarc/code-editor/workers",
+                "output": "./assets/workers"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/monaco-editor/min",
+                "output": "./assets/monaco"
+              },
+              "src/assets",
+              "src/favicon_cset.ico",
+              "src/favicon_acet.ico",
+              "src/favicon_tsa.ico",
+              "src/favicon_cf.ico",
+              "src/favicon_renew.ico",
+              "src/uploadAssessment.html",
+              "src/sass",
+              "src/web.config"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/material-design-icons/iconfont/material-icons.css",
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/font-awesome/css/font-awesome.min.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/@fortawesome/fontawesome-free/js/all.min.js",
+              "src/assets/cset.js",
+              "src/assets/shim.min.js",
+              "src/assets/zone.js",
+              {
+                "input": "node_modules/document-register-element/build/document-register-element.js"
+              }
+            ]
+          },
+          "configurations": {
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "extractLicenses": true,
+              "vendorChunk": true,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "6mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            },
+            "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "400kb"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "local": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.local.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "browserTarget": "csetweb-ng:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "csetweb-ng:build:production"
+            },
+            "development": {
+              "browserTarget": "csetweb-ng:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-builders/custom-webpack:extract-i18n",
+          "options": {
+            "browserTarget": "csetweb-ng:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "karmaConfig": "./karma.conf.js",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "src/tsconfig.spec.json",
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/cset.js"
+            ],
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "node_modules/font-awesome/css/font-awesome.css",
+              "node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/sass/styles.scss",
+              "src/styles.css",
+              "src/sass/cmmc-results.scss"
+            ],
+            "assets": [
+              "src/assets",
+              "src/favicon_cset.ico",
+              "src/favicon_acet.ico",
+              "src/favicon_tsa.ico",
+              "src/favicon_cf.ico",
+              "src/favicon_renew.ico",
+              {
+                "glob": "**/*.js",
+                "input": "./node_modules/@goecmarc/code-editor/workers",
+                "output": "./assets/workers"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/monaco-editor/min",
+                "output": "./assets/monaco"
+              }
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "schematics": {
+    "@schematics/angular:component": {
+      "prefix": "app",
+      "style": "scss"
+    },
+    "@schematics/angular:directive": {
+      "prefix": "app"
+    }
+  },
+  "cli": {
+    "analytics": false,
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ],
+    "cache": {
+      "enabled": false
+  }
+}

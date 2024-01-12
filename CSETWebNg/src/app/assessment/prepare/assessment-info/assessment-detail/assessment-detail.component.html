@@ -1,0 +1,81 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<ng-container *transloco="let t">
+    <h4>Деталі організації</h4>
+    <form #f="ngForm">
+        <div class="form-row">
+            <p *ngIf="showAssessmentNameDisclaimer()">Будь ласка, будьте обережні, щоб не називати свою оцінку будь-якою
+                чутливою інформацією. (наприклад, імена фізичних осіб або організацій)</p>
+            <div class="form-group col-md-6">
+
+                <label class="mb-1" for="name">Назва оцінювання</label>
+                <input type="text" maxlength="100" [disabled]="configSvc.installationMode === 'ACET'"
+                    class="form-control" id="name" name="name" required focusOnInit="true"
+                    [(ngModel)]="assessment.assessmentName" (ngModelChange)="assessment.assessmentName"
+                    (change)="update($event)" autofocus tabindex="0">
+                <div class="invalid-feedback d-block text-muted" *ngIf="configSvc.installationMode === 'ACET'">
+                    Заповнюється автоматично на основі наданих даних
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label class="mb-1" for="date">Дата оцінювання</label>
+                <input matInput MatDatepickerInput class="form-control" [min]="minDate" id="date" name="date"
+                    [(ngModel)]="assessment.assessmentDate" [matDatepicker]="picker" (focus)="picker.open()"
+                    (blur)="update($event)" (click)="picker.open()" (ngModelChange)="update($event)" tabindex="0">
+                <mat-datepicker #picker></mat-datepicker>
+            </div>
+        </div>
+        <div class="form-group" *ngIf="showFacilityName()">
+            <label class="mb-1" for="facility">Назва закладу</label>
+            <input type="text" maxlength="100" class="form-control" id="facility" name="facility"
+                [(ngModel)]="assessment.facilityName" (change)="update($event)" tabindex="0">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6" *ngIf="showCityName()">
+                <label class="mb-1" for="citySite">Назва міста або села</label>
+                <input type="text" maxlength="100" class="form-control" id="citySite" name="citySite"
+                    [(ngModel)]="assessment.cityOrSiteName" (change)="update($event)" tabindex="0">
+            </div>
+            <div class="form-group col-md-6" *ngIf="showStateName()">
+                <label class="mb-1" for="stateProvRegion">Область/Район</label>
+                <input type="text" maxlength="100" class="form-control" id="stateProvRegion" name="stateProvRegion"
+                    [(ngModel)]="assessment.stateProvRegion" (change)="update($event)" tabindex="0">
+            </div>
+        </div>
+    </form>
+    <div class="mt-4">
+        <h4>Тип оцінювання</h4>
+        <h5>{{ assessment.typeTitle || 'Порожнє оцінювання' }}</h5>
+        <p *ngIf="assessment.typeDescription && assessment.typeTitle != assessment.typeDescription"
+            [innerHtml]="assessment.typeDescription | safe"></p>
+
+        <div *ngIf="isAwwa">
+            <p>
+                У це оцінювання можна імпортувати результати <a href="https://awwa.org/cyber"
+                    target="_blank">інструменту оцінювання кібербезпеки AWWA</a>.
+            </p>
+            <button class="btn btn-primary" (click)="showAwwaDialog()">Імпортувати результати інструменту AWWA</button>
+        </div>
+
+    </div>
+</ng-container>

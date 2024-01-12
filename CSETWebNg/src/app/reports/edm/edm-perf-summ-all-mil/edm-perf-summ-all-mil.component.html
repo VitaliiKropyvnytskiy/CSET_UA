@@ -1,0 +1,86 @@
+<!---------------------- 
+
+   Copyright 2023 Battelle Energy Alliance, LLC  
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy 
+  of this software and associated documentation files (the "Software"), to deal 
+  in the Software without restriction, including without limitation the rights 
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+  copies of the Software, and to permit persons to whom the Software is 
+  furnished to do so, subject to the following conditions: 
+ 
+  The above copyright notice and this permission notice shall be included in all 
+  copies or substantial portions of the Software. 
+ 
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+  SOFTWARE. 
+-------------------------->
+<div class="d-flex flex-row w-100">
+
+    <div style="width: 50%; padding: 0 .5rem">
+        <div class="mil1-section-header mb-2" [class]="scoreClass('MIL1', '')">MIL-1 Виконано:</div>
+
+        <div class="mil1-domain-header">Формування Зв'язків</div>
+        <app-edm-blocks-compact [section]="'RF'"></app-edm-blocks-compact>
+        <hr>
+        <div class="mil1-domain-header">Управління та Управління Зв'язками</div>
+        <app-edm-blocks-compact [section]="'RMG'"></app-edm-blocks-compact>
+        <hr>
+        <div class="mil1-domain-header">Захист та Підтримка Послуг</div>
+        <app-edm-blocks-compact [section]="'SPS'"></app-edm-blocks-compact>
+    </div>
+
+    <div style="max-width: 60%; margin-right:10px;">
+        <table class="mil-2-5-table mb-3">
+            <tr>
+                <th class="mil2-5-header" [class]="scoreClass('MIL2', '')">MIL-2 Заплановано:</th>
+                <th class="mil2-5-header" [class]="scoreClass('MIL3', '')">MIL-3 Управління:</th>
+                <th class="mil2-5-header" [class]="scoreClass('MIL4', '')">MIL-4 Вимірюється:</th>
+                <th class="mil2-5-header" [class]="scoreClass('MIL5', '')">MIL-5 Визначено:</th>
+            </tr>
+            <tr>
+                <td>Практики домену підтримуються плануванням, політикою, стейкхолдерами та стандартами.</td>
+                <td>Практики домену підтримуються управлінням та відповідними ресурсами.</td>
+                <td>Практики домену підтримуються вимірюваннями, моніторингом та виконавчим наглядом.</td>
+                <td>Практики домену підтримуються стандартизацією підприємства та аналізом вивчених уроків.</td>
+            </tr>
+            <tr>
+                <td [class]="scoreClass('MIL2', 'Q1')">{{getText('MIL2', 'Q1')}}</td>
+                <td [class]="scoreClass('MIL3', 'Q1')">{{getText('MIL3', 'Q1')}}</td>
+                <td [class]="scoreClass('MIL4', 'Q1')">{{getText('MIL4', 'Q1')}}</td>
+                <td [class]="scoreClass('MIL5', 'Q1')">{{getText('MIL5', 'Q1')}}</td>
+            </tr>
+            <tr>
+                <td [class]="scoreClass('MIL2', 'Q2')">{{getText('MIL2', 'Q2')}}</td>
+                <td [class]="scoreClass('MIL3', 'Q2')">{{getText('MIL3', 'Q2')}}</td>
+                <td [class]="scoreClass('MIL4', 'Q2')">{{getText('MIL4', 'Q2')}}</td>
+                <td [class]="scoreClass('MIL5', 'Q2')">{{getText('MIL5', 'Q2')}}</td>
+            </tr>
+            <tr>
+                <td [class]="scoreClass('MIL2', 'Q3')">{{getText('MIL2', 'Q3')}}</td>
+                <td [class]="scoreClass('MIL3', 'Q3')">{{getText('MIL3', 'Q3')}}</td>
+                <td [class]="scoreClass('MIL4', 'Q3')">{{getText('MIL4', 'Q3')}}</td>
+                <td [class]="scoreClass('MIL5', 'Q3')">{{getText('MIL5', 'Q3')}}</td>
+            </tr>
+            <tr>
+                <td [class]="scoreClass('MIL2', 'Q4')">{{getText('MIL2', 'Q4')}}</td>
+                <td [class]="scoreClass('MIL3', 'Q4')">{{getText('MIL3', 'Q4')}}</td>
+                <td [class]=""></td>
+                <td [class]=""></td>
+            </tr>
+            <tr>
+                <td [class]="scoreClass('MIL2', 'Q5')">{{getText('MIL2', 'Q5')}}</td>
+                <td [class]=""></td>
+                <td [class]=""></td>
+                <td [class]=""></td>
+            </tr>
+        </table>
+
+       <app-edm-legend-subquestions></app-edm-legend-subquestions>
+    </div>
+</div>

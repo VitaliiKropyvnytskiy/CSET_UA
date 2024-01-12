@@ -1,0 +1,123 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="p-0 d-flex flex-column justify-content-start flex-11a">
+    <div class="bgc-trans mt-4 mx-4 pr-4 d-flex flex-column flex-00a ">
+
+        <!-- Logo and Name -->
+        <div *ngIf="skin === 'CSET'" class="my-4 d-flex align-items-end flex-00a flex-nowrap">
+            <app-logo-cset logoHeight="60"></app-logo-cset>
+            <span class="align-bottom ml-3 font-italic"
+                style="font-size: 37px; margin-bottom: -.5rem; color: #666">Онлайн</span>
+        </div>
+
+        <div *ngIf="skin === 'TSA'" class="d-flex align-items-end flex-00a">
+            <app-logo-tsa mode="white" logoHeight="60"></app-logo-tsa>
+            <span class="align-bottom ml-3 font-italic"
+                style="font-size: 30px; margin-top: 8px; color: #666">Онлайн</span>
+        </div>
+
+
+        <div class="anonymous-panel">
+            <div class="p-3 my-3 c-white bgc-primary">
+                <em>{{ title1[skin] }}</em> є анонімним. Ваша електронна адреса жодним чином не пов’язана з вашими
+                оцінюваннями. Щоб використовувати <em>{{ title1[skin] }}</em>, вам потрібно буде створити ключ доступу, який
+                ви використовуватимете в майбутньому для доступу до своїх оцінювань.
+            </div>
+
+            <div class="mb-3 d-flex flex-row">
+                <div class="mr-3 container">
+                    <label>
+                        Якщо ви використали <em>{{ title1[skin] }}</em> раніше, або вже маєте ключ доступу, введіть його
+                        сюди та натисність Увійти
+                    </label>
+                    <div class="input-group mb-2">
+                        <input class="form-control mr-2" [(ngModel)]="loginAccessKey" (keyup.enter)="login()"
+                            placeholder="Enter Access Key">
+                        <button (click)="login()" class="input-group-append btn btn-primary mt-0">Увійти</button>
+                    </div>
+                    <div *ngIf="loginAccessKeyFailed" class="alert alert-danger">
+                        Вхід невдався. Перевірте свій ключ та спробуйте знову.
+                    </div>
+                </div>
+
+                <div class="container">
+                    <label class="mr-3">
+                        Якщо ви вперше використовуєте <em>{{ title1[skin] }}</em>, натисніть цю кнопку, щоб створити
+                        новий ключ доступу.
+                    </label>
+
+                    <div class="d-flex flex-row">
+                        <button class="btn btn-primary" (click)="generateKey()" [disabled]="isKeyGenerated">Створити
+                            ключ доступу</button>
+
+                        <div class="spinner-container" *ngIf="isGenerating">
+                            <div style="max-width: 30px; max-height: 30px;"></div>
+                        </div>
+                    </div>
+
+
+                    <div *ngIf="isKeyGenerated" class="mt-3 alert alert-success mb-3">
+                        <p style="font-size: 1.3rem">
+                            Ваш ключ доступу: <strong>{{generatedKey}}</strong>
+                            <label class="btn form-check-label btn-copy" style="text-align: right; font-weight: normal; font-size: 14px;
+                                flex-direction: column; line-height: 150%;" title="Скопіювати в буфер обміну"
+                                [cdkCopyToClipboard]="generatedKey">
+                                <span class="cset-icons-copy"></span>
+                            </label>
+                        </p>
+                        <p>
+                            Ви повинні зберегти цей ключ доступу, щоб отримати доступ до будь-яких створених вами
+                            оцінювань. Розглядайте цей ключ як пароль. Усі, з ким ви ним поділитеся, матимуть доступ до
+                            оцінювань, створених за допомогою цього ключа доступу. <strong>Якщо ви втратите цей ключ
+                                доступу, ви втратите доступ до будь-яких оцінювань, створених за його
+                                допомогою.</strong>
+                        </p>
+                        <p>
+                            <button class="btn btn-primary" (click)="login()">Ввести {{ title2[skin]
+                                }}</button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-3">
+
+            <div class="pii-disclaimer">
+                <p>
+                    <strong>Увага:</strong> Не вводіть жодної персональної або чутливої інформації в <em>{{
+                        title1[skin]
+                        }}</em>.
+                </p>
+                <p>
+                    Це включає інформацію про фізичну або юридичну особу, яку легко ідентифікує ця конкретна фізична
+                    або юридична особа. Особиста інформація включає такі речі, як назви компаній, імена осіб, адреси,
+                    електронні адреси та номери телефонів.
+                </p>
+                <p class="red-text">
+                    Якщо ви вирішите надати особисту або конфіденційну інформацію в будь-якому полі <em>{{ title1[skin]
+                        }}</em>, ця інформація зберігатиметься в <em>{{ title2[skin] }}</em> і буде оприлюднена.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

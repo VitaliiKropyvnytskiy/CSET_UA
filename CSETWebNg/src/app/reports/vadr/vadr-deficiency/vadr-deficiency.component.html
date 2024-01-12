@@ -1,0 +1,114 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="report-body mb-5">
+
+  <div class="flex-container">
+    <div class="column mt-3">
+      <p class="report-title">
+        ЗВІТ ПРО НЕДОЛІКИ
+      </p>
+      <p class="report-title" style="font-size: 36px">
+        Перевірка перевіреної архітектурної концепції (VADR)
+      </p>
+    </div>
+    <div class="column">
+      <p style="text-align: center">
+        <img width="471" height="529" src="assets/images/ExecutiveFiles/image002.jpg">
+      </p>
+    </div>
+
+    <div class="cover-page-bottom">
+      <app-logo-for-reports></app-logo-for-reports>
+      <app-info-block [response]="response" />
+    </div>
+  </div>
+  <div class="page-break">
+
+    <div class="disclaimer-blurb mt-4">
+      <p>
+        Цей звіт про недоліки містить твердження, на які наразі немає відповідей або на які було дано відповідь "Ні".
+      </p>
+      <p>
+        Зазвичай його називають Звітом про прогалини. Мета цього звіту - перелік прогалин, щоб користувачі могли
+        пріоритизувати роботу та розробити план для впровадження необхідних заходів для задоволення практики.
+      </p>
+      <p>
+        Також вказана відсоткова прогалина в кожній меті та допомагає визначити пріоритетні напрямки концентрації.</p>
+    </div>
+
+    <div *ngIf="loading; else mainContent" class="spinner-container" style="margin: 2em auto">
+      <div style="max-width: 50px; max-height: 50px;"></div>
+    </div>
+
+    <ng-template #mainContent>
+
+      <div class="d-flex flex-row justify-content-between align-items-end">
+
+        <h1 class="page-title">Недоліки</h1>
+        <p style="color: #de761c;text-align: right;">Позначено для перегляду - <img class="MarkedFlag"
+            src="assets/images/icons/MarkedFlag.png" alt="Позначено для перегляду"> </p>
+      </div>
+      <hr class="page-line m-0">
+      <table role="presentation">
+        <ng-template ngFor let-s [ngForOf]="response?.deficienciesList">
+          <tr>
+            <td class="deficiencies-list-item"><b>Практика {{s.mat.question_Title}}</b></td>
+            <td class="deficiencies-list-comment" [innerHTML]="reportSvc.scrubGlossaryMarkup(s.mat.question_Text)"></td>
+            <td style="padding-top: 1rem; padding-left: 1rem; vertical-align: top; color: #555555">
+              <div style="width: 7rem">
+                {{questionsSvc.answerDisplayLabel(7, s.answer.answer_Text)}}
+              </div>
+            </td>
+            <td class="deficiencies-list-flag"><img class="MarkedFlag ml-2" *ngIf="s.answer.mark_For_Review"
+                src="assets/images/icons/MarkedFlag.png"></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td colspan="4">
+              <div class="alert alert-secondary" style="background-color:#d6d8db">
+                <table>
+                  <tr>
+                    <td style="width:15%; padding-right:15px; vertical-align:top; text-align: left;">
+                      <b>Коментар:</b>
+                    </td>
+                    <td style="width:85%; vertical-align:top;word-break: break-all; text-align:left;">
+                      {{s.answer.comment}}</td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <hr class="my-2">
+            </td>
+          </tr>
+        </ng-template>
+      </table>
+
+      <div *ngIf="!response?.deficienciesList || response?.deficienciesList.length == 0" class="mt-3">
+        Немає недоліків для відображення
+      </div>
+    </ng-template>
+  </div>
+</div>

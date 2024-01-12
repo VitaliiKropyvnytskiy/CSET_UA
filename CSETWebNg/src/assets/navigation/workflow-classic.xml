@@ -1,0 +1,30 @@
+<nav>
+    <!-- Prepare Phase -->
+    <node displaytext="Підготовка" id="phase-prepare">
+        <node displaytext="Конфігурація оцінювання" id="info1" path="assessment/{:id}/prepare/info1" />
+        <node displaytext="Інформація про оцінювання" id="info2" path="assessment/{:id}/prepare/info2" />
+        <node displaytext="Рівень безпеки (SAL)" id="sal" path="assessment/{:id}/prepare/sal" />
+    </node>
+
+
+    <!-- Assessment Phase -->
+    <node displaytext="Оцінювання" id="phase-assessment">
+        <node displaytext="Стандартні питання" id="questions" path="assessment/{:id}/questions" />
+    </node>
+
+
+    <!-- Results - Standards -->
+    <node displaytext="Результати стандартів" id="phase-results">
+        <node displaytext="Панель аналізу" id="dashboard" path="assessment/{:id}/results/dashboard" />
+        <node displaytext="Пріоритети контролю" id="ranked-questions" path="assessment/{:id}/results/ranked-questions" />
+        <node displaytext="Підсумок стандартів" id="standards-summary" path="assessment/{:id}/results/standards-summary" />
+        <node displaytext="Рейтингові категорії" id="standards-ranked" path="assessment/{:id}/results/standards-ranked" />
+        <node displaytext="Результати за категоріями" id="standards-results" path="assessment/{:id}/results/standards-results" />
+
+
+        <node displaytext="Короткий опис оцінювання високого рівня &amp; Коментарі" id="overview" path="assessment/{:id}/results/overview" condition="SHOW-EXEC-SUMMARY" />
+        <node displaytext="Звіти" id="reports" path="assessment/{:id}/results/reports" />
+
+        <node displaytext="Оцінювання зверешено" id="tsa-assessment-complete" path="assessment/{:id}/results/tsa-assessment-complete" condition="INSTALL-MODE:TSA" />
+    </node>
+</nav>

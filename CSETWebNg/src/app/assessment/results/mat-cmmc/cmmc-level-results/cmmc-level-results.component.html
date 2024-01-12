@@ -1,0 +1,157 @@
+<!---------------------- 
+
+   Copyright 2023 Battelle Energy Alliance, LLC  
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy 
+  of this software and associated documentation files (the "Software"), to deal 
+  in the Software without restriction, including without limitation the rights 
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+  copies of the Software, and to permit persons to whom the Software is 
+  furnished to do so, subject to the following conditions: 
+ 
+  The above copyright notice and this permission notice shall be included in all 
+  copies or substantial portions of the Software. 
+ 
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+  SOFTWARE. 
+-------------------------->
+<div class="white-panel oy-auto h-0 d-flex flex-column flex-11a">
+  <h3>Цільовий і досягнутий рівні</h3>
+
+  <div *ngIf="!initialized">
+    <div class="spinner-container" style="margin-left: auto; margin-right: auto;">
+      <div style="max-width: 50px; max-height: 50px;"></div>
+    </div>
+  </div>
+  
+  <div class="d-flex flex-column flex-11a" [class.d-none]="!initialized">
+    
+    <div *ngIf="initialized && !dataError" class="targetAndAchievedLevels">
+      <div class="level-indicator-container pyramidGraphLevelIndicator">
+        <div class="roundedBox">
+            <div class="rbTitle">
+                Цільовий рівень
+            </div>
+            <div class="rbLevel">
+                {{cmmcModel?.targetLevel}}
+            </div>
+        </div>                    
+      </div>
+      <div class="level-indicator-container pyramidGraphLevelIndicator">
+        <div class="roundedBox">
+            <div class="rbTitle">
+                Досягнутий рівень
+            </div>
+            <div class="rbLevel">
+                {{cmmcModel?.acheivedLevel}}
+            </div>
+        </div>                    
+      </div>
+    </div>
+    <div *ngIf="initialized && !dataError" class="pyramidGraphContainer">        
+        <div class="pyramidGraph">
+            <div class="arrowContainer">
+                <div class="topHalfArrowMask">
+                    <div class="corners triangle-topright"></div>
+                    <div class="corners triangle-topleft"></div>
+                </div>
+                <div class="bottomHalfArrowMask">
+                    <div class="arrowBaseMask arrowBaseLeft"></div>
+                    <div class="arrowBaseCenter">
+                        <div>
+                            ПРАКТИКИ
+                        </div>
+                        <div>
+                            ПРОЦЕСИ
+                        </div>
+                    </div>
+                    <div class="arrowBaseMask arrowBaseRight"></div>
+                </div>
+            </div>
+            <div class="pyramidLevel levelOne"
+            [ngStyle]="getPyramidRowColor(5)" >            
+                <div class="pyramidRowItem">
+                    Просунутий
+                </div>
+                <div class="pyramidRowItem">
+                    Оптимізується
+                </div>
+                <div style="flex-basis:0"> 
+                    <div class="pyramidRowLabel">
+                        П'ятий рівень
+                    </div>
+                </div>
+            </div>
+            <div class="pyramidLevel levelTwo"
+            [ngStyle]="getPyramidRowColor(4)" >            
+                <div class="pyramidRowItem">
+                    Проактивний
+                </div>
+                <div class="pyramidRowItem">
+                    розглянутий
+                </div>
+                <div style="flex-basis:0"> 
+                    <div class="pyramidRowLabel">
+                         Четвертий рівень
+                    </div>
+                </div>
+            </div>
+            <div class="pyramidLevel levelThree "
+            [ngStyle]="getPyramidRowColor(3)" >           
+                <div class="pyramidRowItem">
+                    Гарна кібергігієна
+                </div>
+                <div class="pyramidRowItem">
+                    Керований
+                </div><div style="flex-basis:0"> 
+                    <div class="pyramidRowLabel">
+                        Третій рівень
+                    </div>
+                </div>
+            </div>
+            <div class="pyramidLevel levelFour"
+            [ngStyle]="getPyramidRowColor(2)" >       
+                <div class="pyramidRowItem">
+                    Кібергігієна середнього рівня
+                </div>
+                <div class="pyramidRowItem">
+                    Задокументований
+                </div>
+                <div style="flex-basis:0"> 
+                    <div class="pyramidRowLabel">
+                        Другий рівень
+                    </div>
+                </div>
+                
+            </div>
+            <div class="pyramidLevel levelFive"
+                [ngStyle]="getPyramidRowColor(1)"    
+            >            
+                <div class="pyramidRowItem">
+                    Базова кібергігієна
+                </div>
+                <div class="pyramidRowItem">
+                    Виконаний
+                </div>
+                <div style="flex-basis:0"> 
+                    <div class="pyramidRowLabel">
+                        Перший рівень
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="initialized && dataError">
+      <h1>Помилка завантаження даних</h1>
+      <p>Під час отримання даних для цієї сторінки сталася помилка. Перезавантажте сторінку.</p>
+    </div>
+    
+    <app-nav-back-next [page]="'cmmc-level-results'"></app-nav-back-next>
+    
+  </div>
+</div>

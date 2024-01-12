@@ -1,0 +1,147 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+
+<div *ngIf="loading">
+  <div class="spinner-container" style="margin: 2em auto">
+    <div style="max-width: 50px; max-height: 50px;"></div>
+  </div>
+</div>
+
+<div *ngIf="!loading">
+  <h1>3. Зведені результати самооцінки</h1>
+
+  <h1 id="toc-mil-achievement-by-domain">3.1 Досягнення Рівнів Індикатора Зрілості за Доменами</h1>
+
+  <p>На рисунку 2 показані досягнені Рівні Індикатора Зрілості (MIL) для кожного домена C2M2.</p>
+
+  <div class="w-100 d-flex flex-column">
+    <app-c2m2-domain-mil-bar-chart [domainData]="donutData"></app-c2m2-domain-mil-bar-chart>
+    <span class="caption">
+      Рисунок 2: MIL, досягнуті за доменами
+    </span>
+  </div>
+
+  <h1 id="toc-practice-implementation-by-domain">3.2 Виконання Практик за Доменами</h1>
+  <p>
+    На рисунку 3 показано узагальнені рівні виконання практик C2M2 для кожної практики, згруповані за доменами. MIL,
+    досягнуті для кожного домена, перераховані внизу рисунка. MIL досягається, коли всі практики в даному MIL та всі
+    попередні MIL мають відповіді "Повністю Виконано" або "Великою Мірою Виконано". З цього рисунка можна отримати загальне
+    уявлення про результати самооцінки організації, що може бути корисним при оцінці областей для майбутнього вдосконалення.
+  </p>
+  <p>
+    Число в центрі кожної діаграми-пончика представляє сумарну кількість практик у даному MIL для цього домена. Дивіться
+    Розділ 4.2 документації моделі C2M2 V2.1 для опису досягнення MIL.
+  </p>
+
+  <div class="d-flex flex-column align-items-center" style="margin-left: -20px;">
+    <!-- переходить до нового рядка MIL -->
+    <div *ngFor="let dataRow of milData; let i = index">
+      <div class="d-flex" style="justify-items: space-evenly; ">
+        <!-- надає інформацію щодо поточного рівня MIL для кожного домена -->
+        <div *ngFor="let data of dataRow; let j = index">
+          <div *ngIf="i == 0">
+            <div *ngIf="j > 0" class="donut-grid-header">
+              {{donutData[j - 1].shortTitle}}
+            </div>
+            <div *ngIf="j == 0" style="height: 20px;">
+              <!-- це утримує пусту клітину в верхньому лівому куті -->
+            </div>
+          </div>
+          <div *ngIf="j == 0 && i != milData.length - 1" class="donut-grid-mil-box">
+            MIL{{milNumberFlip(i)}}
+          </div>
+          <div *ngIf="j == 0 && i == milData.length - 1" class="donut-grid-mil-box"
+            style="height: 70px;">
+            {{ dataRow[j] }}
+          </div>
+          <div *ngIf="j > 0 && i != milData.length - 1" class="donut-grid-chart-box">
+            <app-c2m2-donut [questionDistribution]="data"></app-c2m2-donut>
+          </div>
+          <div *ngIf="j > 0 && i == milData.length - 1" class="donut-grid-chart-box"
+            style="height: 70px;">
+            {{ dataRow[j] }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="color-legend justify-content-between mt-2 mb-1" style="width: 90%">
+      <div class="row d-flex align-items-center">
+        <span class="legend-color-box" style="background-color: #265B94;"></span>
+        <span style="font-size: 0.8em;">Повністю Виконано (FI)</span>
+      </div>
+      <div class="row d-flex align-items-center">
+        <span class="legend-color-box" style="background-color: #90A5C7;"></span>
+        <span style="font-size: 0.8em;">Майже Виконано (LI)</span>
+      </div>
+      <div class="row d-flex align-items-center">
+        <span class="legend-color-box" style="background-color: #F5DA8C;"></span>
+        <span style="font-size: 0.8em;">Частково Виконано (PI)</span>
+      </div>
+      <div class="row d-flex align-items-center">
+        <span class="legend-color-box" style="background-color: #DCA237;"></span>
+        <span style="font-size: 0.8em;">Не Виконано (NI)</span>
+      </div>
+      <div class="row d-flex align-items-center">
+        <span class="legend-color-box all-borders" style="background-color: #E6E6E6;"></span>
+        <span style="font-size: 0.8em;">Без Відповіді (U)</span>
+      </div>
+    </div>
+    <span class="caption">
+      Рисунок 3: Зведені результати відповідей за MIL та Доменами
+    </span>
+  </div>
+
+  <h1 id="toc-implementation-of-management-activities">
+    3.3 Виконання Управлінських Дійствий за Доменами
+  </h1>
+  <p>
+    Кожна остаточна мета кожного домена C2M2 включає практики, спрямовані на управління кібербезпекою. Ці практики
+    акцентують на тому, наскільки кібербезпеку впроваджено або засвоєно в операціях організації. Чим глибше засвоєно
+    діяльність, тим ймовірніше, що організація буде продовжувати виконувати діяльність з часом, діяльність буде збережена
+    в стресових ситуаціях і результати діяльності будуть послідовними, повторюваними та високої якості. Таблиця 2 надає
+    загальний огляд виконання практик управлінських дійствий з двох перспектив: 1) виконання всіх практик управлінських
+    дійствий в кожному домені та 2) виконання кожної практики управлінських дійствий в десяти доменах C2M2.
+  </p>
+
+  <table>
+    <tr>
+      <td></td>
+      <td class="vertical-headers" *ngFor="let domain of this.domainCategories">
+        {{ domain }}
+      </td>
+    </tr>
+    <tr style="border: 1px solid rgb(179, 179, 179);" *ngFor="let question of this.tableData.managementQuestions">
+      <td style="padding-left: 5px; padding-bottom: 3px;">
+        {{ question.questionText }}
+      </td>
+      <td style="border: 1px solid rgb(179, 179, 179);" *ngFor="let answer of question.domainAnswers" 
+          [ngStyle]="{'background-color': getBackgroundColor(answer.answer)}">
+          <div style="text-align: center;" [ngStyle]="{'color': getTextColor(answer.answer)}">
+            {{ answer.answer !== null ? answer.answer : 'U' }}
+          </div>
+      </td>
+    </tr>
+    <caption style="caption-side: bottom; text-align: center; color: #265B94">Таблиця 2: Управлінські Дійства</caption>
+  </table>
+</div>

@@ -1,0 +1,294 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>1. Про нетехнічне оцінювання операційної стійкості та практик кібербезпеки організації CISA Cyber Resilience Review &gt; 1.2. Шкала рівнів показників кіберзрілості (MIL)</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="" />
+   <meta name="description" content="CRR використовує рівні оцінки кіберзрілості - Maturity Indicator Levels (MILs) для надання організаціям приблизну оцінку зрілості їхніх процедур у 10 доменах (сферах)..." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "1_2-about-mil.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1"><span class="f_Heading1">1.2. Шкала рівнів показників кіберзрілості (MIL)</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?1_2-about-mil.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="1-about-crr-asessment.html">1. Про нетехнічне оцінювання операційної стійкості та практик кібербезпеки організації CISA Cyber Resilience Review</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1"><span class="f_Heading1">1.2. Шкала рівнів показників кіберзрілості (MIL)</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      <a href="javascript:HMToggleExpandAll(!HMAnyToggleOpen())" title="Click to open/close expanding sections"><span class="hmbtntoggle"></span></a>
+      <a href="1_1-describe-the-domains.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="1-about-crr-asessment.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="1_3-crr-composition-goals-and-practices.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_NewNormal"><span class="f_NewNormal">CRR використовує рівні оцінки кіберзрілості - </span><span class="f_NewNormal" style="font-weight: bold;">Maturity Indicator Levels</span><span class="f_NewNormal"> (MILs) для надання організаціям приблизну оцінку зрілості їхніх процедур у 10 доменах (сферах) кібербезпеки. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Процедура визначення зрілості CRR ґрунтується на базовій моделі зрілості спроможностей - моделі управління стійкістю CERT-RMM</span><span class="f_NewNormal" style="font-size: 11px; vertical-align: super;">1</span></p>
+<hr style="height:1px; color:#C0C0C0; border-width:0; background-color:#c0c0c0;" /><p class="p_NewNormal" style="line-height: 1.38;"><span class="f_NewNormal" style="font-size: 11px; vertical-align: super;">1</span><span class="f_NewNormal"> </span><span class="f_NewNormal" style="font-size: 13px; font-style: italic;">У найпростішій формі модель зрілості - це набір характеристик, атрибутів, індикаторів або патернів, які представляють прогрес і досягнення в певній галузі або дисципліні. Артефакти, з яких складається модель, зазвичай узгоджуються в межах галузі або дисципліни, яка перевіряє їх шляхом застосування та вдосконалення.</span></p>
+<hr style="height:1px; color:#C0C0C0; border-width:0; background-color:#c0c0c0;" /><p class="p_NewNormal"><span class="f_NewNormal">У цій моделі зрілість організації ґрунтується на тому, наскільки досконало процедури кібербезпеки в кожному домені впроваджені в рамках організації.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal" style="font-style: italic; font-weight: bold;">Процедура інституціоналізації</span><span class="f_NewNormal"> означає, що практики кібербезпеки стають більш важливою та довготривалою частиною організації, оскільки вони управляються та підтримуються у відповідності з цілями організації. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Коли практики кібербезпеки стають більш системними - або &quot; вкоріненими &quot; - керівники можуть бути більш впевненими в передбачуваності та надійності цих практик. Крім того, зростає ймовірність того, що ці практики будуть стійкими під час збоїв або навантаження на організацію. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">У свою чергу, зрілість може призвести до більш тісного узгодження між діяльністю з кібербезпеки та бізнес-силами організації.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">У найпростішій формі </span><span class="f_NewNormal" style="font-style: italic;">модель кіберзрілості</span><span class="f_NewNormal"> - це набір характеристик, атрибутів, показників, які відображають досягнення в певній галузі чи дисципліні. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Складові моделі, як правило, узгоджуються в межах галузі або дисципліни, що підтверджує їхню достовірність шляхом застосування та вдосконалення.</span></p>
+<p class="p_Normal"><span style="font-size: 16px; color: #404040; background-color: #fafafa;">Рівень показника зрілості (MIL) призначається для кожного домену CRR. Він представляє узагальнений погляд на продуктивність.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal" style="font-weight: bold;">Шкала MIL містить 6 рівнів зрілості</span><span class="f_NewNormal">:</span></p>
+<p class="p_Normal" style="margin: 1px 0 1px 0;"><span style="font-size: 16px; font-weight: bold; color: #0000ff; background-color: #fafafa;">MIL0 Незакінчений -&gt; MIL1 Виконаний -&gt; MIL2 Запланований -&gt; MIL3 Керований -&gt; MIL4 Виміряний -&gt; MIL5 Визначений</span></p>
+<p class="p_Normal" style="margin: 1px 0 1px 0;">&nbsp;</p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal">Незакінчений (</span><span class="f_NewNormal" style="font-style: italic; font-weight: bold;">Incomplete</span><span class="f_NewNormal">)</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal">Виконаний (</span><span class="f_NewNormal" style="font-style: italic; font-weight: bold;">Рerformed</span><span class="f_NewNormal">)</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal">Запланований (</span><span class="f_NewNormal" style="font-style: italic; font-weight: bold;">Planned</span><span class="f_NewNormal">)</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal">Керований (</span><span class="f_NewNormal" style="font-style: italic; font-weight: bold;">Managed</span><span class="f_NewNormal">)</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal">Виміряний (</span><span class="f_NewNormal" style="font-style: italic; font-weight: bold;">Measured</span><span class="f_NewNormal">)</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 13px; margin: 1px 0 1px 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal">Визначений (</span><span class="f_NewNormal" style="font-style: italic; font-weight: bold;">Defined</span><span class="f_NewNormal">)</span></p>
+<p class="p_Normal" style="margin: 1px 0 1px 0;">&nbsp;</p>
+<p><span style="color: #000000;">&nbsp;</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Надамо характеристику кожному з рівнів.</span></p>
+<p class="p_NewNormal"><img id="toggle0186a1_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_plus1.gif"/> &nbsp; &nbsp; &nbsp; &nbsp;<span class="f_NewNormal"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON')">MIL 0 - Незакінчений (Incomplete)</a></span></p>
+<div id="toggle0186a1" class="dropdown-toggle-body" style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; padding:0; border:none"><p class="p_NewNormal"><span class="f_NewNormal">Процеси на цьому рівні </span><span class="f_NewNormal" style="font-weight: bold;">не виконані</span><span class="f_NewNormal">, про що свідчать відповіді на відповідні запитання CRR у вибравному дмені..</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_NewNormal"><img id="toggle0186a2_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_plus1.gif"/> &nbsp; &nbsp; &nbsp; &nbsp;<span class="f_NewNormal"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a2','toggle0186a2_ICON')">MIL 1 - Виконаний (Рerformed)</a></span></p>
+<div id="toggle0186a2" class="dropdown-toggle-body" style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; padding:0; border:none"><p class="p_NewNormal"><span class="f_NewNormal">Всі практики, які підтримують цілі в домені, </span><span class="f_NewNormal" style="font-weight: bold;">виконуються</span><span class="f_NewNormal">, як це відображено відповідями на певні запитання CRR.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_NewNormal"><img id="toggle0186a3_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_plus1.gif"/> &nbsp; &nbsp; &nbsp; &nbsp;<span class="f_NewNormal"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a3','toggle0186a3_ICON')">MIL 2 - Запланований (Planned)</a></span></p>
+<div id="toggle0186a3" class="dropdown-toggle-body" style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; padding:0; border:none"><p class="p_NewNormal"><span class="f_NewNormal">Усі процеси у домені CRR </span><span class="f_NewNormal" style="font-weight: bold;">не лише виконуються, але й підтримуються процесом планування</span><span class="f_NewNormal">, залученням зацікавлених сторін та відповідними стандартами і інструкціями. Запланований процес або практика:</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 52px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal" style="font-style: italic;">встановлений організацією через політику та задокументований план;</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 52px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal" style="font-style: italic;">підтримується зацікавленими сторонами;</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 52px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal" style="font-style: italic;">підкріплений відповідними стандартами та настановами</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_NewNormal"><img id="toggle0186a4_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_plus1.gif"/> &nbsp; &nbsp; &nbsp; &nbsp;<span class="f_NewNormal"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a4','toggle0186a4_ICON')">MIL 3 - Керований (Managed)</a></span></p>
+<div id="toggle0186a4" class="dropdown-toggle-body" style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; padding:0; border:none"><p class="p_NewNormal"><span class="f_NewNormal">Усі процеси в домені</span><span class="f_NewNormal" style="font-weight: bold;"> виконуються, плануються та мають базову інфраструктуру управління для підтримки процесу</span><span class="f_NewNormal">. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Керований процес або практика:</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 52px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal" style="font-style: italic;">керується організацією та мають професійний персонал;</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 52px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal" style="font-style: italic;">належним чином фінансується.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_NewNormal"><img id="toggle0186a5_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_plus1.gif"/> &nbsp; &nbsp; &nbsp; &nbsp;<span class="f_NewNormal"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a5','toggle0186a5_ICON')">MIL 4 - Виміряний (Measured)</a></span></p>
+<div id="toggle0186a5" class="dropdown-toggle-body" style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; padding:0; border:none"><p class="p_NewNormal"><span class="f_NewNormal">Всі процеси </span><span class="f_NewNormal" style="font-weight: bold;">виконуються, плануються, контролюються, відслідковуються та аналізуються</span><span class="f_NewNormal">. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Вимірюваний процес або практика:</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 52px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal" style="font-style: italic;">періодично оцінюється на предмет продуктивності;</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 52px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal" style="font-style: italic;">періодично перевіряється вищим керівницвом</span><span class="f_NewNormal">.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_NewNormal"><img id="toggle0186a6_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_plus1.gif"/> &nbsp; &nbsp; &nbsp; &nbsp;<span class="f_NewNormal"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a6','toggle0186a6_ICON')">MIL 5 - Визначений (Defined)</a></span></p>
+<div id="toggle0186a6" class="dropdown-toggle-body" style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; padding:0; border:none"><p class="p_NewNormal"><span class="f_NewNormal">Всі процеси в домені </span><span class="f_NewNormal" style="font-weight: bold;">виконуються, плануються, контролюються, аналізуються, оцінюються та узгоджуються</span><span class="f_NewNormal"> з усіма учасниками в організації, які зацікавлені у виконанні цих процесів. На рівні MIL5 процес або практика:</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 52px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal" style="font-style: italic;">визначені організацією та узгоджені з окремими операційними підрозділами в межах організації;</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 52px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal" style="font-style: italic;">підтримується відомостями щодо вдосконалення, які збираються операційними підрозділами та розповсюджуються між ними для загальної користі організації.</span></p></td>
+</tr>
+</table>
+</div>
+<p class="p_Normal" style="line-height: 1.80;">&nbsp;</p>
+<p class="p_NewNormal"><span class="f_NewNormal">У наведеній вище шкалі організація може досягти певного рівня MIL, лише якщо вона досягла всіх нижчих рівнів MIL.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Іншими словами, організація, яка не виконує </span><span class="f_NewNormal" style="font-style: italic; font-weight: bold;">всі процеси</span><span class="f_NewNormal"> кібербезпеки на рівні MIL1 у певному доменіі, також не зможе досягти рівня MIL2 у цьомцу домені, навіть якщо вона виконає всі вимоги на рівні MIL2.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+<hr style="height:1px; color:#C0C0C0; border-width:0; background-color:#c0c0c0;" /><p class="p_Normal"><span class="f_NewStyle" style="color: #bfbfbf;"> підготовлено у редакторі Help &amp; Manual 9.3.0</span></p>
+<p style="line-height: 1.28; margin: 0 0 11px 0;"><span style="color: #000000;">&nbsp;</span></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+<script type="text/javascript">
+HMInitToggle('toggle0186a1_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_plus0.gif','hm.src1','hmtoggle_plus1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a1\',\'toggle0186a1_ICON\')');
+HMInitToggle('toggle0186a1','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a2_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_plus0.gif','hm.src1','hmtoggle_plus1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a2\',\'toggle0186a2_ICON\')');
+HMInitToggle('toggle0186a2','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a3_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_plus0.gif','hm.src1','hmtoggle_plus1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a3\',\'toggle0186a3_ICON\')');
+HMInitToggle('toggle0186a3','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a4_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_plus0.gif','hm.src1','hmtoggle_plus1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a4\',\'toggle0186a4_ICON\')');
+HMInitToggle('toggle0186a4','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a5_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_plus0.gif','hm.src1','hmtoggle_plus1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a5\',\'toggle0186a5_ICON\')');
+HMInitToggle('toggle0186a5','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a6_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_plus0.gif','hm.src1','hmtoggle_plus1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a6\',\'toggle0186a6_ICON\')');
+HMInitToggle('toggle0186a6','hm.type','dropdown','hm.state','0');
+</script>
+</body>
+</html>

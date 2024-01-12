@@ -1,0 +1,328 @@
+<nav>
+
+    <!-- Prepare Phase -->
+    <node displaytext="Підготовка" id="phase-prepare">
+
+        <!-- maturity model tutorials -->
+        <node displaytext="CMMC посібник" id="tutorial-cmmc" path="assessment/{:id}/prepare/tutorial-cmmc" condition="MATURITY:CMMC" />
+        <node displaytext="CIS посібник" id="tutorial-cis" path="assessment/{:id}/prepare/tutorial-cis" condition="MATURITY:CIS" />
+        <node displaytext="CMMC посібник" id="tutorial-cmmc2" path="assessment/{:id}/prepare/tutorial-cmmc2" condition="MATURITY:CMMC2" />
+        <node displaytext="EDM посібник" id="tutorial-edm" path="assessment/{:id}/prepare/tutorial-edm" condition="MATURITY:EDM" />
+        <node displaytext="CRR посібник" id="tutorial-crr" path="assessment/{:id}/prepare/tutorial-crr" condition="MATURITY:CRR" />
+        <node displaytext="IMR посібник" id="tutorial-imr" path="assessment/{:id}/prepare/tutorial-imr" condition="MATURITY:IMR" />
+        <node displaytext="Посібник із готовності до програм-вимагачів" id="tutorial-rra" path="assessment/{:id}/prepare/tutorial-rra" condition="MATURITY:RRA ORIGIN-NOT:CF" />
+
+
+        <!-- vanilla prepare pages -->
+        <node displaytext="Конфігурація оцінювання" id="info1" path="assessment/{:id}/prepare/info1" condition="INSTALL-MODE-NONE(TSA,IOD)" />
+        <node displaytext="Інформація про оцінювання" id="info2" path="assessment/{:id}/prepare/info2" condition="INSTALL-MODE-NONE(TSA,IOD) MATURITY-NOT:ISE" />
+
+        <node displaytext="Конфігурація оцінювання" id="info-tsa" path="assessment/{:id}/prepare/info-tsa" condition="INSTALL-MODE:TSA" />
+        <node displaytext="Інформація про оцінювання" id="info2-tsa" path="assessment/{:id}/prepare/info2-tsa" condition="INSTALL-MODE:TSA" />
+
+        <!-- IOD CSA 'prepare' pages -->
+        <node displaytext="Демографічні дані організації" id="info-demog-iod" path="assessment/{:id}/prepare/info-demog-iod" condition="INSTALL-MODE:IOD" />
+        <node displaytext="Конфігурація оцінювання" id="info-config-iod" path="assessment/{:id}/prepare/info-config-iod" condition="INSTALL-MODE:IOD" />
+
+        <!-- CIS config page -->
+        <node displaytext="CIS Конфігурація" id="config-cis" path="assessment/{:id}/prepare/config-cis" condition="MATURITY:CIS" />
+
+
+        <!-- Critical Service -->
+        <node displaytext="Критична службова інформація" id="csi" path="assessment/{:id}/prepare/csi" condition="INSTALL-MODE-NONE(IOD) MATURITY:CIS" />
+        <node displaytext="Критична службова інформація" id="csi2" path="assessment/{:id}/prepare/csi" condition="INSTALL-MODE:IOD MATURITY-ANY(CRR,CIS,EDM,RRA,IMR,CPG,MVRA)" />
+
+
+        <node displaytext="Рівень безпеки (SAL)" id="sal" path="assessment/{:id}/prepare/sal" condition="OPTION-ANY(STANDARD,DIAGRAM) ORIGIN-NOT:CF STANDARD-NOT:RAC" />
+
+
+        <!-- ACET/ISE-specific screens -->
+        <node displaytext="Профілі внутрішнього ризику" id="irp" path="assessment/{:id}/prepare/irp" condition="MATURITY:ACET" />
+        <node displaytext="Підсумок профілів внутрішнього ризику" id="irp-summary" path="assessment/{:id}/prepare/irp-summary" condition="MATURITY:ACET" />
+        <node displaytext="Профіль іспиту" id="irp-ise" path="assessment/{:id}/prepare/exam-profile" condition="MATURITY:ISE" />
+
+
+        <!-- Diagram -->
+        <node displaytext="Діаграма мережі" id="diagram" path="assessment/{:id}/prepare/diagram/info" condition="OPTION:DIAGRAM" />
+
+        <!-- target level selection -->
+        <node displaytext="Вибір цільового рівня CMMC" id="cmmc-levels" path="assessment/{:id}/prepare/cmmc-levels" condition="MATURITY-ANY(CMMC,CMMC2)" />
+
+    </node>
+
+
+
+    <!-- Assessment Phase -->
+    <node displaytext="Оцінювання" id="phase-assessment">
+        <node displaytext="Стандартні питання" id="questions" path="assessment/{:id}/questions" condition="OPTION:STANDARD" />
+
+
+        <!-- The scenario that will normally show -->
+        <node displaytext="Питання зрілості" id="maturity-questions" path="assessment/{:id}/maturity-questions" condition="OPTION:MATURITY MATURITY-NONE(ACET,ISE,CIS,MVRA,SD02-Series,HYDRO)" />
+
+        <!-- ACET or ISE in non-ACET skin shows the normal maturity-questions -->
+        <node displaytext="Питання зрілості" id="maturity-questions-ncua" path="assessment/{:id}/maturity-questions" condition="INSTALL-MODE-NOT:ACET OPTION:MATURITY MATURITY-ANY(ACET,ISE)" />
+
+        <!-- Custom ACET questions page for ACET or ISE in ACET skin -->
+        <node displaytext="Заяви" id="maturity-questions-acet" path="assessment/{:id}/maturity-questions-acet" condition="INSTALL-MODE:ACET MATURITY:ACET" />
+        <node displaytext="Заяви" id="maturity-questions-ise" path="assessment/{:id}/maturity-questions-ise" condition="INSTALL-MODE:ACET MATURITY:ISE" />
+
+        <!-- CIS questions displayed in tree structure -->
+        <node displaytext="CIS питання" condition="MATURITY:CIS">
+            <node id="maturity-questions-nested-2301" displaytext="Управління кібербезпекою">
+                <node id="maturity-questions-nested-2306" path="assessment/{:id}/maturity-questions-nested/2306" displaytext="1. Кібербезпека Лідерство" />
+                <node id="maturity-questions-nested-2307" displaytext="Архітектура кібербезпеки">
+                    <node id="maturity-questions-nested-2328" path="assessment/{:id}/maturity-questions-nested/2328" displaytext="2. Інвентар" />
+                    <node id="maturity-questions-nested-2329" path="assessment/{:id}/maturity-questions-nested/2329" displaytext="3. Архітектура системи" />
+                    <node id="maturity-questions-nested-2330" path="assessment/{:id}/maturity-questions-nested/2330" displaytext="4. Архітектура безпеки" />
+                </node>
+                <node id="maturity-questions-nested-2308" path="assessment/{:id}/maturity-questions-nested/2308" displaytext="5. Управління змінами" />
+                <node id="maturity-questions-nested-2309" path="assessment/{:id}/maturity-questions-nested/2309" displaytext="6. Відстеження життєвого циклу" />
+                <node id="maturity-questions-nested-2310" path="assessment/{:id}/maturity-questions-nested/2310" displaytext="7. Оцінювання та опитування" />
+                <node id="maturity-questions-nested-2311" path="assessment/{:id}/maturity-questions-nested/2311" displaytext="8. План кібербезпеки" />
+                <node id="maturity-questions-nested-2312" path="assessment/{:id}/maturity-questions-nested/2312" displaytext="9. Вправи з кібербезпеки" />
+                <node id="maturity-questions-nested-2313" displaytext="Обмін інформацією">
+                    <node id="maturity-questions-nested-2331" path="assessment/{:id}/maturity-questions-nested/2331" displaytext="10. Зовнішній обмін інформацією" />
+                    <node id="maturity-questions-nested-2332" path="assessment/{:id}/maturity-questions-nested/2332" displaytext="11. Внутрішній обмін інформацією" />
+                </node>
+            </node>
+            <node id="maturity-questions-nested-2302" displaytext="Сили кібербезпеки">
+                <node id="maturity-questions-nested-2314" path="assessment/{:id}/maturity-questions-nested/2314" displaytext="12. Персонал" />
+                <node id="maturity-questions-nested-2315" path="assessment/{:id}/maturity-questions-nested/2315" displaytext="13. Навчання з кібербезпеки" />
+            </node>
+            <node id="maturity-questions-nested-2303" displaytext="Керування кібербезпекою">
+                <node id="maturity-questions-nested-2316" path="assessment/{:id}/maturity-questions-nested/2316" displaytext="14. Керування автентифікацією та авторизацією" />
+                <node id="maturity-questions-nested-2317" displaytext="Керування доступом">
+                    <node id="maturity-questions-nested-2333" path="assessment/{:id}/maturity-questions-nested/2333" displaytext="15. Шляхи доступу" />
+                    <node id="maturity-questions-nested-2334" path="assessment/{:id}/maturity-questions-nested/2334" displaytext="16. Керування віддаленим доступом" />
+                </node>
+                <node id="maturity-questions-nested-2318" displaytext="Заходи кібербезпеки">
+                    <node id="maturity-questions-nested-2335" path="assessment/{:id}/maturity-questions-nested/2335" displaytext="17. Контроль шкідливого коду" />
+                    <node id="maturity-questions-nested-2336" path="assessment/{:id}/maturity-questions-nested/2336" displaytext="18. Моніторинг і сканування" />
+                    <node id="maturity-questions-nested-2337" path="assessment/{:id}/maturity-questions-nested/2337" displaytext="19. Безпека та журнал подій" />
+                </node>
+                <node id="maturity-questions-nested-2319" path="assessment/{:id}/maturity-questions-nested/2319" displaytext="20. Захист інформації" />
+                <node id="maturity-questions-nested-2320" path="assessment/{:id}/maturity-questions-nested/2320" displaytext="21. Навчання користувача" />
+                <node id="maturity-questions-nested-2321" path="assessment/{:id}/maturity-questions-nested/2321" displaytext="22. Витонченість захисту та компенсаційні елементи керування" />
+            </node>
+            <node id="maturity-questions-nested-2304" displaytext="Реагування на інцидент">
+                <node id="maturity-questions-nested-2322" path="assessment/{:id}/maturity-questions-nested/2322" displaytext="23. Заходи реагування на інциденти" />
+                <node id="maturity-questions-nested-2323" path="assessment/{:id}/maturity-questions-nested/2323" displaytext="24. Альтернативний сайт і відновлення після аварії" />
+            </node>
+            <node id="maturity-questions-nested-2305" displaytext="Залежності">
+                <node id="maturity-questions-nested-2324" path="assessment/{:id}/maturity-questions-nested/2324" displaytext="25. Залежності - дані в стані спокою" />
+                <node id="maturity-questions-nested-2325" path="assessment/{:id}/maturity-questions-nested/2325" displaytext="26. Залежності - дані в русі" />
+                <node id="maturity-questions-nested-2326" path="assessment/{:id}/maturity-questions-nested/2326" displaytext="27. Залежності - дані в обробці" />
+                <node id="maturity-questions-nested-2327" path="assessment/{:id}/maturity-questions-nested/2327" displaytext="28. Залежності - системи кінцевих точок" />
+            </node>
+        </node>
+
+        <!-- HYDRO questions displayed in tree structure -->
+        <node displaytext="Питання гідроенергетики" condition="MATURITY:HYDRO">
+            <node id="maturity-questions-nested-2577" displaytext="Управління">
+                <node id="maturity-questions-nested-2578" path="assessment/{:id}/maturity-questions-nested/2578" displaytext="1. Лідерство та персонал" />
+                <node id="maturity-questions-nested-2579" path="assessment/{:id}/maturity-questions-nested/2579" displaytext="2. Навчання" />
+                <node id="maturity-questions-nested-2580" path="assessment/{:id}/maturity-questions-nested/2580" displaytext="3. Управління ризиками" />
+                <node id="maturity-questions-nested-2581" path="assessment/{:id}/maturity-questions-nested/2581" displaytext="4. Управління активами" />
+            </node>
+            <node id="maturity-questions-nested-2582" displaytext="Сайт та служба контролю безпеки">
+                <node id="maturity-questions-nested-2583" path="assessment/{:id}/maturity-questions-nested/2583" displaytext="1. Фізичний захист" />
+                <node id="maturity-questions-nested-2584" path="assessment/{:id}/maturity-questions-nested/2584" displaytext="2. Керування доступом" />
+                <node id="maturity-questions-nested-2585" path="assessment/{:id}/maturity-questions-nested/2585" displaytext="3. Захист інформації" />
+            </node>
+            <node id="maturity-questions-nested-2586" displaytext="Критичні операції">
+                <node id="maturity-questions-nested-2587" path="assessment/{:id}/maturity-questions-nested/2587" displaytext="1. Допоміжна система заводу" />
+                <node id="maturity-questions-nested-2588" path="assessment/{:id}/maturity-questions-nested/2588" displaytext="2. Технічне обслуговування" />
+                <node id="maturity-questions-nested-2589" path="assessment/{:id}/maturity-questions-nested/2589" displaytext="3. Загальний контрольний каталог" />
+                <node id="maturity-questions-nested-2590" path="assessment/{:id}/maturity-questions-nested/2590" displaytext="4. Операційна система заводу" />
+                <node id="maturity-questions-nested-2591" path="assessment/{:id}/maturity-questions-nested/2591" displaytext="5. Безпека" />
+            </node>
+            <node id="maturity-questions-nested-2592" displaytext="Залежності">
+                <node id="maturity-questions-nested-2593" path="assessment/{:id}/maturity-questions-nested/2593" displaytext="1. Задежності" />
+                <node id="maturity-questions-nested-2594" path="assessment/{:id}/maturity-questions-nested/2594" displaytext="2. Операції з мережею" />
+                <node id="maturity-questions-nested-2595" path="assessment/{:id}/maturity-questions-nested/2595" displaytext="3. Операційна система заводу" />
+                <node id="maturity-questions-nested-2596" path="assessment/{:id}/maturity-questions-nested/2596" displaytext="4. Безпека кінцевої точки та даних" />
+            </node>
+        </node>
+
+        <!-- MVRA questions displayed in tree structure -->
+        <node displaytext="MVRA питання" condition="MATURITY:MVRA">
+            <node id="maturity-questions-2338" displaytext="Очікувати">
+                <node id="maturity-questions-2343" displaytext="Адаптивна відповідь" path="assessment/{:id}/maturity-questions/2343" />
+                <node id="maturity-questions-2344" displaytext="Бізнес середовище" path="assessment/{:id}/maturity-questions/2344" />
+                <node id="maturity-questions-2345" displaytext="Контекстуальна обізнаність" path="assessment/{:id}/maturity-questions/2345"/>
+                <node id="maturity-questions-2346" displaytext="Зкоординований захист" path="assessment/{:id}/maturity-questions/2346"/>
+                <node id="maturity-questions-2347" displaytext="Різноманітність" path="assessment/{:id}/maturity-questions/2347" />
+                <node id="maturity-questions-2348" displaytext="Динамічне позиціонування" path="assessment/{:id}/maturity-questions/2348" />
+                <node id="maturity-questions-2349" displaytext="Управління" path="assessment/{:id}/maturity-questions/2349" />
+                <node id="maturity-questions-2350" displaytext="Оцінка ризиків" path="assessment/{:id}/maturity-questions/2350" />
+                <node id="maturity-questions-2353" displaytext="Стратегія управління ризиками" path="assessment/{:id}/maturity-questions/2353" />
+                <node id="maturity-questions-2354" displaytext="Управління ризиками ланцюга поставок" path="assessment/{:id}/maturity-questions/2354" />
+            </node>
+            <node id="maturity-questions-2339" displaytext="Витримати">
+                <node id="maturity-questions-2355" displaytext="Аномалії та події" path="assessment/{:id}/maturity-questions/2355" />
+                <node id="maturity-questions-2356" displaytext="Управління активами" path="assessment/{:id}/maturity-questions/2356" />
+                <node id="maturity-questions-2357" displaytext="Обізнаність та навчання" path="assessment/{:id}/maturity-questions/2357" />
+                <node id="maturity-questions-2358" displaytext="Безпека даних" path="assessment/{:id}/maturity-questions/2358" />
+                <node id="maturity-questions-2359" displaytext="Шахрайство" path="assessment/{:id}/maturity-questions/2359" />
+                <node id="maturity-questions-2360" displaytext="Процеси виявлення" path="assessment/{:id}/maturity-questions/2360" />
+                <node id="maturity-questions-2361" displaytext="Ідентифікація та контроль доступу" path="assessment/{:id}/maturity-questions/2361" />
+                <node id="maturity-questions-2362" displaytext="Захист інформації" path="assessment/{:id}/maturity-questions/2362" />
+                <node id="maturity-questions-2363" displaytext="Технічне обслуговування" path="assessment/{:id}/maturity-questions/2363" />
+                <node id="maturity-questions-2371" displaytext="Ненаполегливість" path="assessment/{:id}/maturity-questions/2371" />
+                <node id="maturity-questions-2372" displaytext="Обмеження прав" path="assessment/{:id}/maturity-questions/2372" />
+                <node id="maturity-questions-2373" displaytext="Захисна техніка" path="assessment/{:id}/maturity-questions/2373" />
+                <node id="maturity-questions-2374" displaytext="Постійний моніторинг безпеки" path="assessment/{:id}/maturity-questions/2374" />
+                <node id="maturity-questions-2375" displaytext="Сегментація" path="assessment/{:id}/maturity-questions/2375" />
+                <node id="maturity-questions-2376" displaytext="Постійна цілісність" path="assessment/{:id}/maturity-questions/2376" />
+                <node id="maturity-questions-2377" displaytext="Непередбачуваність" path="assessment/{:id}/maturity-questions/2377" />
+            </node>
+            <node id="maturity-questions-2340" displaytext="Відновити">
+                <node id="maturity-questions-2378" displaytext="Аналіз" path="assessment/{:id}/maturity-questions/2378" />
+                <node id="maturity-questions-2379" displaytext="Аналітичний моніторинг" path="assessment/{:id}/maturity-questions/2379" />
+                <node id="maturity-questions-2380" displaytext="Комунікації" path="assessment/{:id}/maturity-questions/2380" />
+                <node id="maturity-questions-2381" displaytext="Покращення" path="assessment/{:id}/maturity-questions/2381" />
+                <node id="maturity-questions-2382" displaytext="Пом'якшення" path="assessment/{:id}/maturity-questions/2382" />
+                <node id="maturity-questions-2383" displaytext="Надмірність" path="assessment/{:id}/maturity-questions/2383" />
+            </node>
+            <node id="maturity-questions-2342" displaytext="Адаптувати">
+                <node id="maturity-questions-2384" displaytext="Планування відновлення" path="assessment/{:id}/maturity-questions/2384" />
+                <node id="maturity-questions-2385" displaytext="Покращення" path="assessment/{:id}/maturity-questions/2385" />
+                <node id="maturity-questions-2386" displaytext="Комунікації" path="assessment/{:id}/maturity-questions/2386" />
+                <node id="maturity-questions-2387" displaytext="Перебудова 800-160" path="assessment/{:id}/maturity-questions/2387" />
+            </node>
+        </node>
+
+        <!-- SD02-Series question domains displayed in tree structure -->
+        <node displaytext="SD02 Series питання" condition="MATURITY:SD02-Series">
+            <node id="maturity-questions-nested-2601" displaytext="Визначення критичних кіберсистем" path="assessment/{:id}/maturity-questions-nested/2601" />
+            <node id="maturity-questions-nested-2602" displaytext="Сегментація мережі" path="assessment/{:id}/maturity-questions-nested/2602" />
+            <node id="maturity-questions-nested-2603" displaytext="Зовнішні підключення" path="assessment/{:id}/maturity-questions-nested/2603" />
+            <node id="maturity-questions-nested-2604" displaytext="Межі зони" path="assessment/{:id}/maturity-questions-nested/2604" />
+            <node id="maturity-questions-nested-2605" displaytext="Шифрування" path="assessment/{:id}/maturity-questions-nested/2605" />
+            <node id="maturity-questions-nested-2606" displaytext="Контроль доступом" path="assessment/{:id}/maturity-questions-nested/2606" />
+            <node id="maturity-questions-nested-2607" displaytext="MFA" path="assessment/{:id}/maturity-questions-nested/2607" />
+            <node id="maturity-questions-nested-2608" displaytext="Мінімальні права" path="assessment/{:id}/maturity-questions-nested/2608" />
+            <node id="maturity-questions-nested-2609" displaytext="Спільні облікові записи" path="assessment/{:id}/maturity-questions-nested/2609" />
+            <node id="maturity-questions-nested-2610" displaytext="Можливості безперервного моніторингу" path="assessment/{:id}/maturity-questions-nested/2610" />
+            <node id="maturity-questions-nested-2611" displaytext="Процедури безперервного моніторингу" path="assessment/{:id}/maturity-questions-nested/2611" />
+            <node id="maturity-questions-nested-2612" displaytext="Реагування на інцидент" path="assessment/{:id}/maturity-questions-nested/2612" />
+            <node id="maturity-questions-nested-2613" displaytext="Політика логування" path="assessment/{:id}/maturity-questions-nested/2613" />
+            <node id="maturity-questions-nested-2614" displaytext="Внесення патчів" path="assessment/{:id}/maturity-questions-nested/2614" />
+            <node id="maturity-questions-nested-2615" displaytext="План оцінки кібербезпеки" path="assessment/{:id}/maturity-questions-nested/2615" />
+        </node>
+
+        <node displaytext="Інші зауваження" id="other-remarks" path="assessment/{:id}/other-remarks" condition="MATURITY-ANY(IMR)" />
+
+        <!-- Diagram questions -->
+        <node displaytext="Запитання щодо компонентів діаграми" id="diagram-questions" path="assessment/{:id}/diagram-questions" condition="OPTION:DIAGRAM" />
+    </node>
+
+
+    <!-- Results Phase -->
+    <node displaytext="Результати" id="phase-results">
+        <!-- Results - Standards -->
+        <node displaytext="Стандратні результати" condition="OPTION:STANDARD">
+            <node displaytext="Панель аналізу" id="dashboard" path="assessment/{:id}/results/dashboard" />
+            <node displaytext="Пріоритети контролю" id="ranked-questions" path="assessment/{:id}/results/ranked-questions" />
+            <node displaytext="Підсумок стандартів" id="standards-summary" path="assessment/{:id}/results/standards-summary" />
+            <node displaytext="Рейтингові категорії" id="standards-ranked" path="assessment/{:id}/results/standards-ranked" />
+            <node displaytext="Результати за категоріями" id="standards-results" path="assessment/{:id}/results/standards-results" />
+        </node>
+
+
+        <!-- Results - CMMC -->
+        <node displaytext="Цільові та досягнуті рівні" id="cmmc-level-results" path="assessment/{:id}/results/cmmc-level-results" condition="MATURITY:CMMC" />
+        <node displaytext="Деталізація рівня" id="cmmc-level-drilldown" path="assessment/{:id}/results/cmmc-level-drilldown" condition="MATURITY:CMMC" />
+        <node displaytext="Оцінка відповідності" id="cmmc-compliance" path="assessment/{:id}/results/cmmc-compliance" condition="MATURITY:CMMC" />
+        <node displaytext="Детальний список прогалин" id="cmmc-gaps" path="assessment/{:id}/results/cmmc-gaps" condition="MATURITY:CMMC" />
+
+
+        <!-- Results - CMMC2 -->
+        <node displaytext="Продуктивність за рівнем" id="cmmc2-level-results" path="assessment/{:id}/results/cmmc2-level-results" condition="MATURITY:CMMC2" />
+        <node displaytext="Продуктивність за доменом" id="cmmc2-domain-results" path="assessment/{:id}/results/cmmc2-domain-results" condition="MATURITY:CMMC2" />
+        <node displaytext="Оцінка SPRS" id="sprs-score" path="assessment/{:id}/results/sprs-score" condition="MATURITY:CMMC2 TARGET-LEVEL-GT:1" />
+
+
+
+        <!-- Results - EDM -->
+        <node displaytext="Результати підсумку" id="summary-results" path="assessment/{:id}/results/summary-results" condition="MATURITY:EDM" />
+        <node displaytext="Формування відношень" id="relationship-formation" path="assessment/{:id}/results/relationship-formation" condition="MATURITY:EDM" />
+        <node displaytext="Управління відношеннями" id="relationship-management" path="assessment/{:id}/results/relationship-management" condition="MATURITY:EDM" />
+        <node displaytext="Захист і підтримка служби" id="service-protection" path="assessment/{:id}/results/service-protection" condition="MATURITY:EDM" />
+        <node displaytext="Рівні індикатора зрілості" id="maturity-indicator-levels" path="assessment/{:id}/results/maturity-indicator-levels" condition="MATURITY:EDM" />
+
+
+
+        <!-- Results - CRR -->
+        <node displaytext="Результати підсумку" id="crr-summary-results" path="assessment/{:id}/results/crr-summary-results" condition="MATURITY:CRR" />
+        <node displaytext="Управління активами" id="crr-domain-am" path="assessment/{:id}/results/crr-domain-am" condition="MATURITY:CRR" />
+        <node displaytext="Управління заходами" id="crr-domain-cm" path="assessment/{:id}/results/crr-domain-cm" condition="MATURITY:CRR" />
+        <node displaytext="Конфігурація та управління змінами" id="crr-domain-ccm" path="assessment/{:id}/results/crr-domain-ccm" condition="MATURITY:CRR" />
+        <node displaytext="Управління вразливими місцями" id="crr-domain-vm" path="assessment/{:id}/results/crr-domain-vm" condition="MATURITY:CRR" />
+        <node displaytext="Упраління інцидентами" id="crr-domain-im" path="assessment/{:id}/results/crr-domain-im" condition="MATURITY:CRR" />
+        <node displaytext="Управліня безперервністю служби" id="crr-domain-scm" path="assessment/{:id}/results/crr-domain-scm" condition="MATURITY:CRR" />
+        <node displaytext="Управління ризикам" id="crr-domain-rm" path="assessment/{:id}/results/crr-domain-rm" condition="MATURITY:CRR" />
+        <node displaytext="Управління зовнішніми залежностями" id="crr-domain-edm" path="assessment/{:id}/results/crr-domain-edm" condition="MATURITY:CRR" />
+        <node displaytext="Навчання та обізнаність" id="crr-domain-ta" path="assessment/{:id}/results/crr-domain-ta" condition="MATURITY:CRR" />
+        <node displaytext="Ситуаційна обізнаність" id="crr-domain-sa" path="assessment/{:id}/results/crr-domain-sa" condition="MATURITY:CRR" />
+
+
+
+        <!-- Results - RRA -->
+        <node displaytext="Цільова продуктивність" id="rra-gaps" path="assessment/{:id}/results/rra-gaps" condition="MATURITY:RRA" />
+        <node displaytext="Рівні оцінювання" id="rra-level-results" path="assessment/{:id}/results/rra-level-results" condition="MATURITY:RRA" />
+        <node displaytext="Підсумок продуктивності" id="rra-summary-all" path="assessment/{:id}/results/rra-summary-all" condition="MATURITY:RRA" />
+
+
+
+        <!-- Results - ACET -->
+        <node displaytext="ACET результати зрілості" id="acet-detail" path="assessment/{:id}/results/acet-detail" condition="MATURITY:ACET" />
+        <node displaytext="ACET панель приладів" id="acet-dashboard" path="assessment/{:id}/results/acet-dashboard" condition="MATURITY:ACET" />
+
+
+
+        <!-- Results - CIS -->
+        <node displaytext="CIS оцінка розділу" id="section-scoring" path="assessment/{:id}/results/section-scoring" condition="MATURITY:CIS" />
+        <node displaytext="CIS недоліки" id="ranked-deficiency" path="assessment/{:id}/results/ranked-deficiency" condition="MATURITY:CIS" />
+
+        <!-- Results - HYDRO -->
+        <node displaytext="Оціночні бали" id="hydro-deficiency" path="assessment/{:id}/results/hydro-deficiency" condition="MATURITY:HYDRO" />
+        <node displaytext="Здійсненність" id="hydro-feasibility" path="assessment/{:id}/results/hydro-feasibility" condition="MATURITY:HYDRO" />
+        <node displaytext="Вплив" id="hydro-impact" path="assessment/{:id}/results/hydro-impact" condition="MATURITY:HYDRO" />
+        <node displaytext="Елементи дії" id="hydro-actions" path="assessment/{:id}/results/hydro-actions" condition="MATURITY:HYDRO" />
+
+        <!-- Results - MVRA -->
+        <node displaytext="Цільова продуктивність" id="mvra-gaps-page" path="assessment/{:id}/results/mvra-gaps-page" condition="MATURITY:MVRA" />
+        <node displaytext="Підсумок продуктивності" id="mvra-summary-page" path="assessment/{:id}/results/mvra-summary-page" condition="MATURITY:MVRA" />
+
+        <!-- Results - CPG -->
+        <node displaytext="Підсумок продуктивності" id="cpg-summary-page" path="assessment/{:id}/results/cpg-summary-page" condition="MATURITY:CPG" />
+        <node displaytext="Перелік правил безпеки" id="cpg-practices-page" path="assessment/{:id}/results/cpg-practices-page" condition="MATURITY:CPG" />
+
+        <!-- Results - SD02-Series -->
+        <node displaytext="SD02-Series Підсумок відповідей за потоком" id="sd-answer-summary" path="assessment/{:id}/results/sd-answer-summary" condition="MATURITY:SD02-Series" />
+
+        <!-- Results - Diagram -->
+        <node displaytext="Результати компонентів" condition="OPTION:DIAGRAM">
+            <node displaytext="Підсумок компонентів" id="components-summary" path="assessment/{:id}/results/components-summary" />
+            <node displaytext="Рейтингові компоненти за категорією" id="components-ranked" path="assessment/{:id}/results/components-ranked" />
+            <node displaytext="Результати компонентів за категорією" id="components-results" path="assessment/{:id}/results/components-results" />
+            <node displaytext="Відповіді за типом компонента" id="components-types" path="assessment/{:id}/results/components-types" />
+            <node displaytext="Мережеві попередження" id="components-warnings" path="assessment/{:id}/results/components-warnings" />
+        </node>
+
+
+        <node displaytext="Короткий опис оцінювання високого рівня &amp; Коментарі" id="overview" path="assessment/{:id}/results/overview" condition="SHOW-EXEC-SUMMARY" />
+
+        <node displaytext="Звіти" id="reports" path="assessment/{:id}/results/reports" />
+
+        <!--node displaytext="Порівняння оцінок" id="analytics-compare" path="assessment/{:id}/results/analytics-compare" condition="ORIGIN:CF" /-->
+
+        <node displaytext="Зворотній зв'язок" id="feedback" path="assessment/{:id}/results/feedback" condition="INSTALL-MODE:CSET SHOW-FEEDBACK" />
+
+        <node displaytext="Оцінювання зверешено" id="tsa-assessment-complete" path="assessment/{:id}/results/tsa-assessment-complete" condition="INSTALL-MODE:TSA" />
+
+    </node>
+
+</nav>

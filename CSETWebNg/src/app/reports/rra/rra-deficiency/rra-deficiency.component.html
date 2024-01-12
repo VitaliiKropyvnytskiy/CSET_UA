@@ -1,0 +1,143 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="report-body mb-5">
+
+  <div class="flex-container">
+    <div class="column mt-3">
+      <p class="report-title">
+        ЗВІТ ПРО НЕДОЛІКИ
+      </p>
+      <p class="report-title" style="font-size: 36px">
+        CISA ОЦІНКА ГОТОВНОСТІ ДО ПРОГРАМ-ВИМАГАЧІВ (RRA)
+      </p>
+    </div>
+    <div class="column">
+      <p style="text-align: center">
+        <img width="471" height="529" src="assets/images/ExecutiveFiles/image002.jpg">
+      </p>
+    </div>
+
+    <div class="cover-page-bottom">
+      <app-logo-for-reports></app-logo-for-reports>
+      <app-info-block [response]="response" />
+    </div>
+  </div>
+  <div class="page-break">
+
+    <div class="disclaimer-blurb mt-4">
+      <p>
+        Цей звіт про недоліки містить в переліку твердження, які на даний момент залишилися без відповіді або отримали
+        відповідь "Ні".
+      </p>
+      <p>
+        Це часто називається Звітом про прогалини. Мета цього звіту - перерахувати прогалини, щоб користувачі звіту
+        могли пріоритетизувати роботу і розробляти план впровадження необхідних
+        заходів для виконання практики.
+      </p>
+      <p>
+        Також наведено відсоткову прогалину для кожної мети, що допоможе визначити пріоритетні області для концентрації
+        уваги.</p>
+    </div>
+
+    <div *ngIf="loading; else mainContent" class="spinner-container" style="margin: 2em auto">
+      <div style="max-width: 50px; max-height: 50px;"></div>
+    </div>
+
+    <ng-template #mainContent>
+
+      <h1 class="page-title">Запропоновані області для вдосконалення</h1>
+      <p>Мети оцінки розташовані в порядку недоліків, причому мети з меншою кількістю задовільних практик розташовані
+        вище в графіку.
+        Горизонтальна діаграма відображає відсоток практик для кожної мети, на які відповіли "Ні" або які залишили без
+        відповіді.
+      </p>
+      <div style="height: 25rem">
+        <ngx-charts-bar-horizontal [results]="topRankedGoals" [yAxis]="'true'" [xAxis]="'true'"
+          [trimYAxisTicks]="'false'" [maxYAxisTickLength]="100" [xAxisTicks]="xAxisTicks" [xScaleMax]="100"
+          [xAxisTickFormatting]="formatPercent" [scheme]="colorSchemeRed">
+          <ng-template #tooltipTemplate let-model="model">
+            <div class="p-1">
+              {{model.value}}%
+            </div>
+          </ng-template>
+        </ngx-charts-bar-horizontal>
+      </div>
+      <div class="mt-4 mb-5">
+      </div>
+
+
+      <div class="d-flex flex-row justify-content-between align-items-end">
+
+        <h1 class="page-title">Недоліки</h1>
+        <p style="color: #de761c;text-align: right;">Позначено для перегляду - <img class="MarkedFlag"
+            src="assets/images/icons/MarkedFlag.png" alt="marked for review"> </p>
+      </div>
+      <hr class="page-line m-0">
+      <table role="presentation">
+        <ng-template ngFor let-s [ngForOf]="response?.deficienciesList">
+          <tr *ngIf="shouldDisplay(s.mat.maturity_Level_Id)">
+            <td colspan="4">
+              <h2>{{getStringLevel(s.mat.maturity_Level_Id)}}</h2>
+            </td>
+          </tr>
+          <tr>
+            <td class="deficiencies-list-item"><b>{{s.mat.question_Title}}</b></td>
+            <td class="deficiencies-list-comment" [innerHTML]="reportSvc.scrubGlossaryMarkup(s.mat.question_Text)"></td>
+            <td style="padding-top: 1rem; padding-left: 1rem; vertical-align: top; color: #555555">
+              <div style="width: 7rem">
+                {{questionsSvc.answerDisplayLabel(5, s.answer.answer_Text)}}
+              </div>
+            </td>
+            <td class="deficiencies-list-flag"><img class="MarkedFlag ml-2" *ngIf="s.answer.mark_For_Review"
+                src="assets/images/icons/MarkedFlag.png"></td>
+          </tr>
+          <tr *ngIf="s.answer.comment">
+            <td></td>
+            <td colspan="4">
+              <div class="alert alert-secondary" style="background-color:#d6d8db">
+                <table>
+                  <tr>
+                    <td style="width:15%; padding-right:15px; vertical-align:top; text-align: left;">
+                      <b>Коментар:</b>
+                    </td>
+                    <td style="width:85%; vertical-align:top;word-break: break-all; text-align:left;">
+                      {{s.answer.comment}}</td>
+                  </tr>
+                </table>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="4">
+              <hr class="my-2">
+            </td>
+          </tr>
+        </ng-template>
+      </table>
+
+      <div *ngIf="!response?.deficienciesList || response?.deficienciesList.length == 0" class="mt-3">
+        Немає недоліків для відображення
+      </div>
+    </ng-template>
+  </div>
+</div>

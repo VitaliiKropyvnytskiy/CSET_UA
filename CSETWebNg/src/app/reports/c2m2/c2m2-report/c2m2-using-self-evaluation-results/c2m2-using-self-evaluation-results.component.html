@@ -1,0 +1,107 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div *ngIf="loading">
+  <div class="spinner-container" style="margin: 2em auto">
+      <div style="max-width: 50px; max-height: 50px;"></div>
+  </div>
+</div>
+
+<div *ngIf="!loading">
+  <h1>5. Використання Результатів Самооцінки</h1>
+  <p>
+    Модель C2M2 призначена для використання організацією для систематичної оцінки її кібернетичних здатностей,
+    для комунікації рівнів здатностей у значущих термінах та для інформування щодо пріоритетів інвестицій у сфері
+    кібернетичної безпеки. Рисунок 4 узагальнює потенційний підхід до використання моделі. Організація проводить
+    самооцінку за моделлю, використовує цю самооцінку для виявлення рівнів здатностей, пріоритизує ці рівні та розробляє
+    плани для їхньої адресації, і, нарешті, впроваджує плани для усунення рівнів. При виконанні планів, бізнес-цілі
+    змінюються, а середовище ризику розвивається, процес повторюється. Цей розділ надає короткий огляд того, як
+    використовувати результати самооцінки за цим підходом. Для більш докладного огляду цих кроків і додаткових вказівок,
+    див. розділ "Використання Моделі" документа моделі C2M2 V2.1, доступний за посиланням: <a href="https://energy.gov/C2M2" target="_blank">https://energy.gov/C2M2</a>.
+  </p>
+
+  <div class="d-flex justify-content-center mt-4 mb-4">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="-500 -500 1000 1000" fill="#fff" font-family="Calibri" font-size="36"
+      text-anchor="middle" role="img" style="display: block; max-width: 100%; max-height: 100%; width: 400px;">
+      <title id="assessmentApproachTitle">Рисунок 4: Потенційний Підхід до Використання Моделі</title>
+      <desc id="assessmentApproachDesc">Рисунок 4: Потенційний Підхід до Використання Моделі. Графічна блок-схема, що
+        показує 4 кроки у круговій формації зі стрілками, що вказують на годинниковий рух. Кроки: Провести Оцінку,
+        Проаналізувати Виявлені Рівні, Пріоритизувати та Розробити Плани, та Впровадити Плани.</desc>
+      <g id="aa-use" transform="translate(350) rotate(45)">
+        <circle r="150" fill="#015289"></circle>
+        <path fill="#015289" d="M0 300l50-40H30v-50h-60v50h-20z"></path>
+      </g>
+      <use href="#aa-use" transform="rotate(90)"></use>
+      <use href="#aa-use" transform="rotate(180)"></use>
+      <use href="#aa-use" transform="rotate(270)"></use><text x="-350">
+        <tspan dy="-.8em">Впровадити</tspan>
+        <tspan x="-350" dy="1.2em">Плани</tspan>
+      </text><text y="-350">
+        <tspan dy="-.8em">Провести</tspan>
+        <tspan x="0" dy="1.2em">Самооцінку</tspan>
+      </text><text x="350">
+        <tspan dy="-.8em">Проаналізувати</tspan>
+        <tspan x="350" dy="1.2em">Виявлені Рівні</tspan>
+      </text><text y="350">
+        <tspan x="0" dy="-.6em">Пріоритизувати</tspan>
+        <tspan x="0" dy="1.2em">та Розробити Плани</tspan>
+      </text>
+    </svg>
+  </div>
+  <span class="caption mb-4" style="margin: 4px 0px 0px; color: rgb(3, 83, 148); display: block;">
+    Рисунок 4: Пропонований Підхід до Використання Моделі
+  </span>
+
+  <p>
+    Цей звіт узагальнює результати самооцінки організації, проведеної в рамках Кроку 1, Провести Самооцінку.
+  </p>
+  <p>
+    Він надає моментальне уявлення про кібернетичний стан функції, яка перебуває в області видимості. Учасники
+    семінару самооцінки повинні розглянути цей звіт та спільно вирішити всі невідповідності або питання до наступного
+    кроку.
+  </p>
+  <p>
+    На Кроці 2, Проаналізувати Виявлені Рівні, організація виявляє рівні виконання модельних практик, оцінюючи
+    результати самооцінки на відповідність цільовому профілю - бажаному профілю, що представляє рейтинг цілі для кожного
+    домена в моделі. Організації, які використовують модель вперше, можуть визначити цільовий профіль після проведення
+    самооцінки, в то час як інші часто визначають цільовий профіль перед проведенням самооцінки. Для отримання додаткової
+    інформації щодо встановлення цілей, див. Додаток D, "Встановлення Цілей" у Посібнику з Самооцінки C2M2,
+    доступному за посиланням: <a href="https://energy.gov/C2M2" target="_blank">https://energy.gov/C2M2</a>.
+  </p>
+  <p>
+    На Кроці 3, Пріоритизувати та Розробити Плани, організація використовує аналіз рівнів для пріоритизації дій, необхідних
+    для повного впровадження практик у цільовому профілі. Аналіз вартості та користі може допомогти у визначенні пріоритетів
+    необхідних дій. Організація має розробити план для вирішення обраних рівнів та призначити власника плану, який має
+    достатню повноваження для нагляду за його впровадженням.
+  </p>
+  <p>
+    Організаційне керівництво повинно регулярно проводити перегляди для оцінки стану, вирішення перешкод та виявлення
+    необхідних корекцій під час впровадження.
+  </p>
+  <p>
+    На Кроці 4, Впровадити Плани та Періодично Переоцінювати, плани, розроблені на попередньому кроці, повинні бути
+    впроваджені для вирішення виявлених рівнів. Послідовні самооцінки моделі особливо корисні для відстеження
+    впровадження та повинні проводитися періодично для забезпечення досягнення бажаного прогресу. Переоцінки також
+    слід розглядати в разі великих змін в бізнесі, технології, ринку або середовищі загроз для того, щоб забезпечити,
+    що поточний профіль відповідає бажаному стану організації.
+  </p>
+</div>

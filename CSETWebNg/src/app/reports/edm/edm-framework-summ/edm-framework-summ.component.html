@@ -1,0 +1,69 @@
+<!---------------------- 
+
+   Copyright 2023 Battelle Energy Alliance, LLC  
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy 
+  of this software and associated documentation files (the "Software"), to deal 
+  in the Software without restriction, including without limitation the rights 
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+  copies of the Software, and to permit persons to whom the Software is 
+  furnished to do so, subject to the following conditions: 
+ 
+  The above copyright notice and this permission notice shall be included in all 
+  copies or substantial portions of the Software. 
+ 
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+  SOFTWARE. 
+-------------------------->
+<div class="framework-summary-container">
+    <div class="fs-title-section">
+        <h1 class="pageHeader">
+            Зведення Національної Системи Кібербезпеки NIST
+        </h1>
+        <div class="fs-title-graphs fs-body-row">
+            <div class="fs-col-one function-color-bar"></div>
+            <div class="fs-col-two fs-body-row-triple-graph-container" style="height:160px;">
+                <edm-triple-bar-chart class="fs-body-row-triple-graph" [bar_chart_data]="func_count_totals" ></edm-triple-bar-chart>
+            </div>
+            <div class="fs-col-three"></div>
+            <div class="fs-col-four fs-bar-legend">
+                <edm-bar-chart-legend [suppressNABar]='false' [fullInfoText]=true ></edm-bar-chart-legend>
+            </div>
+        </div>
+    </div>
+
+    <div class="fs-headers">
+        <div class="fs-col-one">
+            
+        </div>
+        <div class="fs-col-two">
+            Функція
+        </div>
+        <div class="fs-col-three">
+            Категорія
+        </div>
+        <div class="fs-col-four">
+            
+        </div>
+    </div>
+    <div class="fs-body-row" *ngFor="let func of edm_framework_data">
+        <div class="fs-col-one function-color-bar" [ngStyle]="getFrameworkColor(func.acronym)">
+        </div>
+        <div class="fs-col-two fs-body-row-triple-graph-container">
+            <edm-triple-bar-chart class="fs-body-row-triple-graph" [bar_chart_data]="getTripleChartData(func)" ></edm-triple-bar-chart>
+        </div>
+        <div class="fs-category-sub-row-container">
+            <div class="fs-category-sub-row" *ngFor="let cat of func.categories">
+                <div class="fs-categroy-sub-row-text fs-col-three"> {{func.acronym}}.{{cat.acronym}} <br> {{cat.shortName ? cat.shortName : cat.name}} </div>
+                <div class="fs-categroy-sub-row-graph">
+                    <edm-horizontal-bar-chart style="width:100%" [bar_chart_data]="getHorizontalChartData(cat)" ></edm-horizontal-bar-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

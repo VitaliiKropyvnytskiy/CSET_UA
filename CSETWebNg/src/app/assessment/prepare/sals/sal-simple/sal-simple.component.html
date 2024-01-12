@@ -1,0 +1,91 @@
+<!---------------------- 
+
+   Copyright 2023 Battelle Energy Alliance, LLC  
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy 
+  of this software and associated documentation files (the "Software"), to deal 
+  in the Software without restriction, including without limitation the rights 
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+  copies of the Software, and to permit persons to whom the Software is 
+  furnished to do so, subject to the following conditions: 
+ 
+  The above copyright notice and this permission notice shall be included in all 
+  copies or substantial portions of the Software. 
+ 
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+  SOFTWARE. 
+-------------------------->
+<div class="d-flex flex-column flex-11a mb-5">
+  <h4>Загальний SAL</h4>
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <ng-template ngFor let-level [ngForOf]="salsSvc.levels">
+      <label [attr.csetid]="'OverallSAL' + level.value" class="btn btn-level btn-rounded form-check-label"
+        [class.active]="level.value === this.salsSvc.selectedSAL?.selected_Sal_Level"
+        (click)="saveLevel(level.value,'std')">
+
+        <input class="form-check-input" tabindex="0" type="radio" autocomplete="off" name="sal_main"
+          [checked]="level.value === this.salsSvc.selectedSAL?.selected_Sal_Level">
+        {{level.value}}
+      </label>
+    </ng-template>
+  </div>
+</div>
+
+<div class="d-flex flex-column flex-11a mb-4">
+  <h4>Конфіденційність</h4>
+  <div class="mb-2">
+    Це значення пов’язане з важливістю захисту інформації від несанкціонованого доступу. Чим важливіше, щоб
+    неавторизовані користувачі не мали доступу до інформації, тим вищий ваш рівень SAL.
+  </div>
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <ng-template ngFor let-level [ngForOf]="salsSvc.levels">
+      <label [attr.csetid]="'Confidentiality' + level.value" class="btn btn-level btn-rounded form-check-label"
+        [class.active]="level.value === this.salsSvc.selectedSAL?.cLevel" (click)="saveLevel(level.value,'C')">
+        <input class="form-check-input" tabindex="0" type="radio" autocomplete="off" name="sal_confidentiality"
+          [checked]="level.value === this.salsSvc.selectedSAL?.cLevel">
+        {{level.value}}
+      </label>
+    </ng-template>
+  </div>
+</div>
+
+<div class="d-flex flex-column flex-11a mb-3">
+  <h4>Цілісність</h4>
+  <div class="mb-2">
+    Це значення пов’язане з важливістю точності інформації. Тим важливіше, щоб інформація зберігалася узгодженою,
+    точною та змінювалася лише авторизованими особами, чим вищий ваш рівень SAL.
+  </div>
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <ng-template ngFor let-level [ngForOf]="salsSvc.levels">
+      <label [attr.csetid]="'Integrity' + level.value" class="btn btn-level btn-rounded form-check-label"
+        [class.active]="level.value === this.salsSvc.selectedSAL?.iLevel" (click)="saveLevel(level.value,'I')">
+        <input class="form-check-input" type="radio" tabindex="0" autocomplete="off" name="sal_integrity"
+          [checked]="level.value === this.salsSvc.selectedSAL?.iLevel">
+        {{level.value}}
+      </label>
+    </ng-template>
+  </div>
+</div>
+
+<div class="d-flex flex-column flex-11a mb-3">
+  <h4>Доступність</h4>
+  <div class="mb-2">
+    Це значення пов’язане з важливістю того, щоб інформація була легкодоступною. Чим важливіше мати вашу інформацію
+    для використання, тим вищий ваш рівень SAL.
+  </div>
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <ng-template ngFor let-level [ngForOf]="salsSvc.levels">
+      <label [attr.csetid]="'Availability' + level.value" class="btn btn-level btn-rounded form-check-label"
+        [class.active]="level.value === this.salsSvc.selectedSAL?.aLevel" (click)="saveLevel(level.value,'A')">
+        <input class="form-check-input" type="radio" tabindex="0" autocomplete="off" name="sal_availability"
+          [checked]="level.value === this.salsSvc.selectedSAL?.aLevel">
+        {{level.value}}
+      </label>
+    </ng-template>
+  </div>
+</div>

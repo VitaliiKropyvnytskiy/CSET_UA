@@ -1,0 +1,219 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="white-panel m-0 d-flex flex-column flex-11a oy-auto h-0 w-100">
+  <div class="max-1200">
+    <app-builder-breadcrumbs></app-builder-breadcrumbs>
+
+    <h3 *ngIf="!!setBuilderSvc.activeRequirement">
+      Додати питання до вимоги
+    </h3>
+    <h3 *ngIf="!setBuilderSvc.activeRequirement">
+      Додати питання
+    </h3>
+    <div *ngIf="!!(setBuilderSvc.activeRequirement)" class="card d-block p-3 mb-3">
+      <h5>
+        {{setBuilderSvc.activeRequirement.title}}
+      </h5>
+      <p class="font-italic">{{setBuilderSvc.activeRequirement.requirementText}}</p>
+    </div>
+
+    <div class="mb-3 p-3 b-primary-200 br-standard">
+
+      <h5>Напишіть нове питання</h5>
+      <p>
+        Якщо ви бажаєте додати спеціальне питання до набору, введіть його тут.
+      </p>
+
+      <textarea appAutoSize id="txtCustomQuestionEntry" [(ngModel)]="customQuestionText" class="form-control mb-3 h-4"
+        type="text"></textarea>
+      <div *ngIf="isCustomQuestionEmpty">
+        <div class="alert alert-danger">Необхідний текст питання</div>
+      </div>
+      <div *ngIf="isDupeQuestion">
+        <div class="alert alert-danger">Текст питання дублює існуюче питання. Знайдіть і використовуйте наявне питання.
+        </div>
+      </div>
+
+      <h5>Категоризація</h5>
+      <div class="d-flex flex-row">
+        <div class="form-group mr-2">
+          <label>Заголовок групи питань
+            <select class="form-control" id="category" name="category" [(ngModel)]="selectedGHId">
+              <option value="0">--Виберіть заголовок--</option>
+              <option *ngFor="let groupheading of groupheadings" [value]="groupheading.id">{{groupheading.text}}
+              </option>
+            </select>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label>Підкатегорія
+            <select id="subcategory" name="subcategory" [(ngModel)]="subcatText" class="form-control">
+              <option *ngFor="let subcategory of subcategories"  [value]="subcategory.text">{{subcategory.text}}</option>
+            </select>
+          </label>
+          
+        </div>
+      </div>
+      <div *ngIf="isCatOrSubcatEmpty">
+        <div class="alert alert-danger">Заголовок і підкатегорія групи питань є обов’язковими</div>
+      </div>
+      <div class="mb-3">
+        <h5>Рівень безпеки</h5>
+        <p>Виберіть усі відповідні рівні.</p>
+        <div class="btn-group btn-group-toggle">
+          <label class="btn btn-level btn-rounded" [class.active]="customSalL">
+            <input type="checkbox" id="SAL-L-NEW" name="SAL-L-NEW" [checked]="customSalL"
+              (click)="customSalL = !customSalL" data-toggle="toggle" />Низький</label>
+          <label class="btn btn-level btn-rounded" [class.active]="customSalM">
+            <input type="checkbox" id="SAL-M-NEW" name="SAL-M-NEW" [checked]="customSalM"
+              (click)="customSalM = !customSalM" data-toggle="toggle" />Помірний</label>
+          <label class="btn btn-level btn-rounded" [class.active]="customSalH">
+            <input type="checkbox" id="SAL-H-NEW" name="SAL-H-NEW" [checked]="customSalH"
+              (click)="customSalH = !customSalH" data-toggle="toggle" />Високий</label>
+          <label class="btn btn-level btn-rounded" [class.active]="customSalVH">
+            <input type="checkbox" id="SAL-VH-NEW" name="SAL-VH-NEW" [checked]="customSalVH"
+              (click)="customSalVH = !customSalVH" data-toggle="toggle" />Дуже високий</label>
+        </div>
+        <div *ngIf="isSalSelectionEmpty" class="alert alert-danger">Потрібен принаймні один рівень SAL</div>
+      </div>
+      <button class="btn btn-primary" (click)="addCustomQuestion()">Додати нове питання</button>
+    </div>
+
+    <div class="mb-3 p-3 b-primary-200 br-standard">
+      <h5>
+        Пошук наявних питань
+      </h5>
+      <p>
+        Введіть ключові слова, щоб знайти питання кандидата. Якщо доступні відповідні питання кандидата, натисніть
+        кнопку «+» біля кожного кандидата. Переконайтеся, що рівні SAL для кожного питання правильні, а потім натисніть
+        «Додати вибрані питання», щоб включити їх у свій модуль або вимогу.
+      </p>
+      <p>
+        Зауважте, що пошук не поверне питання, які вже використовуються в модулі.
+      </p>
+
+      <div class="d-flex flex-row mb-3">
+        <div class="d-flex flex-column w-100">
+          <input id="txtSearchQuestionText" class="form-control" type="text" name="searchTerms" id="searchTerms"
+            [(ngModel)]="searchTerms" (keydown.enter)="search()">
+          <div *ngIf="searchError && searchTerms.trim().length === 0" class="alert alert-danger">Введіть ключові слова
+            пошуку
+          </div>
+        </div>
+        <div>
+          <button type="submit"
+            class="btn btn-primary search-btn ml-2 d-flex justify-content-start align-items-center flex-00a"
+            matTooltip="Пошук питань" (click)="search()">
+            <mat-icon class="mr-1">search</mat-icon>Пошук
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="searching">
+        <div class="spinner-container" style="margin-left: auto; margin-right: auto;">
+          <div style="max-width: 50px; max-height: 50px;"></div>
+        </div>
+      </div>
+
+      <div *ngIf="searchPerformed && !searching">
+
+        <div *ngIf="searchHits.length > 0" class="text-right">
+          <button class="btn btn-primary" [disabled]="selectedQuestionIds.length === 0"
+            (click)="addSelectedQuestions()">Додайте вибрані питання</button>
+        </div>
+
+
+        <div class="alert alert-info m-2" *ngIf="searchHits.length !== 1">{{searchHits.length}} питань знайдено</div>
+        <div class="alert alert-info m-2" *ngIf="searchHits.length === 1">1 питання знайдено</div>
+
+        <hr *ngIf="searchHits.length > 0" class="hr-sal" />
+
+        <div *ngFor="let q of searchHits; let i = index">
+          <div class="d-flex flex-row justify-content-between">
+            <div class="ml-2 mr-3 w-100">
+              <div [innerHTML]="q.questionText" class="mt-2 mb-4">
+              </div>
+              <div>
+                <strong>Заголовок групи:</strong> {{q.questionGroupHeading}}
+              </div>
+              <div>
+                <strong>Підкатегорія:</strong> {{q.subcategory}}
+              </div>
+
+              <h6 class="mt-3 font-weight-bold">
+                Рівень безпеки (SAL)
+              </h6>
+              <p>Виберіть усі відповідні рівні.</p>
+              <div class="w-100">
+                <div class="btn-group btn-group-toggle">
+                  <label class="btn btn-level btn-rounded" [class.active]="hasSAL(q, 'L')">
+                    <input type="checkbox" id="SAL-L-{{q.questionID}}" name="SAL-L-{{q.questionID}}"
+                      [checked]="hasSAL(q, 'L')" (click)="toggleSAL(q, 'L', $event)"
+                      data-toggle="toggle" />Низький</label>
+                  <label class="btn btn-level btn-rounded" [class.active]="hasSAL(q, 'M')">
+                    <input type="checkbox" id="SAL-M-{{q.questionID}}" name="SAL-M-{{q.questionID}}"
+                      [checked]="hasSAL(q, 'M')" (click)="toggleSAL(q, 'M', $event)"
+                      data-toggle="toggle" />Помірний</label>
+                  <label class="btn btn-level btn-rounded" [class.active]="hasSAL(q, 'H')">
+                    <input type="checkbox" id="SAL-H-{{q.questionID}}" name="SAL-H-{{q.questionID}}"
+                      [checked]="hasSAL(q, 'H')" (click)="toggleSAL(q, 'H', $event)"
+                      data-toggle="toggle" />Високий</label>
+                  <label class="btn btn-level btn-rounded" [class.active]="hasSAL(q, 'VH')">
+                    <input type="checkbox" id="SAL-VH-{{q.questionID}}" name="SAL-VH-{{q.questionID}}"
+                      [checked]="hasSAL(q, 'VH')" (click)="toggleSAL(q, 'VH', $event)" data-toggle="toggle" />Дуже
+                    високий</label>
+                </div>
+                <div *ngIf="missingSAL(q)" class="alert alert-danger">Потрібен принаймні один рівень SAL</div>
+              </div>
+            </div>
+            <div>
+              <div class="btn-group btn-group-toggle mt-2">
+                <label class="btn btn-level btn-rounded" [class.active]="isQuestionSelected(q)">
+                  <input type="checkbox" id="Q-SELECTED-{{q.questionID}}" name="Q-SELECTED-{{q.questionID}}"
+                    [checked]="isQuestionSelected(q)" (click)="markSelected(q, $event)" data-toggle="toggle" />+</label>
+              </div>
+            </div>
+          </div>
+
+          <hr *ngIf="i < searchHits.length - 1" class="hr-sal" />
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row mt-3 mb-3">
+      <button *ngIf="!!(setBuilderSvc.activeRequirement)" class="btn btn-link mr-3"
+        (click)="setBuilderSvc.navRequirementDetail(setBuilderSvc.activeRequirement.requirementID)">
+        &laquo; Назад до вимог
+      </button>
+      <button *ngIf="!(setBuilderSvc.activeRequirement)" class="btn btn-link mr-3"
+        (click)="setBuilderSvc.navQuestionList()" style="margin-right:auto">
+        &laquo; Назад до списку питань
+      </button>
+    </div>
+    <div *ngIf="searchHits.length > 0" class="text-right" id="add-qcomp-bottom-button">
+      <button class="btn btn-primary" style="float:right;position:relative; bottom: 55px;"
+        [disabled]="selectedQuestionIds.length === 0" (click)="addSelectedQuestions()">Доодати вибрані питання</button>
+    </div>
+  </div>
+</div>

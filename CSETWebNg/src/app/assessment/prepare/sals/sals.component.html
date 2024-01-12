@@ -1,0 +1,103 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="white-panel d-flex flex-column justify-content-start flex-11a">
+  <h3 class="mb-3">Рівень безпеки (SAL)</h3>
+  <div class="mr-0 d-flex flex-column flex-00a">
+    <div class="mb-3">
+      Гарантований рівень безпеки (SAL) визначає кількість питань, які потрібно відповісти, та рівень строгості оцінки.
+      Наприклад, типовий високий SAL буде містити від 350 до 1000 питань, в той час як низький SAL зазвичай міститиме
+      від 30 до 350 питань, в залежності від обраного стандарту.
+    </div>
+
+    <div class="mb-3">
+      SAL поширюється на стандартні набори питань і компоненти діаграми.
+    </div>
+
+    <span class="mt-3 mb-1 fw-600">Поточний рівень безпеки</span>
+    <div class="d-flex flex-wrap flex-00a sticky-sal">
+      <div class="d-flex flex-11a">
+        <div class="mb-2 p-2 quick-info-container d-flex justify-content-center flex-column flex-11a">
+          <div class="ws-no-wrap d-flex justify-content-center align-items-center flex-11a">Загалом</div>
+          <div class="p-2 quick-info-stats-container mt-1 d-flex justify-content-center align-items-center flex-11a">{{
+            this.salsSvc.selectedSAL.selected_Sal_Level }}</div>
+        </div>
+      </div>
+      <div class="d-flex flex-nowrap justify-content-center flex-11a mb-2" *ngIf="selectedSal != 'GENERAL'">
+        <div [class.ml-2]="!layoutSvc.hp"
+          class="p-2 quick-info-container d-flex justify-content-center flex-column flex-11a">
+          <div class="ws-no-wrap d-flex justify-content-center align-items-center flex-11a">Конфіденційність</div>
+          <div class="p-2 quick-info-stats-container mt-1 d-flex justify-content-center flex-11a">{{
+            this.salsSvc.selectedSAL.cLevel }}</div>
+        </div>
+
+        <div class="ml-2 p-2 quick-info-container d-flex flex-column justify-content-center flex-11a">
+          <div class="ws-no-wrap d-flex justify-content-center align-items-center">Цілісність</div>
+          <div class="p-2 quick-info-stats-container mt-1 d-flex justify-content-center flex-11a">{{
+            this.salsSvc.selectedSAL.iLevel }}</div>
+        </div>
+
+        <div class="ml-2 p-2 quick-info-container d-flex flex-column justify-content-center flex-11a">
+          <div class="ws-no-wrap d-flex justify-content-center align-items-center">Доступність</div>
+          <div class="p-2 quick-info-stats-container mt-1 d-flex justify-content-center flex-11a">{{
+            this.salsSvc.selectedSAL.aLevel }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-5 mb-2 d-flex flex-column flex-00a">
+      Виберіть одну з трьох наведених нижче методологій SAL, щоб визначити правильний рівень для вашого оцінювання.
+    </div>
+    <div class="btn-group-toggle" data-toggle="buttons">
+      <label csetid="SimpleSalLevelSelector" class="btn btn-sal-select btn-rounded form-check-label"
+        [class.active]="selectedSal === 'Simple'" (click)="changeState('Simple')">
+        <input class="form-check-input" type="radio" autocomplete="off" name="sal_type_selector"
+          [checked]="selectedSal === 'Simple'">Проста
+      </label>
+
+      <label csetid="GeneralRiskSalLevelSelector" class="btn btn-sal-select btn-rounded form-check-label"
+        [class.active]="selectedSal === 'GENERAL'" (click)="changeState('GENERAL')">
+        <input class="form-check-input" type="radio" autocomplete="off" name="sal_type_selector"
+          [checked]="selectedSal === 'GENERAL'">Загальний ризик
+      </label>
+
+      <label csetid="NistSalLevelSelector" class="btn btn-sal-select btn-rounded form-check-label"
+        [class.active]="selectedSal === 'NIST'" (click)="changeState('NIST')">
+        <input class="form-check-input" type="radio" autocomplete="off" name="sal_type_selector"
+          [checked]="selectedSal === 'NIST'">NIST-60
+        / FIPS-199
+      </label>
+    </div>
+    <hr class="w-100 hr-sal mt-1 mb-5" />
+
+    <div class="mt-0 mr-0 d-flex flex-column justify-content-start flex-11a">
+      <div [ngSwitch]="selectedSal" class="d-flex flex-column justify-content-start flex-00a">
+        <app-sal-simple *ngSwitchCase="'Simple'"></app-sal-simple>
+        <app-sal-gen *ngSwitchCase="'GENERAL'"></app-sal-gen>
+        <app-sal-nist *ngSwitchCase="'NIST'"></app-sal-nist>
+      </div>
+    </div>
+
+    <app-nav-back-next [page]="'sal'"></app-nav-back-next>
+
+  </div>
+</div>

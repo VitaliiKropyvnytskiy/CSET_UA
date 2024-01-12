@@ -1,0 +1,178 @@
+<!---------------------- 
+
+   Copyright 2023 Battelle Energy Alliance, LLC  
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy 
+  of this software and associated documentation files (the "Software"), to deal 
+  in the Software without restriction, including without limitation the rights 
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+  copies of the Software, and to permit persons to whom the Software is 
+  furnished to do so, subject to the following conditions: 
+ 
+  The above copyright notice and this permission notice shall be included in all 
+  copies or substantial portions of the Software. 
+ 
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+  SOFTWARE. 
+-------------------------->
+<div class="white-panel d-flex justify-content-start flex-column flex-11a">
+  <h3 class="wrap-text">Вибір цільового рівня CMMC</h3>
+
+  <p>
+    Виберіть потрібний рівень зрілості. Вибір рівня включає всі рівні нижче.
+  </p>
+
+  <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
+    <ng-template ngFor let-level [ngForOf]="availableLevels">
+      <label class="btn btn-level btn-rounded form-check-label"
+        [class.activeLevel]="level.level == this.assessSvc.assessment?.maturityModel.maturityTargetLevel">
+        <input class="form-check-input" tabindex="0" type="radio" autocomplete="off" name="mat_cmmc_level"
+          [checked]="level.level === this.assessSvc.assessment?.maturityModel.maturityTargetLevel"
+          (click)="saveLevel(level.level)" (keyup.enter)="saveLevel(level.level)"> {{level.label}}
+      </label>
+    </ng-template>
+  </div>
+
+  <p class="mb-3" *ngIf="selectedLevel.level === 0">
+    Натисніть рівень, щоб переглянути його опис.
+  </p>
+
+  <div *ngIf="this.assessSvc.assessment?.maturityModel.modelName === 'CMMC2'">
+    <div *ngIf="selectedLevel.level === 1">
+      <h4>Рівень 1</h4>
+      <p>
+        Основоположний. Складається з 17 основних практик і досягається шляхом самооцінки.
+      </p>
+    </div>
+    <div *ngIf="selectedLevel.level === 2">
+      <h4>Рівень 2</h4>
+      <p>
+        Просунутий. Складається зі 110 практик, узгоджених із NIST SP 800-171. Вимагає щорічної самооцінки для вибраних
+        підрядників або трирічної оцінки третіми сторонами для важливих проектів національної безпеки.
+      </p>
+      <p>
+        Просунутий рівень розрахує систему показників за допомогою системи ризиків ефективності постачальника (SPRS)
+        рахунок.
+      </p>
+    </div>
+  </div>
+
+
+  <div *ngIf="this.assessSvc.assessment?.maturityModel.modelName === 'CMMC'">
+    <div *ngIf="selectedLevel.level === 1">
+      <h4>CMMC Рівень 1</h4>
+      <ul>
+        <li>
+          <h5>Процеси: виконано</h5>
+          <div class="mb-3">
+            Рівень 1 вимагає, щоб організація виконувала зазначені практики. Оскільки організація може бути в змозі
+            виконувати ці практики лише в окремих випадках і може покладатися або не покладатися на документацію,
+            зрілість процесу не оцінюється для Рівня 1.
+          </div>
+        </li>
+        <li>
+          <h5>Практики: Основи кібергігієни</h5>
+          <div class="mb-3">
+            Рівень 1 зосереджений на захисті FCI і складається лише з практик, які відповідають основним вимогам щодо
+            захисту, визначеним у 48 CFR 52.204-21.
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="selectedLevel.level === 2">
+      <h4>CMMC Рівень 2</h4>
+      <ul>
+        <li>
+          <h5>Процеси: Задокументовано</h5>
+          <div class="mb-3">
+            Рівень 2 вимагає, щоб організація встановила та задокументувала практику та політику для керівництва
+            впровадженням своїх зусиль CMMC. Документація практик дозволяє людям виконувати їх у повторюваний спосіб.
+            Організації розвивають зрілі можливості, документуючи свої процеси та практикуючи їх, як задокументовано.
+          </div>
+        </li>
+        <li>
+          <h5>Практики: Кібергігієна середнього рівня</h5>
+          <div class="mb-3">
+            Рівень 2 служить переходом від рівня 1 до рівня 3 і складається з підмножини вимог безпеки, визначених у
+            NIST SP 800-171, а також практик з інших стандартів і посилань. Оскільки цей рівень є перехідним етапом,
+            підмножина практик посилається на захист CUI.
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="selectedLevel.level === 3">
+      <h4>CMMC Рівень 3</h4>
+      <ul>
+        <li>
+          <h5>Процеси: Керовані</h5>
+          <div class="mb-3">
+            Рівень 3 вимагає, щоб організація розробила, підтримувала та забезпечувала ресурсами план, що демонструє
+            управління діяльністю для реалізації практики. План може включати інформацію про місії, цілі, плани проекту,
+            ресурси, необхідне навчання та залучення відповідних зацікавлених сторін.
+          </div>
+        </li>
+        <li>
+          <h5>Практики: Належна кібергігієна</h5>
+          <div class="mb-3">
+            Рівень 3 зосереджений на захисті CUI та охоплює всі вимоги безпеки, визначені в NIST SP 800-171, а також
+            додаткові методи пом’якшення загроз. Зауважте, що застосовується пункт 252.204-7012 DFARS і визначає
+            додаткові вимоги, окрім вимог безпеки NIST SP 800-171, наприклад звітування про інциденти.
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="selectedLevel.level === 4">
+      <h4>CMMC Рівень 4</h4>
+      <ul>
+        <li>
+          <h5>Процеси: Перевірено</h5>
+          <div class="mb-3">
+            Рівень 4 вимагає, щоб організація переглядала та вимірювала ефективність практик. Крім того, організації на
+            цьому рівні можуть вживати коригувальних заходів, коли це необхідно, і періодично інформувати керівництво
+            вищого рівня про статус або проблеми.
+          </div>
+        </li>
+        <li>
+          <h5>Практики: Проактивні</h5>
+          <div class="mb-3">
+            Рівень 4 зосереджений на захисті CUI від APT і охоплює підмножину розширених вимог безпеки з Draft NIST SP
+            800-171B, а також інших найкращих практик кібербезпеки. Ці методи розширюють можливості організації щодо
+            виявлення та реагування на зміни та адаптації до змін тактики, методів і процедур (TTP), які
+            використовуються APT.
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="selectedLevel.level === 5">
+      <h4>CMMC Рівень 5</h4>
+      <ul>
+        <li>
+          <h5>Процеси: Оптимізація</h5>
+          <div class="mb-3">
+            Рівень 5 вимагає від організації стандартизації та оптимізації впровадження процесів у всій організації.
+          </div>
+        </li>
+        <li>
+          <h5>Практики: Просунуті/Проактивні</h5>
+          <div class="mb-3">
+            Рівень 5 зосереджений на захисті CUI від APT. Додаткові практики збільшують глибину та витонченість
+            можливостей кібербезпеки.
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
+  <app-nav-back-next [page]="'cmmc-levels'"></app-nav-back-next>
+
+</div>

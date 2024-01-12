@@ -1,0 +1,595 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="white-panel oy-auto d-flex flex-column flex-11a">
+  <div *ngIf="!assessSvc.isISE()">
+    <h3>Звіти</h3>
+
+    <p>
+      Дякуємо за завершення оцінювання. Звіти на цій сторінці містять підсумки ваших результатів, які можуть допомогти
+      вашій організації планувати кібербезпеку та розвиватися в майбутньому. Востаннє оцінювання було оновлено {{
+      lastModifiedTimestamp }}. Будь-які звіти, створені до цього оновлення, можуть не відображати поточний стан
+      оцінювання.
+      <button mat-stroked-button (click)="openSnackBar()">
+        Інструкції щодо друку звіту
+      </button>
+    </p>
+
+    <p *ngIf="isCyberFlorida" style="margin-top: 20px">
+      Ми цінуємо вашу участь в ініціативі CyberSecureFlorida. Інформація, зібрана в результаті цієї роботи,
+      буде важливою для того, щоб допомогти обраним лідерам Флориди визначити, як найкраще розподілити ресурси та
+      прийняти відповідне законодавство для створення більш безпечного сонячного штату!
+    </p>
+    <p></p>
+  </div>
+
+  <div class="alert alert-warning" *ngIf="isMobile">
+    Для оптимального перегляду переглядайте свої звіти з настільного браузера
+  </div>
+
+
+  <div class="d-flex flex-column justify-content-start align-items-start mb-4" *ngIf="showObservationTearouts()">
+    <button (click)="clickReportLink('discoveries')" tabindex="0" class="btn btn-link btn-link-dark text-left">
+      Відривні аркуші
+    </button>
+  </div>
+
+  <div class="alert alert-warning" *ngIf="shouldReportsandExportBeDisabledCisaAssessor()">
+    Будь ласка, дайте відповіді на всі демографічні дані організації, конфігурацію оцінювання та важливі сервісні поля,
+    щоб
+    отримати доступ до звітів і експортувати оцінінювання.
+    <p class="mt-2">Наступні поля не заповнені:</p>
+    <ul>
+      <li *ngFor="let field of cisaAssessorWorkflowFieldValidation?.invalidFields">{{ field }}</li>
+    </ul>
+  </div>
+
+  <div class="alert alert-warning" *ngIf="disableEntirePage && !shouldReportsandExportBeDisabledCisaAssessor()">
+    Для перегляду звітів необхідно надати всю демографічну інформацію на сторінці «Інформація про оцінкювання».
+  </div>
+
+  <div [class.div-shield]="disableEntirePage">
+    <div *ngIf="
+        !!assessSvc.assessment &&
+        (assessSvc.assessment.useStandard || assessSvc.assessment.useDiagram) &&
+        !isMobile
+      " class="d-flex flex-column justify-content-start align-items-start mb-4">
+      <h4>Стандарти та Діаграма</h4>
+      <button (click)="clickReportLink('executive')" tabindex="0" class="btn btn-link btn-link-dark text-left">
+         Підсумковий звіт
+      </button>
+
+      <button (click)="clickReportLink('sitesummary')" tabindex="0" class="btn btn-link btn-link-dark text-left">
+        Підсумковий звіт сайту
+      </button>
+
+      <button (click)="clickReportLink('securityplan')" tabindex="0" class="btn btn-link btn-link-dark text-left">
+        План кібербезпеки сайту
+      </button>
+
+      <button (click)="clickReportLink('detail')" tabindex="0" class="btn btn-link btn-link-dark text-left">
+        Детальний звіт про сайт
+      </button>
+    </div>
+
+    <div *ngIf="
+        !!assessSvc.assessment &&
+        assessSvc.usesMaturityModel('CMMC') &&
+        !isMobile
+      " class="d-flex flex-column justify-content-start align-items-start mb-4">
+      <h4>Capability Maturity Model Certification (CMMC) 1.0</h4>
+
+      <button (click)="clickReportLink('executivecmmc')" tabindex="0" class="btn btn-link btn-link-dark text-left">
+        CMMC Підсумковий звіт
+      </button>
+
+      <button (click)="clickReportLink('sitesummarycmmc')" tabindex="0" class="btn btn-link btn-link-dark text-left">
+        CMMC Підсумковий звіт сайту
+      </button>
+
+      <button tabindex="0" (click)="clickReportLink('cmmcDeficiencyReport')"
+        class="btn btn-link btn-link-dark text-left">
+        CMMC Звіт про недоліки
+      </button>
+
+      <button tabindex="0" (click)="clickReportLink('cmmcCommentsMarked')" class="btn btn-link btn-link-dark text-left">
+        CMMC Коментарі та позначено для перегляду
+      </button>
+
+      <button tabindex="0" (click)="clickReportLink('cmmcAltJustifications')"
+        class="btn btn-link btn-link-dark text-left">
+        CMMC Альтернативні обґрунтування
+      </button>
+    </div>
+
+    <div *ngIf="
+        !!assessSvc.assessment &&
+        assessSvc.usesMaturityModel('CMMC2') &&
+        !isMobile
+      " class="d-flex flex-column justify-content-start align-items-start mb-4">
+      <h4>Capability Maturity Model Certification (CMMC) 2.0</h4>
+
+      <button (click)="clickReportLink('executivecmmc2')" tabindex="0" class="btn btn-link btn-link-dark text-left">
+        CMMC 2.0 - Підсумковий звіт
+      </button>
+
+      <button tabindex="0" (click)="clickReportLink('cmmc2DeficiencyReport')"
+        class="btn btn-link btn-link-dark text-left">
+        CMMC 2.0 - Звіт про недоліки
+      </button>
+
+      <button tabindex="0" (click)="clickReportLink('cmmc2CommentsMarked')"
+        class="btn btn-link btn-link-dark text-left">
+        CMMC 2.0 - Коментарі та позначено для перегляду
+      </button>
+    </div>
+
+    <div *ngIf="
+        !!assessSvc.assessment &&
+        assessSvc.usesMaturityModel('EDM') &&
+        !isMobile
+      " class="d-flex flex-column justify-content-start align-items-start mb-4">
+      <h4>CISA Управління зовнішніми залежностями</h4>
+      <div>
+        <button tabindex="0" (click)="clickReportLink('edm')" class="btn btn-link btn-link-dark text-left">
+          EDM Звіт
+        </button>
+
+        <button class="btn btn-link btn-link-dark text-left" (click)="clickReportLink('edm', true)"
+          matTooltip="Виберіть Роздрукувати до PDF, щоб зберегти як PDF">
+          Роздрукувати EDM Звіт
+        </button>
+      </div>
+
+      <button tabindex="0" (click)="clickReportLink('edmDeficiencyReport')"
+        class="btn btn-link btn-link-dark text-left">
+        EDM Звіт про недоліки
+      </button>
+
+      <button tabindex="0" (click)="clickReportLink('edmCommentsmarked')" class="btn btn-link btn-link-dark text-left">
+        EDM Коментарі та позначено для перегляду
+      </button>
+    </div>
+
+    <div *ngIf="
+        !!assessSvc.assessment &&
+        assessSvc.usesMaturityModel('CRR') &&
+        !isMobile
+      " class="d-flex flex-column justify-content-start align-items-start mb-4">
+      <h4>CISA Огляд кіберстійкості</h4>
+
+      <div class="d-flex flex-row" style="align-items: end">
+        <div class="mr-3 mb-3">
+          <button tabindex="0" (click)="clickReportLink('crrreport')" class="btn btn-link btn-link-dark">
+            CRR Звіт
+          </button>
+        </div>
+        <div class="form-group">
+          <label class="mb-1" for="securityId">Конфіденційність</label>
+          <select class="form-control" [(ngModel)]="securitySelected" id="securityId" name="securityId" tabindex="0"
+            (change)="onSelectSecurity($event.target.value)">
+            <option *ngFor="let s of securityIdentifier" [value]="s.confidentialTypeKey">
+              {{ s.confidentialTypeKey }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <button tabindex="0" (click)="clickReportLink('crrDeficiencyReport')" class="btn btn-link btn-link-dark">
+        CRR Звіт про недоліки
+      </button>
+
+      <button tabindex="0" (click)="clickReportLink('crrCommentsMarked')" class="btn btn-link btn-link-dark">
+        CRR Коментарі та позначено для перегляду
+      </button>
+    </div>
+
+    <div *ngIf="
+        !!assessSvc.assessment &&
+        assessSvc.usesMaturityModel('IMR') &&
+        !isMobile
+      " class="d-flex flex-column justify-content-start align-items-start mb-4">
+      <h4>CISA Огляд управління інцидентами</h4>
+
+      <div class="d-flex flex-row" style="align-items: end">
+        <div class="mr-3 mb-3">
+          <button tabindex="0" (click)="clickReportLink('imrreport')" class="btn btn-link btn-link-dark">
+            IMR Звіт
+          </button>
+        </div>
+        <div class="form-group">
+          <label class="mb-1" for="securityId">Конфіденційність</label>
+          <select class="form-control" [(ngModel)]="securitySelected" id="securityId" name="securityId" tabindex="0"
+            (change)="onSelectSecurity($event.target.value)">
+            <option *ngFor="let s of securityIdentifier" [value]="s.confidentialTypeKey">
+              {{ s.confidentialTypeKey }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <button tabindex="0" (click)="clickReportLink('genDeficiencyReport?m=IMR')" class="btn btn-link btn-link-dark">
+          IMR Звіт про недоліки
+        </button>
+      </div>
+      <div>
+        <button tabindex="0" (click)="clickReportLink('commentsmfr')" class="btn btn-link btn-link-dark text-left">
+          Коментарі та позначено для перегляду
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="
+        !!assessSvc.assessment &&
+        assessSvc.usesMaturityModel('RRA') &&
+        !isMobile
+      " class="d-flex flex-column justify-content-start align-items-start mb-4">
+      <h4>CISA Оцінка готовності програм-вимагачів</h4>
+      <div>
+        <button tabindex="0" (click)="clickReportLink('rrareport')" class="btn btn-link btn-link-dark text-left">
+          RRA Звіт
+        </button>
+      </div>
+
+      <div>
+        <button tabindex="0" (click)="clickReportLink('rraDeficiencyReport')"
+          class="btn btn-link btn-link-dark text-left">
+          RRA Звіт про недоліки
+        </button>
+      </div>
+      <div>
+        <button tabindex="0" (click)="clickReportLink('commentsmfr')" class="btn btn-link btn-link-dark text-left">
+          Коментарі та позначено для перегляду
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="
+        !!assessSvc.assessment &&
+        assessSvc.usesMaturityModel('ACET') &&
+        !isMobile
+      " class="d-flex flex-column justify-content-start align-items-start mb-4">
+      <h4>ACET Звіти</h4>
+      <!-- commenting out this warning for now because NCUA people wanted reports always available -->
+      <!-- <div *ngIf="disableAcetReportLinks" class="
+        alert-warning
+        mt-2
+        mb-2
+        d-flex
+        flex-row
+        justify-content-center
+        align-items-center
+        flex-11a
+        ng-star-inserted
+      ">
+        <span class="p-md-3 p-2 fs-medium cset-icons-exclamation-triangle"></span>
+        <span class="fs-base-2 p-2 d-flex flex-column justify-content-center flex-11a">
+          Some reports are disabled until all statements have been answered.
+        </span>
+      </div> -->
+      <button (click)="clickReportLink('acetexecutive')" tabindex="0" class="btn btn-link btn-link-dark text-left">
+        ACET Підсумковий звіт
+      </button>
+      <button (click)="clickReportLink('acetgaps')" tabindex="0" class="btn btn-link btn-link-dark text-left">
+        ACET Звіт про прогалини
+      </button>
+      <button (click)="clickReportLink('acetcommentsmarked')" tabindex="0" class="btn btn-link btn-link-dark text-left">
+        ACET Коментарі та позначено для перегляду
+      </button>
+      <button (click)="clickReportLink('acetansweredquestions')" tabindex="0"
+        class="btn btn-link btn-link-dark text-left">
+        ACET Заяви з відповідями
+      </button>
+      <button (click)="clickReportLink('acetcompensatingcontrols')" tabindex="0"
+        class="btn btn-link btn-link-dark text-left">
+        ACET Компенсаційні засоби керування
+      </button>
+    </div>
+
+    <div *ngIf="assessSvc.isISE() && !isMobile" class="d-flex flex-column justify-content-start align-items-start mb-4">
+      <h4>ISE Звіти</h4>
+
+      <!-- Don't submit to MERIT without a Credit Union name or asset value above $0 -->
+      <div *ngIf="ncuaSvc.creditUnionName == '' || ncuaSvc.creditUnionName === null || ncuaSvc.assetsAsNumber == 0">
+        <div
+          class="alert-warning mt-2 mb-2 d-flex flex-row justify-content-center align-items-center flex-11a ng-star-inserted">
+          <span class="p-md-3 p-2 fs-medium cset-icons-exclamation-triangle"></span>
+          <div class="fs-base-2 p-2 d-flex flex-column justify-content-center flex-11a">
+            Кнопка «Надіслати» вимкнена, доки не буде вказано всі необхідні поля на сторінці «Конфігурація оцінювання».
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="disableIseReportLinks || ncuaSvc.unassignedIssues"
+        class="alert-warning mt-2 mb-2 d-flex flex-row justify-content-center align-items-center flex-11a ng-star-inserted">
+        <span class="p-md-3 p-2 fs-medium cset-icons-exclamation-triangle"></span>
+        <span *ngIf="
+            disableIseReportLinks &&
+            !assessSvc.assessment.isE_StateLed &&
+            !ncuaSvc.unassignedIssues
+          " class="fs-base-2 p-2 d-flex flex-column justify-content-center flex-11a">
+          Кнопка «Надіслати» та деякі звіти вимкнено, доки не буде отримано відповіді на всі заяви.
+        </span>
+        <span *ngIf="
+            disableIseReportLinks &&
+            assessSvc.assessment.isE_StateLed &&
+            !ncuaSvc.unassignedIssues
+          " class="fs-base-2 p-2 d-flex flex-column justify-content-center flex-11a">
+          Є заяви без відповіді. Деякі домени будуть неповними.
+        </span>
+        <span *ngIf="!disableIseReportLinks && ncuaSvc.unassignedIssues"
+          class="fs-base-2 p-2 d-flex flex-column justify-content-center flex-11a">
+          <br /><br />Кнопка «Надіслати» та деякі звіти буде вимкнено, доки всім проблемам не буде призначено тип
+          проблеми.<br /><br />
+          <span *ngIf="this.ncuaSvc.unassignedIssueTitles.length == 1">
+            Будь ласка, призначте "Тип проблеми" наступній створеній проблемі:
+          </span>
+          <span *ngIf="this.ncuaSvc.unassignedIssueTitles.length > 1">
+            Будь ласка, призначте "Тип проблеми" таким створеним проблемам: </span><br />
+          <span *ngFor="
+              let title of this.ncuaSvc.unassignedIssueTitles;
+              let i = index
+            " style="padding-left: 40px">
+            {{ title }} </span><br />
+        </span>
+        <span *ngIf="disableIseReportLinks && ncuaSvc.unassignedIssues"
+          class="fs-base-2 p-2 d-flex flex-column justify-content-center flex-11a"><br />
+          <span *ngIf="!assessSvc.assessment.isE_StateLed">
+            Кнопка «Надіслати» та деякі звіти вимкнені, доки не буде отримано відповіді на всі заяви та не буде
+            призначено тип проблеми для всіх проблем.<br /><br />
+          </span>
+          <span *ngIf="assessSvc.assessment.isE_StateLed">
+            Є заяви без відповіді. Деякі домени будуть неповними.
+            <br /><br /><br />
+            Кнопка «Надіслати» та деякі звіти вимкнено, доки всім проблемам не буде призначено тип
+            проблеми.<br /><br />
+          </span>
+          <span *ngIf="this.ncuaSvc.unassignedIssueTitles.length == 1">
+            Будь ласка, призначте "Тип проблеми" наступній створеній проблемі:
+          </span>
+          <span *ngIf="this.ncuaSvc.unassignedIssueTitles.length > 1">
+            Будь ласка, призначте "Тип проблеми" таким створеним проблемам: </span><br />
+          <span *ngFor="
+              let title of this.ncuaSvc.unassignedIssueTitles;
+              let i = index
+            " style="padding-left: 40px">
+            {{ title }} </span><br />
+        </span>
+      </div>
+      <button (click)="clickReportLink('isemerit')" tabindex="0" class="btn btn-link btn-link-dark text-left"
+        [disabled]="
+          (disableIseReportLinks && !assessSvc.assessment.isE_StateLed) ||
+          this.ncuaSvc.unassignedIssues
+        ">
+        ISE ЗВІТ ПРО ОБСЯГ ЗАСЛУГ (скопіювати, вставити в результат виконання)
+      </button>
+      <button (click)="clickReportLink('iseexamination')" tabindex="0" class="btn btn-link btn-link-dark text-left"
+        [disabled]="
+          (disableIseReportLinks && !assessSvc.assessment.isE_StateLed) ||
+          this.ncuaSvc.unassignedIssues
+        ">
+        ISE ЗВІТ ПРО ЕКСПЕРТИЗУ (прикріпити як документ у Scope Task)
+      </button>
+      <button (click)="clickReportLink('iseansweredquestions')" tabindex="0"
+        class="btn btn-link btn-link-dark text-left">
+        ISE Заяви з відповідями
+      </button>
+      <button (click)="clickReportLink('iseexaminer')" tabindex="0" class="btn btn-link btn-link-dark text-left">
+        ISE Примітки екзаменатора
+      </button>
+
+      <div *ngIf="this.ncuaSvc.submitInProgress" class="spinner-container" style="margin: 2em auto">
+        <div style="max-width: 50px; max-height: 50px"></div>
+      </div>
+    </div>
+
+    <div *ngIf="
+        !!assessSvc.assessment &&
+        assessSvc.usesMaturityModel('CIS') &&
+        !isMobile
+      " class="d-flex flex-column justify-content-start align-items-start mb-4">
+      <h4>CISA Огляд кіберінфраструктури (Cyber Infrastructure Survey ,CIS)</h4>
+
+      <div>
+        <button tabindex="0" (click)="clickReportLink('cisSurveyReport')" class="btn btn-link btn-link-dark text-left">
+          Звіт про опитування
+        </button>
+      </div>
+      <div>
+        <button tabindex="0" (click)="clickReportLink('cisSectionScoringReport')"
+          class="btn btn-link btn-link-dark text-left">
+          Звіт про оцінку розділу
+        </button>
+      </div>
+      <div>
+        <button tabindex="0" (click)="clickReportLink('cisRankedDeficiencyReport')"
+          class="btn btn-link btn-link-dark text-left">
+          Звіт про недоліки
+        </button>
+      </div>
+      <div>
+        <button tabindex="0" (click)="clickReportLink('cisCommentsmarked')"
+          class="btn btn-link btn-link-dark text-left">
+          Коментарі та позначено для перегляду
+        </button>
+      </div>
+    </div>
+
+    <div *ngIf="
+        !!assessSvc.assessment &&
+        assessSvc.usesMaturityModel('VADR') &&
+        !isMobile
+      " class="d-flex flex-column justify-content-start align-items-start mb-4">
+      <h4> Огляд перевіреного архітектурного дизайну (Validated Architecture Design Review, VADR)</h4>
+      <div>
+        <button tabindex="0" (click)="clickReportLink('vadrReport')" class="btn btn-link btn-link-dark text-left">
+          VADR Звіт
+        </button>
+      </div>
+      <div>
+        <button tabindex="0" (click)="clickReportLink('vadrDeficiencyReport')"
+          class="btn btn-link btn-link-dark text-left">
+          VADR Звіт про недоліки
+        </button>
+      </div>
+      <div>
+        <button tabindex="0" (click)="clickReportLink('vadrOpenEndedReport')"
+          class="btn btn-link btn-link-dark text-left">
+          VADR Звіт із відкритими запитаннямиt
+        </button>
+      </div>
+    </div>
+
+    <div>
+      <div *ngIf="
+          !!assessSvc.assessment &&
+          assessSvc.usesMaturityModel('MVRA') &&
+          !isMobile
+        " class="d-flex flex-column justify-content-start align-items-start mb-4">
+        <h4>CISA Оцінкювання мінімальної життєздатності (Minimum Viable Resilience Assessment, MVRA) - ЧЕРНЕТКА</h4>
+
+        <div>
+          <button tabindex="0" (click)="clickReportLink('mvraReport')" class="btn btn-link btn-link-dark text-left">
+            MVRA Звіт
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="
+          !!assessSvc.assessment &&
+          assessSvc.usesMaturityModel('CPG') &&
+          !isMobile
+        " class="d-flex flex-column justify-content-start align-items-start mb-4">
+        <h4>CISA Цілі ефективності кібербезпеки (Cybersecurity Performance Goals, CPG)</h4>
+
+        <div>
+          <button tabindex="0" (click)="clickReportLink('cpgReport')" class="btn btn-link btn-link-dark text-left">
+            CPG Звіт
+          </button>
+        </div>
+        <div>
+          <button tabindex="0" (click)="clickReportLink('cpgDeficiency')" class="btn btn-link btn-link-dark text-left">
+            CPG Недоліки
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="
+          !!assessSvc.assessment &&
+          assessSvc.usesMaturityModel('C2M2') &&
+          !isMobile
+        " class="d-flex flex-column justify-content-start align-items-start mb-4">
+        <h4>Модель зрілості можливостей кібербезпеки (Cybersecurity Capability Maturity Model, C2M2)</h4>
+
+        <div>
+          <button tabindex="0" (click)="clickReportLink('c2m2Report')" class="btn btn-link btn-link-dark text-left">
+            C2M2 Звіт
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="
+          !!assessSvc.assessment &&
+          assessSvc.usesMaturityModel('HYDRO') &&
+          !isMobile
+        " class="d-flex flex-column justify-content-start align-items-start mb-4">
+        <h4>Структура оцінки кібербезпеки гідроенергетики (Hydropower Cybersecurity Valuation Framework, HYDRO)</h4>
+
+        <!-- below is commented out until the VaR scores are collected/calculated -->
+        <!-- <div>
+          <button tabindex="0" (click)="clickReportLink('hydroReport')" class="btn btn-link btn-link-dark text-left">
+            HYDRO Report
+          </button>
+        </div> -->
+        <div>
+          <button tabindex="0" (click)="clickReportLink('hydroActionItemsReport')"
+            class="btn btn-link btn-link-dark text-left">
+            Звіт про завдання
+          </button>
+        </div>
+      </div>
+
+      <div *ngIf="
+          !!assessSvc.assessment &&
+          assessSvc.usesMaturityModel('SD02-Series') &&
+          !isMobile
+        " class="d-flex flex-column justify-content-start align-items-start mb-4">
+        <h4>Директива безпеки трубопроводів (SD02-Series)</h4>
+
+        <div>
+          <button tabindex="0" (click)="clickReportLink('sd-answer-summary')"
+            class="btn btn-link btn-link-dark text-left">
+            Підсумок відповідей
+          </button>
+        </div>
+        <div>
+          <button tabindex="0" (click)="clickReportLink('sd-deficiency')" class="btn btn-link btn-link-dark text-left">
+            Звіт про недоліки
+          </button>
+        </div>
+        <div>
+          <button tabindex="0" (click)="clickReportLink('commentsmfr')" class="btn btn-link btn-link-dark text-left">
+            Коментарі та позначено для перегляду
+          </button>
+        </div>
+
+      </div>
+      <div>
+        <div class="ml-2" *ngIf="isConfigChainEqual">
+          <button tabindex="0" (click)="clickReportLink('appkeyreport')" class="btn btn-link btn-link-dark text-left"
+            matTooltip="Використовується для зв’язування ідентифікаційної інформації з анонімним ключем" matTooltipPosition="right">
+            Anonymous Key Report
+          </button>
+        </div>
+
+        <div class="mt-5">
+          <button *ngIf="this.configSvc.behaviors.showExportOnReports" tabindex="0"
+            class="icon-button-dark btn btn-secondary d-flex justify-content-center align-items-center flex-00a"
+            (click)="clickExport()" matTooltip="Експортувати копію цього оцінювання в інше місце ({{
+              exportExtension
+            }}).">
+            <span class="cset-icons-export-up fs-base-2 mr-2"></span>
+            <span>Експортувати</span>
+          </button>
+        </div>
+
+
+        <app-nav-back-next *ngIf="!assessSvc.isISE()" [page]="'reports'"
+          [hide]="navSvc.isLastVisiblePage('reports') ? 'next' : ''"></app-nav-back-next>
+
+
+        <div *ngIf="assessSvc.isISE()" style="display: flex; justify-content: space-between;" class="my-5">
+          <button class="btn btn-primary" aria-label="Back" (click)="navSvc.navBack('reports')"
+            tabindex="0">Назад</button>
+          <button class="btn btn-primary" aria-label="Submit" (click)="ncuaSvc.submitToMerit(this.findings)"
+            tabindex="0" [disabled]="(disableIseReportLinks && !assessSvc.assessment.isE_StateLed) ||
+              (ncuaSvc.switchStatus && ncuaSvc.creditUnionName == '') || 
+              (ncuaSvc.switchStatus && ncuaSvc.assetsAsNumber == 0) ||
+              ncuaSvc.unassignedIssues ||
+              ncuaSvc.submitInProgress">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

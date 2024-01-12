@@ -1,0 +1,83 @@
+<!---------------------- 
+
+   Copyright 2023 Battelle Energy Alliance, LLC  
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy 
+  of this software and associated documentation files (the "Software"), to deal 
+  in the Software without restriction, including without limitation the rights 
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+  copies of the Software, and to permit persons to whom the Software is 
+  furnished to do so, subject to the following conditions: 
+ 
+  The above copyright notice and this permission notice shall be included in all 
+  copies or substantial portions of the Software. 
+ 
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+  SOFTWARE. 
+-------------------------->
+<div class="advisory-dialog d-flex flex-column justify-content-center flex-11a">
+  <div class="mat-dialog-header p-3 d-flex justify-content-start align-items-center flex-00a">
+    <span class="mr-3 fs-base-6 cset-icons-books-stack-2"></span>
+    <span>Додати вимогу</span>
+  </div>
+
+  <form class="p-3 pr-0 oy-auto d-flex flex-column flex-11a">
+    <mat-dialog-content>
+      <p>
+        Категорія та підкатегорія використовуються для групування вимог у CSET. Заголовок і підкатегорія групи питань
+        використовуються для групування пов’язаних питань.
+      </p>
+
+      <div class="form-group">
+        <label for="category">Категорія</label>
+        <select required #editCat #cat="ngModel" [(ngModel)]="model.category" id="category" class="form-control" name="category">
+          <option *ngFor="let category of categories" [value]="category.text">{{category.text}}</option>
+        </select>
+        <div *ngIf="submitted && !cat.valid" class="m-0 mt-2 alert alert-danger">необхідно вказати категорію</div>
+      </div>
+
+      <div class="form-group">
+        <label for="subcategory">Заголовок групи питань</label>
+        <select required #groupheading="ngModel" id="groupheading" name="groupheading"
+          [(ngModel)]="model.questionGroupHeadingID" class="form-control">
+          <option *ngFor="let heading of groupHeadings" [value]="heading.id">{{ heading.text }}</option>
+        </select>
+        <div *ngIf="submitted && !groupheading.valid" class="m-0 mt-2 alert alert-danger">Необхідно вказати заголовок
+          групи питань</div>
+      </div>
+
+      <div class="form-group">
+        <label for="subcategory">Підкатегорія</label>
+        <select required #subcat="ngModel" [(ngModel)]="model.subcategory" id="subcategory" name="subcategory" class="form-control">
+          <option *ngFor="let subcategory of subcategories" [value]="subcategory.text">{{subcategory.text}}</option>
+        </select>
+        <div *ngIf="submitted && !subcat.valid" class="m-0 mt-2 alert alert-danger">Необхідно вказати підкатегоріюd
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="title">Назва/Ідентифікатор</label>
+        <input required #title="ngModel" id="title" name="title" [(ngModel)]="model.title" class="form-control">
+        <div *ngIf="submitted && !title.valid" class="m-0 mt-2 alert alert-danger">Необхідно вказати назву</div>
+      </div>
+
+      <div class="form-group">
+        <label for="requirementText">Текст вимоги</label>
+        <textarea appAutoSize required #requirementText="ngModel" id="requirementText" name="requirementText"
+          [(ngModel)]="model.requirementText" class="form-control"></textarea>
+        <div *ngIf="submitted && !requirementText.valid" class="m-0 mt-2 alert alert-danger">Необхідно вказати текст
+          вимоги</div>
+      </div>
+
+    </mat-dialog-content>
+  </form>
+  <mat-dialog-actions class="p-3 mb-0 d-flex justify-content-between flex-00a">
+    <button class="btn btn-primary" (click)="create()">Створити</button>
+    <button class="btn btn-secondary" (click)="cancel()">Скасувати</button>
+  </mat-dialog-actions>
+</div>

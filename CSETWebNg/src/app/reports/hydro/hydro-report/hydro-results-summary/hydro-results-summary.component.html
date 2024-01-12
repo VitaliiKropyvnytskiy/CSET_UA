@@ -1,0 +1,79 @@
+<!---------------------- 
+
+   Copyright 2023 Battelle Energy Alliance, LLC  
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy 
+  of this software and associated documentation files (the "Software"), to deal 
+  in the Software without restriction, including without limitation the rights 
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+  copies of the Software, and to permit persons to whom the Software is 
+  furnished to do so, subject to the following conditions: 
+ 
+  The above copyright notice and this permission notice shall be included in all 
+  copies or substantial portions of the Software. 
+ 
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+  SOFTWARE. 
+-------------------------->
+<h1>Підсумок результатів</h1>
+<p>
+    {{facilityName}} завершило оцінку кібербезпеки на {{completionDate}}. 
+    Оцінка ризику (Value-at-Risk) з оцінки була помірною необхідністю вкладення 
+    ресурсів (робочої сили/фінансування/інструментів) для пом'якшення пов'язаних 
+    ризиків з оцінкою: {{riskScore}}. Цю оцінку робить програма CVF на основі загальних 
+    відповідей представників {{facilityName}}, які брали участь у оцінці. Це вказує на те, 
+    що оцінка ризику кібербезпеки (VaR) {{facilityName}} знаходиться на рівні {{varNecessity}} 
+    необхідності вкладення ресурсів (робочої сили/фінансування/інструментів) для пом'якшення 
+    пов'язаних ризиків з оцінкою: {{riskScore}}, і існує можливість значного покращення протягом 
+    наступних 6-12 місяців у різних доменах, якщо виконані дії, описані в Додатку B. Нижче 
+    подано підсумок чотирьох рівнів позицій на основі оцінки VaR (де менші оцінки кращі):
+</p>
+<div style="margin-left: 5%">
+    <li>
+        <span style="font-weight: bold;">Низький: </span>
+        <span>
+            Об'єкт має сильну позицію з певними можливостями для покращень. 
+            Є менша необхідність вкладення ресурсів (робочої сили/фінансування/інструментів).
+        </span>
+    </li>
+    <li>
+        <span style="font-weight: bold;">Помірний: </span>
+        <span>
+            Об'єкт має гарний фундамент в плані кібербезпеки. Є помірна необхідність вкладення 
+            ресурсів (робочої сили/фінансування/інструментів), і керівництво має пріоритетизувати 
+            виділення ресурсів для пом'якшення пов'язаних ризиків.
+        </span>
+    </li>
+    <li>
+        <span style="font-weight: bold;">Високий: </span>
+        <span>
+            Слабкий фундамент в кібербезпеці. Є вища необхідність вкладення ресурсів 
+            (робочої сили/фінансування/інструментів), і керівництво має пріоритетизувати 
+            виділення ресурсів для пом'якшення пов'язаних ризиків.
+        </span>
+    </li>
+    <li>
+        <span style="font-weight: bold;">Екстремальний: </span>
+        <span>
+            У цьому об'єкті відсутні будь-які практики кібербезпеки. Є екстремальна 
+            необхідність вкладення ресурсів (робочої сили/фінансування/інструментів), і 
+            керівництво має пріоритетизувати виділення ресурсів для пом'якшення пов'язаних ризиків.
+        </span>
+    </li>
+</div>
+<br>
+<div>
+    <h4>Що впливає на мою оцінку?</h4>
+    <p>
+        Критично зрозуміти негайні недоліки вашої оцінки кібербезпеки. Це спричинено комбінацією 
+        невідповіданих питань, які утруднюють потенціал для набору балів, та слабкі відповіді на 
+        питання з великим впливом. Вплив визначає важливість певного контролю для всієї вашої 
+        безпеки, і класифікується як низький, проміжний або високий. Заходи з позначкою середнього 
+        і високого впливу суттєво позначаються на вашу оцінку, якщо їх не впровадити.
+    </p>
+</div>

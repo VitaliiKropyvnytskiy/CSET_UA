@@ -1,0 +1,75 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div *ngIf="loading">
+  <div class="spinner-container" style="margin: 2em auto">
+    <div style="max-width: 50px; max-height: 50px;"></div>
+  </div>
+</div>
+
+<div *ngIf="!loading">
+  <h1>Повідомлення</h1>
+  <p>
+    Цей звіт надається "як є" виключно для інформаційних цілей. Міністерство енергетики (DOE) не надає жодних гарантій
+    будь-якого виду щодо будь-якої інформації, що міститься у ньому. В жодному разі уряд Сполучених Штатів або його
+    підрядники не несуть відповідальності за будь-які збитки, включаючи: прямі, непрямі,
+    спеціальні чи наслідкові збитки, включаючи збитки, які виникли внаслідок будь-якого недбалого відношення уряду
+    Сполучених Штатів або його підрядників до цього звіту, незалежно від того, чи ґрунтується відповідальність на
+    гарантії, контракті, торговому правопорушенні чи іншій підставі, незалежно від того, чи була заподіяна шкода чи
+    виникла вона внаслідок результатів чи покладання віри в звіт.
+  </p>
+  <p>
+    DOE не рекомендує жодних комерційних продуктів або послуг, включаючи тему аналізу у цьому звіті. Будь-яке посилання на
+    конкретні комерційні продукти, процеси або послуги за торговою маркою, торговою маркою, виробником або інакше, не
+    становить або не підтверджує їх підтримку, рекомендацію або підтримку агентствами.
+  </p>
+  <p>
+    Відображення офіційного печатного знака Міністерства енергетики або інших візуальних ідентифікаторів у цьому звіті не
+    повинно тлумачитися як надання організації-одержувачу дозволу на використання офіційного печатного знака, інших
+    емблем або візуальних ідентифікаторів Міністерства. Печатний знак, емблема або інші візуальні ідентифікатори Міністерства
+    не можуть використовуватися ні в якому вигляді для підтвердження підтримки будь-якого комерційного продукту або діяльності
+    Міністерства енергетики або уряду Сполучених Штатів. Використання печатного знака Міністерства без належного дозволу
+    порушує федеральний закон (наприклад, 18 U.S.C. §§ 506, 701, 1017) і суперечить політиці Міністерства щодо використання
+    свого печатного знака.
+  </p>
+
+  <h1>1. Вступ</h1>
+  <p>
+    Модель зрілості кібербезпеки (C2M2) може допомогти організаціям всіх секторів, типів і розмірів оцінити та
+    вдосконалити свої програми з кібербезпеки та зміцнити їхню операційну стійкість. Цей звіт представляє результати
+    самооцінки C2M2. Результати, подані у цьому звіті, можуть бути використані для вимірювання та вдосконалення існуючої
+    програми. Вони також можуть служити введенням для інших дій, таких як інформування керівників
+    ризиків про заходи, вжиті для зниження кібербезпечних ризиків в організації.
+  </p>
+  <p>
+    Результати, представлені у цьому звіті, базуються на відповідях учасників, що описують ступінь реалізації практик C2M2.
+    Цей звіт може містити конфіденційну інформацію і повинен бути захищений відповідно.
+  </p>
+
+  <p>Інформація про оцінку:</p>
+
+  <p>Назва оцінки:<br>{{ assessmentInfo?.assessment_Name || 'Інформація не введена' }}</p>
+
+  <p>Дата самооцінки:<br>{{ assessmentInfo?.assessment_Date || 'Інформація не введена' }}</p>
+
+  <p style="font-style: italic">Цей звіт було створено за допомогою CSET® {{ reportGeneratedDate | date:'full' }}</p>
+</div>

@@ -1,0 +1,940 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="white-panel d-flex justify-content-start flex-column flex-11a tutorial">
+    <h3 class="wrap-text mb-3">Посібник з CMMC</h3>
+
+    <div class="mb-4">
+        <h4>Огляд</h4>
+        <p>В загальному, модель зрілості - це набір характеристик, властивостей, показників або шаблонів, які
+            представляють можливості та прогрес у певній дисципліні. Вміст такої моделі зазвичай відображає найкращі
+            практики та може включати стандарти або інші кодекси практики цієї дисципліни. Модель зрілості надає
+            оціночну основу, за допомогою якої організація може оцінити поточний рівень зрілості своїх процесів, практик
+            та методів та встановити цілі та пріоритети для покращення.
+
+        </p>
+
+        <p>Процес оцінки CMMC надає послідовну методику оцінки підприємства за певним рівнем CMMC.</p>
+
+    </div>
+
+    <div class="mb-4">
+        <h5>Cybersecurity Maturity Model Certification (CMMC)</h5>
+        <p>
+            CMMC означає "Сертифікація моделі зрілості кібербезпеки " і є об'єднуючим стандартом для впровадження
+            кібербезпеки в оборонній промисловості (DIB). Структура CMMC включає в себе всеосяжний та масштабований
+            елемент сертифікації для перевірки впровадження процесів та практик, пов'язаних з досягненням рівня зрілості
+            кібербезпеки. CMMC призначена для підвищення впевненості відомства в тому, що компанія DIB може належним
+            чином захищати чутливу некласифіковану інформацію, враховуючи передачу інформації до субпідрядників у
+            багаторівневому ланцюзі постачання.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>CMMC Рівні та зони уваги</h5>
+        <p>
+            CMMC означає "Сертифікація моделі зрілості кібербезпеки " і є об'єднуючим стандартом для впровадження
+            кібербезпеки в оборонній промисловості (DIB). Структура CMMC включає в себе всеосяжний та масштабований
+            елемент сертифікації для перевірки впровадження процесів та практик, пов'язаних з досягненням рівня зрілості
+            кібербезпеки. CMMC призначена для підвищення впевненості відомства в тому, що компанія DIB може належним
+            чином захищати чутливу некласифіковану інформацію, враховуючи передачу інформації до субпідрядників у
+            багаторівневому ланцюзі постачання.
+        </p>
+
+        <p>
+            Рівні CMMC 4 і 5 включають підмножину підвищених вимог безпеки з NIST SP 800-171B, також, як і інші найкращі
+            практики кібербезпеки, та показують, що підрядник здатний зменшити ризик розширених постійних загроз.
+        </p>
+        <p>
+            По мірі того, як підрядник переходить до Рівня 5, він зобов'язаний стандартизувати та оптимізувати
+            впровадження процесів у всій організації.
+
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>Встановлення цільового рівня</h5>
+
+        <p>
+            Перший крок до завершення практичних запитань CMMC - встановити бажаний цільовий рівень. Якщо ви не впевнені
+            у своєму цільовому рівні, перевірте ваші документи RFI або RFP на необхідний рівень відповідності CMMC для
+            вашого контракту або виберіть свій рівень на основі наступних вказівок. Додаткові вказівки щодо рівнів CMMC
+            можна знайти в колекції матеріалів CMMC у бібліотеці ресурсів CSET. Рекомендована література включає такі
+            документи, як
+            <a href="{{documentURL('CMMC_ModelMain 1.02.pdf')}}" target="_blank">CMMC Model Certification 1.02 (March
+                2020)</a>,
+            <a href="{{documentURL('CMMC_AG_Lvl1_20201208_editable.pdf')}}" target="_blank">CMMC Assessment Guide: Level
+                1
+                v.1.10 (November 2020)</a>, та
+            <a href="{{documentURL('CMMC_AG_Lvl3_20201208_editable.pdf')}}" target="_blank">CMMC Assessment Guide: Level
+                3,
+                v.1.10 (November 2020)</a>.
+        </p>
+
+        <ul>
+            <li>Рівень 1: Захист інформації федеральних контрактів (FCI) </li>
+            <li>Рівень 2: Служить перехідним кроком у прогресі кібербезпеки для захисту CUI </li>
+            <li>Рівень 3: Захист контрольованої некласифікованої інформації (CUI) </li>
+            <li>Рівні 4-5: Захист CUI та зменшення ризику загроз з боку розширених постійних загроз (APTs) </li>
+        </ul>
+    </div>
+
+    <img src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom.png" style="width: 620px"
+        alt="CMMC Levels and Associated Focus Areas." class="image-center image-outline h-auto"
+        [class.w-100]="layoutSvc.hp">
+    <div class="image-caption">Рисунок 1: Рівні CMMC і пов’язані з ними напрямки</div>
+
+
+    <div class="mb-4">
+        <h5>Рівень 1</h5>
+
+        <p>
+            Рівень 1 забезпечує захист Інформації федерального контракту (FCI). Рівень 1 охоплює основні вимоги
+            забезпечення безпеки для FCI, визначені в Положеннях федеральних закупівель (FAR) Пункт 52.204-21, які
+            визначають FCI як:
+        </p>
+
+        <p>
+            <em>Інформацію, що не передбачена для громадського розголошення, що надається або створюється для уряду в
+                рамках контракту на розробку чи постачання продукту або послуги для уряду, але не включаючи інформацію,
+                що надається урядом громадськості (наприклад, на загальнодоступних веб-сайтах) або просто транзакційну
+                інформацію, наприклад, необхідну для обробки платежів.</em>
+        </p>
+        <p>
+            Контракти Міністерства оборони (MoD), які передбачають необхідність для підрядника обробляти, зберігати чи
+            передавати FCI, вимагають від підрядника лише виконання практик Рівня 1 CMMC. На рівні 1 не проводиться
+            оцінка зрілості процесу CMMC.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>Рівень 2</h5>
+        <p>
+            Рівень 2 є перехідним рівнем. На рівні 2 підрядник ще не затверджений для (CUI). Практики і процеси рівня 2
+            CMMC надають додаткові заходи безпеки, які вище, ніж на рівні 1, та допомагають підготувати підрядника до
+            роботи з CUI на рівні 3 CMMC.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>Рівень 3</h5>
+        <p>
+            CMMC Рівень 3 забезпечує захист інформації, що належить до Контрольованої некласифікованої інформації (CUI).
+            Національне управління архівами та записами (NARA) визначає CUI як:
+        </p>
+        <p><em>
+                Інформацію, яка вимагає захисту або контролю за передачею відповідно до законів, положень і
+                загальнодержавних політик, за винятком інформації, яка класифікована згідно з Указом Президента США №
+                13526 "Класифікована національна інформація з питань національної безпеки" від 29 грудня 2009 року, або
+                будь-якого попередника або наслідника цього указу, чи Закону про атомну енергію 1954 року зі змінами.
+            </em>
+        </p>
+        <p>
+            Оцінка CMMC Рівень 3 охоплює практики та процеси CMMC Рівнів 1, 2 та 3. CMMC Рівень 3 показує, що підрядник
+            може належним чином захищати CUI на відповідному рівні ризику, враховуючи потік інформації від підрядників у
+            багаторівневому ланцюжку постачання.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>Рівень 4</h5>
+        <p>
+            Оцінка CMMC Рівень 3 охоплює практики та процеси CMMC Рівнів 1, 2 та 3. CMMC Рівень 3 показує, що підрядник
+            може належним чином захищати CUI на відповідному рівні ризику, враховуючи потік інформації від підрядників у
+            багаторівневому ланцюжку постачання.
+        </p>
+    </div>
+
+    <div class="mb-4">
+        <h5>Рівень 5</h5>
+        <p>
+            Рівень 5 продовжує акцентувати увагу на захисті CUI від APT та вимагає, щоб підрядник стандартизував та
+            оптимізував впровадження процесів у всій організації.
+        </p>
+    </div>
+
+
+    <div class="mb-4">
+        <h4>Практичні питання щодо CMMC</h4>
+
+        <p> Модель CMMC вимірює не лише зрілість процесу чи інституціалізацію, але також і впровадження практик. Модель
+            складається з 171 практики, які відображені на всіх рівнях для всіх можливостей та доменів. Відображення та
+            кумулятивний характер моделі відображені нижче на рисунку 2.
+        </p>
+    </div>
+
+
+    <div class="mb-4">
+        <img src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_2.png" style="width: 600px"
+            alt="CMMC Levels with Associated Practices." class="image-center image-outline h-auto"
+            [class.w-100]="layoutSvc.hp">
+        <div class="image-caption">Рисунок 2: Рівні CMMC і відповідні практики</div>
+    </div>
+
+
+
+    <div class="mb-4">
+        <h4>Функції оцінювання CMMC CSET</h4>
+
+        <h5>Примітка. У наведених нижче вказівках показано знімки екрана на основі вибраної вкладки «Оцінювання» на
+            панелі керування.</h5>
+
+        <img alt="2. CMMC Tutorial" style="width: 750px" class="image-center h-auto" [class.w-100]="layoutSvc.hp"
+            src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_screen.png">
+
+        <table role="presentation">
+            <tr>
+                <td class="align-top">
+                    <img src="assets/images/CMMC/tutorial/drex_bullet_1.png" alt="1" width="42" height="42">
+                </td>
+                <td class="pb-3">
+                    <h5>
+                        Інстурменти
+                    </h5>
+                    <img alt="1. Tools" width="100" height="52"
+                        src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_control_1.png">
+                    <p>
+                        Вибір опції випадаючого списку розширює панель, щоб відобразити такі параметри. (Щоб
+                        дізнатися більше про параметри панелі "Інструменти", відвідайте <a
+                            href="{{documentURL('htmlhelp/index.htm')}}" target="_blank">Посібник користувача CSET</a>.)
+                    </p>
+                    <img alt="" width="200" height="243"
+                        src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_3.png">
+                </td>
+            </tr>
+            <tr>
+                <td class="align-top">
+                    <img src="assets/images/CMMC/tutorial/drex_bullet_2.png" alt="2" width="42" height="42">
+                </td>
+                <td class="pb-3">
+                    <h5>Розгортання/згортання меню бічної панелі</h5>
+                    <img alt="2. Expand / Collapse Sidebar Menu" width="29" height="27"
+                        src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_control_2.png">
+                    <p>
+                        Ця функція розширює меню бічної панелі, яке містить посилання на такі функції оцінювання:
+                    </p>
+                    <img alt="sidebar menu" height="530"
+                        src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_4.png">
+
+                </td>
+            </tr>
+
+            <tr>
+                <td class="align-top">
+                    <img src="assets/images/CMMC/tutorial/drex_bullet_3.png" alt="3" width="42" height="42">
+                </td>
+                <td class="pb-3">
+                    <h5>Бібліотека ресурсів</h5>
+                    <img alt="3. Resource Library" width="150" height="35"
+                        src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_control_3.png">
+                    <p>
+                        Бібліотека ресурсів пропонує колекцію керівних документів CSET з кібербезпеки та довідкових
+                        матеріалів.
+                    </p>
+
+
+                </td>
+            </tr>
+
+            <tr>
+                <td class="align-top">
+                    <img src="assets/images/CMMC/tutorial/drex_bullet_4.png" alt="4" width="42" height="42">
+                </td>
+                <td class="pb-3">
+                    <h5>Підготувати розділ</h5>
+                    <img alt="4. Prepare Section" width="100" height="49"
+                        src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_control_4.png">
+                    <div>
+                        Етап підготовки є першою частиною процесу оцінювання та включає такі підготовчі сторінки:
+                        <ul>
+                            <li>Поля «Конфігурація оцінювання» та «Категорії оцінювання» для збору інформації
+                                користувача та вибору оцінювання</li>
+                            <li>Екран «Інформація про оцінювання, де збирається основна демографічна інформація
+                                користувача
+                            </li>
+                            <li>Решта екранів підготовчого етапу налаштовано відповідно до особливостей вибору
+                                користувачем параметра оцінювання</li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="align-top">
+                    <img src="assets/images/CMMC/tutorial/drex_bullet_5.png" alt="5" width="42" height="42">
+                </td>
+                <td class="pb-3">
+                    <h5>Розділ оцінювання</h5>
+                    <img alt="" width="150" height="47"
+                        src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_5.png">
+                    <p>
+                        Залежно від того, чи вибрав користувач модель зрілості, стандартну чи мережеву діаграму, у цьому
+                        розділі відображатиметься сторінка вибору, <strong>модель зрілості</strong> або сторінка вибору
+                        <strong>рівня безпеки (SAL)</strong> .
+                    </p>
+
+
+                </td>
+            </tr>
+            <tr>
+                <td class="align-top">
+                    <img src="assets/images/CMMC/tutorial/drex_bullet_6.png" alt="6" width="42" height="42">
+                </td>
+                <td class="pb-3">
+                    <h5>Результати</h5>
+                    <img alt="6. Results" width="99" height="50"
+                        src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_control_6.png">
+                    <p>
+                        У розділі «Результати» детально описано різні показники відповідності та вимірювання, отримані в
+                        результаті завершеної оцінки.</p>
+                    <p>
+                        Розділ <strong>Звіти</strong> розташований після розділу <strong>Результати</strong> в
+                        <strong>меню бічної панелі</strong>.
+                    </p>
+
+
+                </td>
+            </tr>
+
+        </table>
+
+    </div>
+
+
+    <div class="mb-4">
+        <h4>Етапи оцінки CMMC</h4>
+
+        <div>
+            <h5>1. Підготовка</h5>
+
+            <img alt="Image showing the Prepare Assessment Results tabs at the top of the page."
+                style="border: solid 2px;  " width="300" height="40" class="my-3"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_6.png" />
+        </div>
+
+        <div class="mb-4">Першим кроком до виконання практичних запитань CMMC є встановлення бажаного цільового рівня.
+            Якщо ви не впевнені щодо свого цільового рівня, перегляньте розділ <strong>Рівні та напрямки CMMC</strong>
+            вище або перевірте свої документи RFI чи RFP щодо необхідного рівня відповідності CMMC для вашого контракту.
+        </div>
+
+        <div><img alt="Image showing CMMC Target Level selection screen." style="width: 600px"
+                class="border-0 h-auto my3" [class.w-100]="layoutSvc.hp"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_7.png" />
+        </div>
+    </div>
+
+
+
+
+    <div class="mb-4">
+        <h5>2. Початок оцінювання
+        </h5>
+
+        <div><img alt="" style="border: solid 1px;  " width="300" height="37" class="my-3"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_8.png" /></div>
+
+        <div>
+            <h6>Адаптація оцінювання: фільтрація практичних запитань і вмісту на екрані </h6>
+        </div>
+
+        <div>Перед початком оцінювання ви можете налаштувати вміст і запитання, з якими ви взаємодієте.</div>
+        <div>Щоб налаштувати свою оцінку, зверніть увагу на <img alt="" style="border: solid 0px;  " width="150"
+                height="29" class=" de_780D01ADE8" src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_9.png" />
+            кнопки у верхньому правому куті екрана оцінювання
+        </div>
+
+        <div>
+            <img alt="2. CMMC Tutorial" style="width: 799px" class="border-0 h-auto" [class.w-100]="layoutSvc.hp"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_screen_2.png" />
+        </div>
+        <div>
+            <div class="de_ctrl">
+                <table>
+                    <tr>
+                        <td>
+                            <div><img alt="1" style="border: solid 0px;  float: left; " width="26" height="26"
+                                    class="de_ctrlbullet de_780D01ADE8"
+                                    src="assets/images/CMMC/tutorial/drex_bullet_1.png" />
+                                <div class="ic">
+                                    <h6>Згорнути все | Розгорнути все Кнпопки.</h6>
+                                </div>
+                            </div>
+                            <div class="p"
+                                style="text-align: left; direction: ltr; margin-left: 50px; text-indent: 0px;"><img
+                                    alt="1. Collapse All | Expand All Button" style="border: solid 0px;  " width="175"
+                                    height="37" class="de_ctrlimg de_780D01ADE8"
+                                    src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_control_1_2.png" /></div>
+                            <div>Поки в <strong>розділі оцінювання</strong> CMMC, користувачі можуть натискати
+                                <strong>Згорнути/Розгорнути всу <img alt="" style="border: solid 0px;  " width="150"
+                                        height="23" class=" de_780D01ADE8"
+                                        src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_10.png" /></strong>
+                                кнопки у верхньому правому куті екрана щоб налаштувати кількість вмісту практичних
+                                питань на сторінці.
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div>
+            <div class="de_ctrl">
+                <table>
+                    <tr>
+                        <td>
+                            <div><img alt="2" style="border: solid 0px;  float: left; " width="26" height="26"
+                                    class="de_ctrlbullet de_780D01ADE8"
+                                    src="assets/images/CMMC/tutorial/drex_bullet_2.png" />
+                                <div class="ic">
+                                    <h6>Фільтр запитань</h6>
+                                </div>
+                            </div>
+                            <div class="p"
+                                style="text-align: left; direction: ltr; margin-left: 50px; text-indent: 0px;">
+                                <img alt="2. Questions Filter" style="border: solid 0px;  " width="40" height="46"
+                                    class="de_ctrlimg de_780D01ADE8"
+                                    src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_control_2_2.png" />
+                            </div>
+                            <div><strong>Фільтр запитань</strong> допомагає додатково адаптувати типи вмісту, з яким
+                                користувачі взаємодіють під час оцінювання. </div>
+
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+        <div>
+            <h6>Щоб переглянути всі практичні запитання рівня CMMC, незалежно від цільового рівня</h6>
+        </div>
+
+        <div>На спливаючому екрані «Фільтр запитань» (нижче) користувачі можуть вибрати опцію перегляду запитань, які
+            перевищують цільовий рівень під час оцінювання. Це не вплине на цільовий рівень оцінювання. Будь-які
+            додаткові запитання, відповіді на які виходять за межі вибраного користувачем цільового рівня, будуть
+            затінені сірим кольором у звітах і не будуть розраховані в остаточній оцінці зрілості.</div>
+
+        <div>
+            <h6>Спливаюче вікно фільтра запитань </h6>
+        </div>
+
+        <div>Установіть і зніміть прапорці, щоб адаптувати свої практичні запитання під час процесу оцінювання. Коли ви
+            завершите оцінювання, ця функція також стане в нагоді під час перегляду.</div>
+
+        <div><img alt="Image showing Question Filters pop-up screen." style="border: solid 0px;  " width="300"
+                height="386" class=" de_780D01ADE8"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_11.png" /></div>
+
+    </div>
+
+
+
+
+
+
+    <div class="mb-4">
+        <h5>3. Навігація в оцінюванні</h5>
+
+        <h6>CMMC розмітка практичних запитань</h6>
+
+        <div>
+            <img alt="Image of the various components of the CSET tool with annotations."
+                style="border: solid 2px; width: 800px" class="border-0 h-auto" [class.w-100]="layoutSvc.hp"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_screen_3.png" />
+        </div>
+        <div>
+            <div class="de_ctrl">
+                <table>
+                    <tr>
+                        <td>
+                            <div><img alt="1" style="border: solid 0px;  float: left; " width="42" height="42"
+                                    class="de_ctrlbullet de_780D01ADE8"
+                                    src="assets/images/CMMC/tutorial/drex_bullet_1.png" />
+                                <div class="ic">
+                                    <h6>Домени та їх акроніми</h6>
+                                </div>
+                            </div>
+                            <div class="p"
+                                style="text-align: left; direction: ltr; margin-left: 50px; text-indent: 0px;"><img
+                                    alt="1. Domain and Domain Acronym" style="border: solid 0px;  " width="150"
+                                    height="20" class="de_ctrlimg de_780D01ADE8"
+                                    src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_control_1_3.png" /></div>
+                            <div>Модель CMMC складається з 17 доменів. Більшість з цих доменів походять з областей,
+                                пов'язаних з безпекою, у Федеральному стандарті обробки інформації (FIPS) Публікація
+                                200, а також з пов'язаних з безпекою сімей вимог NIST SP 800-171. Модель CMMC також
+                                включає три домени: Управління Активами (AM), Відновлення (RE) та Ситуаційна обізнаність
+                                (SA). </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div>
+            <div class="de_ctrl">
+                <table>
+                    <tr>
+                        <td>
+                            <div><img alt="2" style="border: solid 0px;  float: left; " width="42" height="42"
+                                    class="de_ctrlbullet de_780D01ADE8"
+                                    src="assets/images/CMMC/tutorial/drex_bullet_2.png" />
+                                <div class="ic">
+                                    <h6>Практичний ідентифікатор</h6>
+                                </div>
+                            </div>
+                            <div class="p"
+                                style="text-align: left; direction: ltr; margin-left: 50px; text-indent: 0px;">
+                                <strong>AC.1.0001</strong>
+                            </div>
+                            <div>
+                                Кожна практика CMMC визначена з умовами
+                                <strong>[DOMAIN].[LEVEL].[PRACTICE NUMBER]</strong>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div>
+            <div class="de_ctrl">
+                <table>
+                    <tr>
+                        <td>
+                            <div><img alt="3" style="border: solid 0px;  float: left; " width="42" height="42"
+                                    class="de_ctrlbullet de_780D01ADE8"
+                                    src="assets/images/CMMC/tutorial/drex_bullet_3.png" />
+                                <div class="ic">
+                                    <h6>Можливості</h6>
+                                </div>
+                            </div>
+                            <div class="p"
+                                style="text-align: left; direction: ltr; margin-left: 50px; text-indent: 0px;"><img
+                                    alt="3. Capability" style="border: solid 0px; width: 300px;" class="h-auto"
+                                    [class.w-100]="layoutSvc.hp"
+                                    src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_control_3_2.png" /></div>
+                            <div>Існує 43 можливості, пов’язані з 17 доменами в моделі CMMC.</div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div>
+            <div class="de_ctrl">
+                <table>
+                    <tr>
+                        <td>
+                            <div><img alt="4" style="border: solid 0px;  float: left; " width="42" height="42"
+                                    class="de_ctrlbullet de_780D01ADE8"
+                                    src="assets/images/CMMC/tutorial/drex_bullet_4.png" />
+                                <div class="ic">
+                                    <h6>Індикатор рівня</h6>
+                                </div>
+                            </div>
+                            <div class="p"
+                                style="text-align: left; direction: ltr; margin-left: 50px; text-indent: 0px;"><img
+                                    alt="4. Level Indicator" style="border: solid 0px;  " width="74" height="18"
+                                    class="de_ctrlimg de_780D01ADE8"
+                                    src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_control_4_2.png" /></div>
+                            <div>Вказує на відповідний рівень, пов’язаний із твердженням практики. CMMC надає орієнтир,
+                                за яким організація може оцінити поточний <strong>рівень</strong> можливостей своїх
+                                процесів, практик і методів і встановити цілі та пріоритети для вдосконалення.
+                            </div>
+                            <div><span class="de_461F34A8F1">
+                                    Процес оцінювання CMMC надає узгоджені вказівки щодо оцінювання підрядника за
+                                    певними <strong>рівнями 1–5</strong> CMMC.
+                                </span> </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div>
+            <div class="de_ctrl">
+                <table>
+                    <tr>
+                        <td>
+                            <div><img alt="5" style="border: solid 0px;  float: left; " width="42" height="42"
+                                    class="de_ctrlbullet de_780D01ADE8"
+                                    src="assets/images/CMMC/tutorial/drex_bullet_5.png" />
+                                <div class="ic">
+                                    <h6>CSET Піктограми</h6>
+                                </div>
+                            </div>
+                            <div class="p"
+                                style="text-align: left; direction: ltr; margin-left: 50px; text-indent: 0px;"><img
+                                    alt="5. CSET Icons" style="border: solid 0px; width: 300px" class="h-auto"
+                                    [class.w-100]="layoutSvc.hp"
+                                    src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_control_5.png" /></div>
+                            <div class="p"
+                                style="text-align: left; direction: ltr; margin-left: 50px; text-indent: 0px;">У цьому
+                                розділі нижче ви знайдете розбивку кожного з піктограм CSET і те, як вони допомагають
+                                полегшити оцінювання CMMC.
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div>
+            <div class="de_ctrl">
+                <table>
+                    <tr>
+                        <td>
+                            <div><img alt="6" style="border: solid 0px;  float: left; " width="42" height="42"
+                                    class="de_ctrlbullet de_780D01ADE8"
+                                    src="assets/images/CMMC/tutorial/drex_bullet_6.png" />
+                                <div class="ic">
+                                    <h6>Практична заява</h6>
+                                </div>
+                            </div>
+
+                            <div class="p"
+                                style="text-align: left; direction: ltr; margin-left: 50px; text-indent: 0px;"><img
+                                    alt="6. Practice Statement" style="border: solid 0px; width: 600px" class="h-auto"
+                                    [class.w-100]="layoutSvc.hp"
+                                    src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_control_6_2.png" /></div>
+                            <div>Модель CMMC складається зі 171 практики, які відображаються на п’яти рівнях для всіх
+                                можливостей і доменів. Це відображення та кумулятивний характер моделі показано на
+                                малюнку.</div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div>
+            <div class="de_ctrl">
+                <table>
+                    <tr>
+                        <td>
+                            <div><img alt="7" style="border: solid 0px;  float: left; " width="42" height="42"
+                                    class="de_ctrlbullet de_780D01ADE8"
+                                    src="assets/images/CMMC/tutorial/drex_bullet_7.png" />
+                                <div class="ic">
+                                    <h6>Результати оцінювання (CSET Answer Key)</h6>
+                                </div>
+                            </div>
+                            <div class="p"
+                                style="text-align: left; direction: ltr; margin-left: 50px; text-indent: 0px;"><img
+                                    alt="7. Assessment Findings (CSET Answer Key)" style="border: solid 0px;  "
+                                    width="199" height="61" class="de_ctrlimg de_780D01ADE8"
+                                    src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_control_7.png" /></div>
+                            <div class="p"
+                                style="text-align: left; direction: ltr; margin-left: 50px; text-indent: 0px;">Нижче
+                                наведено повну розбивку результатів оцінювання CMMC (ключ відповіді CSET).</div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+        <div>
+            <div class="de_ctrl">
+                <table>
+                    <tr>
+                        <td>
+                            <div><img alt="8" style="border: solid 0px;  float: left; " width="42" height="42"
+                                    class="de_ctrlbullet de_780D01ADE8"
+                                    src="assets/images/CMMC/tutorial/drex_bullet_8.png" />
+                                <div class="ic">
+                                    <h6>Індикатор прогресу</h6>
+                                </div>
+                            </div>
+                            <div class="p"
+                                style="text-align: left; direction: ltr; margin-left: 50px; text-indent: 0px;"><img
+                                    alt="" style="border: solid 0px;  " width="45" height="44" class=" de_780D01ADE8"
+                                    src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_12.png" /></div>
+                            <div class="p"
+                                style="text-align: left; direction: ltr; margin-left: 50px; text-indent: 0px;">The
+                                Індикатор прогресу стане синім і заповнить коло, коли буде виконано запитання в кожній
+                                області можливостей. Коли всі запитання буде виконано, індикатор прогресу покаже
+                                позначку.
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+
+        <div>
+            <h6>Практичні ідентифікатори CMMC</h6>
+        </div>
+
+        <div><img
+                alt="Identifier shows domain acronym: level number: practice number. The image shows the applicable level for the question beneath the identifier."
+                style="border: solid 2px;  " width="60" height="42" class="my-3"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_13.png" />&#160; Кожна практика вказується за
+            умовами <strong>[DOMAIN].[LEVEL].[PRACTICE NUMBER]</strong> над застосовним <strong>номером рівня</strong>
+            для практики.</div>
+
+        <ul>
+            <li><strong>DOMAIN</strong> – двобуквена абревіатура домену;</li>
+            <li><strong>LEVEL</strong> – номер рівня; і</li>
+            <li><strong>PRACTICE NUMBER</strong> – це ідентифікатор, призначений цій практиці.</li>
+            <li><strong>Рівень 1, 2, 3, 4 або 5.</strong></li>
+        </ul>
+
+        <div>
+            <h6>Ключ відповіді CSET для CMMC</h6>
+        </div>
+
+        <div><img alt="Image showing CSET Answer Key for CMMC." style="border: solid 0px;  " width="200" height="47"
+                class="my-3" src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_14.png" /></div>
+
+    </div>
+
+
+
+
+
+
+    <div class="mb-4">
+        <h5>4. Відповідь на практичні запитання</h5>
+
+
+        <div><img alt="Image of the Yes Icon answer choice." style="border: solid 0px;  " width="53" height="40"
+                class=" de_780D01ADE8" src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_15.png" /><span
+                class="de_D8BCB2AC4C"><strong>ВИКОНАНО</strong> </span> представлено як <strong>Так</strong> в засобі
+            <span class="de_D8BCB2AC4C">оцінювання</span> CSET <span class="de_D8BCB2AC4C">. Підрядник успішно
+                відповідає практиці. Для</span>
+        </div>
+        <div><span class="de_D8BCB2AC4C"> для кожної практики, позначеної як ВИКОНАНО, експерт включає твердження,
+                які
+                вказують на те, що відповідь відповідає цілям, і документує відповідні докази на підтримку відповіді.
+            </span></div>
+
+        <div><span class="de_D8BCB2AC4C">Для <strong>ВИКОНАНО (Так)</strong> експерт може використовувати поле
+                <strong>Спостереження</strong> для запису відповідних спостережень.</span></div>
+
+        <div><img alt="Image showing yes answer option and observations icon highlighted."
+                style="border: solid 2px; width: 600px" class="my-3 h-auto" [class.w-100]="layoutSvc.hp"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_16.png" /></div>
+
+        <div><img alt="Image of the No Icon answer choice." style="border: solid 0px;  " width="50" height="41"
+                class="my-3" src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_17.png" /><span
+                class="de_D8BCB2AC4C"><strong> НЕ ВИКОНАНО</strong> представлено як <strong>НІ</strong> в засобі
+                оцінювання CSET.
+                Підрядник не дотримався практики. Для кожної практики, позначеної НЕ ВИКОНАНО, експерт включає заяви,
+                які пояснюють, чому, і документує відповідні докази того, що підрядник не відповідає цілям.</span></div>
+
+        <div><span class="de_D8BCB2AC4C">Для <strong>НЕ ВИКОНАНО</strong> <strong>(Ні)</strong>, експерт може
+                використовувати поле <strong>Спостереження</strong> для запису відповідних спостережень.</span></div>
+
+        <div><img alt="Image showing No answer option and Observations icon highlighted."
+                style="border: solid 2px; width: 600px" class="my-3 h-auto" [class.w-100]="layoutSvc.hp"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_18.png" /></div>
+        <div><span class="de_D8BCB2AC4C">&#160;</span></div>
+
+        <div>
+            <h6>Успадковані цілі практики - НЕ ВИКОНАНО</h6>
+        </div>
+        <div><span class="de_D8BCB2AC4C">Примітка: Підрядник може успадковувати практичні цілі. Успадкована практична
+                ціль вважається виконаною, оскільки надаються достатні докази того, що підприємство або інша установа,
+                така як Зовнішній сервіс (ESP), виконує практичну ціль. Докази від підприємства або установи, від яких
+                успадковуються цілі, повинні показувати, що вони можуть бути застосовані до активів, які підпадають під
+                оцінку, та що ціль оцінки досягнута. Для кожної успадкованої практичної цілі експерт включає
+                визначення, що показують, як вони були оцінені та від кого були успадковані. Якщо підрядник не може
+                продемонструвати достатні докази для всіх цілей оцінки, або через власні докази підрядника, або через
+                докази успадкування, підрядник отримає оцінку "НЕ ВИКОНАНО" для даної практики.</span>
+        </div>
+
+        <div><img alt="Alternate icon image." style="border: solid 0px;  " width="50" height="45" class="my-3"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_19.png" /><span
+                class="de_D8BCB2AC4C"><strong>&#160; НЕПРИДАТНО</strong> </span>представлене як <strong>ALT</strong>
+            у засобі <span class="de_D8BCB2AC4C">оцінювання</span> CSET. <span class="de_D8BCB2AC4C"> ALT вказує, що
+                практика не застосовується до оцінювання. Для кожної практики, позначеної ALT, експерт повинен включити
+                заяву, яка пояснює, чому практика не застосовується до підрядника.&#160; </span></div>
+
+        <div><span class="de_D8BCB2AC4C">Коментарі експерта можуть бути записані у спливаючому текстовому полі
+                альтернативного обґрунтування під запитанням.</span></div>
+
+        <div><img alt="Image showing Alternate answer option highlighted with corresponding justification text box."
+                style="border: solid 1px;  " width="150" height="110" class="my-3"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_20.png" /></div>
+
+        <div>
+            <h6>Позначте для перегляду</h6>
+        </div>
+        <div><span class="de_D8BCB2AC4C">Функція позначки для перегляду дозволяє користувачеві вказати, що практичне
+                запитання потребує додаткового перегляду. Позначені практики перераховані у звіті «Коментарі та
+                позначено для перегляду CMMC». У цьому розділі сторінки звіту CSET (ліворуч навігаційна панель «Звіти»)
+                користувач може знайти коментарі, що стосуються кожного практичного запитання, і згадати будь-які
+                практики, позначені для перегляду.
+            </span></div>
+
+        <div><img alt="Image shows flag icon highlighted for a practice question needing further review."
+                style="border: solid 1px; width: 400px" class="my-3 h-auto" [class.w-100]="layoutSvc.hp"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_21.png" /></div>
+
+        <div>
+            <h6>Додаткові вказівки</h6>
+        </div>
+        <div><span class="de_D8BCB2AC4C">Користувачі можуть звернутися до допоміжних органів і отримати додаткові
+                вказівки в розділі <strong>Додаткові вказівки</strong>. </span></div>
+        <div><span class="de_D8BCB2AC4C">Багато з цих документів можна знайти в </span><a href="/resource-library"
+                target="_blank">Бібліотеці ресурсів CSET.</a></div>
+
+        <div><img alt="Image shows supplemental guidance icon and references displayed when clicked."
+                style="border: solid 1px; width: 600px" class="my-3 h-auto" [class.w-100]="layoutSvc.hp"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_22.png" /></div>
+
+        <div>
+            <h6>Коментарі </h6>
+        </div>
+        <div class="mb-1">Функція коментарів дозволяє експерту записувати неструктуровані коментарі до кожного запитання
+            під час оцінювання. Практики з коментарями перераховані у звіті «Коментарі та позначені для перегляду CMMC».
+            У цьому розділі сторінки звіту CSET (ліворуч навігаційна панель «Звіти») користувач може знайти коментарі,
+            що стосуються кожного практичного запитання, і згадати будь-які практики, позначені для перегляду.
+        </div>
+        <div>
+            На противагу цьому функція «Спостереження» (також корисна для коментування) є більш жорсткою та містить
+            обов’язкові поля.
+        </div>
+
+        <div><img alt="Image shows Comments Icon with Red Dot Indicator to show a comment has been made. "
+                style="border: solid 1px; width: 600px" class="my-3 h-auto" [class.w-100]="layoutSvc.hp"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_23.png" /></div>
+
+        <div class="mb-3">
+            <h6>Артефакти/Документи </h6>
+        </div>
+        <div>Оцінювачі можуть використовувати функцію Артефакти/Документи, щоб додавати відповідні докази до кожного
+            практичного запитання.
+        </div>
+
+        <div><img alt="Image shows Artifacts and Documents icon." style="border: solid 1px; width: 600px"
+                class="my-3 h-auto" [class.w-100]="layoutSvc.hp"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_24.png" /></div>
+
+        <div>Документи відображатимуться в списку за іменами файлів під запитанням, коли їх вкладено. На піктограмі
+            кожного запитання, до якого додано докази, з’явиться червоний індикатор.</div>
+
+        <div><img alt="Image shows Artifacts and Documents function with a document attached."
+                style="border: solid 1px; width: 600px" class="my-3 h-auto" [class.w-100]="layoutSvc.hp"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_25.png" /></div>
+
+        <div><span class="de_D8BCB2AC4C">Доступ до вкладених документів, артефактів і доказів у розділі <img alt=""
+                    style="border: solid 0px;  " width="40" height="31" class=" de_780D01ADE8"
+                    src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_26.png" /> Меню інструментів поруч із
+                логотипом CSET у верхній лівій частині екрана. </span></div>
+
+        <div><img alt="Image shows the Assessment Documents location under the Tools menu."
+                style="border: solid 0px; width: 400px" class="my-3 h-auto" [class.w-100]="layoutSvc.hp"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_27.png" /></div>
+
+        <div><span class="de_D8BCB2AC4C">На вкладці «Документи оцінювання» відкриється спливаюче вікно з усіма
+                документами, доданими до оцінювання. Документи впорядковано за назвами.</span></div>
+
+        <div><img alt="" style="border: solid 0px; width: 600px" class="my-3 h-auto" [class.w-100]="layoutSvc.hp"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_28.png" /></div>
+
+        <div>
+            <h6>References </h6>
+        </div>
+        <div><span class="de_D8BCB2AC4C">Користувачі можуть натиснути піктограму <strong>Посилання</strong>, щоб
+                відкрити посилання на документацію CMMC у форматі .pdf і отримати доступ до довідкових документів щодо
+                оцінки CMMC, помилок і документа Глосарій/акроніми. Документи відкриються в окремому вікні.</span></div>
+
+        <div class="mb-3"><img
+                alt="Image showing the References Icon highlighted expanding the CMMC Source Documents and Help Documents available."
+                style="border: solid 2px; width: 600px" class="my-3 h-auto" [class.w-100]="layoutSvc.hp"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_29.png" /></div>
+
+
+        <div>
+            <h6>Спостереження </h6>
+        </div>
+        <div>Піктограма «Спостереження» відкриває спливаюче вікно, яке дозволяє оцінювачу записувати свої спостереження
+            для кожного навчального запитання. </div>
+
+        <div><img alt="Image shows Observations Icon highlighted." style="border: solid 1px; width: 600px"
+                class="my-3 h-auto" [class.w-100]="layoutSvc.hp"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_30.png" /></div>
+
+        <div>Коли користувач вводить свої спостереження, червоний індикатор висвітлює піктограму, а спостереження
+            перераховуються під практичним запитанням у порядку введення. </div>
+
+        <div class="mb-3"><img alt="" style="border: solid 0px; width: 600px" class="my-3 h-auto"
+                [class.w-100]="layoutSvc.hp" src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_31.png" /></div>
+
+
+        <div>
+            <h6>Спливаюче вікно з інформацією про спостереження:</h6>
+        </div>
+        <div>Після вибору піктограми спостережень з’явиться екран подробиць спостережень.</div>
+
+        <div class="mb-3"><img alt="" style="border: solid 0px; width: 600px" class="h-auto"
+                [class.w-100]="layoutSvc.hp" src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_32.png" /></div>
+
+        <div>
+            <h6>Зворотній зв'язок</h6>
+        </div>
+        <div>Користувачі можуть записувати відгуки під час оцінювання для подання до CSET/CISA. Деякі приклади
+            надісланого відгуку включають коментарі щодо предмета запитання, структури запитання та способів покращення
+            питання та макета.</div>
+
+        <div class="mb-3"><img alt="Image shows Feedback Icon highlighted with comments in text box."
+                style="border: solid 1px; width: 600px" class="my-3 h-auto" [class.w-100]="layoutSvc.hp"
+                src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_33.png" /></div>
+
+    </div>
+
+
+
+
+    <div class="mb-4">
+        <h5>5. Результати та звіт CMMC</h5>
+        <img alt="Image shows the Results tab selected." style="width: 350px" class="my-3 h-auto"
+            [class.w-100]="layoutSvc.hp" src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_34.png" />
+
+
+        <p>Основним результатом оцінки CMMC є Звіт про об’єкт CMMC, який містить висновки, пов’язані з оцінкою. Щоб
+            дізнатися більше про функції Результати та звіт CMMC, відвідайте <a
+                href="{{documentURL('htmlhelp_cmmc/3_2__results.htm')}}" target="_blank">Результати</a> та <a
+                href=" Розділ {{documentURL('htmlhelp_cmmc/reports.htm')}}" target="_blank">Звіти</a> посібника
+            користувача CMMC.
+        </p>
+    </div>
+
+
+
+
+    <div class="mb-4">
+        <h5>6. Надіслати відгук</h5>
+        <p>
+            Наприкінці оцінювання користувачам пропонується надіслати свої відгуки щодо оцінювання CSET.</p>
+
+        <img alt="Image shows the Feedback screen with an option to email." style="width: 650px" class="my-3 h-auto"
+            [class.w-100]="layoutSvc.hp" src="assets/images/CMMC/tutorial/drex_cmmc_tutorial_custom_35.png" />
+    </div>
+
+
+
+
+
+    <app-nav-back-next [page]="'tutorial-cmmc'" [hide]="'back'"></app-nav-back-next>
+</div>

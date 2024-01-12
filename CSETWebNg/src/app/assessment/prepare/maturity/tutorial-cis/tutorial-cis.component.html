@@ -1,0 +1,213 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="white-panel d-flex justify-content-start flex-column flex-11a tutorial">
+        <h3 class="wrap-text mb-4">Підручник Cyber Infrastructure Survey</h3>
+        <div class="mb-2">
+                <p class="mb-4">
+                        Метою опитування Critical Infrastructure Survey (CIS) є оцінка фундаментальних та важливих
+                        практик кібербезпеки критичного сервісу організації для визначення залежностей, можливостей та
+                        виникаючих ефектів поточного стану кібербезпеки організації. CIS фокусується на
+                        сервіс-орієнтованому погляді на кібербезпеку, на відміну від програмно-орієнтованого. Критичні
+                        сервіси оцінюються з урахуванням більше ніж 80 контрольних пунктів стану кіберзахисту, які
+                        об'єднані у п'ять основних доменів верхнього рівня: <strong><span
+                                        style="color:#174F78;">управління кібербезпекою, сили кібербезпеки,
+                                        засоби контролю кібербезпеки, реагування на кіберінциденти та
+                                        кіберзалежності</span></strong>. CIS забезпечує
+                        вашу організацію ефективною оцінкою засобів контролю кібербезпеки при роботі критичних сервісів
+                        для підтримки планування кібербезпеки, розміщення ресурсів та оцінки результативності.
+                </p>
+
+                <p class="section-h">
+                        <span>Що таке критична служба?</span>
+                </p>
+
+                <p><span><em>Критична служба &ndash; Набір видів діяльності, які виконує організація під час виробництва
+                                        продукту або під час надання послуг своїм клієнтам, які є настільки важливими
+                                        для успіху організації, що порушення послуги може серйозно вплинути на
+                                        діяльність або бізнес організації.
+                                        &nbsp;</em></span></p>
+
+                <p><span>Основний принцип, про який слід пам’ятати під час опитування, – це різниця між <strong><span
+                                                style="color:#174F78;">критичною службою</span></strong> та
+                                <strong><span style="color:#174F78;">кіберсервісом</span></strong>.&nbsp;</span></p>
+
+                <p><span><strong><span style="color:#174F78;">Кіберсервіс</span></strong><span
+                                        style="color: rgb(23, 79, 120);">&nbsp;</span>це будь-яка комбінація обладнання
+                                та пристроїв (обладнання); програми та платформи (програмне забезпечення), комунікації
+                                та дані, які інтегровані для надання конкретних кібер-послуг.&nbsp;</span></p>
+
+                <p class="mb-4"><span><strong><span style="color:#174F78;">Критичний сервіс</span></strong><span
+                                        style="color: rgb(23, 79, 120);">&nbsp;</span> (КС) це сервіс, втрата якого
+                                призведе до фізичного знищення,
+                                порушення безпеки та впливу на здоров'я (наприклад, розтік хімічних речовин або втрата
+                                контролю над дорожнім рухом), крадіжки чутливої інформації, яка може бути використана у
+                                своїх цілях, перерви в роботі бізнесу (наприклад, відмова в обслуговуванні) або іншої
+                                економічної втрати для організації або її клієнтів/користувачів.
+                        </span></p>
+
+                <p class="section-h">
+                        <span>Визначення обсягу оцінювання</span>
+                </p>
+
+                <p><span>Визначення обсягу оцінювання є важливим, оскільки відповіді на запитання оцінювання мають бути
+                                надані стосовно конкретної послуги. Обсяг оцінки визначається трьома
+                                факторами:&nbsp;</span></p>
+
+                <ol style="list-style-type: decimal;" class="mb-4">
+                        <li><strong><span style="color: rgb(23, 79, 120);">Обсяг критичної
+                                                служби</span></strong><strong><span>:</span></strong>&nbsp;
+                                Яка послуга буде в фокусі оцінювання?&nbsp;</li>
+                        <li><strong><span style="color: rgb(23, 79, 120);">Організаційні
+                                                масштаби</span></strong><strong>:</strong>&nbsp;Які частини організації
+                                надають критичні послуги?</li>
+                        <li><strong><span style="color: rgb(23, 79, 120);">Обсяг
+                                                активів</span></strong><strong>:</strong>&nbsp;Які активи (люди,
+                                технології, інформація та обладнання) необхідні для надання послуг?</li>
+                </ol>
+                <p class="section-h">
+                        <span>Початок оцінювання CIS у CSET</span>
+                </p>
+
+                <p><span>Перш ніж почати, будь ласка, ознайомтеся з макетом запитань CSET і функціями панелі
+                                значків.&nbsp;</span></p>
+
+                <p class="mb-4"><span><img style="width: 75%; height: auto" [class.w-100]="layoutSvc.hp"
+                                        src="assets/images/CIS/tutorial/img165539125858.png"
+                                        alt="Image showing CSET information Icon which users click to open the icon tray."></span>
+                </p>
+
+
+                <p class="section-h">
+                        <span>Панель значків CSET:</span>
+                </p>
+
+                <p><span><img width="215" src="assets/images/CIS/tutorial/img_extras.png" alt="Icon
+            
+            Description automatically generated with medium confidence"></span></p>
+
+
+                <p><span><img width="20" src="assets/images/CIS/tutorial/img165539125719.png" alt="A picture containing text, wheel
+            
+            Description automatically generated"></span><span
+                                style=" color: rgb(23, 79, 120);">&nbsp;</span><span><strong><span
+                                                style="color: rgb(23, 79, 120);">Додаткові
+                                                вказівки</span></strong></span><span
+                                style="color: rgb(23, 79, 120); ">&nbsp;</span><span>icon. Деякі запитання мають
+                                додаткові вказівки, щоб допомогти користувачеві зрозуміти вміст. Якщо запитання
+                                пов’язане з інструкцією, воно з’явиться тут.&nbsp;</span></p>
+
+                <p><span><img width="23" src="assets/images/CIS/tutorial/img165539125786.png" alt="Icon
+            
+            Description automatically generated">&nbsp;<strong><span
+                                                style="color:#174F78;">Коментарі&nbsp;</span></strong>icon.
+                                Ви можете залишати коментарі, пов’язані із запитаннями, для перегляду після оцінювання
+                                тут. &nbsp;Коментарі відображаються в розділі <strong><span
+                                                style="color:#174F78;">"Коментарі та позначено для
+                                                перевірки"</span></strong><span
+                                        style="color: rgb(23, 79, 120);">&nbsp;</span>звіту в кінці
+                                оцінювання.&nbsp;</span></p>
+
+                <p><span><img width="27" src="assets/images/CIS/tutorial/img1655391257.png" alt="Icon
+            
+            Description automatically generated"><strong><span
+                                                style="color: rgb(23, 79, 120);">Документи</span></strong>&nbsp;icon.
+                                Додайте будь-які артефакти або докази для доповнення своєї відповіді. Ви
+                                зможете пізніше отримати доступ до документів вашої оцінки для їх завантаження,
+                                повернувшись до цієї оцінки, де знайдете додані вами документи у меню Інструменти.
+                        </span></p>
+
+                <p><span><img width="27" src="assets/images/CIS/tutorial/img165539125724.png" alt="Icon
+            
+            Description automatically generated"><strong><span style="color: rgb(23, 79, 120);">Зворотній
+                                                зв'язок</span></strong>&nbsp;icon.
+                                Для нас важливий зворотний зв'язок. Ви можете залишати відгуки щодо вмісту оцінювання,
+                                помилок, пропозицій і будь-яких запитань, які у вас можуть виникнути. &nbsp;</span></p>
+
+                <p><span><img width="33" src="assets/images/CIS/tutorial/img165539125796.png" alt="Text, icon
+            
+            Description automatically generated"><strong><span style="color: rgb(23, 79, 120);">Позначено для
+                                                перегляду</span></strong></span><span
+                                style=" color: rgb(23, 79, 120);">&nbsp;</span><span>icon. Запитання, позначені для
+                                перегляду, з’являться у звіті «Коментарі та позначено для перегляду» в кінці оцінювання.
+                                Піктограма підсвічується жовтим кольором для кожного запитання, якщо його
+                                вибрано.&nbsp;</span></p>
+
+
+
+                <p class="mb-4"><span><img style="width: 75%; height: auto" [class.w-100]="layoutSvc.hp"
+                                        src="assets/images/CIS/tutorial/img165539125854.png" alt="Image shows red dot indicator indicating comments or documents added.
+            ">&nbsp;</span></p>
+
+
+                <p class="section-h">
+                        <span>Панель інструментів</span>
+                </p>
+                <p><span>У панелі інструментів CSET зберігаються артефакти та докази вашого оцінювання.</span></p>
+
+                <p class="mb-4"><span><img style="width: 75%; height: auto" [class.w-100]="layoutSvc.hp"
+                                        src="assets/images/CIS/tutorial/img1655391258.png"
+                                        alt="Image shows assessment documents storage location in the tools menu."></span>
+                </p>
+
+                <p class="section-h">
+                        <span>CIS Питання / Відповідь &ndash; Багаторівневий інтерактивний текст</span>
+                </p>
+
+                <p>
+                        <span>
+                                Починаючи відповідати на питання, будь ласка, майте на увазі, що CIS є інтерактивною
+                                оцінкою з
+                                різними рівнями вмісту питань та відповідей. Змінюючи ширину та глибину вмісту для
+                                кожного питання, ви помітите, що деякий матеріал відображений сірим кольором. Це
+                                зроблено навмисно. Зміст оцінки стане активним (і більше не буде відображений сірим
+                                кольором) в залежності від вашої відповіді.
+                        </span>
+                </p>
+
+                <p>
+                        <span>
+                                Також зверніть увагу на те, що при виборі певної відповіді деякий зміст питання може
+                                більше не бути доступним. Процес оцінювання працює так, як очікувалося. Ітеративний
+                                матеріал допомагає створити всебічний та корисний механізм визначення оцінки протягом
+                                оцінювання, а також в результатах та звітах CIS.
+                        </span>
+                </p>
+
+                <p class="mb-4"><span>Щоб отримати додаткові відомості про цей розділ і додаткові вказівки щодо CIS, а
+                                також зберегти копію <strong><span style="color:#174F78;">довідки CIS</span></strong>
+                                під час оцінювання відкрийте та натисніть <a
+                                        href="{{configSvc.docUrl}}htmlhelp_cis/index.htm"
+                                        target="_blank">тут</a>.</span></p>
+
+                <h6>Дякуємо, що прочитали підручник CIS.</h6>
+
+                <p><span>На наступному екрані ви зможете імпортувати попередню оцінку або вибрати базис, з якою
+                                порівнювати поточну оцінку.</span>
+                </p>
+
+                <p><span>Натисніть «Далі», щоб продовжити.</span></p>
+        </div>
+
+
+        <app-nav-back-next [page]="'tutorial-cis'" [hide]="'back'"></app-nav-back-next>
+</div>

@@ -1,0 +1,154 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div id="white-panel" class="oy-auto p-0 bgc-gray-50 d-flex flex-column justify-content-start flex-11a">
+  <div class="p-0 d-flex flex-column flex-10a w-100">
+
+    <!-- CSET Logo and Name -->
+    <div class="m-4 d-flex justify-content-start flex-00a">
+      <app-logo-cset logoHeight="50"></app-logo-cset>
+    </div>
+
+    <div [ngClass]="isRunningInElectron ? 'bgc-validation' : 'bgc-secondary'" class="mr-4 ml-4 p-3 c-white mb-lg-4">
+      <div *ngIf="mode === 'LOCAL'">
+        CSET працює локально. Вхід не потрібен.
+      </div>
+      <div *ngIf="mode === 'LOGIN' && isRunningInElectron">
+        Під час запуску CSET сталася помилка.
+      </div>
+      <div *ngIf="mode === 'LOGIN' && !isRunningInElectron">
+        Введіть свою адресу електронної пошти та пароль для входу.
+      </div>
+      <div *ngIf="mode === 'SIGNUP'">
+        Введіть своє ім’я та адресу електронної пошти, щоб зареєструвати новий обліковий запис Cyber Florida CSET.
+      </div>
+    </div>
+
+    <div *ngIf="mode === 'LOCAL'">
+      <form name="form" (ngSubmit)="refreshWindow()" #f="ngForm" novalidate>
+        <div class="d-flex flex-nowrap pl-3 pr-3 ml-2 mt-2">
+          <button type="submit" [disabled]="loading" class="btn btn-primary btn-lg">Продовжити</button>
+          <div class="spinner-container" *ngIf="loading">
+            <div style="max-width: 30px; max-height: 30px;"></div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- If we reach the login page while running in electron, we can assume there was an error getting
+      the standalone status from the API; prompt for exiting the application -->
+    <div *ngIf="mode === 'LOGIN' && isRunningInElectron">
+      <form name="form" (ngSubmit)="exit()" #f="ngForm" class="mr-4 ml-2 p-3" novalidate>
+        <div class="d-flex flex-nowrap">
+          <button type="submit" class="btn btn-primary btn-lg">Вийти</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="m-4 d-flex flex-column flex-lg-row justify-content-center flex-00a ml-lg-auto mr-lg-auto"
+      *ngIf="(mode === 'LOGIN' || mode === 'REGISTERED') && !isRunningInElectron">
+      <div class="float-left ml-3">
+        <img class="mt-4 mr-4" src="./assets/images/CF/CyberSecureFlorida_logo_color-1.png" width="auto" height="125"
+          alt="Cyber Florida">
+      </div>
+      <div>
+        <form name="form" (ngSubmit)="email.valid && f.form.valid && login()" #f="ngForm" novalidate
+          class="d-flex flex-column justify-content-between flex-00a mt-3 mt-lg-0 ml-3">
+          <div *ngIf="incorrect">
+            <div class="alert alert-danger">Неправильна адреса електронної пошти або пароль</div>
+          </div>
+          <div *ngIf="passwordExpired">
+            <div class="alert alert-danger">Термін дії пароля закінчився. Натисніть "Скинути пароль"</div>
+          </div>
+          <label for="email">
+            Введіть свою адресу електронної пошти та пароль для входу.
+          </label>
+          <input type="email" class="form-control" name="email" placeholder="Адреса електронної пошти"
+            [(ngModel)]="model.email" #email="ngModel" required email focusOnInit="true" />
+          <div *ngIf="f.submitted && !email.valid" class="alert alert-danger mt-1">Потрібна дійсна електронна адреса
+          </div>
+          <div class="input-container">
+            <input [type]="showPassword ? 'text' : 'password'" tabindex="0" class="form-control mt-2" name="password"
+              placeholder="Пароль" [(ngModel)]="model.password" #password="ngModel" required />
+            <div *ngIf="!showPassword" class="input-icon" (click)="togglePasswordVisibility()"
+              matTooltip="Показати пароль" [matTooltipPosition]="'right'">
+              <i class="fas fa-eye"></i>
+            </div>
+            <div *ngIf="showPassword" class="input-icon" (click)="togglePasswordVisibility()"
+              matTooltip="Сховати пароль" [matTooltipPosition]="'right'">
+              <i class="fas fa-eye-slash"></i>
+            </div>
+          </div>
+          <div *ngIf="f.submitted && !password.valid" class="alert alert-danger mt-1">Потрібен дійсний пароль</div>
+          <div class="mt-2 d-flex justify-content-between flex-00a">
+            <div class="d-flex flex-nowrap flex-00a">
+              <button type="submit" [disabled]="loading" class="btn btn-primary">Увійти</button>
+              <div class="spinner-container" *ngIf="loading">
+                <div style="max-width: 30px; max-height: 30px;"></div>
+              </div>
+            </div>
+            <div class="d-flex flex-column flex-00a">
+              <a class="btn-link-dark" [routerLink]="['/home','reset-pass']" tabindex="0">Скинути пароль</a>
+              <a class="btn-link-dark" (click)="setMode('SIGNUP')" (keyup.enter)="setMode('SIGNUP')"
+                tabindex="0">Зареєструвати новий обліковий запис</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div *ngIf="mode === 'SIGNUP'" class="d-flex flex-column flex-00a">
+      <app-register (modeChanged)="setMode($event)" class="d-flex flex-column flex-00a"></app-register>
+    </div>
+
+    <div class="mt-4 mb-4 mr-4 ml-4 d-flex flex-column justify-content-start align-items-center flex-11a">
+      <p class="c-gray-600 m-5 w-70" style=" max-width:1200px">
+        Дякуємо за участь в ініціативі CyberSecureFlorida, першій у своєму роді спробі оцінити сильні та слабкі сторони
+        кібербезпеки колективної критичної інфраструктури Флориди. Інформація, зібрана в результаті цієї роботи, буде
+        важливою для того, щоб допомогти обраним лідерам Флориди визначити, як найкраще розподілити ресурси та прийняти
+        відповідне законодавство для створення більш безпечного сонячного штату! CyberSecureFlorida відкритий для всіх
+        суб’єктів критичної інфраструктури державного та приватного секторів, і ми заохочуємо будь-які суб’єкти
+        критичної інфраструктури долучитися до цієї важливої справи. </p>
+
+
+
+      <div *ngIf="browserIsIE" class="alert alert-danger text-left w-100 mt-3">
+        Internet Explorer було виявлено як ваш поточний браузер. Деякі функції ACET не підтримуються повністю в
+        Internet Explorer. Дуже рекомендується використання іншого браузера, такого як Chrome, Firefox або Edge, для
+        покращення вашого досвіду.
+      </div>
+    </div>
+
+  </div>
+  <div class="d-flex flex-column justify-content-start align-items-center">
+    <p class="c-gray-600 w-70">
+      Інструмент оцінки кібербезпеки Cyber Florida (CSET) Навчальне відео (9:25)
+    </p>
+    <script src="https://player.vimeo.com/api/player.js">
+    </script>
+    <iframe style="position:relative;width: 500px; height: 300px;"
+      src="https://player.vimeo.com/video/776696317?h=2c74a61bf3&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+      frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Cyber Florida CSET.mp4">
+    </iframe>
+    <!-- <a href="./assets/CyberFlorida_CSET.mp4"><img src="./assets/images/CF/CyberFloridaVideo.PNG" alt="Video Link"></a> -->
+  </div>
+</div>

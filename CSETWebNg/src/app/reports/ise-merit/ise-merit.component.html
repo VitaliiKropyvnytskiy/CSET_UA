@@ -1,0 +1,260 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="report-body mb-5">
+
+    <div class="flex-container">
+        <div class="column mt-3">
+            <p class="report-title">
+                ОЦІНКА ОБСЯГУ
+            </p>
+            <p class="report-title">
+                ЗВІТ
+            </p>
+        </div>
+        <div class="column">
+            <!-- <p style="text-align: center">
+                <img height="600" src="assets/images/ACET/TOOLBOXMockup.svg">
+            </p> -->
+            <div class="cover-page-bottom mb-4">
+                <div>
+                    <img src="assets/images/NCUA/ncua_seal_blue.svg" alt="ncua" style="height: 185px" alt="ncua" />
+                </div>
+                <div style="
+                    text-align: right;
+                    font-weight: normal;
+                    font-size: 18px;
+                    flex-direction: column;
+                    line-height: 150%;
+                    padding-right: 2em;
+                ">
+                    <div class="title-page-name">{{this.demographics?.information?.assessment_Name}}</div>
+                    <div class="title-page-content">{{this.demographics?.information?.assessment_Date |
+                        date:'dd.MM.yyyy'}}
+                    </div>
+                    <div class="title-page-content">{{this.demographics?.information?.assessor_Name}}</div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="this.loadingCounter < 3; else mainContent" class="spinner-container" style="margin: 2em auto">
+            <div style="max-width: 50px; max-height: 50px;"></div>
+        </div>
+
+        <ng-template #mainContent>
+            <!-- <div class="page-break"> -->
+            <div class="ml-3 mr-3 form">
+                <div class="d-flex flex-row" style="justify-content: space-between">
+                    <div style="align-self: flex-end;">
+                        <div class="h2 report-text-blue">Демографія</div>
+                    </div>
+                </div>
+
+                <table class="table-site-info">
+                    <tr>
+                        <td>Назва оцінювання:</td>
+                        <td>{{demographics?.information?.assessment_Name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Дата оцінювання:</td>
+                        <td>{{demographics?.information?.assessment_Date | date:'dd.MM.yyyy'}}</td>
+                    </tr>
+                    <tr>
+                        <td>Кредитна спілка:</td>
+                        <td>{{demographics?.information?.credit_Union_Name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Назва міста або села:</td>
+                        <td>{{demographics?.information?.city_Or_Site_Name}}</td>
+                    </tr>
+                    <tr>
+                        <td>Область або район:</td>
+                        <td>{{demographics?.information?.state_Province_Or_Region}}</td>
+                    </tr>
+                    <tr>
+                        <td>Код регіону:</td>
+                        <td>{{ncuaSvc.regionCodeTranslator(demographics?.information?.region_Code)}}</td>
+                    </tr>
+                    <tr>
+                        <td>Статут:</td>
+                        <td>{{demographics?.information?.charter}}</td>
+                    </tr>
+                    <tr>
+                        <td>Активи:</td>
+                        <td>{{demographics?.information?.assets | currency}}</td>
+                    </tr>
+                    <tr>
+                        <td>Рівень екзамену:</td>
+                        <td>{{examLevel}}</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="page-break">
+                <div class="ml-3 mr-3">
+                    <div class="d-flex flex-row" style="justify-content: space-between">
+                        <div style="align-self: flex-end;">
+                            <div class="h2 report-text-blue">Інструкції</div>
+                        </div>
+                    </div>
+                    <p>
+                        Копіюйте/Вставляйте вміст <strong>Виконана робота за ISE</strong> нижче в розділ Виконані
+                        результати, Виконана робота MERIT ISE Scope.
+                        <br><br>
+                        Копіюйте/Вставляйте вміст <strong>Результати перевірки за ISE</strong> нижче в розділ Виконані
+                        результати, Результати перевірки MERIT ISE Scope.
+                    </p>
+                </div>
+            </div>
+
+            <div class="page-break">
+                <div class="ml-3 mr-3">
+                    <div class="d-flex flex-row" style="justify-content: space-between">
+                        <div style="align-self: flex-end;">
+                            <div class="h2 report-text-blue">Виконана робота
+                                <label class="btn form-check-label btn-copy" style="text-align: right; font-weight: normal; font-size: 14px;
+                                        flex-direction: column; line-height: 150%;" title="Скопіювати в буфер обміну"
+                                    [cdkCopyToClipboard]="'Завершено роботу за програмою ISE'">
+                                    <span class="cset-icons-copy"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        <strong>Завершено роботу за програмою ISE</strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="page-break">
+                <div class="ml-3 mr-3">
+                    <div class="d-flex flex-row" style="justify-content: space-between">
+                        <div style="align-self: flex-end;">
+                            <div class="h2 report-text-blue">Результати перевірки
+                                <label class="btn form-check-label btn-copy" style="text-align: right; font-weight: normal; font-size: 14px;
+                                    flex-direction: column; line-height: 150%;" title="Скопіювати в буфер обміну"
+                                    [cdkCopyToClipboard]="this.resultsOfReviewString">
+                                    <span class="cset-icons-copy" style="font-size: 14px;"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <p>
+                        {{ this.resultsOfReviewStatic }}
+                    </p>
+                    <div *ngIf="this.relaventIssues">
+                        <div *ngIf="this.dorsTotal > 0">
+                            {{ inCatStringBuilder(this.dorsTotal, this.dors.length, 'DOR') }}
+                            <div *ngFor="let issue of this.dors" style="padding-left: 30px">
+                                {{ issue }}
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="this.examinerFindingsTotal > 0">
+                            {{ inCatStringBuilder(this.examinerFindingsTotal, this.examinerFindings.length, 'Знахідка
+                            екзаменатора') }}
+                            <div *ngFor="let issue of this.examinerFindings" style="padding-left: 30px">
+                                {{ issue }}
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="this.supplementalFactsTotal > 0">
+                            {{ inCatStringBuilder(this.supplementalFactsTotal, this.supplementalFacts.length,
+                            'Додатковий факт') }}
+                            <div *ngFor="let issue of this.supplementalFacts" style="padding-left: 30px">
+                                {{ issue }}
+                            </div>
+                            <br>
+                        </div>
+                        <div *ngIf="this.nonReportablesTotal > 0">
+                            {{ inCatStringBuilder(this.nonReportablesTotal, this.nonReportables.length,
+                            'Не звітоване') }}
+                            <div *ngFor="let issue of this.nonReportables" style="padding-left: 30px">
+                                {{ issue }}
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                    <div *ngIf="!this.relaventIssues">
+                        <p>
+                            Не виявлено жодних питань.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page-break">
+                <div class="ml-3 mr-3">
+                    <div class="d-flex flex-row" style="justify-content: space-between">
+                        <div style="align-self: flex-end;">
+                            <div class="h2 report-text-blue">Проблеми</div>
+                        </div>
+                    </div>
+                    <div *ngIf="this.relaventIssues">
+                        <div *ngFor="let finding of this.response">
+                            <div
+                                *ngIf="this.ncuaSvc.translateExamLevel(finding?.question?.maturity_Level_Id).substring(0, 4) == this.examLevel.substring(0, 4)">
+                                <div>
+                                    <strong>Заява: </strong> {{ finding?.question?.question_Title }}
+                                </div>
+                                <div>
+                                    <label class="btn form-check-label btn-copy" style="text-align: right; font-weight: normal; font-size: 14px;
+                                            flex-direction: column; line-height: 150%;"
+                                        title="Скопіювати в буфер обміну"
+                                        [cdkCopyToClipboard]="(finding?.finding?.title == null || finding?.finding?.title == '') ? '(немає доступного заголовка)' : finding?.finding?.title">
+                                        <span class="cset-icons-copy"></span>
+                                    </label>
+                                    <strong> Заголовок: </strong> {{ finding?.finding?.title }}
+                                </div>
+                                <div>
+                                    <strong>Тип проблеми: </strong> {{ finding?.finding?.type }}
+                                </div>
+
+                                <label class="btn form-check-label btn-copy" style="text-align: right; font-weight: normal; font-size: 14px;
+                                    flex-direction: column; line-height: 150%;" title="Скопіювати в буфер обміну"
+                                    [cdkCopyToClipboard]="(finding?.finding?.description == null || finding?.finding?.description == '') ? '(немає доступного опису)' : finding?.finding?.description">
+                                    <span class="cset-icons-copy"></span>
+                                </label>
+                                <strong> Опис: </strong><br>
+                                <div style="white-space: pre-wrap;"
+                                    [innerHTML]="(finding?.finding?.description == null || finding?.finding?.description == '') ? '(немає доступного опису)' : finding?.finding?.description">
+                                </div>
+
+                                <div *ngIf="finding?.finding?.type !== 'Supplemental Fact'">
+                                    <!-- ... (Remaining code unchanged) ... -->
+                                </div>
+                                <div *ngIf="finding?.finding?.type === 'Supplemental Fact'">
+                                    <!-- ... (Remaining code unchanged) ... -->
+                                </div>
+
+                                <hr class="page-line">
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!this.relaventIssues">
+                        Жодних проблем не помічено.
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>

@@ -1,0 +1,209 @@
+<!---------------------- 
+
+   Copyright 2023 Battelle Energy Alliance, LLC  
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy 
+  of this software and associated documentation files (the "Software"), to deal 
+  in the Software without restriction, including without limitation the rights 
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+  copies of the Software, and to permit persons to whom the Software is 
+  furnished to do so, subject to the following conditions: 
+ 
+  The above copyright notice and this permission notice shall be included in all 
+  copies or substantial portions of the Software. 
+ 
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+  SOFTWARE. 
+-------------------------->
+
+
+
+
+<div>
+  <div class="d-flex flex-column flex-11a mb-5">
+    <h4>Загальний SAL</h4>
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <ng-template ngFor let-level [ngForOf]="salsSvc.levels">
+        <label [attr.csetid]="'OverallSAL' + level.value" class="btn btn-level btn-rounded form-check-label"
+          [class.active]="level.value === this.salsSvc.selectedSAL?.selected_Sal_Level"
+          (click)="saveLevel(level.value,'std')">
+          <input class="form-check-input" tabindex="0" type="radio" autocomplete="off" name="sal_main"
+            [checked]="level.value === this.salsSvc.selectedSAL?.selected_Sal_Level"> {{level.value}}
+        </label>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="lmhvh-display">
+    <div>
+      <h4>Конфіденційність</h4>
+      <div style="margin-bottom: 10px;">
+        Це значення пов’язане з важливістю захисту інформації від несанкціонованого доступу. Чим важливіше, щоб
+        неавторизовані користувачі не мали доступу до інформації, тим вищий ваш рівень SAL.
+      </div>
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <ng-template ngFor let-level [ngForOf]="salsSvc.levels">
+          <label [attr.csetid]="'Confidentiality' + level.value" class="btn btn-level btn-rounded form-check-label"
+            [class.active]="level.value === this.salsSvc.selectedSAL?.cLevel" (click)="saveLevel(level.value,'C')">
+            <input class="form-check-input" type="radio" autocomplete="off" name="sal_confidentiality"
+              [checked]="level.value === this.salsSvc.selectedSAL?.cLevel"> {{level.value}}
+          </label>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div class="lmhvh-display">
+    <div>
+      <h4>Цілісність</h4>
+      <div style="margin-bottom: 10px;">
+        Це значення пов’язане з важливістю точності інформації. Тим важливіше, щоб інформація зберігалася узгодженою,
+        точною та змінювалася лише авторизованими особами, чим вищий ваш рівень SAL.
+      </div>
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <ng-template ngFor let-level [ngForOf]="salsSvc.levels">
+          <label [attr.csetid]="'Integrity' + level.value" class="btn btn-level btn-rounded form-check-label"
+            [class.active]="level.value === this.salsSvc.selectedSAL?.iLevel" (click)="saveLevel(level.value,'I')">
+            <input class="form-check-input" type="radio" tabindex="0" autocomplete="off" name="sal_integrity"
+              [checked]="level.value === this.salsSvc.selectedSAL?.iLevel"> {{level.value}}
+          </label>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <div class="lmhvh-display">
+    <div>
+      <h4>Доступність</h4>
+      <div style="margin-bottom: 10px;">
+        Це значення пов’язане з важливістю того, щоб інформація була легкодоступною. Чим важливіше мати вашу інформацію
+        для використання, тим вищий ваш рівень SAL.
+      </div>
+      <div class="btn-group btn-group-toggle" data-toggle="buttons">
+        <ng-template ngFor let-level [ngForOf]="salsSvc.levels">
+          <label [attr.csetid]="'Availability' + level.value" class="btn btn-level btn-rounded form-check-label"
+            [class.active]="level.value === this.salsSvc.selectedSAL?.aLevel" (click)="saveLevel(level.value,'A')">
+            <input class="form-check-input" type="radio" tabindex="0" autocomplete="off" name="sal_availability"
+              [checked]="level.value === this.salsSvc.selectedSAL?.aLevel"> {{level.value}}
+          </label>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="fips-instructions mb-3">
+    <p>Наведений нижче посібник FIPS 199 допоможе вам навчитися визначати загальну категорію безпеки оцінюваної системи.
+      Якщо ви не знайомі з екраном визначення FIPS 199 SAL, прочитайте посібник, перш ніж продовжити.</p>
+    <div class="fips-reference">
+      <a href="{{configSvc.docUrl}}ApplicationDocuments/FIPS199Language.html" tabindex="0" rel="noopener noreferrer"
+        target="_blank">
+        <i class="icon icon-openbookicon vmiddle"></i>&nbsp;FIPS 199 SAL Selection Guidance</a>
+    </div>
+    <p>Інші посібники:</p>
+    <div class="fips-reference">
+      <a href="{{configSvc.docUrl}}FIPS%20199.pdf" tabindex="0" rel="noopener noreferrer" target="_blank">
+        <i class="icon icon-openbookicon vmiddle"></i>&nbsp;FIPS 199</a>
+      <a href="{{configSvc.docUrl}}NIST%20SP800-60%20V1.pdf" tabindex="0" rel="noopener noreferrer" target="_blank">
+        <i class="icon icon-openbookicon vmiddle"></i>&nbsp;NIST SP800-60 Vol I</a>
+      <a href="{{configSvc.docUrl}}SP800-60_Vol2-Rev1.pdf" tabindex="0" rel="noopener noreferrer" target="_blank">
+        <i class="icon icon-openbookicon vmiddle"></i>&nbsp;NIST SP800-60 Vol II</a>
+    </div>
+  </div>
+</div>
+<div class="mb-3">
+  <h4>Цінності CIA на основі вибраних типів інформації</h4>
+  <div>
+    <p>Перевірте відповідні типи інформації.</p>
+    <table class="nist-sal-info-types table" style="table-layout: fixed">
+      <tr>
+        <th style="width:5%"></th>
+        <th style="width: 50%">Тип</th>
+        <th style="width: 15%">C</th>
+        <th style="width: 15%">I</th>
+        <th style="width: 15%">A</th>
+      </tr>
+      <tr *ngFor="let model of topModel?.models">
+        <td>
+          <input type="checkbox" [attr.csetid]="'checkbox' + model.type_Value" id="{{model.nIST_Number}}" tabindex="0"
+            value="{{model.type_Value}}" (change)="checkBoxChanged($event, model)" [checked]="model.selected">
+        </td>
+        <td>
+          <label for="{{model.nIST_Number}}">
+            {{model.type_Value}} : {{model.nIST_Number}}</label>
+        </td>
+        <td>
+          <a [attr.csetid]="'ConfidentialitySpecialFactorC' + model.type_Value" class="special-factors-link"
+            tabindex="0" *ngIf='model.confidentiality_Special_Factor; else basicC'
+            matTooltip="Натискання цього пункту перезапише спеціальний фактор конфіденційності"
+            (click)="changeSpecialFactor(model, 'C')">
+            {{salsSvc.getDisplayLevel(model.confidentiality_Value)}}
+          </a>
+          <ng-template #basicC>{{salsSvc.getDisplayLevel(model.confidentiality_Value)}}</ng-template>
+        </td>
+        <td>
+          <a [attr.csetid]="'ConfidentialitySpecialFactorI' + model.type_Value" class="special-factors-link"
+            tabindex="0" *ngIf='model.integrity_Special_Factor; else basicI'
+            matTooltip="Натискання цього пункту перезапише спеціальний фактор цілісності"
+            (click)="changeSpecialFactor(model, 'I')">
+            {{salsSvc.getDisplayLevel(model.integrity_Value)}}
+          </a>
+          <ng-template #basicI>{{salsSvc.getDisplayLevel(model.integrity_Value)}}</ng-template>
+        </td>
+        <td>
+          <a [attr.csetid]="'ConfidentialitySpecialFactorA' + model.type_Value" class="special-factors-link"
+            tabindex="0" *ngIf='model.availability_Special_Factor; else basicA'
+            matTooltip="Натискання цього пункту перезапише спеціальний фактор доступності"
+            (click)="changeSpecialFactor(model, 'A')">{{salsSvc.getDisplayLevel(model.availability_Value)}}</a>
+          <ng-template #basicA>
+            {{salsSvc.getDisplayLevel(model.availability_Value)}}
+          </ng-template>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+  <div class="mb-3">
+    <h4>Дайте відповідь на запитання</h4>
+    <table class="nist-sal-questions table">
+      <tr *ngFor="let question of topModel?.questions">
+        <td>{{question.question_Text}}</td>
+        <td class="yes-no-answers">
+          <div class="btn-group btn-group-toggle" style="white-space: nowrap" data-toggle="buttons">
+            <label [attr.csetid]="question.question_Text + 'Yes'" class="btn btn-level btn-rounded form-check-label"
+              [class.active]="question.question_Answer === 'Yes'" (click)="saveQuestionChanged(question,'Yes')">
+              <input class="form-check-input" type="radio" autocomplete="off" name="options{{question.question_Number}}"
+                [checked]="question.question_Answer === 'Yes'">Так
+            </label>
+            <label [attr.csetid]="question.question_Text + 'No'" class="btn btn-level btn-rounded form-check-label"
+              [class.active]="question.question_Answer === 'No'" (click)="saveQuestionChanged(question,'No')">
+              <input class="form-check-input" type="radio" autocomplete="off" name="options{{question.question_Number}}"
+                [checked]="question.question_Answer === 'No'">Ні
+            </label>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+
+  <div class="mb-3">
+    <h4>Визначити особливі фактори</h4>
+    <div class="form-group special-factors">
+      <label for="ConfidentialitySpecialFactor">Особливий фактор конфіденційності</label>
+      <textarea class="form-control" tabindex="0" id="ConfidentialitySpecialFactor"
+        [(ngModel)]="topModel?.specialFactors.confidentiality_Special_Factor" (change)="specialFactor()"></textarea>
+      <label for="IntegritySpecialFactor">Особливий фактор цілістності</label>
+      <textarea class="form-control" id="IntegritySpecialFactor"
+        [(ngModel)]="topModel?.specialFactors.integrity_Special_Factor" (change)="specialFactor()"></textarea>
+      <label for="AvailabilitySpecialFactor">Особливий фактор доступності</label>
+      <textarea class="form-control" tabindex="0" id="AvailabilitySpecialFactor"
+        [(ngModel)]="topModel?.specialFactors.availability_Special_Factor" (change)="specialFactor()"></textarea>
+    </div>
+  </div>

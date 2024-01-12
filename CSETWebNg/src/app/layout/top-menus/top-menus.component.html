@@ -1,0 +1,327 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="collapse navbar-collapse" id="csetNavbarCollapse">
+
+    <div>
+        <button mat-button [matMenuTriggerFor]="tools" #toolsTrigger="matMenuTrigger"
+            class="dropdown-toggle navbar-menu-header" (keyup.arrowdown)="toolsTrigger.openMenu()"
+            *ngIf="configSvc.installationMode !== 'RRA'">
+            <span class="cset-icons-tools fs-base-4 mr-2 align-middle"></span>
+            <span>Інструменти</span>
+        </button>
+
+        <mat-menu #tools="matMenu" class="menu-panel">
+            <button mat-menu-item (click)="enableProtectedFeature()" *ngIf="showMenuItem('enable protected features')">
+                <span class="cset-icons-key-shield fs-base mr-2 align-middle"></span>
+                <span>Увімкнути захищені функції</span>
+            </button>
+
+            <button mat-menu-item (click)="setMeritExportPath()" *ngIf="assessSvc.isISE() && configSvc.config.currentConfigChain.includes('development')">
+                <span class="cset-icons-cog fs-base mr-2 align-middle"></span>
+                <span>Установити шлях експорту подання</span>
+            </button>
+
+            <hr class="menu-divider" />
+
+            <button mat-menu-item [disabled]="!inAssessment()" *ngIf="showItemForCurrentSkin('assessment documents')"
+                [ngClass]="{'disabled-menu-item' : !inAssessment()}" (click)="showAssessDocs()">
+                <span class="cset-icons-books-stack-1 fs-base mr-2 align-middle"></span>
+                <span>Документи оцінювання</span>
+            </button>
+            <button mat-menu-item [disabled]="!inAssessment()" *ngIf="showMenuItem('parameter editor')"
+                [ngClass]="{'disabled-menu-item' : !inAssessment()}"
+                (click)="editParameters()">
+                <span class="cset-icons-puzzle fs-base mr-2 align-middle"></span>
+                <span>Редактор параметрів</span>
+            </button>
+            <button mat-menu-item [disabled]="!inAssessment()" [ngClass]="{'disabled-menu-item' : !inAssessment()}"
+                (click)="showExcelExportDialog()">
+                <span class="cset-icons-export-excel fs-base mr-2 align-middle"></span>
+                <span>Експортувати оцінювання в Excel</span>
+            </button>
+
+            <hr class="menu-divider" />
+
+            <button mat-menu-item [routerLink]="['/importModule']" *ngIf="showMenuItem('import modules')">
+                <span class="cset-icons-module fs-base mr-2 align-middle"></span>
+                <span>Імпортувати модулі</span>
+            </button>
+            <button mat-menu-item [routerLink]="['/set-list']" *ngIf="showMenuItem('module builder')">
+                <span class="cset-icons-module fs-base mr-2 align-middle"></span>
+                <span>Конструктор модулів</span>
+            </button>
+            <button mat-menu-item [routerLink]="['/module-content-launch']" *ngIf="showMenuItem('module content report')">
+                <span class="cset-icons-module fs-base mr-2 align-middle"></span>
+                <span>Звіт про зміст модулю</span>
+            </button>
+            <button mat-menu-item (click)="navigateTrend()" *ngIf="showMenuItem('trend')">
+                <span class="cset2-icons-trend fs-base mr-2 align-middle"></span>
+                <span>Тенденція</span>
+            </button>
+            <button mat-menu-item (click)="navigateCompare()" *ngIf="showMenuItem('compare')">
+                <span class="cset2-icons-compare fs-base mr-2 align-middle"></span>
+                <span>Порівняти</span>
+            </button>
+        </mat-menu>
+    </div>
+
+
+    <div>
+        <a mat-button class="navbar-menu-header ws-no-wrap"
+            href="index.html?returnPath=resource-library" target="csetResourceLibrary">
+            <span class="cset-icons-library fs-base-4 mr-2 align-middle"></span>
+            <span>Бібліотека ресурсів</span>
+        </a>
+    </div>
+
+
+    <!-- HELP (non-RRA skin) -->
+    <div class="ml-auto" *ngIf="configSvc.installationMode !== 'RRA'">
+        <button mat-button [matMenuTriggerFor]="help" #helpTrigger="matMenuTrigger"
+            (keyup.arrowdown)="helpTrigger.openMenu()" class="dropdown-toggle navbar-menu-header">
+            <span class="cset-icons-question-circle-outline fs-base-4 mr-2 align-middle"></span>
+            <span>Допомога</span>
+        </button>
+
+        <mat-menu #help="matMenu" class="menu-panel">
+            <a *ngIf="configSvc.installationMode !== 'ACET'" mat-menu-item href="{{docUrl}}htmlhelp/MAIN/index.html" target="_blank">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>Посібник користувача CSET</span>
+            </a>
+            <a mat-menu-item href="{{docUrl}}htmlhelp/CMMC/index.html" target="_blank">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>Посібник CMMC</span>
+            </a>
+            <a mat-menu-item href="{{docUrl}}htmlhelp/RRA/index.html" target="_blank">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>Посібник RRA</span>
+            </a>
+            <a mat-menu-item href="{{docUrl}}htmlhelp/CSF/index.html" target="_blank">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>Посібник NIST CSF</span>
+            </a>
+            <a mat-menu-item href="{{docUrl}}htmlhelp/NIST/index.html" target="_blank">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>Посібник NIST SP 800-53</span>
+            </a>
+            <a mat-menu-item href="{{docUrl}}htmlhelp/CRR/index.html" target="_blank">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>Посібник CRR</span>
+            </a>
+
+            <!-- <a *ngIf="isGuideVisible('ACET')" mat-menu-item target="_blank" href="{{docUrl}}htmlhelp_acet/index.htm">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>ACET</span>
+            </a>
+            <a *ngIf="isGuideVisible('ISE')" mat-menu-item target="_blank" href="{{docUrl}}cdDocs_ACET/ISE_User_Guide.pdf">
+                <span class="cset-icons-pdf-doc fs-base mr-2 align-middle"></span>
+                <span>Посібник користувача ISE</span>
+            </a>
+            <a *ngIf="isGuideVisible('CIS')" mat-menu-item target="_blank" href="{{docUrl}}htmlhelp_cis/index.htm">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>CIS</span>
+            </a> -->
+            <!-- <a *ngIf="isGuideVisible('CMMC')" mat-menu-item target="_blank"
+                href="{{docUrl}}htmlhelp_cmmc/index.htm">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>CMMC 1.0</span>
+            </a>
+            <a *ngIf="isGuideVisible('CMMC2')" mat-menu-item target="_blank" href="{{docUrl}}htmlhelp_cmmc2/index.htm">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>CMMC 2.0</span>
+            </a> -->
+            <!-- <a *ngIf="isGuideVisible('CRR')" mat-menu-item target="_blank" href="{{docUrl}}htmlhelp_crr/index.htm">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>CRR</span>
+            </a> -->
+            <a *ngIf="isGuideVisible('EDM')" mat-menu-item target="_blank" href="{{docUrl}}htmlhelp_edm/index.htm">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>EDM</span>
+            </a>
+            <!-- <button *ngIf="isGuideVisible('RRA')" mat-menu-item (click)="ransomwareReadiness()">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>Готовність до програм-вимагачів</span>
+            </button> -->
+            <a *ngIf="isGuideVisible('MVRA')" mat-menu-item target="_blank" href="{{docUrl}}htmlhelp_mvra/index.htm">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>MVRA</span>
+            </a>
+            <a *ngIf="isGuideVisible('CPG')" mat-menu-item target="_blank" href="{{docUrl}}htmlhelp_cpg/index.htm">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>CPG</span>
+            </a>
+            <a *ngIf="isGuideVisible('TSA')" mat-menu-item target="_blank" href="{{docUrl}}htmlhelp_tsa/index.htm">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>TSA</span>
+            </a>
+
+
+            <hr class="menu-divider" />
+
+            <button mat-menu-item (click)="about()">
+                <span class="cset-icons-cset-lock fs-base mr-2 align-middle"></span>
+                <span>Про нас</span>
+            </button>
+            <button mat-menu-item (click)="showKeyboardShortcuts()" *ngIf="!configSvc.isMobile()">
+                <span class="cset-icons-keyboard-shortcuts-key fs-base mr-2 align-middle"></span>
+                <span>Комбінації клавіш</span>
+            </button>
+
+            <button mat-menu-item [matMenuTriggerFor]="legal">
+                <span class="fas fa-balance-scale fs-base mr-2 align-middle"></span>
+                <span>Юридична довідка</span>
+            </button>
+
+        </mat-menu>
+
+
+
+        <mat-menu #legal="matMenu" class="menu-panel">
+            <a mat-menu-item target="_blank" href="{{docUrl}}ApplicationDocuments/AccessibilityStatement.pdf">
+                <span class="cset-icons-accessibility-doc fs-base mr-2 align-middle"></span>
+                <span>Документ про доступність</span>
+            </a>
+            <button mat-menu-item (click)="advisory()">
+                <span class="cset-icons-advisory fs-base mr-2 align-middle"></span>
+                <span>Консультація</span>
+            </button>
+
+            <button mat-menu-item (click)="termsOfUse()">
+                <span class="cset-icons-handshake fs-base mr-2 align-middle"></span>
+                <span>Умови використання</span>
+            </button>
+        </mat-menu>
+    </div>
+
+
+    <!-- HELP Menu for RRA skin -->
+    <div class="ml-auto" *ngIf="configSvc.installationMode === 'RRA'">
+        <button mat-button [matMenuTriggerFor]="help" #helpTrigger="matMenuTrigger"
+            (keyup.arrowdown)="helpTrigger.openMenu()" class="dropdown-toggle navbar-menu-header">
+            <span class="cset-icons-question-circle-outline fs-base-4 mr-2 align-middle"></span>
+            <span>Допомога</span>
+        </button>
+
+        <mat-menu #help="matMenu" class="menu-panel">
+            <button mat-menu-item (click)="ransomwareReadiness()">
+                <span class="cset-icons-book-open fs-base mr-2 align-middle"></span>
+                <span>Ransomware Readiness</span>
+            </button>
+
+
+
+            <hr class="menu-divider" />
+
+            <button mat-menu-item (click)="about()">
+                <span class="cset2-icons-hexbug2 fs-base mr-2 align-middle"></span>
+                <span>Про нас</span>
+            </button>
+            <button mat-menu-item (click)="showKeyboardShortcuts()">
+                <span class="cset-icons-keyboard-shortcuts-key fs-base mr-2 align-middle"></span>
+                <span>Комбінації клавіш</span>
+            </button>
+
+            <button mat-menu-item [matMenuTriggerFor]="legal">
+                <span class="fas fa-balance-scale fs-base mr-2 align-middle"></span>
+                <span>Юридична довідка</span>
+            </button>
+
+        </mat-menu>
+
+
+
+        <mat-menu #legal="matMenu" class="menu-panel">
+            <a mat-menu-item target="_blank" href="{{docUrl}}ApplicationDocuments/AccessibilityStatement.pdf">
+                <span class="cset-icons-accessibility-doc fs-base mr-2 align-middle"></span>
+                <span>Документ про доступність</span>
+            </a>
+            <button mat-menu-item (click)="advisory()">
+                <span class="cset-icons-advisory fs-base mr-2 align-middle"></span>
+                <span>Консультація</span>
+            </button>
+
+            <button mat-menu-item (click)="termsOfUse()">
+                <span class="cset-icons-handshake fs-base mr-2 align-middle"></span>
+                <span>Умови використання</span>
+            </button>
+        </mat-menu>
+    </div>
+
+
+
+    <!-- USER MENU -->
+    <div *ngIf="showUserMenu()">
+        <button mat-button [matMenuTriggerFor]="usermenu" #userTrigger="matMenuTrigger"
+            (keyup.arrowdown)="userTrigger.openMenu()" class="dropdown-toggle navbar-menu-header"
+            *ngIf="auth.userToken()">
+            <span class="cset-icons-profile fs-base-4 mr-2 align-middle"></span>
+            <span class="ws-no-wrap" *ngIf="auth.email() && auth.userToken()">
+                <span>{{auth.firstName()}} {{auth.lastName()}}</span>
+            </span>
+        </button>
+
+        <mat-menu #usermenu="matMenu" class="menu-panel">
+            <button mat-menu-item *ngIf="showUserMenuItem()" (click)="editUser()">
+                <span class="cset-icons-profile fs-base mr-2 align-middle"></span>
+                <span>Профіль користувача</span>
+            </button>
+            <button mat-menu-item (click)="goHome()">
+                <span class="cset-icons-clipboard-check fs-base mr-2 align-middle"></span>
+                <span>Мої оцінювання</span>
+            </button>
+            <button mat-menu-item *ngIf="showUserMenuItem()" (click)="resetPassword()">
+                <span class="cset-icons-key fs-base mr-2 align-middle"></span>
+                <span>Змінити пароль</span>
+            </button>
+            <button mat-menu-item *ngIf="showUserMenuItem()" (click)="auth.logout()">
+                <span class="cset-icons-logout fs-base mr-2 align-middle"></span>
+                <span>Вийти</span>
+            </button>
+        </mat-menu>
+    </div>
+
+    <!-- ANONYMOUS 'USER' MENU -->
+    <div *ngIf="showAnonymousMenu()">
+        <button mat-button [matMenuTriggerFor]="usermenu" #userTrigger="matMenuTrigger" style="width: 150px;"
+            (keyup.arrowdown)="userTrigger.openMenu()" class="dropdown-toggle navbar-menu-header"
+            *ngIf="auth.userToken()" (mouseenter)="showFullAccessKey = true" (mouseleave)="showFullAccessKey = false">
+            <span class="cset-icons-profile fs-base-4 mr-2 align-middle"></span>
+            <span class="ws-no-wrap" *ngIf="auth.accessKey()">
+                <span *ngIf="showFullAccessKey || userTrigger.menuOpen">{{auth.accessKey()}}</span>
+                <span *ngIf="!showFullAccessKey && !userTrigger.menuOpen">{{hideAccessKey(auth.accessKey())}}</span>
+            </span>
+        </button>
+
+        <mat-menu #usermenu="matMenu" class="menu-panel">
+            <button mat-menu-item (click)="goHome()">
+                <span class="cset-icons-clipboard-check fs-base mr-2 align-middle"></span>
+                <span>Мої оцінювання</span>
+            </button>
+            <button mat-menu-item *ngIf="showUserMenuItem()" (click)="auth.logout()">
+                <span class="cset-icons-logout fs-base mr-2 align-middle"></span>
+                <span>Вийти</span>
+            </button>
+        </mat-menu>
+    </div>
+
+</div>

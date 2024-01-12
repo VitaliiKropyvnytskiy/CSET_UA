@@ -1,0 +1,153 @@
+<!---------------------- 
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+
+<div class="report-body-edm mb-5" id="toc_top" #edm>
+
+  <div class="column">
+    <div style="text-align: left">
+      <img style="height: 7rem" alt="Логотип CISA" src="assets/images/CISA_Logo_183px.png">
+    </div>
+    <p style="text-align: center">
+      <img class="img-fluid" style="margin-top: 2%; min-width: 30rem;" src="assets/images/EDM/EDM_Cover.PNG">
+    </p>
+  </div>
+  <div class="cover-page-bottom" style="margin-top: 5%; margin-bottom: 15%;">
+    <div style="flex-direction: column; line-height: 125%; padding-right: 2em">
+      <h1 style="font-weight: bold; font-size: xx-large;">Управління Зовнішніми Залежностями (УЗЗ): Пакет Оцінки
+      </h1>
+      <h1 style="font-weight: bold; font-style: italic; font-size: xx-large;">{{currentDate | date:'MMM d, y h:mm a'}}
+        {{currentTimeZone}}</h1>
+    </div>
+  </div>
+
+
+  <div class="page-break">
+    <div style="display: flex; flex-direction: column; justify-items: center; margin-top: 5%; margin-bottom: 5%;">
+      <img style="width: 60%; height: 160px; margin-left: auto; margin-right: auto; margin-bottom: 5%;"
+        src="assets/images/EDM/EDM_logo.png" alt="Логотип УЗЗ">
+      <div style="font-size: x-large; font-weight: bold; margin-bottom: 5%; text-align: center; line-height: 200%;">
+        <div>ЗВІТ ДЛЯ</div>
+        <div>{{displayName}}</div>
+        <div class="mb-4">
+          {{currentDate | date:'MMM d, y h:mm a'}} {{currentTimeZone}} <br />
+        </div>
+        <div>
+        ДЕПАРТАМЕНТ НАЦІОНАЛЬНОЇ БЕЗПЕКИ УКРАЇНИ <br />
+        УПРАВЛІННЯ КІБЕРБЕЗПЕКИ ТА ІНФРАСТРУКТУРНОЇ БЕЗПЕКИ
+        </div>
+      </div>
+      <p style="text-align: justify;">
+        Цей документ містить інформацію від вашого закладу і, отже, ви можете використовувати її так,
+        як вам зручно. Ви можете розповсюджувати чи поширювати її або її вміст за бажанням або
+        в інших випадках, передбачених законом. <br /><br />
+        З питань оцінки УЗЗ будь ласка, пишіть на електронну адресу: <a
+          href="mailto: cyberadvisor@hq.dhs.gov">cyberadvisor@hq.dhs.gov</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Зміст-->
+  
+  <!-- Вступний текст -->
+  <app-edm-intro-text [displayName]="displayName"></app-edm-intro-text>
+
+  <!-- Загальний підсумок виконання (лише MIL-1)-->
+  <div class="page-break" id="toc_summary_results">
+    <h1 class="pageHeader">Загальний підсумок виконання УЗЗ MIL-1</h1>
+
+    <div class="mb-5">
+      <app-edm-perf-summ-mil1 [domains]="maturitySvc.domains">
+      </app-edm-perf-summ-mil1>
+    </div>
+  </div>
+
+  <!-- Загальний підсумок виконання - MIL 1-5 -->
+  <div class="page-break">
+    <h1 class="pageHeader">Загальний підсумок виконання УЗЗ MIL 1-5</h1>
+    <app-edm-perf-summ-all-mil [domains]="maturitySvc.domains">
+    </app-edm-perf-summ-all-mil>
+  </div>
+
+  <div class="page-break">
+    <!-- Загальний підсумок фреймворку-->
+    <edm-framework-summary></edm-framework-summary>
+  </div>
+
+  <!-- Виконання (лише MIL-1)-->
+  <div class="page-break">
+    <h1 class="pageHeader">Виконання УЗЗ MIL-1</h1>
+
+    <div class="mb-5">
+      <app-edm-perf-mil1 [domains]="maturitySvc.domains">
+      </app-edm-perf-mil1>
+    </div>
+  </div>
+
+  <div class="page-break">
+    <app-edm-summary-results>
+    </app-edm-summary-results>
+  </div>
+
+  <div class="page-break" id="toc_rf">
+    <app-edm-domain-detail [domain]="findDomain('RF')">
+    </app-edm-domain-detail>
+  </div>
+
+  <div class="page-break" id="toc_rmg">
+    <app-edm-domain-detail [domain]="findDomain('RMG')">
+    </app-edm-domain-detail>
+  </div>
+
+  <div class="page-break" id="toc_sps">
+    <app-edm-domain-detail [domain]="findDomain('SPS')">
+    </app-edm-domain-detail>
+  </div>
+
+  <div class="page-break" id="toc_mil">
+    <app-edm-domain-detail [domain]="findDomain('MIL')">
+    </app-edm-domain-detail>
+  </div>
+
+  <!-- Глосарій -->
+  <app-edm-glossary id="toc_glossary"></app-edm-glossary>
+
+  <!-- Акроніми -->
+  <app-edm-acronyms id="toc_acronyms"></app-edm-acronyms>
+
+  <!-- Джерела -->
+  <app-edm-source-references id="toc_references"></app-edm-source-references>
+
+  <!-- Додаток A-->
+  <!-- Додаток A - Розділ 1-->
+  <edm-appendix-a-1 id="toc_appendix_a"></edm-appendix-a-1>
+  <!-- Додаток A - Розділ 2-->
+  <edm-appendix-a-2></edm-appendix-a-2>
+</div>
+
+<div class="side-toc">
+  <app-edm-toc [usage]="'sidenav'"></app-edm-toc>
+</div>
+
+<div class="prepare-print-overlay-box" *ngIf="preparingForPrint">
+  Підготовка до друку ...
+</div>

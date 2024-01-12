@@ -1,0 +1,371 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>2. Оцінювання у відповідності до вимог NIST Special Publication 800-53 &nbsp;&gt; 2.2. Оцінювання &gt; 2.2.3. Компоненти NIST оцінювання у CSET</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="" />
+   <meta name="description" content="У даному розділі наведено опис основних компонентів макету опитувальника." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "2-2-3-assesment-nist-components.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">2.2.3. Компоненти NIST оцінювання у CSET</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?2-2-3-assesment-nist-components.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="2-assesment-by-nist-sp-800-53.html">2. Оцінювання у відповідності до вимог NIST Special Publication 800-53&nbsp;</a> &gt; <a href="2_2_-assesment.html">2.2. Оцінювання</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1" style="page-break-after: avoid;"><span class="f_Heading1">2.2.3. Компоненти NIST оцінювання у CSET</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      <a href="javascript:HMToggleExpandAll(!HMAnyToggleOpen())" title="Click to open/close expanding sections"><span class="hmbtntoggle"></span></a>
+      <a href="2_2_2_-navigation-the-assessment.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="2_2_-assesment.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="2_3_-results.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_Normal" style="line-height: 1.80;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; background-color: #ffffff;">У даному розділі наведено опис основних компонентів&nbsp;<a href="2_2_2_-navigation-the-assessment.html" class="topiclink">макету опитувальника</a>.</span></p>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none;border-spacing:0;padding:0;line-height: 1.38;"><tr style="vertical-align:baseline"><td style="border:none;padding:0;width:18px"><img id="toggle0186a1_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_arrow1.gif"/></td><td style="border:none;padding:0"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; background-color: #ffffff;"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON')">Деталі/Стандарт</a></span></td></tr></table></div>
+<div id="toggle0186a1" class="dropdown-toggle-body" style="text-align: left; line-height: 1.38; padding: 0 0 0 0; margin: 0 0 0 18px;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; padding:0; border:none"><p style="text-align: justify; line-height: 2.17;"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
+<p style="text-align: justify; line-height: 2.17;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">У </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic; font-weight: bold;">режимі вимог</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">, активуючи дії по піктограмі &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Деталі/Стандарт</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot;, відображається:</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 2.17; padding-left: 13px; margin: 0 0 0 13px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">ідентифікатор відповідної функції/категорії/підкатегорії; </span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 2.17; padding-left: 13px; margin: 0 0 0 13px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">рівень забезпечення безпеки (SAL);</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 2.17; padding-left: 13px; margin: 0 0 0 13px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">пов'язані з даною вимогою запитання.</span></p>
+<p style="text-align: justify; line-height: 2.17;"><img alt="NIST_23" width="738" height="480" style="margin:0;width:738px;height:480px;border:none" src="nist_23.png"/></p>
+<p style="text-align: justify; line-height: 2.17;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> У </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic; font-weight: bold;">режимі запитань</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">, активуючи дії по піктограмі &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Деталі/Стандарт</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot;, відображається:</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 2.17; padding-left: 13px; margin: 0 0 0 13px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">ідентифікатор відповідної функції/категорії/підкатегорії; </span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 2.17; padding-left: 13px; margin: 0 0 0 13px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">рівень забезпечення безпеки (SAL);</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 2.17; padding-left: 13px; margin: 0 0 0 13px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">пов'язана з даним запитанням стандартна вимога</span></p>
+<p style="text-align: justify; line-height: 2.17; margin: 0 0 0 13px;"><img alt="NIST_24" width="712" height="274" style="margin:0;width:712px;height:274px;border:none" src="nist_24.png"/></p>
+<p style="text-align: justify; line-height: 2.17; margin: 0 0 0 13px;"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none;border-spacing:0;padding:0;line-height: 1.38;"><tr style="vertical-align:baseline"><td style="border:none;padding:0;width:18px"><img id="toggle0186a2_ICON" class="dropdown-toggle-icon" alt="hmtoggle_arrow1" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_arrow1.gif"/></td><td style="border:none;padding:0"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"><a class="dropdown-toggle" href="javascript:HMToggle('toggle','toggle0186a2','toggle0186a2_ICON')">Додаткові настанови</a></span></td></tr></table></div>
+<div id="toggle0186a2" class="dropdown-toggle-body" style="text-align: left; line-height: 1.38; padding: 0 0 0 0; margin: 0 32px 0 18px;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; padding:0; border:none"><p class="p_Normal" style="line-height: 1.80;">&nbsp;</p>
+<p class="p_Normal" style="line-height: 1.80;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Користувачі можуть звернутися до довідкових документів та додаткових інструкцій, інформація про які відображається при активації користувачем дій по піктограмі &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Додаткові настанови</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot;.</span></p>
+<p class="p_Normal" style="line-height: 1.80; background: #ffffff;"><a class="imagetogglelink" style="margin:0;width:732px;height:508px" href="nist_25.png"><img id="toggle0186a3" class="image-toggle" alt="nist_25_zoom57" style="width:732px;height:508px;border:none" src="nist_25_zoom57.png"/><svg xmlns="http://www.w3.org/2000/svg" class="image-toggle-magnifier" viewBox="-1 -1 25 25"><path d="M 9.145 18.29 c -5.042 0 -9.145 -4.102 -9.145 -9.145 s 4.103 -9.145 9.145 -9.145 s 9.145 4.103 9.145 9.145 s -4.102 9.145 -9.145 9.145 Z m 0 -15.167 c -3.321 0 -6.022 2.702 -6.022 6.022 s 2.702 6.022 6.022 6.022 s 6.023 -2.702 6.023 -6.022 s -2.702 -6.022 -6.023 -6.022 Z m 9.263 12.443 c -0.817 1.176 -1.852 2.188 -3.046 2.981 l 5.452 5.453 l 3.014 -3.013 l -5.42 -5.421 Z"></path></svg></a></p>
+<p class="p_Normal" style="line-height: 1.80; background: #ffffff;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> Повторна активація дій по даній піктограмі приховує відображення додаткових настанов та/або інструкцій.</span></p>
+<p style="line-height: 1.80;"><span style="font-family: Verdana,Geneva,Arial,sans-serif;">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none;border-spacing:0;padding:0;line-height: 1.38;"><tr style="vertical-align:baseline"><td style="border:none;padding:0;width:18px"><img id="toggle0186a4_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_arrow1.gif"/></td><td style="border:none;padding:0"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a4','toggle0186a4_ICON')">Коментарі</a></span></td></tr></table></div>
+<div id="toggle0186a4" class="dropdown-toggle-body" style="text-align: left; line-height: 1.38; padding: 0 0 0 0; margin: 0 32px 0 18px;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; padding:0; border:none"><p style="text-align: justify; line-height: 2.17;"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
+<p style="text-align: justify; line-height: 2.17;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Активація дій по піктограмі &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Коментарі</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot; дозволяє експерту записувати неструктуровані коментарі до кожного питання під час оцінювання.</span></p>
+<p style="text-align: justify; line-height: 2.17;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><img alt="NIST_26" width="725" height="173" style="margin:0;width:725px;height:173px;border:none" src="nist_26.png"/></p>
+<p style="text-align: justify; line-height: 2.17;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> Наявність червоного індикатора</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><img alt="drex_assessment_custom_141_Індикатор коментарі" title="drex_assessment_custom_141_Індикатор коментарі" width="53" height="76" style="margin:0;width:53px;height:76px;border:none" src="hmfile_hash_311e6244.png"/><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">на &nbsp;даній піктограмі свідчить про те, що до відповіді на запитання опитувальника під час проведення оцінювання доданий(-ні) коментар(-рі)..</span></p>
+<p style="text-align: justify; line-height: 2.17; margin: 0 0 0 4px;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Зауваження</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">. Поле для вводу коментарів - це багаторядкове текстове поле. </span></p>
+<p style="text-align: justify; line-height: 2.17; margin: 0 0 0 4px;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Існує можливість змінити розмір поля: наводячи курсор миші на</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><img alt="drex_assessment_custom_115" title="drex_assessment_custom_115" width="23" height="19" style="margin:0;width:23px;height:19px;border:none" src="drex_assessment_custom_115.png"/><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">(на рисунку позначено маркером), можна розширити або звузити розмір даного поля.</span></p>
+<p style="text-align: justify; line-height: 2.17; margin: 0 0 0 3px;"><img alt="NIST_27" width="726" height="293" style="margin:0;width:726px;height:293px;border:none" src="nist_27.png"/></p>
+<p style="text-align: justify; text-indent: 4px; line-height: 2.17;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Для відмови від вводу коментарів повторно активуйте дії по піктограмі &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Коментарі</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot;.</span></p>
+</td>
+</tr>
+</table>
+</div>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 32px 0 0;"><table style="border:none;border-spacing:0;padding:0;line-height: 1.38;"><tr style="vertical-align:baseline"><td style="border:none;padding:0;width:18px"><img id="toggle0186a5_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_arrow1.gif"/></td><td style="border:none;padding:0"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a5','toggle0186a5_ICON')">Артефакти/Документи</a></span></td></tr></table></div>
+<div id="toggle0186a5" class="dropdown-toggle-body" style="text-align: left; line-height: 1.38; padding: 0 0 0 0; margin: 0 32px 0 18px;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; padding:0; border:none"><p style="text-indent: -1px; margin: 0 0 0 4px;"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
+<p style="text-indent: -1px; margin: 0 0 0 4px;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Активуючи дії по піктограмі &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Артефакт/Документи</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot;, eксперти можуть &nbsp;додати відповідні докази до кожного &nbsp;запитання під час оцінювання.</span></p>
+<p class="p_Normal" style="background: #ffffff;"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; background-color: #ffffff;">&nbsp;</span></p>
+<h2 style="text-indent: 1px; margin: 2px 0 0 0;"><img alt="NIST_28" width="729" height="228" style="margin:0;width:729px;height:228px;border:none" src="nist_28.png"/></h2>
+<p class="p_Normal" style="background: #ffffff;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&nbsp;</span></p>
+<p class="p_Normal" style="background: #ffffff; margin: 0 0 0 4px;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Додані документи відображаються у списку у блоці </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic; font-weight: bold;">Прикріплені артефакти/документи</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">.</span></p>
+<p class="p_Normal" style="background: #ffffff;"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 2px; background: #ffffff;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Для прикріплення документу та/або артефакту натисніть на кнопку</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><img alt="CSF_ukr_maket_22" width="158" height="46" style="margin:0;width:158px;height:46px;border:none" src="csf_ukr_maket_22.png"/></p>
+<p style="text-align: justify; line-height: 2.17; margin: 0 0 0 2px;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Наявність червоного індикатора</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><img alt="drex_assessment_custom_118" title="drex_assessment_custom_118" width="73" height="62" style="margin:0;width:73px;height:62px;border:none" src="drex_assessment_custom_118.jpg"/><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">на &nbsp;даній піктограмі свідчить про те, що до відповіді на запитання опитувальника під час проведення оцінювання додані документи та/або артефакти.</span></p>
+<p style="text-align: justify; line-height: 2.17;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Для видалення документу та/або артефакту активуйте дії по піктограмі &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Видалити документ</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot;.</span></p>
+<p style="text-align: justify; line-height: 2.17;"><img alt="NIST_29" width="735" height="207" style="margin:0;width:735px;height:207px;border:none" src="nist_29.png"/></p>
+<p style="text-align: justify; line-height: 2.17;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> Прикріплений документ можна завантажити на локальний диск (скопіювати в інше місце).</span></p>
+<p style="text-align: justify; line-height: 2.17;"><img alt="NIST_30" width="727" height="197" style="margin:0;width:727px;height:197px;border:none" src="nist_30.png"/></p>
+<p style="text-align: justify; line-height: 2.17;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> Для зміни назви документу активуйте дії по наведеному на рисунку гіперпосиланню:</span></p>
+<p class="p_Normal" style="text-align: justify; text-indent: 3px; line-height: 2.17;"><img alt="NIST_31" width="725" height="205" style="margin:0;width:725px;height:205px;border:none" src="nist_31.png"/></p>
+<p class="p_Normal" style="text-align: justify; text-indent: 3px; line-height: 2.17;"><img alt="NIST_32" width="724" height="198" style="margin:0;width:724px;height:198px;border:none" src="nist_32.png"/></p>
+<p class="p_Normal" style="text-align: justify; text-indent: 3px; line-height: 2.17;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Інформація щодо пов'язаних запитань відображається при активації дій по піктограмі &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Пов'язані запитання</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot; - </span><img alt="CSF_maket_17" width="44" height="43" style="margin:0;width:44px;height:43px;border:none" src="csf_maket_17.png"/></p>
+<p class="p_Normal" style="line-height: 2.17;"><img alt="NIST_33" width="729" height="229" style="margin:0;width:729px;height:229px;border:none" src="nist_33.png"/></p>
+<p class="p_Normal" style="line-height: 2.17;">&nbsp;</p>
+</td>
+</tr>
+</table>
+</div>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 32px 0 0;"><table style="border:none;border-spacing:0;padding:0;line-height: 1.38;"><tr style="vertical-align:baseline"><td style="border:none;padding:0;width:18px"><img id="toggle0186a6_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_arrow1.gif"/></td><td style="border:none;padding:0"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a6','toggle0186a6_ICON')">Зберігання вкладених документів</a></span></td></tr></table></div>
+<div id="toggle0186a6" class="dropdown-toggle-body" style="text-align: left; line-height: 1.38; padding: 0 0 0 0; margin: 0 32px 0 18px;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; padding:0; border:none"><p><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Доступ до прикріплених документів, артефактів і доказів можна отримати в меню</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Інструменти</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><img alt="drex_assessment_custom_27" title="drex_assessment_custom_27" width="40" height="31" style="margin:0;width:40px;height:31px;border:none" src="drex_assessment_custom_27.png"/><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">поруч із логотипом CSET у верхній лівій частині екрана.</span></p>
+<p class="p_Normal" style="background: #ffffff;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&nbsp;</span></p>
+<p class="p_Normal" style="text-indent: 4px; background: #ffffff;"><img alt="NIST_34" width="730" height="546" style="margin:0;width:730px;height:546px;border:none" src="nist_34.png"/></p>
+<p class="p_Normal" style="background: #ffffff;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&nbsp;</span></p>
+<p style="text-align: justify; text-indent: 5px; line-height: 2.17;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">У модальному вікні</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic; font-weight: bold;">Документи оцінювання</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">відображається перелік</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">всіх доданих до оцінювання документів</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">.</span></p>
+<p style="text-align: justify; text-indent: 6px; line-height: 2.17;"><img alt="NIST_35" width="726" height="457" style="margin:0;width:726px;height:457px;border:none" src="nist_35.png"/></p>
+<p class="p_Normal" style="text-indent: 4px; background: #ffffff;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Для завантаження документу, який відображається у модальному вікні</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic; font-weight: bold;">Документи оцінювання</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">на локальний носій активуйте дії по піктограмі -</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><img alt="drex_assessment_custom_126" title="drex_assessment_custom_126" width="30" height="32" style="margin:0;width:30px;height:32px;border:none" src="drex_assessment_custom_126.png"/></p>
+<p class="p_Normal" style="text-indent: 4px; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 32px 0 0;"><table style="border:none;border-spacing:0;padding:0;line-height: 1.38;"><tr style="vertical-align:baseline"><td style="border:none;padding:0;width:18px"><img id="toggle0186a7_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_arrow1.gif"/></td><td style="border:none;padding:0"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a7','toggle0186a7_ICON')">Спостереження</a></span></td></tr></table></div>
+<div id="toggle0186a7" class="dropdown-toggle-body" style="text-align: left; line-height: 1.38; padding: 0 0 0 0; margin: 0 32px 0 18px;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; padding:0; border:none"><p><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
+<p style="line-height: 1.80;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Активуючи дії по піктограмі &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Спостереження</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot;, у CSET користувач отримує можливість додати свої спостереження щодо дотримання вимог кожного практичного запитання, для чого активуються дії по кнопці &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Додати спостереження</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot;.</span></p>
+<p style="line-height: 1.80;"><img alt="NIST_36" width="732" height="201" style="margin:0;width:732px;height:201px;border:none" src="nist_36.png"/></p>
+<p style="line-height: 1.80;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">У модальному вікні з відповідною формою користувачем вноситься інформація про деталі спостереження за дотриманням вимог кожного практичного запитання.</span></p>
+<p class="p_Normal" style="line-height: 1.80; background: #ffffff;"><img alt="NIST_37" width="729" height="286" style="margin:0;width:729px;height:286px;border:none" src="nist_37.png"/></p>
+<p style="text-align: justify; text-indent: 2px; line-height: 1.80;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Для редагування опису спостереження активуйте дії по піктограмі &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Редагувати</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot; - </span><img alt="CSF_maket_26" width="35" height="30" style="margin:0;width:35px;height:30px;border:none" src="csf_maket_26.png"/></p>
+<p style="text-align: justify; text-indent: 2px; line-height: 1.80;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Для видалення спостереження активуйте дії по піктограмі &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Видалити</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot; - </span><img alt="CSF_maket_27" width="33" height="24" style="margin:0;width:33px;height:24px;border:none" src="csf_maket_27.png"/></p>
+<p style="text-align: justify; text-indent: 2px; line-height: 1.80;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Наявність червоного індикатора</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><img alt="drex_assessment_custom_130" title="drex_assessment_custom_130" width="57" height="62" style="margin:0;width:57px;height:62px;border:none" src="drex_assessment_custom_130.png"/><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">на &nbsp;даній піктограмі свідчить про те, що &nbsp;під час проведення оцінювання користувачем до досліджуваного запитання опитувальника додані свої спостереження.</span></p>
+<p class="p_Normal" style="line-height: 1.80; background: #ffffff;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&nbsp;</span></p>
+<p style="text-align: justify; text-indent: 4px; line-height: 1.80;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic; font-weight: bold; color: #0000ff;">Модальне вікно Деталі спостереження</span></p>
+<p style="text-align: justify; text-indent: 4px; line-height: 1.80;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Активуючи дії по кнопці &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Додати спостереження</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot;, у CSET відкривається модальне вікно з відповідною формою для запису користувачем результатів свого спостереження з дотриманням вимог відповідного запитання опитувальника відповідного контролю безпеки стандарту NIST.</span></p>
+<p class="p_Normal" style="line-height: 1.80; background: #ffffff;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><img alt="CSF_ukr_maket_32" width="420" height="998" style="margin:0;width:420px;height:998px;border:none" src="csf_ukr_maket_32.png"/></p>
+<p class="p_Normal" style="line-height: 1.80; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+<p class="p_Normal" style="line-height: 1.80; background: #ffffff;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Записи спостережень надають інформацію про проблему, потенційний вплив проблеми, рекомендації щодо усунення проблеми та можливі вразливості, пов’язані з проблемою. </span></p>
+<p class="p_Normal" style="line-height: 1.80; background: #ffffff;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">В цьому вікні заповнюється значення наступних атрибутів:</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 24px;"><span class="f_Normal" style="font-size:16px; font-family: 'Arial';display:inline-block;width:24px;margin-left:-24px">1.</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Назва</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> – текстове поле для опису загальної назви спостереження або зауваження.</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 24px;"><span class="f_Normal" style="font-size:16px; font-family: 'Arial';display:inline-block;width:24px;margin-left:-24px">2.</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Важливість</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> – це випадаючий список елементів, які характеризують важливість цього спостереження або зауваження. Значення: </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Низький, Середній, Високий</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">.</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 24px;"><span class="f_Normal" style="font-size:16px; font-family: 'Arial';display:inline-block;width:24px;margin-left:-24px">3.</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Дата рішення</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> – текстове поле; вводиться дата, до якої вирішується проблема, у форматі: </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">місяць/день/рік</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">. </span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 24px;"><span class="f_Normal" style="font-size:16px; font-family: 'Arial';display:inline-block;width:24px;margin-left:-24px">4.</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Проблема</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> – текстове поле; надається детальне пояснення проблеми, пов'язаної з тим, чому на запитання чи вимогу було дано відповідь &quot;Ні&quot;.</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 24px;"><span class="f_Normal" style="font-size:16px; font-family: 'Arial';display:inline-block;width:24px;margin-left:-24px">5.</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Впливи</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> – текстове поле для опису потенційних чи спричинених наслідків, які проблема може спричинити або вже спричинила.</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 24px;"><span class="f_Normal" style="font-size:16px; font-family: 'Arial';display:inline-block;width:24px;margin-left:-24px">6.</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Рекомендації</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> – текстове поле для опису рекомендацій з усунення недоліків, покращення стану кіберзахисту та кібербезпеки, описаних в спостереженні.</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 24px;"><span class="f_Normal" style="font-size:16px; font-family: 'Arial';display:inline-block;width:24px;margin-left:-24px">7.</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Вразливості</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> – текстове поле для опису виявлених вразливостей, пов'язаних з проблемою.</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 24px;"><span class="f_Normal" style="font-size:16px; font-family: 'Arial';display:inline-block;width:24px;margin-left:-24px">8.</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Відповідальні особи</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> – призначаються особи, відповідальні за вирішення проблем, визначених у записі спостереження. Контрольний список контактів міститиме список всіх поточних контактів, пов'язаних з оцінюванням. Відповідальних осіб може як взагалі не бути, так і більше однієї особи.</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 24px;"><span class="f_Normal" style="font-size:16px; font-family: 'Arial';display:inline-block;width:24px;margin-left:-24px">9.</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Очистити вибір</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> – гіперпосилання, при активації дій по якому скидається </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">вибір відповідальних осіб</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">.</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 24px;"><span class="f_Normal" style="font-size:16px; font-family: 'Arial';display:inline-block;width:24px;margin-left:-24px">10.</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Блок </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Контакти</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> – дозволяє додати наступні відомості про контактних осіб:</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 72px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">ім'я;</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 72px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">прізвище;</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 72px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">назва;</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 72px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">організація;</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 72px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">назва місця;</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 72px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">телефон;</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 72px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">робочий телефон;</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 72px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">адреса електронної пошти;</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 72px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">протокол екстренного зв'язку;</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 72px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">прапорець &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Основна контактна точка</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot;;</span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 72px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">прапорець &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Взяв участь у відвідуванні місця</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot;; </span></p>
+<p style="text-align: justify; text-indent: 0; line-height: 1.80; padding-left: 24px; margin: 0 0 7px 72px;"><span class="f_Normal" style="font-size:16px; font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:24px;margin-left:-24px">&#8226;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">перемикач &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-style: italic;">Роль</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot; (Учасник або Фасілітатор).</span></p>
+<p style="text-align: justify; text-indent: -24px; line-height: 1.80; margin: 0 0 7px 31px;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Для збереження натисніть на кнопку &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Зберегти</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot;. Для відмови від збереження контакту - натисніть на кнопку &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Скасувати</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot;. </span></p>
+<p style="text-align: justify; text-indent: -24px; line-height: 1.80; margin: 0 0 7px 31px;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Після створення контакту відображаються кнопки &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Змінити</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot; (для внесення змін до контактної інформації) та &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Видалити</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot; (для видалення контакту).</span></p>
+<p style="text-align: justify; text-indent: -24px; line-height: 1.80; margin: 0 0 7px 31px;"><a class="imagetogglelink" style="margin:0;width:341px;height:392px" href="csf_ukr_30.png"><img id="toggle0186a8" class="image-toggle" alt="csf_ukr_30_zoom58" style="width:341px;height:392px;border:none" src="csf_ukr_30_zoom58.png"/><svg xmlns="http://www.w3.org/2000/svg" class="image-toggle-magnifier" viewBox="-1 -1 25 25"><path d="M 9.145 18.29 c -5.042 0 -9.145 -4.102 -9.145 -9.145 s 4.103 -9.145 9.145 -9.145 s 9.145 4.103 9.145 9.145 s -4.102 9.145 -9.145 9.145 Z m 0 -15.167 c -3.321 0 -6.022 2.702 -6.022 6.022 s 2.702 6.022 6.022 6.022 s 6.023 -2.702 6.023 -6.022 s -2.702 -6.022 -6.023 -6.022 Z m 9.263 12.443 c -0.817 1.176 -1.852 2.188 -3.046 2.981 l 5.452 5.453 l 3.014 -3.013 l -5.42 -5.421 Z"></path></svg></a></p>
+<p class="p_Normal" style="line-height: 1.80; background: #ffffff;"><span style="background-color: #ffffff;">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 32px 0 0;"><table style="border:none;border-spacing:0;padding:0;line-height: 1.38;"><tr style="vertical-align:baseline"><td style="border:none;padding:0;width:18px"><img id="toggle0186a9_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_arrow1.gif"/></td><td style="border:none;padding:0"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a9','toggle0186a9_ICON')">Посилання</a></span></td></tr></table></div>
+<div id="toggle0186a9" class="dropdown-toggle-body" style="text-align: left; line-height: 1.38; padding: 0 0 0 0; margin: 0 32px 0 18px;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; padding:0; border:none"><p class="p_Normal" style="line-height: 1.80;">&nbsp;</p>
+<p class="p_Normal" style="line-height: 1.80;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Піктограма &quot;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Посилання</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">&quot;. Активуючи дії по даній піктограмі, відображається вікно з переліком документації по стандарту у форматі</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">*.pdf.</span></p>
+<p class="p_Normal" style="line-height: 1.80;"><img alt="NIST_38" width="730" height="462" style="margin:0;width:730px;height:462px;border:none" src="nist_38.png"/></p>
+<p class="p_Normal" style="line-height: 1.80; background: #ffffff;"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; background-color: #ffffff;">&nbsp;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Вибраний документ відкриватиметься в окремому вікні.</span></p>
+<p class="p_Normal" style="line-height: 1.80; background: #ffffff;"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; background-color: #ffffff;">&nbsp;</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Ці документи також можна знайти в</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; font-weight: bold;">Бібліотеці ресурсів</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">CSET.</span></p>
+<p class="p_Normal" style="text-indent: 6px; line-height: 1.80; background: #ffffff;"><img alt="NIST_39" width="714" height="395" style="margin:0;width:714px;height:395px;border:none" src="nist_39.png"/></p>
+</td>
+</tr>
+</table>
+</div>
+<div style="text-align: left; text-indent: 0; padding: 0 0 0 0; margin: 0 32px 0 0;"><table style="border:none;border-spacing:0;padding:0;line-height: 1.38;"><tr style="vertical-align:baseline"><td style="border:none;padding:0;width:18px"><img id="toggle0186aa_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_arrow1.gif"/></td><td style="border:none;padding:0"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186aa','toggle0186aa_ICON')">Зворотній зв'язок</a></span></td></tr></table></div>
+<div id="toggle0186aa" class="dropdown-toggle-body" style="text-align: left; line-height: 1.38; padding: 0 0 0 0; margin: 0 32px 0 18px;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; padding:0; border:none"><p style="text-align: justify; line-height: 2.17;"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
+<p style="text-align: justify; line-height: 2.17;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Користувачі можуть записувати відгуки під час оцінювання для того, щоб надіслати їх до CSET/DHS.</span></p>
+<p style="text-align: justify; line-height: 2.17;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Деякі приклади надісланих відгуків включають коментарі щодо теми запитання, структури запитання та того, як можна покращити запитання та макет.</span></p>
+<p style="text-align: justify; line-height: 2.17;"><img alt="NIST_40" width="729" height="363" style="margin:0;width:729px;height:363px;border:none" src="nist_40.png"/></p>
+<p style="text-align: justify; text-indent: 2px; line-height: 2.17;"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">Наявність червоного індикатора</span><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;"> </span><img alt="drex_assessment_custom_140_Індикатор feedback" title="drex_assessment_custom_140_Індикатор feedback" width="55" height="65" style="margin:0;width:55px;height:65px;border:none" src="hmfile_hash_4e0cec2b.png"/><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif;">на &nbsp;даній піктограмі свідчить про те, що &nbsp;під час проведення оцінювання користувачем до досліджуваного запитання опитувальника додано відгук.</span></p>
+<p style="text-align: justify; text-indent: 2px; line-height: 2.17;"><span style="font-size: 13px; font-family: Arial,Helvetica,sans-serif; color: #000000;">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_Normal" style="text-indent: -18px; line-height: 1.38; margin: 0 32px 0 18px;">&nbsp;</p>
+<p class="p_Normal">&nbsp;</p>
+<hr style="height:1px; color:#C0C0C0; border-width:0; background-color:#c0c0c0;" /><p class="p_Normal"><span style="font-size: 16px; font-family: Arial,Helvetica,sans-serif; color: #bfbfbf;"> підготовлено у редакторі Help &amp; Manual 9.3.0</span></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+<script type="text/javascript">
+HMInitToggle('toggle0186a1_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_arrow0.gif','hm.src1','hmtoggle_arrow1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a1\',\'toggle0186a1_ICON\')');
+HMInitToggle('toggle0186a1','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a2_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_arrow0.gif','hm.src1','hmtoggle_arrow1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a2\',\'toggle0186a2_ICON\')');
+HMInitToggle('toggle0186a2','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a3','hm.type','picture','hm.state','0','hm.src0','nist_25_zoom57.png','hm.src1','nist_25.png');
+HMInitToggle('toggle0186a4_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_arrow0.gif','hm.src1','hmtoggle_arrow1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a4\',\'toggle0186a4_ICON\')');
+HMInitToggle('toggle0186a4','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a5_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_arrow0.gif','hm.src1','hmtoggle_arrow1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a5\',\'toggle0186a5_ICON\')');
+HMInitToggle('toggle0186a5','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a6_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_arrow0.gif','hm.src1','hmtoggle_arrow1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a6\',\'toggle0186a6_ICON\')');
+HMInitToggle('toggle0186a6','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a7_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_arrow0.gif','hm.src1','hmtoggle_arrow1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a7\',\'toggle0186a7_ICON\')');
+HMInitToggle('toggle0186a7','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a8','hm.type','picture','hm.state','0','hm.src0','csf_ukr_30_zoom58.png','hm.src1','csf_ukr_30.png');
+HMInitToggle('toggle0186a9_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_arrow0.gif','hm.src1','hmtoggle_arrow1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a9\',\'toggle0186a9_ICON\')');
+HMInitToggle('toggle0186a9','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186aa_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_arrow0.gif','hm.src1','hmtoggle_arrow1.gif','onclick','HMToggle(\'toggle\',\'toggle0186aa\',\'toggle0186aa_ICON\')');
+HMInitToggle('toggle0186aa','hm.type','dropdown','hm.state','0');
+</script>
+</body>
+</html>

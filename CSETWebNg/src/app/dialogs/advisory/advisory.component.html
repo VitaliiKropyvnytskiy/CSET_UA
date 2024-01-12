@@ -1,0 +1,99 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL<sup>®</sup> THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="advisory-dialog d-flex flex-column justify-content-center flex-11a">
+  <div class="mat-dialog-header p-3 d-flex justify-content-start align-items-center flex-00a">
+    <span class="mr-3 fs-base-6 cset-icons-advisory"></span>
+    <span>Консультація</span>
+  </div>
+
+  <mat-dialog-content class="p-3 pr-0 mt-2 oy-auto d-flex flex-column flex-11a">
+
+    <h4 class="px-3">{{appLongName}}</h4>
+    <div class="px-3">
+      <p>{{appLongName}} (<span class="text-nowrap">{{appShortName}}<sup>®</sup></span>) є лише одним компонентом
+        загальної кібербезпеки і повинен бути доповнений міцною програмою з кібербезпеки в організації. Самооцінка за
+        допомогою <span class="text-nowrap">{{appShortName}}<sup>®</sup></span> не може виявити всі типи слабкостей у сфері безпеки, і не повинна бути єдиним
+        засобом визначення стану безпеки організації. Цей інструмент не надасть детального архітектурного аналізу мережі
+        або докладного огляду конфігурації апаратного та програмного забезпечення мережі. Це не є інструментом аналізу
+        ризиків, тому він не буде генерувати складний ризиковий аналіз.
+      </p>
+      <p>Даний інструмент не надасть детального аналізу архітектури мережі чи детального перегляду конфігурації
+        мережевого
+        апаратного/програмного забезпечення. Це не інструмент аналізу ризиків, тому він не створить комплексну оцінку
+        ризику.
+        <span class="text-nowrap">{{appShortName}}<sup>®</sup></span> не призначений як заміна глибокого аналізу
+        вразливостей систем контролю, який здійснюють кваліфіковані фахівці. Періодичні візити на об'єкт та перевірки
+        повинні проводитися за допомогою комплексного підходу, включаючи огляди об'єкту, інтерв'ю та спостереження та
+        перевірку практик об'єкту. Також слід розглянути додаткові кроки, включаючи сканування, тестування на
+        проникнення та вправи на невиробничих або навчальних системах, або системах, де непередбачені відмови,
+        неочікувані несправності або інші непередбачені результати не підірвуть виробництво або безпеку.
+      </p>
+      <p>
+        Оцінки <span class="text-nowrap">{{appShortName}}<sup>®</sup></span> ефективно не можуть бути проведені однією
+        особою. Крос-функціональна команда, яка складається з представників з операційної, технічної підтримки,
+        інформаційних технологій, бізнесу та безпеки, є обов'язковою. Представники повинні бути експертами у своїх
+        відповідних галузях зі значним досвідом. Жодна окрема особа не має такого обсягу відповідальності або знань для
+        ефективної відповіді на всі питання. </p>
+      <p>Дані та звіти, що генеруються інструментом, повинні бути збережені безпечно та позначені, збережені та поширені
+        таким чином, який відповідає їхній чутливості. </p>
+    </div>
+
+    <ng-container *ngIf="configSvc.behaviors.showDisclaimer">
+      <h4 class="px-3">Застереження</h4>
+      <div class="px-3">
+        <p>
+          Аналіз, дані та звіти в <span class="text-nowrap">{{appShortName}}<sup>®</sup></span> надаються "як є" лише
+          для інформаційних цілей. {{orgLongName}}
+          ({{orgShortName}}) не надає жодних гарантій щодо будь-якої інформації, що міститься в ньому. У жодному випадку
+          Уряд Сполучених Штатів або його підрядники не несуть відповідальності за будь-які збитки, включаючи, але не
+          обмежуючись, прямі, опосередковані, спеціальні або наслідкові збитки, включаючи збитки, що ґрунтуються на
+          будь-якій недбалості Уряду Сполучених Штатів або його підрядників, виниклі в результаті або пов'язані з цим
+          звітом, незалежно від того, чи ґрунтується це на гарантії, контракті, торговому правопорушенні або інакше, чи
+          пошкодження виникли від результатів або покладання довіри на звіт.
+        </p>
+
+        <p>{{orgShortName}} не рекомендує жодного комерційного продукту чи послугу, включаючи предмет оцінки чи оцінки в
+          цьому звіті. Будь-яке посилання на конкретні комерційні продукти, процеси чи послуги за торговою маркою,
+          виробником або інакше, не становить або не підтверджує його рекомендацію чи підтримку {{orgShortName}}.
+        </p>
+
+        <p>Використання офіційного печатки чи інших візуальних ідентифікаторів {{orgShortName}} в цьому звіті не повинно
+          тлумачитися як надання отримувачеві організації дозволу на використання офіційної печатки, емблеми чи інших
+          візуальних ідентифікаторів {{orgShortName}}. Використання печатки {{orgShortName}}, без належного дозволу,
+          порушує федеральний закон (наприклад, 18 U.S.C. §§ 506, 701, 1017) та протирічить політиці {{orgShortName}},
+          що регулює використання печатки. </p>
+
+        <p *ngIf="showIntellectualPropertyRightsAssertion">Звіт підготовлено та призначено для внутрішнього використання
+          організацією, яка зробила запит. Зміст цього звіту може бути об'єктом прав інтелектуальної власності уряду або
+          приватних суб'єктів. Для отримання дозволу на розповсюдження цього звіту поза організацією, для якої він був
+          підготовлений, звертайтеся до {{intellectualPropertyRightsDistributionRequestEntity}}. Зміст цього звіту може
+          бути відтворений або включений до інших звітів, але не може бути змінений без попереднього письмового дозволу
+          {{appShortName}}. </p>
+      </div>
+    </ng-container>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="p-3 pt-0 mb-0 d-flex justify-content-start flex-00a">
+    <button class="btn btn-secondary" (click)="close()">OK</button>
+  </mat-dialog-actions>
+</div>

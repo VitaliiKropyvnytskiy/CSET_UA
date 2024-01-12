@@ -1,0 +1,459 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="report-body mb-5">
+
+    <div class="flex-container">
+        <div class="column mt-3">
+            <p class="report-title">
+                ЗВІТ ПРО СУМАРНУ ІНФОРМАЦІЮ САЙТУ CMMC
+            </p>
+        </div>
+        <div class="column">
+            <p style="text-align: center">
+                <img width="471" height="529" alt="cset" src="assets/images/SiteSummaryFiles/image002.jpg">
+            </p>
+        </div>
+
+        <div class="cover-page-bottom mb-4">
+            <app-logo-for-reports></app-logo-for-reports>
+            <app-info-block [response]="response" />
+        </div>
+    </div>
+
+    <div class="page-break" *ngIf="configSvc.behaviors.showDisclaimer">
+        <app-report-disclaimer></app-report-disclaimer>
+    </div>
+
+    <div class="page-break">
+        <app-report-advisory></app-report-advisory>
+    </div>
+
+    <div class="page-break">
+        <h1>Інформація про сайт</h1>
+        <app-site-information [response]="response"></app-site-information>
+    </div>
+
+    <!-- Pyramid Graph Page -->
+    <div class="page-break">
+        <h1 class="pageHeader">Рівень цілей оцінки в рамках практик та процесів CMMC</h1>
+        <p>Модель CMMC вимірює кібернетичну зрілість за п'ятьма рівнями. Кожен з цих рівнів включає в себе набір
+            процесів та практик, які характеризуються на рисунку 2. Процеси варіюються від "Виконується" на рівні 1 до
+            "Оптимізація" на рівні 5, а практики варіюються від "Базова кібергігієна" на рівні 1 до
+            "Професійна/Прогресивний" на рівні 5.</p>
+        <div class="pyramidGraphContainer">
+            <div class="level-indicator-container pyramidGraphLevelIndicator">
+                <div class="roundedBox">
+                    <div class="rbTitle">
+                        Рівень цілей
+                    </div>
+                    <div class="rbLevel">
+                        {{cmmcStyleSvc?.cmmcModel?.targetLevel}}
+                    </div>
+                </div>
+            </div>
+            <div class="pyramidGraph">
+                <div class="arrowContainer">
+                    <div class="topHalfArrowMask">
+                        <div class="corners triangle-topright"></div>
+                        <div class="corners triangle-topleft"></div>
+                    </div>
+                    <div class="bottomHalfArrowMask">
+                        <div class="arrowBaseMask arrowBaseLeft"></div>
+                        <div class="arrowBaseCenter">
+                            <div>
+                                ПРАКТИКИ
+                            </div>
+                            <div>
+                                ПРОЦЕСИ
+                            </div>
+                        </div>
+                        <div class="arrowBaseMask arrowBaseRight"></div>
+                    </div>
+                </div>
+                <div class="pyramidLevel levelOne" [ngStyle]="cmmcStyleSvc?.getPyramidRowColor(5)">
+                    <div class="pyramidRowItem">
+                        Професійний/Прогресивний
+                    </div>
+                    <div class="pyramidRowItem">
+                        Оптимізація
+                    </div>
+                    <div style="flex-basis:0">
+                        <div class="pyramidRowLabel ws-no-wrap">
+                            Рівень П'ять
+                        </div>
+                    </div>
+                </div>
+                <div class="pyramidLevel levelTwo" [ngStyle]="cmmcStyleSvc?.getPyramidRowColor(4)">
+                    <div class="pyramidRowItem">
+                        Проактивний
+                    </div>
+                    <div class="pyramidRowItem">
+                        Переглянуто
+                    </div>
+                    <div style="flex-basis:0">
+                        <div class="pyramidRowLabel ws-no-wrap">
+                            Рівень Чотири
+                        </div>
+                    </div>
+                </div>
+                <div class="pyramidLevel levelThree " [ngStyle]="cmmcStyleSvc?.getPyramidRowColor(3)">
+                    <div class="pyramidRowItem">
+                        Хороша кібергігієна
+                    </div>
+                    <div class="pyramidRowItem">
+                        Керовано
+                    </div>
+                    <div style="flex-basis:0">
+                        <div class="pyramidRowLabel ws-no-wrap">
+                            Рівень Три
+                        </div>
+                    </div>
+                </div>
+                <div class="pyramidLevel levelFour" [ngStyle]="cmmcStyleSvc?.getPyramidRowColor(2)">
+                    <div class="pyramidRowItem">
+                        Проміжна кібергігієна
+                    </div>
+                    <div class="pyramidRowItem">
+                        Документовано
+                    </div>
+                    <div style="flex-basis:0">
+                        <div class="pyramidRowLabel ws-no-wrap">
+                            Рівень Два
+                        </div>
+                    </div>
+
+                </div>
+                <div class="pyramidLevel levelFive" [ngStyle]="cmmcStyleSvc?.getPyramidRowColor(1)">
+                    <div class="pyramidRowItem">
+                        Базова кібергігієна
+                    </div>
+                    <div class="pyramidRowItem">
+                        Виконано
+                    </div>
+                    <div style="flex-basis:0">
+                        <div class="pyramidRowLabel ws-no-wrap">
+                            Рівень Один
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="my-4">
+            Рівні CMMC та асоційовані набори процесів та практик в різних доменах є накопичувальними. Зокрема, для того,
+            щоб організація досягла певного рівня CMMC, вона також повинна продемонструвати досягнення попередніх нижчих
+            рівнів.
+        </p>
+    </div>
+
+    <!-- Level Step Graph Page -->
+    <div class="page-break">
+        <h1 class="pageHeader">Пояснення процесів та практик CMMC</h1>
+        <div class="column">
+            <p style="text-align: center">
+                <img alt="графічні кроки" style="height: 25rem" src="assets/images/CMMC/CMMCGraphicSteps.svg">
+                <!-- <svg width="471" height="529" src="assets/images/CMMC/CMMCGraphicSteps.svg"></svg> -->
+            </p>
+        </div>
+
+        <p>
+            Цільовий рівень вказує, де організація повинна зосередитися
+            на процесах та практиках в межах спектру зрілості CMMC.
+        </p>
+    </div>
+
+    <div class="levelDescriptions">
+        <h1>Рівень CMMC 1 {{cmmcStyleSvc?.cmmcModel?.targetLevel == 1 ? ' - ЦІЛЬОВИЙ РІВЕНЬ' : ''}}</h1>
+        <p class="levelTitle">ПРОЦЕСИ: Виконано</p>
+        <p>Рівень 1 передбачає, що організація виконує визначені практики. Оскільки
+            організація може виконувати ці практики лише ад-гок, можливо, залежно від документації, зрілість процесу не
+            оцінюється на рівні 1.
+        </p>
+        <p class="levelTitle">ПРАКТИКИ: Базова кібергігієна</p>
+        <p>Рівень 1 спрямований на захист FCI та складається лише з практик, які відповідають
+            основним вимогам забезпечення, визначеним у 48 CFR 52.204-21 ("Основне забезпечення інформаційних систем
+            підрядників")[3].
+        </p>
+
+        <h1>Рівень CMMC 2 {{cmmcStyleSvc?.cmmcModel?.targetLevel == 2 ? ' - ЦІЛЬОВИЙ РІВЕНЬ' : ''}}</h1>
+        <p class="levelTitle">ПРОЦЕСИ: Документовано</p>
+        <p>Рівень 2 передбачає, що організація встановлює та документує практики та
+            політику для керування реалізацією своїх зусиль з CMMC. Документація
+            практик дозволяє особам виконувати їх у повторному режимі. Організації
+            розвивають зрілість, документуючи свої процеси та практикуючи їх
+            так, як вони задокументовані.
+        </p>
+        <p class="levelTitle">ПРАКТИКИ: Проміжна кібергігієна</p>
+        <p>Рівень 2 є прогресією від рівня 1 до рівня 3 і складається з підмножини
+            вимог з безпеки, визначених у NIST SP 800-171 [4], а також практик з інших
+            стандартів та посилань. Оскільки цей рівень є перехідним, підмножина
+            практик стосується захисту CUI.
+        </p>
+
+        <h1>Рівень CMMC 3 {{cmmcStyleSvc?.cmmcModel?.targetLevel == 3 ? ' - ЦІЛЬОВИЙ РІВЕНЬ' : ''}}</h1>
+        <p class="levelTitle">ПРОЦЕСИ: Управліні</p>
+        <p>Рівень 3 передбачає, що організація встановлює, підтримує та забезпечує план, який демонструє
+            управління діяльністю з виконання практик.
+            План може містити інформацію про місійні цілі,
+            проектні плани, ресурси, необхідну підготовку та участь відповідних стейкхолдерів.
+        </p>
+        <p class="levelTitle">ПРАКТИКИ: Добра кібергігієна</p>
+        <p>Рівень 3 спрямований на захист CUI та включає всі вимоги з безпеки,
+            визначені у NIST SP 800-171 [4], а також додаткові практики з інших стандартів
+            та посилань для пом'якшення загроз.
+        </p>
+        <p>
+            Відзначається, що DFARS пункт 252.204-7012 ("Захист покритої інформації оборони і звітність про
+            кіберінциденти")
+            [5] встановлює додаткові вимоги, окрім безпеки NIST SP 800-171, такі як звітність про інциденти.
+        </p>
+
+        <h1>Рівень CMMC 4 {{cmmcStyleSvc?.cmmcModel?.targetLevel == 4 ? ' - ЦІЛЬОВИЙ РІВЕНЬ' : ''}}</h1>
+        <p class="levelTitle">ПРОЦЕСИ: Переглянуті</p>
+        <p>Рівень 4 передбачає, що організація переглядає та вимірює ефективність практик.
+            Крім вимірювання ефективності практик, організації на цьому рівні можуть
+            приймати виправні заходи, коли це необхідно, і повідомляти вищу керівництво
+            про стан або проблеми на регулярній основі.
+        </p>
+        <p class="levelTitle">ПРАКТИКИ: Проактивні</p>
+        <p>Рівень 4 спрямований на захист CUI від APTs та включає підмножину посилених вимог з безпеки
+            з
+            Проекту NIST SP 800-171B [6], а також найкращі практики кібербезпеки. Ці практики покращують
+            можливості виявлення та
+            реагування організації для реагування та адаптації до зміни тактики, методики та процедури
+            (TTPs), які використовуються APTs.
+        </p>
+
+        <h1>Рівень CMMC 5 {{cmmcStyleSvc?.cmmcModel?.targetLevel == 5 ? ' - ЦІЛЬОВИЙ РІВЕНЬ' : ''}}</h1>
+        <p class="levelTitle">ПРОЦЕСИ: Оптимізовані</p>
+        <p>Рівень 5 передбачає, що організація стандартизує і оптимізує реалізацію процесу в межах організації.
+        </p>
+        <p class="levelTitle">ПРАКТИКИ: Проактивні/Розширені</p>
+        <p>Рівень 5 спрямований на захист CUI від APTs. Додаткові практики підвищують глибину і
+            складність кіберзахисту.
+        </p>
+    </div>
+
+    <!-- Excutive Summary, Basic Level Progress Bar Chart, Pie Charts Page -->
+    <div class="page-break">
+        <h1 class="pageHeader" *ngIf="response?.information.assessment_Description">Опис високорівневої оцінки
+        </h1>
+        <p [innerHTML]="reportSvc.formatLinebreaks(response?.information.Assessment_Description)">
+        </p>
+
+        <h1 class="midBlackTitle">Підсумковий звіт</h1>
+        <div [innerHTML]="reportSvc.formatLinebreaks(response?.information?.executive_Summary)">
+        </div>
+    </div>
+
+    <div class="page-break">
+        <h1 class="pageHeader">Розгортання рівнів</h1>
+        <div class="levelBarChart mb-5">
+            <div class="flex flex-container barChartRowContainer">
+                <div class="flex level-indicator-container">
+                    <div class="roundedBox">
+                        <div class="rbTitle">
+                            Цільовий рівень
+                        </div>
+                        <div class="rbLevel">
+                            {{cmmcStyleSvc?.cmmcModel?.targetLevel}}
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="cmmcStyleSvc?.statsByLevel" class="flex barChartContainer">
+                    <div *ngFor="let i of cmmcStyleSvc?.statsByLevel?.slice().reverse()" class="barChartRow">
+                        <div class="barChartLabel">Рівень {{i?.modelLevel}}</div>
+                        <div class="barChartBar">
+                            <div class="barAnswered" [ngStyle]="cmmcStyleSvc?.getBarSettings(i)">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="barChartLabels">
+                        <div class="barChartHorizontalLabel"> 0 </div>
+                        <div class="barChartHorizontalLabel"> 25 </div>
+                        <div class="barChartHorizontalLabel"> 50 </div>
+                        <div class="barChartHorizontalLabel"> 75 </div>
+                        <div class="barChartHorizontalLabel"> 100 </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="levelPieCharts my-4" *ngFor="let i of cmmcStyleSvc?.statsByLevel?.slice().reverse()">
+            <div *ngIf="cmmcStyleSvc?.isWithinModelLevel(i)" class="pieChartRowTitle"
+                [innerHTML]="cmmcStyleSvc?.levelDescriptions[i.ModelLevel]">
+                Тест
+            </div>
+            <div *ngIf="cmmcStyleSvc?.isWithinModelLevel(i)" class="flex-container pieChartRow">
+                <div class="level-indicator-container">
+                    <div class="roundedBox">
+                        <div class="rbTitle px-3">
+                            Рівень
+                        </div>
+                        <div class="rbLevel">
+                            {{i?.modelLevel}}
+                        </div>
+                    </div>
+                </div>
+
+                <div style="max-width: 300px">
+                    <canvas id="{{'level' + i?.modelLevel }}">{{ i.chart }}</canvas>
+                </div>
+
+                <div class="pieChartLabelContainer font-weight-bold align-content-center align-middle">
+                    <div>
+                        Відповідає {{(i.questionAnswered / i.questionCount) | percent:'1.2'}}
+                    </div>
+                    <div *ngIf="i.questionUnAnswered">
+                        Невідповідає {{(i.questionUnAnswered / i.questionCount) | percent:'1.2'}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stacked Bar Chart -->
+    <div class="page-break">
+        <h1 class="pageHeader">Розклад балів виконання вимог</h1>
+        <p>
+            Наступна діаграма показує кількість виконаних практик для кожного рівня.
+            Затінена частина кожного блоку показує відсоток виконання.
+        </p>
+        <div class="d-block mb-5">
+            <app-compliance-score></app-compliance-score>
+        </div>
+    </div>
+
+    <!-- BarGrid Chart & Question By Domain Table -->
+    <div class="page-break">
+        <h1 class="pageHeader">Виконання за доменами</h1>
+
+        <p>Наступна діаграма показує відсоток виконання для кожного
+            домену на цільовому рівні {{cmmcStyleSvc?.cmmcModel?.targetLevel}}.</p>
+        <div class="gridGraphContainer">
+            <div class="gridGraphLabels">
+                <div *ngFor="let dataRow of cmmcStyleSvc?.statsByDomainAtUnderTarget"
+                    class="gridGraphLabel graphDataRow">{{dataRow.domainName}}</div>
+            </div>
+            <div class="gridGraphDataContainer" #gridChartDataDiv>
+                <div *ngFor="let dataRow of cmmcStyleSvc?.statsByDomainAtUnderTarget"
+                    class="gridGraphData graphDataRow">
+                    <div class="gridGraphBar" [ngStyle]="getBarWidth(dataRow)">
+                    </div>
+                    <div class="gridGraphBackground  graphDataRow">
+                        <div *ngFor="let grid of gridColumns" class="gridCell"></div>
+                    </div>
+                </div>
+                <div class="gridGraphData graphDataRow">
+                    <div class="gridGraphBackgroundLabels graphDataRow">
+                        <div *ngFor="let label of gridColumns; let i = index; let last = last">
+                            {{(i / this.gridColumns.length) * 100 | number:'1.0-2'}}</div>
+                        <span style="width:0">100</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-break">
+        <h1 class="pageHeader">Оцінка вимог CMMC</h1>
+
+        <p>Наступна таблиця - це облік відповідей на вимоги для цільового рівня
+            {{cmmcStyleSvc?.cmmcModel?.targetLevel}}.</p>
+        <div>
+            <p>*Зверніть увагу, що домени з нулем практиками можуть не мати вимог на бажаному цільовому рівні</p>
+        </div>
+        <div class="questionsByDomainTable">
+            <div class="questionsByDomainTableHeader DomainTableRow questionsByDomainTableRow">
+                <div></div>
+                <div style="padding-top: 1em;padding-bottom: 1em;">Відповідає</div>
+                <div style="padding-top: 1em;padding-bottom: 1em;">Не відповідає</div>
+                <div style="padding-top: 1em;padding-bottom: 1em;">Загальна кількість заходів контролю</div>
+                <div style="padding-top: 1em;padding-bottom: 1em;">Відсоток виконання</div>
+            </div>
+            <div *ngFor="let domainRow of cmmcStyleSvc?.statsByDomain" class="questionsByDomainTableDomainSection"
+                [class.mb-5]="domainRow.questionCount > 0">
+                <div *ngIf="domainRow.questionCount > 0" class="questionsByDomainTableRow DomainTableRow domain">
+                    <div>
+                        {{domainRow?.domainName}}
+                    </div>
+                    <div>
+                        {{domainRow?.questionAnswered}}
+                    </div>
+                    <div>
+                        {{domainRow?.questionUnAnswered}}
+                    </div>
+                    <div>{{domainRow.questionCount}}</div>
+                    <div>{{domainRow.questionAnswered / domainRow.questionCount | percent}}</div>
+                </div>
+                <div *ngFor="let questionRow of domainRow.domainQuestions"
+                    class="questionsByDomainTableRow DomainTableRow question">
+                    <div>
+                        {{questionRow?.question_Text}}
+                    </div>
+                    <div *ngIf="questionRow?.answer?.answer_Text == 'Y' || questionRow?.answer?.answer_Text == 'A'">
+                        1
+                    </div>
+                    <div *ngIf="questionRow?.answer?.answer_Text == 'N' || questionRow?.answer?.answer_Text == 'U'">
+                        0
+                    </div>
+                    <div *ngIf="questionRow?.answer?.answer_Text == 'N' || questionRow?.answer?.answer_Text == 'U'">
+                        1
+                    </div>
+                    <div *ngIf="questionRow?.answer?.answer_Text == 'Y' || questionRow?.answer?.answer_Text == 'A'">
+                        0
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reference Table -->
+    <div class="page-break">
+        <h1 class="pageHeader">
+            Список прогалин заяв заяв CMMC з відповідними посиланнями
+        </h1>
+        <p>
+            У цьому розділі вказано дефіцити із зазначеними посиланнями.
+            Затінені рядки є дефіцитами, що не відповідають вимогам.
+        </p>
+
+        <table *ngIf="cmmcStyleSvc?.referenceTable?.length > 0" class="cset-table-4">
+            <tr class="questionsByDomainTableHeader">
+                <th class="tdHeader">Ідентифікатор практики</th>
+                <th class="tdHeader">Заява про практику</th>
+                <th class="tdHeader">Посилання</th>
+            </tr>
+            <tr *ngFor="let reference of cmmcStyleSvc?.referenceTable">
+                <td [ngClass]="{'tint3' : reference.answer?.answer_Text == 'N' || reference.answer?.answer_Text == 'U'}"
+                    style="width: 15%;padding-left: 1em;">{{reference.question_Title}}</td>
+                <td [ngClass]="{'tint3' : reference.answer?.answer_Text == 'N' || reference.answer?.answer_Text == 'U'}"
+                    style="width: 40%;padding-left: 1em;">{{reference.question_Text}}</td>
+                <td [ngClass]="{'tint3' : reference.answer?.answer_Text == 'N' || reference.answer?.answer_Text == 'U'}"
+                    [innerHTML]="reference.supplemental_Info"></td>
+            </tr>
+        </table>
+        <div *ngIf="cmmcStyleSvc?.referenceTable?.length === 0" class="cset-table-4">
+            Вітаємо, не виявлено жодних ідентифікованих дефіцитів.
+        </div>
+    </div>
+</div>

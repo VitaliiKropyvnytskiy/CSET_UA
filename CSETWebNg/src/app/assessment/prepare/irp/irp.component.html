@@ -1,0 +1,106 @@
+<!---------------------- 
+
+   Copyright 2023 Battelle Energy Alliance, LLC  
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy 
+  of this software and associated documentation files (the "Software"), to deal 
+  in the Software without restriction, including without limitation the rights 
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+  copies of the Software, and to permit persons to whom the Software is 
+  furnished to do so, subject to the following conditions: 
+ 
+  The above copyright notice and this permission notice shall be included in all 
+  copies or substantial portions of the Software. 
+ 
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+  SOFTWARE. 
+-------------------------->
+<div class="white-panel">
+    <div>
+        <h4>Профілі внутрішнього ризику (IRP)</h4>
+        <p>IRP має <a mattooltip="Натисніть, щоб переглянути більше інформації про рівні ризику." data-toggle="collapse"
+                href="#risk-desc" role="button" aria-expanded="false" aria-controls="risk-desc">п’ять зон ризику</a> за
+            п’ятьма категоріями. Він вимірюється за шкалою від найменшого ризику до найбільшого ризику в такому порядку:
+        </p>
+        <div class="collapse" id="risk-desc">
+            1. Найменший - дуже обмежене використання технологій.<br>
+            2. Мінімальний – обмежена складність з точки зору технології, яку він використовує.<br>
+            3. Помірний – використовує технологію, яка може бути дещо складною з точки зору обсягу та витонченості.<br>
+            4. Значний - використовує складну технологію з точки зору масштабу та складності.<br>
+            5. Найбільший – використовує надзвичайно складну технологію для надання безлічі продуктів і послуг.<br>
+        </div>
+        <hr>
+    </div>
+    <div *ngFor="let iHeader of irps?.headerList">
+        <div *ngIf="!(iHeader.header == 'Activities / Services / Products')">
+            <h4 class="irp-header"> {{ iHeader.header }}</h4>
+            <hr>
+        </div>
+        <div *ngFor="let irp of iHeader.irpList" class="mb-4">
+            <div *ngIf="(irp.risk_Type === 'IRP')">
+                <div class="lead mb-3">{{ irp.item_Number }}. {{ irp.description }}</div>
+                <label class="ml-1 font-weight-bold">Рівні ризику</label>
+                <div class="mb-4">
+                    <div (click)="setResponse(irp, 1);" (keyup.enter)="setResponse(irp, 1);" tabindex="0"
+                        class="irp-risk cursor-pointer" [ngClass]="{'irp-selected': irp.response==1}">
+                        <div class="row">
+                            <div class="col-2">
+                                <h3>1</h3>
+                            </div>
+                            <div class="col-10">{{ irp.risk_1_Description }}</div>
+                        </div>
+                    </div>
+                    <div (click)="setResponse(irp, 2);" (keyup.enter)="setResponse(irp, 2);" tabindex="0"
+                        class="irp-risk cursor-pointer" [ngClass]="{'irp-selected': irp.response==2}">
+                        <div class="row">
+                            <div class="col-2">
+                                <h3>2</h3>
+                            </div>
+                            <div class="col-10">{{ irp.risk_2_Description }}</div>
+                        </div>
+                    </div>
+                    <div (click)="setResponse(irp, 3);" (keyup.enter)="setResponse(irp, 3);" tabindex="0"
+                        class="irp-risk cursor-pointer" [ngClass]="{'irp-selected': irp.response==3}">
+                        <div class="row">
+                            <div class="col-2">
+                                <h3>3</h3>
+                            </div>
+                            <div class="col-10">{{ irp.risk_3_Description }}</div>
+                        </div>
+                    </div>
+                    <div (click)="setResponse(irp, 4);" (keyup.enter)="setResponse(irp, 4);" tabindex="0"
+                        class="irp-risk cursor-pointer" [ngClass]="{'irp-selected': irp.response==4}">
+                        <div class="row">
+                            <div class="col-2">
+                                <h3>4</h3>
+                            </div>
+                            <div class="col-10">{{ irp.risk_4_Description }}</div>
+                        </div>
+                    </div>
+                    <div (click)="setResponse(irp, 5);" (keyup.enter)="setResponse(irp, 5);" tabindex="0"
+                        class="irp-risk cursor-pointer" [ngClass]="{'irp-selected': irp.response==5}">
+                        <div class="row">
+                            <div class="col-2">
+                                <h3>5</h3>
+                            </div>
+                            <div class="col-10">{{ irp.risk_5_Description }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <app-irp-tabs [irp]="irp" class="mb-5"></app-irp-tabs>
+
+            </div>
+        </div>
+    </div>
+
+    <hr>
+
+    <app-nav-back-next [page]="'irp'"></app-nav-back-next>
+
+</div>

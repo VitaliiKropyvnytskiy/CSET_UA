@@ -1,0 +1,103 @@
+<!---------------------- 
+
+   Copyright 2023 Battelle Energy Alliance, LLC  
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy 
+  of this software and associated documentation files (the "Software"), to deal 
+  in the Software without restriction, including without limitation the rights 
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+  copies of the Software, and to permit persons to whom the Software is 
+  furnished to do so, subject to the following conditions: 
+ 
+  The above copyright notice and this permission notice shall be included in all 
+  copies or substantial portions of the Software. 
+ 
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+  SOFTWARE. 
+-------------------------->
+<div class="wp-0 d-flex flex-column justify-content-start flex-11a trend-table-width">
+  <div class="bgc-trans mt-4 ml-4 pr-4 d-flex flex-column flex-00a max-1200">
+    <h3>Деталі {{ this.aggregationSvc?.modeDisplay(false,'gen')| lowercase }}</h3>
+    <div class="w-100">
+      <div class="form-group">
+        <label>Назва {{ this.aggregationSvc?.modeDisplay(false,'gen')| lowercase }}*</label>
+        <input type="text" class="form-control" maxlength="100" [(ngModel)]="aggregationSvc.currentAggregation.aggregationName" (change)="updateAggregation()" 
+        (blur)="checkTrendName()" required/>
+        <div class="invalid-feedback d-block" *ngIf='!trendNameError'>
+          Назва тенденції обов'язкова
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-3 mb-3">
+      <div>
+        Сумісність із вибраними питаннями для оцінювання: <span
+          class="font-weight-bold">{{ aliasData?.aggregation.questionsCompatibility | percent : '0.3' }}</span>
+      </div>
+      <div>
+        Сумісність вибраних вимог до оцінювання: <span
+          class="font-weight-bold">{{ aliasData?.aggregation.requirementsCompatibility | percent : '0.3' }}</span>
+      </div>
+    </div>
+
+    <div class="mt-3 mb-3">
+      Оцінювання можна додавати та видаляти з {{ this.aggregationSvc?.modeDisplay(false,'gen') | lowercase }}
+      натискаючи «Вибрати оцінювання». Псевдонім кожної оцінки можна змінити, щоб він був значущим.
+    </div>
+
+    <div class="mt-3 mb-3">
+      <button class="btn btn-primary" (click)="openSelectionDialog()"><i class="far fa-check-square mr-2"></i>Вибрати оцінювання</button>
+    </div>
+  </div>
+  <div class="px-4 mb-4 d-flex flex-column flex-11a oy-auto h-0 max-1200">
+    <div class="trend-table-width" style="overflow-y: auto;">
+      <table *ngIf="aliasData?.assessments.length > 0" class="assessment-summary td-p-1">
+        <tr>
+          <th>
+            Псевдонім
+          </th>
+          <th>
+            Назва оцінювання
+          </th>
+          <th>
+            Дата оцінювання
+          </th>
+          <th *ngFor="let s of aliasData.assessments[0].selectedStandards" class="text-center">
+            {{ s.standardName }}
+          </th>
+        </tr>
+        <tr *ngFor="let assess of aliasData.assessments">
+          <td class="pr-3">
+            <input type="text" [(ngModel)]="assess.alias" class="form-control" maxlength="15"
+              (change)="changeAlias(assess)" />
+          </td>
+          <td>
+            {{ assess.assessmentName }}
+          </td>
+          <td>
+            {{ assess.assessmentDate | date:'dd.MM.yyyy' }}
+          </td>
+          <td *ngFor="let s of assess.selectedStandards" class="text-center" [innerHTML]="showDot(s.selected)">
+          </td>
+        </tr>
+      </table>
+    
+    </div>
+    <div *ngIf="aliasData?.assessments.length === 0" class="mt-3 mb-5 alert-warning p-3 font-weight-bold text-center">
+      Для {{ this.aggregationSvc?.modeDisplay(false,'gen')| lowercase }} не вибрано жодного оцінювання
+    </div>
+
+    <div class="mt-3 d-flex justify-content-between flex-00a">
+      <button class="btn btn-primary" (click)="navBackIfValid()">Назад</button>
+      <button class="btn btn-primary" [disabled]="validateNext()"
+        (click)="navAggSvc.navNext('alias-assessments')">Далі</button>
+    </div>
+  </div>
+ 
+
+</div>

@@ -1,0 +1,24 @@
+<Top>
+    <Page displayname="Головна" navpath="set-list" >
+        <Page displayname="Деталі модулю" navpath="set-detail" >
+            <Page displayname="Управління документами" navpath="standard-documents" >
+                <Page displayname="Посилання" navpath="ref-document" >
+                </Page>
+            </Page>
+            <Page displayname="Списко питань" navpath="question-list" >
+                <Page displayname="Додати питання" navpath="add-question" />
+            </Page>
+            <Page displayname="Список вимог" navpath="requirement-list" >
+                <Page displayname="Додати вимогу" navpath="add-requirement"  />
+                <Page displayname="Деталі вимоги" navpath="requirement-detail" >
+                    <Page displayname="Додати питання" navpath="add-question" >
+                    </Page>
+                    <Page displayname="Управління документами" navpath="standard-documents" >
+                        <Page displayname="Посилання" navpath="ref-document" >
+                        </Page>
+                    </Page>
+                </Page>
+            </Page>
+        </Page>
+    </Page>
+</Top>

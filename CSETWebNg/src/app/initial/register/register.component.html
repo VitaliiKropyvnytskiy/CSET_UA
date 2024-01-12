@@ -1,0 +1,134 @@
+<!---------------------- 
+
+   Copyright 2023 Battelle Energy Alliance, LLC  
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy 
+  of this software and associated documentation files (the "Software"), to deal 
+  in the Software without restriction, including without limitation the rights 
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+  copies of the Software, and to permit persons to whom the Software is 
+  furnished to do so, subject to the following conditions: 
+ 
+  The above copyright notice and this permission notice shall be included in all 
+  copies or substantial portions of the Software. 
+ 
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+  SOFTWARE. 
+-------------------------->
+<div class="p-4 pb-0 d-flex flex-column flex-00a">
+  <form name="form" (ngSubmit)="signup()" #fReg="ngForm">
+    <div class="form-group" [ngClass]="{ 'has-error': fReg.submitted && !firstName.valid }">
+      <label required for="firstName">Ім’я</label>
+      <input type="text" tabindex="0" maxlength="150" class="form-control" id="firstName" name="firstName"
+        [(ngModel)]="model.firstName" #firstName="ngModel" required />
+      <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert alert-danger">Необхідно
+        вказати Ім’я</div>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': fReg.submitted && !lastName.valid }">
+      <label required for="lastName">Прізвище</label>
+      <input type="text" tabindex="0" maxlength="150" class="form-control" id="lastName" name="lastName"
+        [(ngModel)]="model.lastName" #lastName="ngModel" required />
+      <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="alert alert-danger">Необхідно вказати
+        прізвище</div>
+    </div>
+
+    <div class="form-group"
+      [ngClass]="{ 'has-error': fReg.submitted && (email?.errors?.notValidEmail || email?.errors?.required) }">
+      <label required for="email">Адреса електронної пошти</label>
+      <input type="email" tabindex="0" maxlength="150" class="form-control" name="email"
+        [(ngModel)]="model.primaryEmail" #email="ngModel" required email />
+      <div *ngIf="email.invalid && (email.dirty)">
+        <div *ngIf="email?.errors?.required" class="alert alert-danger">Необхідно вказати адресу електронної пошти</div>
+        <div *ngIf="email?.errors?.notValidEmail" class="alert alert-danger">Недійсна адреса електронної пошти</div>
+      </div>
+    </div>
+
+    <div class="form-group"
+      [ngClass]="{ 'has-error': fReg.submitted && (confirmEmail?.errors?.required || confirmEmail?.errors?.notValidEmail || confirmEmail?.errors?.notValidEmail) }">
+      <label required for="confirmEmail">Підтвердження адреси електронної пошти</label>
+      <input type="email" tabindex="0" class="form-control" name="confirmEmail" [(ngModel)]="model.confirmEmail"
+        required #confirmEmail="ngModel" appConfirmEqualValidator="email" email />
+      <div *ngIf="confirmEmail.invalid && confirmEmail.touched">
+        <div *ngIf="confirmEmail?.errors?.required" class="alert alert-danger">Необхідно вказати адресу електронної
+          пошти</div>
+        <div *ngIf="confirmEmail?.errors?.notValidEmail" class="alert alert-danger">Недійсна адреса електронної пошти
+        </div>
+        <div *ngIf="confirmEmail?.errors?.notEqual" class="alert alert-danger">Електронні адреси не збігаються</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-text">Надання контрольних питань необов’язкове, але це дозволить вам відновити пароль, якщо ви
+        його забудете.
+      </div>
+      <table class="paddingBetweenCols">
+        <th>Контрольне питання</th>
+        <th>Контрольна відповідь</th>
+        <tr>
+          <td>
+            <select class="form-control" tabindex="0" id="securityQuestion1" name="securityQustion1"
+              [(ngModel)]="model.securityQuestion1">
+              <option *ngFor="let question of SecurityQuestions">{{question.securityQuestion}}</option>
+            </select>
+          </td>
+          <td>
+            <input type="text" tabindex="0" maxlength="250" class="form-control" id="SecurityAnswer1"
+              name="SecurityAnswer1" [(ngModel)]="model.securityAnswer1" placeholder="Відповідь">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="text" tabindex="0" maxlength="250" class="form-control" id="SecurityQuestion2"
+              placeholder="Your own custom security question" name="SecurityQuestion2"
+              [(ngModel)]="model.securityQuestion2">
+          </td>
+          <td>
+            <input type="text" tabindex="0" maxlength="250" class="form-control" id="SecurityAnswer2"
+              placeholder="Відповідь" name="SecurityAnswer2" [(ngModel)]="model.securityAnswer2">
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="mb-4 d-flex justify-content-between flex-11a">
+      <div class="d-flex justify-content-start flex-11a">
+        <button type="submit" tabindex="0" [disabled]="loading" class="btn btn-primary">Зареєструвати</button>
+        <div class="spinner-container" *ngIf="loading">
+          <div style="max-width: 30px; max-height: 30px;"></div>
+        </div>
+      </div>
+      <div class="d-flex flex-column flex-00a">
+        <a href="index.html">Увійти</a>
+        <a [routerLink]="['/home','reset-pass']">Забули пароль</a>
+      </div>
+    </div>
+
+    <div *ngIf="emailSent" style="margin-top: 15px;">
+      <div class="alert alert-success">
+        <p>Ваш обліковий запис успішно створено. На адресу {{model.primaryEmail}} надіслано електронний лист із вашим
+          тимчасовим паролем.</p>
+        <p>Будь ласка <a href="index.html">Увійдіть</a>, використовуючи ваш тимчасовий пароль для завершення процесу
+          реєстрації.</p>
+      </div>
+    </div>
+    <div *ngIf="waitingForApproval" style="margin-top: 15px;">
+      <div class="alert alert-success">
+        <p>Ваш обліковий запис успішно створено. На адресу {{model.primaryEmail}} надіслано електронний лист із вашим
+          тимчасовим паролем.</p>
+        <p>Будь ласка <a href="index.html">Увійдіть</a>, використовуючи ваш тимчасовий пароль для завершення процесу
+          реєстрації.</p>
+      </div>
+    </div>
+    <div *ngIf="receivedError" class="mb-3">
+      <div class="alert alert-danger">
+        <p>{{errorMessage}}</p>
+      </div>
+    </div>
+  </form>
+</div>

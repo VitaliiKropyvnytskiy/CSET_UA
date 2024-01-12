@@ -1,0 +1,106 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="white-panel">
+  <div id="top"></div>
+  <div class="d-flex flex-row flex-wrap sticky-sal justify-content-between align-items-start flex-11a pb-3">
+
+    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <label *ngIf="showQuestionsToggle" class="btn btn-app-mode form-check-label"
+        [class.active]="assessSvc.applicationMode == 'Q'" (click)="setMode('Q')"
+        matTooltip="У режимі питання відображаються прості запитання, які відповідають стандартним вимогам">
+        <input name="app_mode" class="form-check-input" type="radio" autocomplete="off"
+          [checked]="assessSvc.applicationMode == 'Q'">
+          Режим питань
+      </label>
+      <label *ngIf="showRequirementsToggle" class="btn btn-app-mode form-check-label"
+        [class.active]="assessSvc.applicationMode == 'R'" (click)="setMode('R')"
+        matTooltip="Режим вимог відображає текст вимоги дослівно, як це зазначено в стандарті">
+        <input name="app_mode" class="form-check-input" type="radio" autocomplete="off"
+          [checked]="assessSvc.applicationMode == 'R'">
+        Режим вимог
+      </label>
+    </div>
+
+    <div class="d-flex flex-row">
+      <div class="mr-3 answered-count" *ngIf="!!categories" matTooltip="Показує кількість питань, на які дано відповідь">
+        {{ completionSvc.answeredCount }}/{{ completionSvc.totalCount }}
+      </div>
+      <div class="d-flex flex-column align-items-start flex-00a">
+        <div class="d-flex align-items-start flex-11a">
+          <button class="btn btn-primary m-0 questions-header-collapse-button-radius" (click)="expandAll(false)"
+            matTooltip="Згорнути все" aria-label="Collapse All"><i class="fas fa-compress-alt"></i></button>
+          <button class="btn btn-primary m-0 br-0" (click)="expandAll(true)" matTooltip="Розгорнути все"
+            aria-label="Expand All">
+            <i class="fas fa-expand-alt"></i>
+          </button>
+          <button class="btn btn-primary m-0 questions-header-filter-button-radius" (click)="showFilterDialog()">
+            <i class="cset-icons-filter" matTooltip="Фільтр" aria-label="Filter"></i>
+          </button>
+        </div>
+
+        <div *ngIf="!browserIsIE() && !usesRAC()" class="mt-2">
+          <input type="checkbox" id="auto_load_supp" name="auto_load_supp" class="checkbox-custom"
+            [(ngModel)]="autoLoadSupplementalInfo" (change)="persistAutoLoadSetting()">
+          <label for="auto_load_supp" class="checkbox-custom-label" style="margin: 0 5px;">Авто-показ підказок</label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Стандартні запитання</h2>
+  <div *ngIf="filterSvc.isFilterEngaged()" class="filters-engaged">Показ лише відфільтрованих запитань</div>
+
+  <div *ngIf="!categories" class="w-100">
+    <div class="spinner-container" style="margin: 2em auto">
+      <div style="max-width: 50px; max-height: 50px;"></div>
+    </div>
+  </div>
+
+  <p *ngIf="!!categories" class="mb-4">
+    Запитання без відповіді обчислюються як відповідь '{{questionsSvc.answerButtonLabel('', 'N')}}'
+  </p>
+
+
+  <div *ngFor="let c of categories" [class.display-none]="!c.visible" class="w-100">
+    <app-category-block [myCategory]="c"></app-category-block>
+  </div>
+
+  <div *ngIf="filterSvc.isFilterEngaged() && visibleGroupCount() === 0"
+    class="alert-warning mt-4 mb-4 d-flex flex-row justify-content-center align-items-center flex-11a">
+    <span class="p-md-3 p-2 fs-large cset-icons-exclamation-triangle"></span>
+    <span class="fs-base-3 p-2 d-flex flex-column justify-content-center flex-11a">
+      Немає видимих питань для поточних фільтрів або критеріїв пошуку. Будь ласка, змініть свій вибір і повторіть спробу.
+    </span>
+  </div>
+
+  <div *ngIf="categories?.length === 0"
+    class="alert-warning mt-4 mb-4 d-flex flex-row justify-content-center align-items-center flex-11a">
+    <span class="p-md-3 p-2 fs-large cset-icons-exclamation-triangle"></span>
+    <span class="fs-base-3 p-2 d-flex flex-column justify-content-center flex-11a">
+      Немає відповідних питань/вимог для відображення. Перевірте SAL рівень оцінювання і вибір стандартів.
+    </span>
+  </div>
+
+  <app-nav-back-next [page]="'questions'"></app-nav-back-next>
+
+</div>

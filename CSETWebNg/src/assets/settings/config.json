@@ -1,0 +1,306 @@
+{
+    "NOTENODE": "Casing on config chain matters",
+    "currentConfigChain": [
+        "CSET"
+    ],
+    "appCode": "CSET",
+    "isRunningAnonymous": false,
+    "app": {
+        "protocol": "http",
+        "url": "localhost",
+        "port": "4200"
+    },
+    "api": {
+        "protocol": "http",
+        "url": "localhost",
+        "port": "5000",
+        "apiIdentifier": "api",
+        "documentsIdentifier": "Documents"
+    },
+    "helpContactEmail": "cset@cisa.dhs.gov",
+    "helpContactPhone": "",
+    "msgServerNotAvailable": "The server is unavailable. Contact your system administrator.",
+    "supplementalAutoloadInitialValue": false,
+    "debug": {
+        "showBuildTime": false,
+        "showQuestionAndRequirementIDs": false,
+        "canDeleteCustomModules": true,
+        "showExportAllButton": false
+    },
+    "galleryLayout": "CSET",
+    "installationMode": "CSET",
+    "mobileEnvironment": "",
+    "behaviors": {
+        "defaultTitle": "CSET",
+        "showDisclaimer": true,
+        "showModuleBuilder": true,
+        "showModuleImport": true,
+        "showModuleContentReport": true,
+        "showAssessmentDocuments": true,
+        "showObservations": true,
+        "showFacilitatorDropDown": true,
+        "showNameDisclaimer": false,
+        "showAggregation": true,
+        "showAnalytics": true,
+        "showAnalyticsAtTheEnd": true,
+        "showMenuParameterEditor": true,
+        "showAnalyticsColumnOnLanding": true,
+        "splashPageHTML": "dist/assets/splash.html",
+        "homeComponentForCurrentInstallationMode": "",
+        "defaultMaturityModel": "",
+        "isAcetOnly": false,
+        "showExportOnReports": true,
+        "showFacilityName": true,
+        "showCityName": true,
+        "showStateName": true,
+        "showContacts": true,
+        "showOrganizationName": true,
+        "showBusinessAgencyName": true,
+        "showCriticalService": true,
+        "allowDiagram": true,
+        "showPrivacyWarning": false,
+        "showTrend": true,
+        "showCompare": true,
+        "showComments": true,
+        "showFeedback": true,
+        "showEnableProtectedFeatures": true,
+        "showUpdateDiagramCsafVulnerabilitiesButton": false,
+        "showVulnerabilitiesDiagramInventoryTab": false,
+        "additionalUserGuides": []
+    },
+    "answerOptionsDefault": [
+        {
+            "code": "U",
+            "answerLabel": "Без відповіді"
+        },
+        {
+            "code": "Y",
+            "buttonLabel": "Так",
+            "buttonCss": "btn-yes",
+            "answerLabel": "Так"
+        },
+        {
+            "code": "N",
+            "buttonLabel": "Ні",
+            "buttonCss": "btn-no",
+            "answerLabel": "Ні"
+        },
+        {
+            "code": "NA",
+            "buttonLabel": "НД",
+            "buttonCss": "btn-na",
+            "answerLabel": "Н/Д"
+        },
+        {
+            "code": "A",
+            "buttonLabel": "Альт",
+            "buttonCss": "btn-alt",
+            "answerLabel": "Альтернативна відповідь"
+        },
+        {
+            "code": "I",
+            "buttonLabel": "Нез",
+            "buttonCss": "btn-inc",
+            "answerLabel": "Не завершено"
+        },
+        {
+            "code": "Iss",
+            "buttonLabel": "Проблема(Ні)",
+            "buttonCss": "btn-iss",
+            "answerLabel": "Ні з проблемою(ми)"
+        }
+    ],
+    "moduleBehaviors": [
+        {
+            "moduleName": "EDM",
+            "questionIcons": {
+                "showDetails": false,
+                "guidanceIcon": "G",
+                "showReviewed": false
+            }
+        },
+        {
+            "moduleName": "CRR",
+            "questionIcons": {
+                "showDetails": false,
+                "guidanceIcon": "G",
+                "showReviewed": false
+            }
+        },
+        {
+            "moduleName": "IMR",
+            "showMaturityLevelBadge": false,
+            "showCriticalServiceDemog": false,
+            "questionIcons": {
+                "showDetails": false,
+                "guidanceIcon": "G",
+                "showReviewed": false
+            }
+        },
+        {
+            "moduleName": "RRA",
+            "questionIcons": {
+                "showDetails": false,
+                "guidanceIcon": "G",
+                "showReviewed": false
+            }
+        },
+        {
+            "moduleName": "CIS",
+            "questionIcons": {
+                "showDetails": false,
+                "showObservations": false,
+                "showReferences": false,
+                "showReviewed": false
+            }
+        },
+        {
+            "moduleName": "SD02-Series",
+            "questionIcons": {
+                "showDetails": false
+            }
+        },
+        {
+            "moduleName": "CPG",
+            "showMaturityLevelBadge": false,
+            "questionIcons": {
+                "showDetails": false,
+                "showReviewed": false
+            },
+            "answerOptions": [
+                {
+                    "code": "Y",
+                    "buttonLabel": "Р",
+                    "buttonCss": "btn-yes",
+                    "answerLabel": "Реалізовано",
+                    "buttonTooltip": "Реалізовано – організація впровадила та продовжує підтримувати рекомендовані дії або відповідну альтернативу, необхідну для досягнення заявленого результату."
+                },
+                {
+                    "code": "I",
+                    "buttonLabel": "ВП",
+                    "buttonCss": "btn-na",
+                    "answerLabel": "В процесі",
+                    "buttonTooltip": "В процесі – організація перебуває в процесі впровадження рекомендованих дій у межах цілі або відповідної альтернативи для досягнення заявленого результату."
+                },
+                {
+                    "code": "S",
+                    "buttonLabel": "В",
+                    "buttonCss": "btn-alt",
+                    "answerLabel": "Визначено",
+                    "buttonTooltip": "Обсяг – організація визначила повний набір необхідних заходів, необхідних для досягнення заявленого результату мети."
+                },
+                {
+                    "code": "N",
+                    "buttonLabel": "НР",
+                    "buttonCss": "btn-no",
+                    "answerLabel": "Не реалізовано",
+                    "buttonTooltip": "Не реалізовано – організація не має найближчих планів впровадження рекомендованих дій для досягнення мети."
+                }
+            ]
+        },
+        {
+            "moduleName": "C2M2",
+            "questionIcons": {
+                "showReviewed": false
+            },
+            "answerOptions": [
+                {
+                    "code": "FI",
+                    "buttonLabel": "ПР",
+                    "buttonCss": "btn-c2m2-fi",
+                    "answerLabel": "Повністю реалізовано (ПР)",
+                    "buttonTooltip": "Повністю реалізовано - Завершено"
+                },
+                {
+                    "code": "LI",
+                    "buttonLabel": "МР",
+                    "buttonCss": "btn-c2m2-li",
+                    "answerLabel": "Майже реалізовано (МР)",
+                    "buttonTooltip": "Значною мірою реалізовано – завершено, але з визнаною можливістю вдосконалення"
+                },
+                {
+                    "code": "PI",
+                    "buttonLabel": "ЧР",
+                    "buttonCss": "btn-c2m2-pi",
+                    "answerLabel": "Частково реалізовано (ЧР)",
+                    "buttonTooltip": "Частково виконано – не завершено; є багато можливостей для вдосконалення"
+                },
+                {
+                    "code": "NI",
+                    "buttonLabel": "НР",
+                    "buttonCss": "btn-c2m2-ni",
+                    "answerLabel": "Не реалізовано (НР)",
+                    "buttonTooltip": "Не реалізовано - Відсутнє; практика не проводиться організацією"
+                }
+            ]
+        },
+        {
+            "moduleName": "ACET",
+            "answerOptions": [
+                {
+                    "code": "A",
+                    "buttonLabel": "Так(К)",
+                    "buttonCss": "btn-alt",
+                    "answerLabel": "Так з компесаційним контролем",
+                    "note": "This will only apply in the ACET skin.  See QuestionsService"
+                }
+            ]
+        },
+        {
+            "moduleName": "ISE",
+            "questionIcons": {
+                "showObservations": false
+            },
+            "answerOptions": [
+                {
+                    "code": "Y",
+                    "buttonLabel": "Так",
+                    "buttonCss": "btn-yes",
+                    "answerLabel": ""
+                },
+                {
+                    "code": "N",
+                    "buttonLabel": "Ні",
+                    "buttonCss": "btn-no",
+                    "answerLabel": ""
+                },
+                {
+                    "code": "U",
+                    "buttonLabel": "Без відповіді"
+                }
+            ]
+        },
+        {
+            "moduleName": "HYDRO",
+            "questionIcons": {
+                "showDetails": false,
+                "showGuidance": false,
+                "showObservations": false,
+                "showReferences": false
+            }
+        },
+        {
+            "moduleName": "MVRA",
+            "answerOptions": [
+                {
+                    "code": "Y",
+                    "buttonLabel": "ПР",
+                    "buttonCss": "btn-yes",
+                    "answerLabel": "Повністю реалізовано"
+                },
+                {
+                    "code": "N",
+                    "buttonLabel": "НР",
+                    "buttonCss": "btn-no",
+                    "answerLabel": "Не реалізовано"
+                },
+                {
+                    "code": "A",
+                    "buttonLabel": "ЧР",
+                    "buttonCss": "btn-alt",
+                    "answerLabel": "Частково реалізовано"
+                }
+            ]
+        }
+    ]
+}

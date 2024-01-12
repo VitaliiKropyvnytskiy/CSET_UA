@@ -1,0 +1,178 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<h4>Демографія служби</h4>
+
+<form class="mb-3">
+  <ng-container *ngIf="showCriticalServiceIdentifyingInfo()">
+    <div class="form-group">
+      <label for="criticalServiceName">Назва критичної служби</label>
+      <input [ngClass]="{ 'alert-danger': !demographics.criticalService && showErrors() }" class="form-control"
+        tabindex="0" type="text" maxlength="50" name="criticalServiceName" id="criticalServiceName"
+        [(ngModel)]="demographics.criticalService" placeholder="Назва критичної служби"
+        (change)="updateBaseDemographics()" />
+    </div>
+    <div class="form-group">
+      <label for="criticalServiceDescription">Опис критичної служби</label>
+      <input [ngClass]="{
+          'alert-danger': !csiServiceDemographic.criticalServiceDescription && showErrors()
+        }" class="form-control" tabindex="0" type="text" maxlength="150" name="criticalServiceDescription"
+        id="criticalServiceDescription" [(ngModel)]="csiServiceDemographic.criticalServiceDescription"
+        placeholder="Опис критичної служби" (change)="update()" />
+    </div>
+    <div class="form-group">
+      <label for="itIcsName">Назва IT/ICS системи (підтримки критичної служби)</label>
+      <input [ngClass]="{ 'alert-danger': !csiServiceDemographic.itIcsName && showErrors() }" class="form-control"
+        tabindex="0" type="text" maxlength="150" name="itIcsName" id="itIcsName"
+        [(ngModel)]="csiServiceDemographic.itIcsName" placeholder="Назва IT/ICS системи (підтримки критичної служби)"
+        (change)="update()" />
+    </div>
+    <div class="form-group">
+      <label class="mb-1" for="multisiteService">Багатосайтовий сервіс?</label>
+      <div class="btn-group btn-group-toggle d-block mb-2" id="multisiteService" data-toggle="buttons" ngbRadioGroup>
+        <label ngbButtonLabel class="btn btn-level border-2 mb-1" [class.active]="csiServiceDemographic.multiSite">
+          <input ngbButton type="radio" autocomplete="off" name="multisiteService"
+            [(ngModel)]="csiServiceDemographic.multiSite"
+            (change)="csiServiceDemographic.multiSiteDescription = null; update()" [value]="true" />Так</label>
+        <label ngbButtonLabel class="btn btn-level border-2 mb-1" [class.active]="!csiServiceDemographic.multiSite">
+          <input ngbButton type="radio" autocomplete="off" name="multisiteService"
+            [(ngModel)]="csiServiceDemographic.multiSite"
+            (change)="csiServiceDemographic.multiSiteDescription = null; update()" [value]="false" />Ні</label>
+      </div>
+      <input [ngClass]="{
+          'alert-danger':
+            !csiServiceDemographic.multiSiteDescription &&
+            csiServiceDemographic.multiSite &&
+            showErrors()
+        }" class="form-control" tabindex="0" maxlength="150" name="multiSiteDescription" type="text"
+        placeholder="Опис багатосайтового сервісу" [(ngModel)]="csiServiceDemographic.multiSiteDescription"
+        (change)="update()" [disabled]="!csiServiceDemographic.multiSite" />
+    </div>
+  </ng-container>
+  <div class="mb-3">
+    <div class="form-group">
+      <label class="mb-1" for="budgetBasis">Що є основою бюджету кібербезпеки для цієї критично важливої служби?</label>
+      <div class="btn-group btn-group-toggle d-block button-container" id="budgetBasis" data-toggle="buttons"
+        ngbRadioGroup>
+        <label ngbButtonLabel class="btn btn-level border-2 mb-1" *ngFor="let budgetB of budgetBasisList"
+          [class.active]="budgetB.budget_Basis === csiServiceDemographic.budgetBasis"
+          [ngClass]="{ 'alert-danger': !csiServiceDemographic.budgetBasis && showErrors() }">
+          <input ngbButton type="radio" autocomplete="off" name="budgetBasis"
+            [(ngModel)]="csiServiceDemographic.budgetBasis" (change)="update()" [value]="budgetB.budget_Basis" />
+          {{ budgetB.budget_Basis }}
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <div class="form-group">
+      <label class="mb-1" for="totalITStaff1">Скільки ІТ/ICS керівництва та персоналу (тобто технологів),
+        призначено для критичної служби??</label>
+      <div class="btn-group btn-group-toggle d-block button-container" id="totalITStaff1" data-toggle="buttons"
+        ngbRadioGroup>
+        <label ngbButtonLabel class="btn btn-level mb-1" *ngFor="let totalITStaffItem of itIcsStaffCountList"
+          [class.active]="totalITStaffItem.staff_Count === csiServiceDemographic.itIcsStaffCount"
+          [ngClass]="{ 'alert-danger': !csiServiceDemographic.itIcsStaffCount && showErrors() }">
+          <input ngbButton type="radio" autocomplete="off" name="totalITStaff"
+            [(ngModel)]="csiServiceDemographic.itIcsStaffCount" (change)="update()"
+            [value]="totalITStaffItem.staff_Count" />
+          {{ totalITStaffItem.staff_Count }}
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <div class="form-group">
+      <label class="mb-1" for="totalITStaff2">Скільки керівних кадрів і персоналу з кібербезпеки IT/ICS
+        (тобто технологів), призначено для критичної служби?</label>
+      <div class="btn-group btn-group-toggle d-block button-container" id="totalITStaff2" data-toggle="buttons"
+        ngbRadioGroup>
+        <label ngbButtonLabel class="btn btn-level mb-1"
+          *ngFor="let totalITStaffItem of cyberSecurityItIcsStaffCountList"
+          [class.active]="totalITStaffItem.staff_Count === csiServiceDemographic.cybersecurityItIcsStaffCount"
+          [ngClass]="{ 'alert-danger': !csiServiceDemographic.cybersecurityItIcsStaffCount && showErrors() }">
+          <input ngbButton type="radio" autocomplete="off" name="totalITStaff"
+            [(ngModel)]="csiServiceDemographic.cybersecurityItIcsStaffCount" (change)="update()"
+            [value]="totalITStaffItem.staff_Count" />
+          {{ totalITStaffItem.staff_Count }}
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <div class="form-group">
+      <label class="mb-1" for="authorizedOrganizationalUserCount">Скільки авторизованих організаційних користувачів
+        отримують доступ і взаємодіють (тобто працюють, виконують введення даних тощо як кінцеві користувачі) з
+        критичною службою?</label>
+      <div class="btn-group btn-group-toggle d-block button-container" id="authorizedOrganizationalUserCount"
+        data-toggle="buttons" ngbRadioGroup>
+        <label ngbButtonLabel class="btn btn-level mb-1"
+          *ngFor="let authorizedOrganizationalUserCountItem of authorizedOrganizationalUserCountList" [class.active]="
+            authorizedOrganizationalUserCountItem.user_Count === csiServiceDemographic.authorizedOrganizationalUserCount
+          " [ngClass]="{ 'alert-danger': !csiServiceDemographic.authorizedOrganizationalUserCount && showErrors() }">
+          <input ngbButton type="radio" autocomplete="off" name="authorizedOrganizationalUserCount"
+            [(ngModel)]="csiServiceDemographic.authorizedOrganizationalUserCount" (ngModelChange)="update()"
+            [value]="authorizedOrganizationalUserCountItem.user_Count" />
+          {{ authorizedOrganizationalUserCountItem.user_Count }}
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <div class="form-group">
+      <label class="mb-1" for="authorizedNonOrganizationUserCount">Скільки авторизованих неорганізаційних користувачів
+        мають доступ і взаємодіють (тобто працюють, виконують введення даних тощо як кінцеві користувачі) з критичною
+        службою?</label>
+      <div class="btn-group btn-group-toggle d-block button-container" id="authorizedNonOrganizationUserCount"
+        data-toggle="buttons" ngbRadioGroup>
+        <label ngbButtonLabel class="btn btn-level mb-1"
+          *ngFor="let authorizedNonOrganizationalUserCountItem of authorizedNonOrganizationalUserCountList"
+          [class.active]="
+            authorizedNonOrganizationalUserCountItem.user_Count ===
+            csiServiceDemographic.authorizedNonOrganizationalUserCount
+          "
+          [ngClass]="{ 'alert-danger': !csiServiceDemographic.authorizedNonOrganizationalUserCount && showErrors() }">
+          <input ngbButton type="radio" autocomplete="off" name="authorizedNonOrganizationUserCount"
+            [(ngModel)]="csiServiceDemographic.authorizedNonOrganizationalUserCount" (change)="update()"
+            [value]="authorizedNonOrganizationalUserCountItem.user_Count" />
+          {{ authorizedNonOrganizationalUserCountItem.user_Count }}
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <div class="form-group">
+      <label class="mb-1" for="customersCount">Скільки клієнтів (тобто фізичних осіб та/або організацій) отримують
+        вигоду від критичної служби, залежать від неї та/або іншим чином використовують її?</label>
+      <div class="btn-group btn-group-toggle d-block button-container" id="customersCount" data-toggle="buttons"
+        ngbRadioGroup>
+        <label ngbButtonLabel class="btn btn-level mb-1" *ngFor="let customersCountItem of customersCountList"
+          [class.active]="customersCountItem.customer_Count === csiServiceDemographic.customersCount"
+          [ngClass]="{ 'alert-danger': !csiServiceDemographic.customersCount && showErrors() }">
+          <input ngbButton type="radio" autocomplete="off" name="customersCount" (change)="update()"
+            [(ngModel)]="csiServiceDemographic.customersCount" [value]="customersCountItem.customer_Count" />
+          {{ customersCountItem.customer_Count }}
+        </label>
+      </div>
+    </div>
+  </div>
+</form>

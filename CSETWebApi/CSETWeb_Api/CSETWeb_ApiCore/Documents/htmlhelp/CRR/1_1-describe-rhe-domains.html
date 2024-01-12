@@ -1,0 +1,348 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   <title>1. Про нетехнічне оцінювання операційної стійкості та практик кібербезпеки організації CISA Cyber Resilience Review &gt; 1.1. Характеристика доменів</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />   
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="generator" content="Help &amp; Manual" />
+   <meta name="keywords" content="" />
+   <meta name="description" content="У даному розділі наведено інформацію &nbsp;про 10 доменів CRR та їхню мету і практичну діяльність." />
+   <link type="text/css" href="default.css" rel="stylesheet" />
+   <link type="text/css" href="custom.css" rel="stylesheet" />
+
+   <style TYPE="text/css" media="screen"> 
+      html, body { margin:0; 
+        padding:0; 
+        background: #ffffff; 
+      } 
+      div#printheader { display: none; }
+      #idheader { 
+        width:100%; 
+        min-height: 60px; 
+        padding: 0; 
+        margin: 0;
+        position: fixed;
+        top: 0;
+        background: #2C5D88;
+        z-index: 2;
+      } 
+      /* The "min-height" for "#idheader table" ensures that the (blue) header of the topic
+         has at least the same height as the header of the navigation panel left of it */
+      #idheader table { min-height: 59px;}             
+      #idheader h1 span { color: #FFF }     
+      #idnav {
+        text-align: right;
+        width: 126px;
+        vertical-align: middle;        
+      } 
+      #idnav a { text-decoration: none }
+      #idnav span {
+        display: inline-block;
+        width: 24px;
+        height: 24px;
+        margin-left: 4px;
+        background:url('hm_webhelp_buttons_grey.png') top left no-repeat;
+      } 
+      #idnav a span {
+        background-image:url('hm_webhelp_buttons_white.png');
+      } 
+      #idnav a span:hover {
+        background-image:url('hm_webhelp_buttons_orange.png');
+      } 
+      #idnav span.hmbtnprev { background-position: 0 -32px }
+      #idnav span.hmbtnnext { background-position: -24px -32px }
+      #idnav span.hmbtntop  { background-position: -48px -32px }
+      #idnav span.hmbtntoggle  { width: 20px; background-position: -70px -32px }
+      #idnav span.hmbtnprint  { background-position: -88px -32px }
+
+      #callout-table, #overview-table {display:block; position:relative; top:0; left:0;}
+      #callout-icon {display:block; position:absolute; top:-11px; left:-11px;}
+      #callout-icon-flag {display:block; position:absolute; top:-11px; left:-8px;}
+      #callout-table a {text-decoration: none; color: blue;}
+      #callout-table a:visited {text-decoration: none; color: blue;}
+      #overview-table a {text-decoration: none; color: black;}
+      #overview-table a:visited {text-decoration: none; color: black;}
+      #callout-table a:hover, #overview-table a:hover {text-decoration: underline;}       
+      p.help-url { margin: 20px 0 5px 0; text-align: center; }
+	  p.help-url a:link { font-size: 50%; text-decoration: none; color: black; }
+	  p.help-url a:visited { color: black; }
+	  p.help-url a:hover { font-size: 95%; text-decoration: underline; }
+      #switchtoggles { text-align: right; padding: 0 2px 0 0; font-size: 90%; } 
+      .sync-toc { color: #FFF; font-size: 8pt; font-weight: bold; display: none; }
+      .sync-toc a { color: #FFF; text-decoration: none; font-weight: bold;}
+      .sync-toc a:visited { color: #FFF; }
+      .sync-toc a:hover { text-decoration: underline; }
+	  a#printbuttonlink { cursor: pointer; }
+      a.hmanchor { display: inline-block; margin-top: -4em; padding-top: 4em; }  
+   </style>
+   <style TYPE="text/css" media="print">
+      div#idheader, img.dropdown-toggle-icon, p.help-url { display:none } 
+   </style>
+   
+   <script type="text/javascript" src="jquery.js"></script>
+   <script type="text/javascript" src="helpman_settings.js"></script>
+   <script type="text/javascript" src="helpman_topicinit.js"></script>
+
+   <script type="text/javascript">
+     HMSyncTOC("index.html", "1_1-describe-rhe-domains.html");
+   </script>
+   <script type="text/javascript" src="highlight.js"></script>
+   <script type="text/javascript">
+     $(document).ready(function(){highlight();});
+   </script>
+</head>
+<body>
+
+
+<div id="printheader"><h1 class="p_Heading1"><span class="f_Heading1">1.1. Характеристика доменів</span></h1>
+</div>
+<div id="idheader">
+<div id="idheaderbg">
+<table style="width:100%;border:none;margin:0px;" cellspacing="0" cellpadding="0"> 
+  <tr>
+    <td class="topichead" style="text-align:left; vertical-align:middle">
+      <p class="sync-toc">&lt;&lt; <a rel="nofollow" href="index.html?1_1-describe-rhe-domains.html" target="_top">Click to Display Table of Contents</a> &gt;&gt;</p>
+      <p class="crumbs"><b>Navigation:</b>&nbsp;
+      
+      <a href="about-crr.html">1. Про нетехнічне оцінювання операційної стійкості та практик кібербезпеки організації CISA Cyber Resilience Review</a>&nbsp;&gt;</p>
+   
+      <h1 class="p_Heading1"><span class="f_Heading1">1.1. Характеристика доменів</span></h1>
+
+    </td>
+    <td class="topichead" id="idnav">
+      <a href="javascript:HMToggleExpandAll(!HMAnyToggleOpen())" title="Click to open/close expanding sections"><span class="hmbtntoggle"></span></a>
+      <a href="about-crr.html" title="Previous Topic"><span class="hmbtnprev"></span></a>
+      <a href="about-crr.html" title="Parent Chapter"><span class="hmbtntop"></span></a>
+      <a href="1_2-about-mil.html" title="Next Topic"><span class="hmbtnnext"></span></a>
+      
+    </td>
+  </tr>  
+</table>
+</div>
+</div>  
+
+<div id="idcontent"><div id="innerdiv">
+<!-- Ask Internet Explorer 6.users to update their obsolete and dangerous browser --> 
+<!--[if lt IE 7]><div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'><a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+
+<!--ZOOMRESTART-->
+<p class="p_NewNormal"><span class="f_NewNormal">У даному розділі наведено інформацію &nbsp;про 10 доменів CRR та їхню мету і практичну діяльність.</span></p>
+<p class="p_NewNormal"><img id="toggle0186a1_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_plus1.gif"/> &nbsp; &nbsp; &nbsp; &nbsp;<span class="f_NewNormal"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a1','toggle0186a1_ICON')">Управління ативами / Asset Management (AM)</a></span></p>
+<div id="toggle0186a1" class="dropdown-toggle-body" style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; width:1131px; padding:0; border:none"><p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal" style="font-weight: bold;">Мета</span><span class="f_NewNormal">: ідентифікація, документування та управління активами протягом їх життєвого циклу для забезпечення стабільної продуктивності для підтримки критично важливих послуг.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Домен &quot;</span><span class="f_NewNormal" style="font-weight: bold;">Управління активами</span><span class="f_NewNormal">&quot; встановлює метод, за допомогою якого організація може планувати, ідентифікувати, документувати та управляти своїми активами. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal" style="font-style: italic;">Активи</span><span class="f_NewNormal"> - це сировина, необхідна службам для роботи. CRR організовує активи в наступні категорії:</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal"> </span><span class="f_NewNormal" style="font-weight: bold;">Люди</span><span class="f_NewNormal"> – персонал (як внутрішній, так і зовнішній для організації), такі як люди, які підтримують центри обробки даних чи використовують інформаційно-комунікаційні технології для управління та моніторингу сервісу.</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal" style="font-weight: bold;">Інформація </span><span class="f_NewNormal">– інформація облікового запису, файли конфігурації технічних активів, операційні дані, інформація про клієнтів та інша інформація, необхідна для надання послуги.</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal" style="font-weight: bold;">Технологія</span><span class="f_NewNormal"> – комп'ютери (апаратне забезпечення), програмне забезпечення, системи управління чи інші технології, включаючи зовнішні інформаційні системи, які організація використовує для надання послуг.</span></p>
+<p class="p_NewNormal" style="text-indent: 0; padding-left: 13px; margin-left: 0;"><span class="f_NewNormal" style="font-family: Arial,'Lucida Sans Unicode','Lucida Grande','Lucida Sans';display:inline-block;width:13px;margin-left:-13px">&#8226;</span><span class="f_NewNormal" style="font-weight: bold;">Споруди</span><span class="f_NewNormal"> – комп'ютери (апаратне забезпечення), програмне забезпечення, системи управління чи інші технології, включаючи зовнішні інформаційні системи, які організація використовує для надання послуг.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Домен &quot;</span><span class="f_NewNormal" style="font-weight: bold;">Управління активами</span><span class="f_NewNormal">&quot; складається з 7-ми цілей і 30 практик.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_NewNormal"><img id="toggle0186a2_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_plus1.gif"/> &nbsp; &nbsp; &nbsp; &nbsp;<span class="f_NewNormal"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a2','toggle0186a2_ICON')">Управління заходами / Controls Management (СА)</a></span></p>
+<div id="toggle0186a2" class="dropdown-toggle-body" style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; width:1129px; padding:0; border:none"><p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal" style="font-weight: bold;">Мета</span><span class="f_NewNormal">: ідентифікувати, аналізувати та управляти засобами контролю в операційному середовищі критично важливої служби.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal" style="font-style: italic;">Внутрішній контроль</span><span class="f_NewNormal"> - це процес управління, який використовується організацією для забезпечення ефективного та результативного досягнення організаційних цілей та надання достатньої впевненості в успіху. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Сфера управління контролями, що окреслена в CRR, представляє спосіб для організації визначити цілі контролю та встановити контролі для досягнення цих цілей. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Сфера управління контролями також звертає увагу на важливість аналізу та оцінки цих контролів для забезпечення постійного вдосконалення процесу.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Домен &quot;</span><span class="f_NewNormal" style="font-weight: bold;">Управління заходами</span><span class="f_NewNormal">&quot; складається з 4-з цілей і 16 практик.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_NewNormal"><img id="toggle0186a3_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_plus1.gif"/> &nbsp; &nbsp; &nbsp; &nbsp;<span class="f_NewNormal"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a3','toggle0186a3_ICON')">Конфігурація та управління змінами / Configuration and Change Management (CCM)</a></span></p>
+<div id="toggle0186a3" class="dropdown-toggle-body" style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; width:1130px; padding:0; border:none"><p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal" style="font-weight: bold;">Мета</span><span class="f_NewNormal">: впровадити процеси для забезпечення цілісності активів, використовуючи контроль змін та аудит контролю змін.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Інфраструктура активів організації постійно розвивається в міру того, як змінюються технології, оновлюється інформація та наймається новий персонал. Домен &quot;</span><span class="f_NewNormal" style="font-weight: bold;">Конфігурація та управління змінами</span><span class="f_NewNormal">&quot; розглядає, як організація може впровадити процеси і процедури, які управляють активами і гарантують, що зміни, внесені в ці активи, будуть мінімально руйнівними для організації.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal"> Складається з 3-х цілей і 23 практик.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_NewNormal"><img id="toggle0186a4_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_plus1.gif"/> &nbsp; &nbsp; &nbsp; &nbsp;<span class="f_NewNormal"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a4','toggle0186a4_ICON')">Управління вразливостями / &nbsp;Vulnerability Management (VM)</a></span></p>
+<div id="toggle0186a4" class="dropdown-toggle-body" style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; width:1131px; padding:0; border:none"><p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal" style="font-weight: bold;">Мета</span><span class="f_NewNormal">: виявлення, аналіз та управління вразливостями в операційному середовищі критично важливого сервісу.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal" style="font-style: italic;">Вразливість</span><span class="f_NewNormal"> - це схильність ресурсу та пов'язаного з ним критично важливого сервісу до порушень. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Вразливості можуть призвести до операційних ризиків, тому їх необхідно виявляти та управляти ними, щоб уникнути порушень в операційному середовищі критично важливої послуги. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Процес керування ризиками виявляє та аналізує вразливості до того, як вони будуть використані, та інформує організацію про загрози, які повинні бути проаналізовані в процесі керування ризиками, щоб визначити, чи становлять вони відчутний ризик для організації, виходячи з прийнятного для неї рівня ризику.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Домен &quot;</span><span class="f_NewNormal" style="font-weight: bold;">Управління вразливостями</span><span class="f_NewNormal">&quot; складається з 4-х ціей і 15 процедур.</span></p>
+<p style="line-height: 1.28; margin: 0 0 11px 0;"><span style="color: #000000;">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_NewNormal"><img id="toggle0186a5_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_plus1.gif"/> &nbsp; &nbsp; &nbsp; &nbsp;<span class="f_NewNormal"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a5','toggle0186a5_ICON')">Управління інцидентами / Incident Management (IM)</a></span></p>
+<div id="toggle0186a5" class="dropdown-toggle-body" style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; width:1127px; padding:0; border:none"><p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal" style="font-weight: bold;">Мета</span><span class="f_NewNormal">: впровадити процеси ідентифікації та аналізу подій, виявлення інцидентів та визначення організаційних заходів реагування.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Порушення в операційному середовищі організації відбуваються регулярно. Вивчається здатність організації розпізнавати потенційні збої, аналізувати їх і визначати, як і коли реагувати.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Домен &quot;</span><span class="f_NewNormal" style="font-weight: bold;">Управління інцидентами</span><span class="f_NewNormal">&quot; складається з п'яти цілей і 23 практик.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_NewNormal"><img id="toggle0186a6_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_plus1.gif"/> &nbsp; &nbsp; &nbsp; &nbsp;<span class="f_NewNormal"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a6','toggle0186a6_ICON')">Управління безперервністю сервісу / Service Continuity Management (SCM)</a></span></p>
+<div id="toggle0186a6" class="dropdown-toggle-body" style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; width:1128px; padding:0; border:none"><p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal" style="font-weight: bold;">Мета</span><span class="f_NewNormal">: забезпечення безперервності основних операцій сервісів та пов'язаних з ними активів, якщо в результаті інциденту, катастрофи або іншої події відбудеться збій в роботі.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Процес оцінки, визначення пріоритетів, планування та реагування, а також вдосконалення планів щодо подолання наслідків руйнівних подій називається забезпеченням безперервності надання послуг. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Метою безперервності надання послуг є пом'якшення наслідків збоїв в роботі шляхом використання перевірених або відпрацьованих планів, які сприяють передбачуваній та послідовній безперервності надання критично важливих сервісів.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Домен &quot;</span><span class="f_NewNormal" style="font-weight: bold;">Керування безперервністю сервісу</span><span class="f_NewNormal">&quot; складається з 4-х цілей і 16 практик.</span></p>
+<p style="line-height: 1.28; margin: 0 0 11px 0;"><span style="color: #000000;">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_NewNormal"><img id="toggle0186a7_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_plus1.gif"/> &nbsp; &nbsp; &nbsp; &nbsp;<span class="f_NewNormal"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a7','toggle0186a7_ICON')">Управління ризиками / Risk Management (RM)</a></span></p>
+<div id="toggle0186a7" class="dropdown-toggle-body" style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; width:1130px; padding:0; border:none"><p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal" style="font-weight: bold;">Мета</span><span class="f_NewNormal">: виявити, проаналізувати та зменшити ризики для критично важливих сервісних активів, які можуть негативно вплинути на роботу та надання послуг.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal" style="font-style: italic;">Управління ризиками</span><span class="f_NewNormal"> є фундаментальною діяльністю для будь-якої організації і практикується на всіх рівнях, від керівництва до окремих осіб у бізнес-підрозділах.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">CRR фокусується на ризиках для кіберзалежних операцій, які потенційно можуть перервати надання критично важливої послуги, що перевіряється. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Хоча CRR фокусується на операційних ризиках, важливо зазначити, що управління операційними ризиками вимагає комплексного підходу, щоб бути ефективним.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Домен &quot;</span><span class="f_NewNormal" style="font-weight: bold;">Управління ризиками</span><span class="f_NewNormal">&quot; складається з 5-ти цілей і 13 практик.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_NewNormal"><img id="toggle0186a8_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_plus1.gif"/> &nbsp; &nbsp; &nbsp; &nbsp;<span class="f_NewNormal"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a8','toggle0186a8_ICON')">Управління зовнішними залежностями / &nbsp;External Dependencies Management (EDM)</a></span></p>
+<div id="toggle0186a8" class="dropdown-toggle-body" style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; width:1133px; padding:0; border:none"><p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal" style="font-weight: bold;">Мета</span><span class="f_NewNormal">: впровадити процеси управління належним рівнем контролю для забезпечення підтримки та захисту послуг та активів, які залежать від дій зовнішніх суб'єктів.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Аутсорсинг послуг, розробок та виробництва став нормальною та рутинною частиною діяльності багатьох організацій, оскільки аутсорсинг дозволяє залучати спеціалізовані навички та обладнання за менші кошти порівняно з внутрішніми варіантами. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Домен CRR &quot;</span><span class="f_NewNormal" style="font-weight: bold;">Управління зовнішніми залежностями</span><span class="f_NewNormal">&quot; представляє метод, за допомогою якого організація може визначити та визначити пріоритети цих зовнішніх залежностей, а потім зосередитися на управлінні та підтримці цих залежностей.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Складається &nbsp;з 5-ти цілей і 14 практик.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_NewNormal"><img id="toggle0186a9_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_plus1.gif"/> &nbsp; &nbsp; &nbsp; &nbsp;<span class="f_NewNormal"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186a9','toggle0186a9_ICON')">Навчання та обізнаність / Training and Awareness (TA)</a></span></p>
+<div id="toggle0186a9" class="dropdown-toggle-body" style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; width:1129px; padding:0; border:none"><p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal" style="font-weight: bold;">Мета</span><span class="f_NewNormal">: набуття навичок та підвищення рівня обізнаності людей, які відіграють важливу роль у підтримці критично важливих послуг.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Навчання зосереджене на процесах, за допомогою яких організація планує, визначає потреби, проводить та вдосконалює навчання, щоб забезпечити знання та виконання потреб організації щодо забезпечення кіберстійкості в діяльності компанії. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Організація планує та проводить заходи з навчання та підвищення кваліфікації, які допомагають співробітникам усвідомити їхню роль у вирішенні проблем та реалізації завдань по кіберзахисту організації та її політики. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Співробітники також проходять спеціальну підготовку, яка дозволяє їм виконувати свої функції в управлінні діяльністю з забезпечення кіберстійкості організації.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Домен &quot;</span><span class="f_NewNormal" style="font-weight: bold;">Навчання та обізнаність</span><span class="f_NewNormal">&quot; складається з 2-х цілей і 11 практик.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_NewNormal"><img id="toggle0186aa_ICON" class="dropdown-toggle-icon" alt="Натисніть для розгортання/згортання тексту" title="Натисніть для розгортання/згортання тексту" width="9" height="9" style="margin:0;width:9px;height:9px;border:none" src="hmtoggle_plus1.gif"/> &nbsp; &nbsp; &nbsp; &nbsp;<span class="f_NewNormal"><a class="dropdown-toggle" title="Натисніть для розгортання/згортання тексту" href="javascript:HMToggle('toggle','toggle0186aa','toggle0186aa_ICON')">Ситуаційна обізнаність / Situational Awareness (SA) </a></span></p>
+<div id="toggle0186aa" class="dropdown-toggle-body" style="text-align: left; text-indent: 0; line-height: 1.80; padding: 0 0 0 0; margin: 0 0 0 0;"><table style="border:none; border-spacing:0;">
+<tr>
+<td style="vertical-align:top; width:1132px; padding:0; border:none"><p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal" style="font-weight: bold;">Мета</span><span class="f_NewNormal">: активно виявляти та аналізувати інформацію, пов'язану з безпосередньою операційною стабільністю та безпекою, а також координувати таку інформацію в межах підприємства, для забезпечення того, що всі організаційні підрозділи діють в рамках загальної операційної картини.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Діяльність із забезпечення ситуаційної обізнаності здійснюється в рамках всієї організації для надання своєчасної та точної інформації про поточний стан операційних процесів. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Заходи повинні підтримувати комунікацію з різними внутрішніми та зовнішніми стейкхолдерами для забезпечення вимог до відмовостійкості критично важливих сервісів. </span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">Домен &quot;</span><span class="f_NewNormal" style="font-weight: bold;">Ситуаційна обізнаність</span><span class="f_NewNormal">&quot; складається з 3-х цілей і 8 практик.</span></p>
+<p class="p_NewNormal"><span class="f_NewNormal">&nbsp;</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="p_Normal" style="line-height: 1.80;">&nbsp;</p>
+<p class="p_Normal" style="line-height: 1.80;">&nbsp;</p>
+<hr style="height:1px; color:#C0C0C0; border-width:0; background-color:#c0c0c0;" /><p class="p_Normal"><span class="f_NewStyle" style="color: #bfbfbf;"> підготовлено у редакторі Help &amp; Manual 9.3.0</span></p>
+
+<!--ZOOMSTOP-->
+</div></div>
+<script type="text/javascript">
+
+
+
+
+function normHeaders() {
+ var topicHeadHeight =  $("#idheaderbg > table").first().height() + 1,
+	 $topicHeaderBox = $("#idheader"),
+	 $topicContentBox = $("#idcontent"),
+	 $navHeader = $("#navbar", parent.document),			 
+	$navBox = $("div#hmnavframe", parent.document),
+	 navHeaderHeight = $navHeader.height();
+ if (topicHeadHeight != navHeaderHeight) {
+	 $navHeader.css("height",topicHeadHeight + "px");
+	 $navBox.css("top", topicHeadHeight + "px");
+	 $topicHeaderBox.css("height", topicHeadHeight + "px");
+		if ($topicHeaderBox.css("position") == "fixed"){
+			$topicContentBox.css("margin-top", topicHeadHeight + "px");
+			}
+		}
+    }
+			 
+  $(document).ready(function(){
+    $(window).on('resize', function() {
+      var y = $('#idheader').height(); 
+      $('#idcontent').css('margin-top', y);
+      var par = window.parent;
+      if ($( par ).width() <= $( window ).width()+20) {
+        $('#idheader').css('position', 'relative');
+        $('#idcontent').css('margin-top', 0);
+        $('#idbacktotop').css('display', 'block');
+        $('.hmanchor').css('margin-top', -20);
+	$('.hmanchor').css('padding-top', 20);
+      }
+      else {
+        $('#idheader').css('position', 'fixed');
+        $('#idcontent').css('margin-top', $('#idheader').height());
+        $('#idbacktotop').css('display', 'none');
+        $('.hmanchor').css('margin-top', -y-20);
+		$('.hmanchor').css('padding-top', y+20);
+		$("div#hmsplitter", parent.document).css('width', '3px');
+      }
+	normHeaders();
+    });
+    
+	 $(window).resize(); //trigger event for initially small displays
+  });
+ 
+
+if ((!parent.hmNavigationFrame) && (parent.location) && (parent.location.href)) { $('.sync-toc').show();$('p.crumbs').hide();}
+
+</script>
+<script type="text/javascript">
+HMInitToggle('toggle0186a1_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_plus0.gif','hm.src1','hmtoggle_plus1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a1\',\'toggle0186a1_ICON\')');
+HMInitToggle('toggle0186a1','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a2_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_plus0.gif','hm.src1','hmtoggle_plus1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a2\',\'toggle0186a2_ICON\')');
+HMInitToggle('toggle0186a2','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a3_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_plus0.gif','hm.src1','hmtoggle_plus1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a3\',\'toggle0186a3_ICON\')');
+HMInitToggle('toggle0186a3','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a4_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_plus0.gif','hm.src1','hmtoggle_plus1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a4\',\'toggle0186a4_ICON\')');
+HMInitToggle('toggle0186a4','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a5_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_plus0.gif','hm.src1','hmtoggle_plus1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a5\',\'toggle0186a5_ICON\')');
+HMInitToggle('toggle0186a5','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a6_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_plus0.gif','hm.src1','hmtoggle_plus1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a6\',\'toggle0186a6_ICON\')');
+HMInitToggle('toggle0186a6','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a7_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_plus0.gif','hm.src1','hmtoggle_plus1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a7\',\'toggle0186a7_ICON\')');
+HMInitToggle('toggle0186a7','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a8_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_plus0.gif','hm.src1','hmtoggle_plus1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a8\',\'toggle0186a8_ICON\')');
+HMInitToggle('toggle0186a8','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186a9_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_plus0.gif','hm.src1','hmtoggle_plus1.gif','onclick','HMToggle(\'toggle\',\'toggle0186a9\',\'toggle0186a9_ICON\')');
+HMInitToggle('toggle0186a9','hm.type','dropdown','hm.state','0');
+HMInitToggle('toggle0186aa_ICON','hm.type','dropdown','hm.state','0','hm.src0','hmtoggle_plus0.gif','hm.src1','hmtoggle_plus1.gif','onclick','HMToggle(\'toggle\',\'toggle0186aa\',\'toggle0186aa_ICON\')');
+HMInitToggle('toggle0186aa','hm.type','dropdown','hm.state','0');
+</script>
+</body>
+</html>

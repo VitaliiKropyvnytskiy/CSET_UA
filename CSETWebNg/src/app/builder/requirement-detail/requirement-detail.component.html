@@ -1,0 +1,242 @@
+<!---------------------- 
+
+   Copyright 2023 Battelle Energy Alliance, LLC  
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy 
+  of this software and associated documentation files (the "Software"), to deal 
+  in the Software without restriction, including without limitation the rights 
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
+  copies of the Software, and to permit persons to whom the Software is 
+  furnished to do so, subject to the following conditions: 
+ 
+  The above copyright notice and this permission notice shall be included in all 
+  copies or substantial portions of the Software. 
+ 
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
+  SOFTWARE. 
+-------------------------->
+<div class="white-panel m-0 d-flex flex-column flex-11a oy-auto h-0 w-100">
+
+  <div class="max-1200">
+    <app-builder-breadcrumbs></app-builder-breadcrumbs>
+    <h3>
+      Деталі вимоги
+    </h3>
+
+    <div class="form-row ml-0 mr-0">
+      <div class="form-group p-0 col-md-6">
+        <label>Категорія</label>
+        <div class="font-weight-bold">
+          <select required [(ngModel)]="r.category" id="category" class="form-control" name="category" (change)="updateRequirement($event)">
+            <option *ngFor="let category of categories" [attr.data-value]="category.id" [value]="category.text">{{category.text}}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group p-0 col-md-6">
+        <label>Підкатегорія</label>
+        <div class="font-weight-bold">
+          <select #subcat="ngModel" required [(ngModel)]="r.subcategory" id="subcategory" class="form-control" name="subcategory" (change)="updateRequirement($event)">
+            <option *ngFor="let subcategory of subcategories" [attr.data-value]="subcategory.id" [value]="subcategory.text">{{subcategory.text}}</option>
+          </select>
+          <div *ngIf="r && r.subcategory?.length == 0" class="m-0 mt-2 alert alert-danger">Необхідно вказати
+            підкатегорію</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-group p-0 col-md-12">
+      <label required for="requirementTitle">Ідентифікатор/Назва</label>
+      <input type="text" maxlength="250" class="form-control" id="requirementTitle" name="requirementTitle" required
+        focusOnInit="true" [(ngModel)]="r.title" (change)="updateRequirement($event)">
+      <div *ngIf="">Необхідно вказати назву</div>
+    </div>
+
+    <div class="form-group p-0 col-md-12 mb-5">
+      <label required for="requirementText">Спеціальна-стандартна вимога</label>
+      <textarea appAutoSize id="description" class="form-control" type="text" id="requirementText"
+        name="requirementText" [(ngModel)]="r.requirementText" (change)="updateRequirement($event)"></textarea>
+    </div>
+
+    <div class="form-group p-0 col-md-12 mb-5">
+      <h4>Рівень безпеки</h4>
+      <p>Виберіть усі відповідні рівні.</p>
+      <div class="btn-group btn-group-toggle">
+        <label class="btn btn-level btn-rounded" [class.active]="hasSAL(r, 'L')">
+          <input type="checkbox" id="SAL-L-{{r?.requirementID}}" name="SAL-L-{{r?.requirementID}}"
+            [checked]="hasSAL(r, 'L')" (click)="toggleSAL(r, 'L', $event)" data-toggle="toggle" />Низький</label>
+        <label class="btn btn-level btn-rounded" [class.active]="hasSAL(r, 'M')">
+          <input type="checkbox" id="SAL-M-{{r?.requirementID}}" name="SAL-M-{{r?.requirementID}}"
+            [checked]="hasSAL(r, 'M')" (click)="toggleSAL(r, 'M', $event)" data-toggle="toggle" />Помірний</label>
+        <label class="btn btn-level btn-rounded" [class.active]="hasSAL(r, 'H')">
+          <input type="checkbox" id="SAL-H-{{r?.requirementID}}" name="SAL-H-{{r?.requirementID}}"
+            [checked]="hasSAL(r, 'H')" (click)="toggleSAL(r, 'H', $event)" data-toggle="toggle" />Високий</label>
+        <label class="btn btn-level btn-rounded" [class.active]="hasSAL(r, 'VH')">
+          <input type="checkbox" id="SAL-VH-{{r?.requirementID}}" name="SAL-VH-{{r?.requirementID}}"
+            [checked]="hasSAL(r, 'VH')" (click)="toggleSAL(r, 'VH', $event)" data-toggle="toggle" />Дуже високий</label>
+      </div>
+      <div *ngIf="missingSAL(r)" class="alert alert-danger">Потрібен принаймні один рівень SAL</div>
+    </div>
+
+    <div class="mb-5">
+      <h4>Додаткова інформація</h4>
+      <p class="keyboard">Розмітку HTML можна редагувати безпосередньо, натиснувши кнопку <kbd><i
+            class="fa fa-code"></i></kbd>.</p>
+      <angular-editor name="supplemental" placeholder="Введіть текст тут..." [(ngModel)]="r.supplementalInfo"
+        (blur)="updateRequirement($event)" (focusout)="updateRequirement($event)"></angular-editor>
+    </div>
+
+
+    <div class="form-group p-0 col-md-12 mb-5">
+      <h4>Посилання</h4>
+      <p>Тут додаються документи, які визначають стандарт або надають додаткову інформацію щодо вимоги. Якщо документ є
+        PDF-файлом із закладками, введення закладки створить посилання, яке відкриє PDF-файл у цільовому місці.
+      </p>
+      <p>Щоб додати документи до спадних списків, натисніть «Керувати документами».</p>
+
+      <div class="w-100 align-items-end">
+        <button id="documents" (click)="navStandardDocuments()" class="btn btn-primary">Керування документами</button>
+      </div>
+      <table class="builder-requirement-docs">
+        <tr>
+          <th class="pr-4">Вихідні документи</th>
+          <th>Закладка</th>
+        </tr>
+        <tr *ngFor="let ref of r.sourceDocs">
+          <td class="pr-4">
+            {{ref.title}}
+          </td>
+          <td>
+            {{ref.sectionRef}}
+          </td>
+          <td>
+            <button class="icon-button btn bgc-trans d-flex justify-content-center align-items-center flex-00a"
+              (click)="addDeleteReference(r.requirementID, ref.id, true, ref.sectionRef, false)"
+              matTooltip="Видалити посилання">
+              <span class="cset-icons-trash-can fs-base-2 mr-2"></span>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="pr-2">
+            <select id="newSourceDoc" name="newSourceDoc" class="form-control" [(ngModel)]="newSourceDocId">
+              <option value=""></option>
+              <option *ngFor="let o of refDocOptions" [value]="o.id">{{ o.title }}</option>
+            </select>
+            <div class="alert alert-danger" *ngIf="sourceDocMissing">Необхідно вказати документ.</div>
+          </td>
+          <td>
+            <input type="text" maxlength="2000" id="newBookmark" class="form-control" [(ngModel)]="newSourceSectionRef">
+          </td>
+          <td>
+            <button class="icon-button btn bgc-trans d-flex justify-content-center align-items-center flex-00a"
+              (click)="addDeleteReference(r.requirementID, newSourceDocId, true, newSourceSectionRef, true)"
+              matTooltip="Додати посилання">
+              <span class="cset-icons-plus fs-base-2 mr-2"></span>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <th class="pt-2 pr-4">Додаткові документи</th>
+          <th class="pt-2">Закладка</th>
+        </tr>
+        <tr *ngFor="let ref of r.additionalDocs">
+          <td class="pr-4">
+            {{ref.title}}
+          </td>
+          <td>
+            {{ref.sectionRef}}
+          </td>
+          <td>
+            <button class="icon-button btn bgc-trans d-flex justify-content-center align-items-center flex-00a"
+              (click)="addDeleteReference(r.requirementID, ref.id, false, ref.sectionRef, false)"
+              matTooltip="Видалити посилання">
+              <span class="cset-icons-trash-can fs-base-2 mr-2"></span>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="pr-2">
+            <select id="newAdditionalDoc" name="newAdditionalDoc" class="form-control" [(ngModel)]="newAdditionalDocId">
+              <option value=""></option>
+              <option *ngFor="let o of refDocOptions" [value]="o.id">{{ o.title }}</option>
+            </select>
+            <div class="alert alert-danger" *ngIf="additionalDocMissing">Необхідно вказати документ.</div>
+          </td>
+          <td>
+            <input type="text" maxlength="2000" id="newBookmark" class="form-control"
+              [(ngModel)]="newAdditionalSectionRef">
+          </td>
+          <td>
+            <button class="icon-button btn bgc-trans d-flex justify-content-center align-items-center flex-00a"
+              (click)="addDeleteReference(r.requirementID, newAdditionalDocId, false, newAdditionalSectionRef, true)"
+              matTooltip="Додати посилання">
+              <span class="cset-icons-plus fs-base-2 mr-2"></span>
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+
+    <div class="form-group p-0 col-md-12 mb-5">
+      <h4>Пов’язані запитання</h4>
+      <p>До вимоги можна додати запитання. Це надасть список запитань, на які експерти мають відповісти.
+      </p>
+
+      <button id="addQuestion" (click)="addQuestion()" class="btn btn-primary">
+        <span class="cset-icons-plus fs-base mr-2"></span>
+        Додати запитання
+      </button>
+
+      <div *ngFor="let q of r.questions; let i = index" class="question-row d-flex flex-column p-3"
+        [class.no-bottom-border]="i == (r.questions?.length - 1)">
+        <div>
+          {{ q.title }}
+        </div>
+        <div class="d-flex flex-row justify-content-between flex-11a w-100 align-items-start">
+          <div class="d-flex flex-column mb-3 mr-3 w-100">
+            <div *ngIf="questionBeingEdited !== q" [innerHTML]="formatLinebreaks(q.questionText)">
+            </div>
+            <div class="alert alert-danger" *ngIf="duplicateTextQuestion === q">
+              Запитання з таким текстом уже існує. Редагування скасовано.
+            </div>
+            <div *ngIf="questionBeingEdited === q" class="w-100">
+              <div class="alert alert-danger" *ngIf="editedQuestionInUse">
+                Це питання використовується в інших стандартах/наборах запитань або оцінюваннях.
+                Зміна змісту тексту питання може мати небажаний ефект.
+              </div>
+              <textarea appAutoSize maxlength="7338" id="Q_{{q.questionID}}" #editQ [(ngModel)]="q.questionText"
+                (keydown.esc)="abandonQuestionEdit(q)" (blur)="endQuestionEdit(q)" class="form-control w-100 text-left"
+                [class.b-validate]="editedQuestionInUse"></textarea>
+            </div>
+          </div>
+          <span class="d-flex align-items-end justify-content-between flex-00a">
+            <button *ngIf="q.isCustom" type="button" (click)="startQuestionEdit(q)"
+              class="p-0 btn icon-button d-flex flex-column align-items-center flex-00a mr-2">
+              <span class="cset-icons-pencil fs-base-2"></span>
+              <span class="d-none d-md-flex fs-smaller">Змінити</span>
+            </button>
+            <button class="p-0 btn icon-button d-flex flex-column align-items-center flex-00a" type="button"
+              (click)="removeQuestion(q)">
+              <span class="cset-icons-trash-can fs-base-2"></span>
+              <span class="d-none d-md-flex fs-smaller">Видалити</span>
+            </button>
+          </span>
+        </div>
+      </div>
+      <div *ngIf="r.questions?.length === 0" class="alert alert-info mt-3 mb-3">
+        Для цієї вимоги не визначено жодних питань.
+      </div>
+    </div>
+    <div class="d-flex flex-row mt-3 mb-3">
+      <button (click)="setBuilderSvc.navReqList();" class="btn btn-link">&laquo; Назад до списку вимог</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,103 @@
+<!----------------------
+
+   Copyright 2023 Battelle Energy Alliance, LLC
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-------------------------->
+<div class="white-panel d-flex flex-column justify-content-start flex-11a" id="analysisDiv">
+  <h3>Інформаційна панель аналізу</h3>
+  <div *ngIf="!initialized">
+    <div class="spinner-container" style="margin-left: auto; margin-right: auto;">
+      <div style="max-width: 50px; max-height: 50px;"></div>
+    </div>
+  </div>
+  <div class="d-flex flex-column flex-11a" [class.d-none]="!initialized">
+    <div class="chart d-flex flex-column flex-00a mb-5">
+      <h3>Оцінка</h3>
+      <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 2em;">
+
+        <div id="overall-score" class="score-container" style="margin: 0 4px;">
+          <div>Загальна оцінка</div>
+          <div style="padding: .3rem; font-size: 2rem;">{{overallScoreDisplay}}</div>
+        </div>
+
+        <div style="flex-direction: column">
+          <div id="standard-score" class="score-container" *ngIf="assessSvc.assessment?.useStandard">
+            <div>На основі стандарту</div>
+            <div style="padding: .3rem" [class.has-score]="standardBasedScore > 0">{{standardBasedScoreDisplay}}</div>
+          </div>
+
+          <div id="component-score" class="score-container" *ngIf="assessSvc.assessment?.useDiagram">
+            <div>На основі компоненту</div>
+            <div style="padding: .3rem" [class.has-score]="componentBasedScore > 0">{{componentBasedScoreDisplay}}</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="chart d-flex flex-column flex-00a mb-5">
+      <h3>Відповідність оцінювання</h3>
+      <p>На цьому графіку показано загальні відсоткові бали. <br> Зауважте, що питання без відповіді зараховуються як відповідь НІ. </p>
+      <canvas id="canvasAssessmentCompliance">{{assessComplChart}}</canvas>
+    </div>
+
+
+    <div class="chart d-flex flex-column flex-00a mb-5" *ngIf="assessSvc.assessment?.useStandard">
+      <h3>Категорії з найвищим рейтингом</h3>
+      <p>На цьому графіку показано найпоширеніші проблемні сфери. Вони розраховуються на основі зваженої оцінки ризику на основі складності атаки. Вага атаки має найбільшу вагу для легких атак і меншу для складніших.</p>
+      <canvas id="canvasTopCategories">{{topCategChart}}</canvas>
+    </div>
+
+
+    <div class="chart d-flex flex-column flex-00a mb-5" *ngIf="assessSvc.assessment?.useStandard">
+      <h3>Підсумок стандартів</h3>
+      <p>На цьому графіку показано загальні відсотки відповідей для кожного окремого типу відповіді.</p>
+      <div *ngIf="stdsSummChart == null">
+        <div class="spinner-container" style="margin: 2em auto">
+          <div style="max-width: 50px; max-height: 50px;"></div>
+        </div>
+      </div>
+      <div style="max-width:500px;margin:auto;">
+        <canvas id="canvasStandardSummary">{{stdsSummChart}}</canvas>
+      </div>
+    </div>
+
+
+    <div class="chart d-flex flex-column flex-00a mb-5" *ngIf="assessSvc.assessment?.useDiagram">
+      <h3>Підсумок компонентів</h3>
+      <p>На цьому графіку показано відсотки відповідей на основі компонентів або діаграм мережі для кожного окремого типу відповіді.</p>
+      <div *ngIf="!compSummInitialized">
+        <div class="spinner-container" style="margin: 2em auto">
+          <div style="max-width: 50px; max-height: 50px;"></div>
+        </div>
+      </div>
+      <div style="max-width:500px;margin:auto;">
+        <canvas id="canvasComponentSummary"
+        [class.d-none]="compSummInitialized && componentCount === 0">{{compSummChart}}</canvas>
+        <div [class.d-none]="!compSummInitialized || componentCount > 0">
+          <hr style="width: 30%"> На схемі відсутні компоненти.
+        </div>
+      </div>
+    </div>
+
+    <app-nav-back-next [page]="'dashboard'"></app-nav-back-next>
+
+  </div>
+</div>
