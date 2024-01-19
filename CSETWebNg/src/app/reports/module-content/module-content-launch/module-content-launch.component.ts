@@ -52,7 +52,7 @@ export class ModuleContentLaunchComponent implements OnInit {
    * 
    */
   ngOnInit(): void {
-    this.setBuilderSvc.getAllSetList().subscribe((x: any[]) => {
+    this.setBuilderSvc.getActiveSetList().subscribe((x: any[]) => {
       this.standards = x.filter(s => s.isDisplayed);
       this.standards.sort((a, b) => { 
         if (a.fullName < b.fullName) { return -1; } 

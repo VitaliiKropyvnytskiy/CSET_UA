@@ -23,7 +23,7 @@
 ////////////////////////////////
 export var performanceLegend = [
     {
-      "name": "Legend1",
+      "name": "Legend",
       "series": [
         {
           "name": "Practices performed",

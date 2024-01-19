@@ -20,6 +20,7 @@ namespace CSETWebCore.Interfaces.Maturity
         void SetDomainRemarks(int assessmentId, MaturityDomainRemarks remarks);
         List<MaturityLevel> GetMaturityLevelsForModel(int maturityModelId, int targetLevel);
         List<MaturityModel> GetAllModels();
+        List<MaturityModel> GetActiveModels(List<int> activeModels);
         void PersistSelectedMaturityModel(int assessmentId, string modelName);
         void ClearMaturityModel(int assessmentId);
         void PersistMaturityLevel(int assessmentId, int level);

@@ -77,55 +77,33 @@ function createWindow() {
   let defaultMenu = Menu.getApplicationMenu();
   let newMenu = new Menu();
 
+  const translatedMenuItems = {
+    // menu items
+    'filemenu': 'Файл',
+    'viewmenu': 'Вигляд',
+    'windowmenu': 'Вікно',
+    // file submenu items
+    'quit': 'Вийти',
+    // view submenu items
+    'reload': 'Перезавантажити',
+    'forcereload': 'Примусово перезавантажити',
+    'toggledevtools': 'Інструменти розробника',
+    'resetzoom': 'Відновити масштаб',
+    'zoomin': 'Збільшити',
+    'zoomout': 'Зменшити',
+    'togglefullscreen': 'На весь екран',
+    // window submenu items
+    'minimize': 'Згорнути',
+    'close': 'Закрити',
+  };
   // Setup Electron application menu (remove empty help tab and add print option)
   defaultMenu.items.filter(x => x.role != 'help').forEach(x => {
-    switch(x.role) {
-      case "filemenu":
-        x.label = "Файл";
-        break;
-      case "viewmenu":
-        x.label = "Вигляд";
-        break;
-      case "windowmenu":
-        x.label = "Вікно";
-        break;
+    if (translatedMenuItems[x.role] != undefined) {
+      x.label = translatedMenuItems[x.role];
     }
     x.submenu.items.forEach(y => {
-      switch (y.role) {
-        // file submenu items
-        case "quit":
-          y.label = "Вийти";
-          break;
-        // view submenu items
-        case "reload":
-          y.label = "Перезавантажити";
-          break;
-        case "forcereload":
-          y.label = "Примусово перезавантажити";
-          break;
-        case "toggledevtools":
-          y.label = "Інструменти розробника";
-          break;
-        case "resetzoom":
-          y.label = "Відновити масштаб";
-          break;
-        case "zoomin":
-          y.label = "Збільшити";
-          break;
-        case "zoomout":
-          y.label = "Зменшити";
-          break;
-        case "togglefullscreen":
-          y.label = "На весь екран";
-          break;
-        // window submenu items
-        case "minimize":
-          y.label = "Згорнути";
-          break;
-        case "close":
-          y.label = "Закрити";
-          break;
-
+      if (translatedMenuItems[y.role] != undefined) {
+        y.label = translatedMenuItems[y.role];
       }
     });
     if (x.role === 'filemenu') {

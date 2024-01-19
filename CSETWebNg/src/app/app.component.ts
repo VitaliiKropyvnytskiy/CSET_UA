@@ -279,7 +279,7 @@ export class AppComponent implements OnInit, AfterViewInit {
           window.open(this.docUrl + "htmlhelp_acet/index.htm", "_blank");
           break;
         default:
-          window.open(this.docUrl + "htmlhelp/index.htm", "_blank");
+          window.open(this.docUrl + "htmlhelp/MAIN/index.html", "_blank");
       }
       return false; // Prevent bubbling
     }));

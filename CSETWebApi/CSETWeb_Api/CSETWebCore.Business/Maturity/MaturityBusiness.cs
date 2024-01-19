@@ -481,6 +481,36 @@ namespace CSETWebCore.Business.Maturity
             return response;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<Model.Maturity.MaturityModel> GetActiveModels(List<int> activeModels)
+        {
+            var response = new List<Model.Maturity.MaturityModel>();
+
+            var result = from a in _context.MATURITY_MODELS
+                         where activeModels.Contains(a.Maturity_Model_Id)
+                         select new Model.Maturity.MaturityModel()
+                         {
+                             MaturityTargetLevel = 1,
+                             ModelId = a.Maturity_Model_Id,
+                             ModelName = a.Model_Name,
+                             QuestionsAlias = a.Questions_Alias,
+                             // Leaving description blank for now. Model Description is being removed in favor of gallery card description.
+                             ModelDescription = "",
+                             ModelTitle = a.Model_Title
+                         }
+                         ;
+            foreach (var m in result.ToList())
+            {
+                response.Add(m);
+                m.Levels = GetMaturityLevelsForModel(m.ModelId, 100);
+            }
+
+            return response;
+        }
+
 
         /// <summary>
         /// Saves the selected maturity models.

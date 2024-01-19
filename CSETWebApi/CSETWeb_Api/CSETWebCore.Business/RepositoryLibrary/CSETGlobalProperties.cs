@@ -17,6 +17,9 @@ namespace CSETWebCore.Api.Models
     {
         private CSETContext _context;
 
+        public List<int> Active_Maturity_Models =>  new List<int>() { 4, 5, 6 };
+        public List<string> Active_Sets => new List<string>() { "NCSF_V1", "C800_53_R3" };
+
         public string Main_Executive_Summary_Template
         {
             get { return GetProperty("MainExecutiveSummary"); }

@@ -4,6 +4,8 @@
 // 
 // 
 //////////////////////////////// 
+using System.Collections.Generic;
+
 namespace CSETWebCore.Api.Interfaces
 {
     public interface ICSETGlobalProperties
@@ -38,6 +40,9 @@ namespace CSETWebCore.Api.Interfaces
 
         double FontSize { get; set; }
         bool InternalPDF { get; set; }
+
+        List<int> Active_Maturity_Models { get; }
+        List<string> Active_Sets { get; }
 
         string GetProfileFullPath(string profileFileName);
     }

@@ -477,6 +477,19 @@ namespace CSETWebCore.Api.Controllers
             return Ok(new MaturityBusiness(_context, _assessmentUtil, _adminTabBusiness).GetAllModels());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("api/ActiveMaturityModels")]
+        public IActionResult GeActiveModels()
+        {
+            List<int> activeModels = new List<int>() { 4, 5, 6 };
+            return Ok(new MaturityBusiness(_context, _assessmentUtil, _adminTabBusiness).GetActiveModels(activeModels));
+        }
+
 
         /// <summary>
         /// 

@@ -90,7 +90,7 @@ export class AssessmentService {
       this.http.get(this.apiUrl + 'contacts/allroles')
         .subscribe((response: Role[]) => (this.roles = response));
 
-      this.http.get(this.apiUrl + "MaturityModels")
+      this.http.get(this.apiUrl + "ActiveMaturityModels")
         .subscribe((data: MaturityModel[]) => {
           AssessmentService.allMaturityModels = data;
         });

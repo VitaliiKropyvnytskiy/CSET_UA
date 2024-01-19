@@ -39,8 +39,7 @@ namespace CSETWebCore.Business.RepositoryLibrary
             this.pdfDirectory = Path.Combine(Constants.Constants.DOCUMENT_PATH);
             this.xpsDirectory = Path.Combine(Constants.Constants.XPS_DOCUMENT_PATH);
             this.xlsxDirectory = Path.Combine(Constants.Constants.XLSX_DOCUMENT_PATH);
-
-            CreateResourceLibraryData();
+            CreateResourceLibraryData(globalProperties.Active_Maturity_Models, globalProperties.Active_Sets);
         }
 
         public List<SimpleNode> GetTreeNodes()
@@ -93,7 +92,7 @@ namespace CSETWebCore.Business.RepositoryLibrary
         }
 
 
-        public void CreateResourceLibraryData()
+        public void CreateResourceLibraryData(List<int> activeMaturityModels, List<string> activeSets)
         {
             try
             {
@@ -101,10 +100,20 @@ namespace CSETWebCore.Business.RepositoryLibrary
                 ResourceModelDictionary = new Dictionary<int, ResourceNode>();
 
                 Dictionary<int, ResourceNode> ResourceNodeDict = new Dictionary<int, ResourceNode>();
-
                 var query = dbContext.REF_LIBRARY_PATH
                     .Include(x => x.GEN_FILE_LIB_PATH_CORL)
                     .ThenInclude(x => x.Gen_File);
+                List<int> fileIDs = dbContext.GEN_FILE
+                                       .Where(gf => gf.MATURITY_REFERENCES.Where(mr => activeMaturityModels.Contains(mr.Mat_Question.Maturity_Model_Id)).Any() ||
+                                       gf.MATURITY_SOURCE_FILES.Where(msf => activeMaturityModels.Contains(msf.Mat_Question.Maturity_Model_Id)).Any() ||
+                                       gf.REQUIREMENT_REFERENCES.Where(rr => rr.Requirement.REQUIREMENT_SETS.Where(rs => (activeSets.Contains(rs.Set_Name) || rs.Set_NameNavigation.Is_Custom) && !rs.Set_NameNavigation.Is_Deprecated).Any()).Any() ||
+                                       gf.REQUIREMENT_SOURCE_FILES.Where(rsf => rsf.Requirement.REQUIREMENT_SETS.Where(rs => (activeSets.Contains(rs.Set_Name) || rs.Set_NameNavigation.Is_Custom) && !rs.Set_NameNavigation.Is_Deprecated).Any()).Any() ||
+                                       gf.SET_FILES.Where(sf => (activeSets.Contains(sf.SetName) || sf.SetNameNavigation.Is_Custom) && !sf.SetNameNavigation.Is_Deprecated).Any() ||
+                                       gf.Doc_NumNavigation.STANDARD_SOURCE_FILE.Where(ssf => (activeSets.Contains(ssf.Set_Name) || ssf.Set_NameNavigation.Is_Custom) && !ssf.Set_NameNavigation.Is_Deprecated).Any()
+                                       )
+                                       .Select(gf => gf.Gen_File_Id)
+                                       .Distinct()
+                                       .ToList();
 
                 foreach (var obj in query.ToList())
                 {
@@ -122,7 +131,8 @@ namespace CSETWebCore.Business.RepositoryLibrary
                     foreach (GEN_FILE_LIB_PATH_CORL corl in obj.GEN_FILE_LIB_PATH_CORL)
                     {
                         GEN_FILE doc = corl.Gen_File;
-
+                        if (!fileIDs.Contains(doc.Gen_File_Id))
+                            continue;
                         if (ResourceModelDictionary.ContainsKey(doc.Gen_File_Id))  //Check if node is already created
                         {
                             ResourceNode getNode = ResourceModelDictionary[doc.Gen_File_Id];

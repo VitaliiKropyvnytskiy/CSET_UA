@@ -111,7 +111,7 @@ export class TopMenusComponent implements OnInit {
     // User Guide
     this._hotkeysService.add(
       new Hotkey('alt+g', (event: KeyboardEvent): boolean => {
-        window.open(this.docUrl + 'htmlhelp/index.htm', '_blank');
+        window.open(this.docUrl + 'htmlhelp/MAIN/index.html', '_blank');
         return false; // Prevent bubbling
       })
     );
@@ -129,18 +129,18 @@ export class TopMenusComponent implements OnInit {
       })
     );
     // New Assessment
-    this._hotkeysService.add(
-      new Hotkey('alt+n', (event: KeyboardEvent): boolean => {
-        const dialogRef = this.dialog.open(ConfirmComponent);
-        dialogRef.componentInstance.confirmMessage = 'Ви впевнені, що хочете створити нове оцінювання? ';
-        dialogRef.afterClosed().subscribe((result) => {
-          if (result) {
-            this.assessSvc.newAssessment();
-          }
-        });
-        return false; // Prevent bubbling
-      })
-    );
+    // this._hotkeysService.add(
+    //   new Hotkey('alt+n', (event: KeyboardEvent): boolean => {
+    //     const dialogRef = this.dialog.open(ConfirmComponent);
+    //     dialogRef.componentInstance.confirmMessage = 'Ви впевнені, що хочете створити нове оцінювання? ';
+    //     dialogRef.afterClosed().subscribe((result) => {
+    //       if (result) {
+    //         this.assessSvc.newAssessment();
+    //       }
+    //     });
+    //     return false; // Prevent bubbling
+    //   })
+    // );
     // User Guide (PDF)
     this._hotkeysService.add(
       new Hotkey('alt+p', (event: KeyboardEvent): boolean => {

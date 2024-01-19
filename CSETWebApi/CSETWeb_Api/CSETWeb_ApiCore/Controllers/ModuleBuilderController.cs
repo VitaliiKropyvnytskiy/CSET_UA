@@ -51,6 +51,13 @@ namespace CSETWebCore.Api.Controllers
             return Ok(_module.GetCustomSetList(true));
         }
 
+        [HttpGet]
+        [Route("api/builder/GetActiveSets")]
+        public IActionResult GetActiveSetList()
+        {
+            return Ok(_module.GetActiveSetList(new List<string> {"NCSF_V1", "C800_53_R3" }));
+        }
+
 
         [HttpGet]
         [Route("api/builder/GetSetsInUse")]

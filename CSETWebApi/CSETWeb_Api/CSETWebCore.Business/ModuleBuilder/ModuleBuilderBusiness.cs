@@ -73,6 +73,40 @@ namespace CSETWebCore.Business.ModuleBuilder
 
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<SetDetail> GetActiveSetList(List<string> activeSets)
+        {
+            List<SetDetail> list = new List<SetDetail>();
+
+            var s = _context.SETS
+                .Where(x => !x.Is_Deprecated && (activeSets.Contains(x.Set_Name) || x.Is_Custom))
+                .OrderBy(x => x.Full_Name)
+                .ToList();
+
+            foreach (SETS set in s)
+            {
+                SetDetail sr = new SetDetail
+                {
+                    SetName = set.Set_Name,
+                    FullName = set.Full_Name,
+                    ShortName = set.Short_Name,
+                    SetCategory = set.Set_Category_Id != null ? (int)set.Set_Category_Id : 0,
+                    IsCustom = set.Is_Custom,
+                    IsDisplayed = set.Is_Displayed ?? false,
+
+                    Clonable = true,
+                    Deletable = true
+                };
+
+                list.Add(sr);
+            }
+
+            return list;
+        }
+
+        /// <summary>
         /// Gets the full list of sets that are being used in an assessment.
         /// </summary>
         public List<SetDetail> GetSetsInUseList() 

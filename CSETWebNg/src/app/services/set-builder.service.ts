@@ -87,6 +87,13 @@ export class SetBuilderService {
         return this.http.get(this.apiUrl + 'builder/getAllSets');
     }
 
+    /**
+     * Returns a collection of active standards.
+     */
+    getActiveSetList() {
+        return this.http.get(this.apiUrl + 'builder/GetActiveSets');
+    }
+
 
     /**
      * Returns a collection of all standards that are currently being used in an assessment.
