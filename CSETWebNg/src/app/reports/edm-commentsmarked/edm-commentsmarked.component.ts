@@ -51,7 +51,7 @@ export class EdmCommentsmarkedComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.titleService.setTitle("Коментарі та позначено для перегляду - CISA EDM");
+    this.titleService.setTitle("Коментарі та потребує огляду - CISA EDM");
 
     this.maturitySvc.getCommentsMarked().subscribe(
       (r: any) => {

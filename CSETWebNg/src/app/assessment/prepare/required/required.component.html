@@ -25,7 +25,7 @@
         <h4>Список запитів на документи (Document Request List, DRL)</h4>
         <div>
             Екран списку запитів на документи (DRL) надає користувачам спосіб вказати, які документи вони можуть надати.
-            Для кожного окремого документа виберіть «Так», «Ні» або «Н/Д». Якщо вам потрібно залишити коментар, виберіть
+            Для кожного окремого документа виберіть «Так», «Ні» або «Н/З». Якщо вам потрібно залишити коментар, виберіть
             значок коментаря.
         </div>
         <hr>
@@ -45,7 +45,7 @@
                                 [ngClass]="{'answer-selected': doc.answer=='N'}"
                                 (click)="doc.answer = 'N';submit(doc, 'N')">Ні</button>
                             <button class="req-answer btn btn-na" [ngClass]="{'answer-selected': doc.answer=='NA'}"
-                                (click)="doc.answer = 'NA';submit(doc, 'NA')">Н/Д</button>
+                                (click)="doc.answer = 'NA';submit(doc, 'NA')">Н/З</button>
                             <button class="extras-button cursor-pointer req-answer" tabindex="0"
                                 (click)="commentToggle(doc.docId)" matTooltip="Коментар" matTooltipPosition="above">
                                 <svg style="height: 31px; width: 37px; vertical-align: middle; margin-right: -12px">

@@ -90,10 +90,11 @@ namespace CSETWebCore.Api.Controllers
             if (scope == "IOD")
             {
                 list.RemoveAll(x => !x.Is_NIPP);
-            } else
-            {
-                list.RemoveAll(x => x.Is_NIPP);
-            }
+            } 
+            //else
+            //{
+            //    list.RemoveAll(x => x.Is_NIPP);
+            //}
 
 
             var otherItems = list.Where(x => x.SectorName.Equals("other", System.StringComparison.CurrentCultureIgnoreCase)).ToList();
@@ -103,7 +104,7 @@ namespace CSETWebCore.Api.Controllers
                 list.Add(o);
             }
 
-            return Ok(list.Select(s => new Sector { SectorId = s.SectorId, SectorName = s.SectorName }).ToList());
+            return Ok(list.Select(s => new Sector { SectorId = s.SectorId, SectorName = s.SectorName, SectoralBody=s.SectoralBody }).ToList());
         }
 
 
@@ -113,6 +114,22 @@ namespace CSETWebCore.Api.Controllers
         public IActionResult GetSECTOR_INDUSTRY()
         {
             var list = _context.SECTOR_INDUSTRY;
+            return Ok(list);
+        }
+
+        [HttpGet]
+        [Route("api/Demographics/Main_Service_Types")]
+        // GET: api/SECTOR_INDUSTRY
+        public IActionResult GetMAIN_SERVICE_TYPE(int? sectorId,int? industryId)
+        {
+            List<MAIN_SERVICE_TYPE> list = new List<MAIN_SERVICE_TYPE>();
+            if (industryId.HasValue)
+            {
+                list= _context.MAIN_SERVICE_TYPE.Where(mst=>mst.IndustryId==industryId).ToList();
+            }
+            else if(sectorId.HasValue){
+                list = _context.MAIN_SERVICE_TYPE.Where(mst => mst.SectorId == sectorId).ToList();
+            }
             return Ok(list);
         }
 

@@ -23,6 +23,7 @@ namespace CSETWebCore.Model.Demographic
         public string OrganizationName { get; set; }
         public int? Sector { get; set; }
         public int? Subsector { get; set; }
+        public int? MainServiceType { get; set; }
         public int? NumberEmployeesTotal { get; set; }
         public int? NumberEmployeesUnit { get; set; }
         public int? AnnualRevenue { get; set; }
@@ -80,10 +81,11 @@ namespace CSETWebCore.Model.Demographic
 
         public List<ListItem2> ListOrgTypes { get; set; } = new List<ListItem2>();
 
-        public List<ListItem2> ListSectors { get; set; } = new List<ListItem2>();
+        public List<ListItem3> ListSectors { get; set; } = new List<ListItem3>();
 
         public List<ListItem2> ListSubsectors { get; set; } = new List<ListItem2>();
-        
+        public List<ListItem2> ListMainServiceTypes { get; set; } = new List<ListItem2>();
+
 
         public List<ListItem2> ListNumberEmployeeTotal { get; set; } = new List<ListItem2>();
 

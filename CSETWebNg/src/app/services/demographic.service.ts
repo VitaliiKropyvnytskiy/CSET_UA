@@ -60,6 +60,18 @@ export class DemographicService {
     return this.http.get(this.apiUrl + 'Sectors_Industry/' + sectorId);
   }
 
+  getMainServiceType(sectorId?: number, industryId?: number) {
+    let queryString = ""
+    if (industryId) {
+      queryString = 'industryId=' + industryId
+    } else if (sectorId) {
+      queryString = 'sectorId=' + sectorId
+    } else {
+      return;
+    }
+    return this.http.get(this.apiUrl + 'Main_Service_Types?' + queryString);
+  }
+
   /**
    * GETs the screen data for this assessment.
    */
@@ -73,6 +85,6 @@ export class DemographicService {
    */
   updateDemographic(demographic: Demographic) {
     this.http.post(this.apiUrl, JSON.stringify(demographic), headers)
-    .subscribe();
+      .subscribe();
   }
 }

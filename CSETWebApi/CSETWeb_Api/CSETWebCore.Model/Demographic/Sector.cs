@@ -10,6 +10,7 @@ namespace CSETWebCore.Model.Demographic
     {
         public int SectorId { get; set; }
         public string SectorName { get; set; }
+        public string SectoralBody { get; set; }
 
         public string Name
         {

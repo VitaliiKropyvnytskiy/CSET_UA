@@ -226,6 +226,7 @@ namespace CSETWebCore.DataLayer.Model
         public virtual DbSet<SAL_DETERMINATION_TYPES> SAL_DETERMINATION_TYPES { get; set; }
         public virtual DbSet<SECTOR> SECTOR { get; set; }
         public virtual DbSet<SECTOR_INDUSTRY> SECTOR_INDUSTRY { get; set; }
+        public virtual DbSet<MAIN_SERVICE_TYPE> MAIN_SERVICE_TYPE { get; set; }
         public virtual DbSet<SECTOR_STANDARD_RECOMMENDATIONS> SECTOR_STANDARD_RECOMMENDATIONS { get; set; }
         public virtual DbSet<SECURITY_QUESTION> SECURITY_QUESTION { get; set; }
         public virtual DbSet<SETS> SETS { get; set; }
@@ -1116,6 +1117,12 @@ namespace CSETWebCore.DataLayer.Model
                     .HasPrincipalKey(p => p.IndustryId)
                     .HasForeignKey(d => d.IndustryId)
                     .HasConstraintName("FK_DEMOGRAPHICS_SECTOR_INDUSTRY");
+
+                entity.HasOne(d => d.MainServiceType)
+                   .WithMany(p => p.DEMOGRAPHICS)
+                   .HasPrincipalKey(p => p.MainServiceTypeId)
+                   .HasForeignKey(d => d.MainServiceTypeId)
+                   .HasConstraintName("FK_DEMOGRAPHICS_MAIN_SERVICE_TYPE");
 
                 entity.HasOne(d => d.OrganizationTypeNavigation)
                     .WithMany(p => p.DEMOGRAPHICS)
@@ -3115,6 +3122,25 @@ namespace CSETWebCore.DataLayer.Model
                     .WithMany(p => p.SECTOR_INDUSTRY)
                     .HasForeignKey(d => d.SectorId)
                     .HasConstraintName("FK_SECTOR_INDUSTRY_SECTOR");
+            });
+
+            modelBuilder.Entity<MAIN_SERVICE_TYPE>(entity =>
+            {
+                entity.HasKey(e => e.MainServiceTypeId);
+
+                entity.HasComment("A collection of MAIN SERVICE TYPE records");
+
+                entity.HasOne(d => d.SECTOR_INDUSTRY)
+                    .WithMany(p => p.MAIN_SERVICE_TYPE)
+                    .HasPrincipalKey(p => p.IndustryId)
+                    .HasForeignKey(d => d.IndustryId)
+                    .HasConstraintName("FK_MAIN_SERVICE_TYPE_SECTOR_INDUSTRY");
+
+                entity.HasOne(d => d.SECTOR)
+                    .WithMany(p => p.MAIN_SERVICE_TYPE)
+                    .HasPrincipalKey(p => p.SectorId)
+                    .HasForeignKey(d => d.SectorId)
+                    .HasConstraintName("FK_MAIN_SERVICE_TYPE_SECTOR");
             });
 
             modelBuilder.Entity<SECTOR_STANDARD_RECOMMENDATIONS>(entity =>

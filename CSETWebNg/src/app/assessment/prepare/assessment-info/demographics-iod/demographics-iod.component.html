@@ -28,13 +28,13 @@
 
   <div class="form-group mb-4">
     <label for="orgType">Тип організації</label>
-    <select [ngClass]="{ 'alert-danger' : !demographicData.organizationType }" class="form-control" id="orgType"
-      tabindex="0" name="orgType" (change)="update($event)" [(ngModel)]="demographicData.organizationType">
-      <option [ngValue]="null">-- Виберіть тип --</option>
-      <option *ngFor="let t of demographicData.listOrgTypes" [ngValue]="t.optionValue">
-        {{ t.optionText }}
-      </option>
-    </select>
+    <mat-select [ngClass]="{ 'alert-danger' : !demographicData.organizationType }" class="form-control" id="orgType"
+      name="orgType" tabindex="0" [(ngModel)]="demographicData.organizationType" (selectionChange)="update($event)">
+      <mat-option [value]="0">-- Виберіть тип --</mat-option>
+      <ng-container *ngFor="let t of demographicData.listOrgTypes">
+        <mat-option [value]="t.optionValue">{{ t.optionText }}</mat-option>
+      </ng-container>
+    </mat-select>
   </div>
 
   <div class="form-group mb-4">
@@ -52,29 +52,43 @@
   </div>
 
   <div class="d-flex flex-row">
-    <div class="form-group mb-4 col-6 pl-0">
+    <div class="form-group mb-4 col-4 pl-0">
       <label for="sector">Сектор</label>
-      <select [ngClass]="{ 'alert-danger' : !demographicData.sector}" class="form-control" id="sector" tabindex="0"
-        name="sector" [(ngModel)]="demographicData.sector" (change)="onChangeSector($event)">
-        <option [ngValue]="null">-- Виберіть сектор --</option>
-        <option *ngFor="let i of demographicData.listSectors" [ngValue]="i.optionValue"
-          [selected]="i.optionValue === demographicData?.sector">
-          {{ i.optionText }}
-        </option>
-      </select>
+      <mat-select [ngClass]="{ 'alert-danger' : !demographicData.sector}" class="form-control" id="sector" name="sector"
+        tabindex="0" [(ngModel)]="demographicData.sector" (selectionChange)="onChangeSector($event)">
+        <mat-option [value]="0">-- Виберіть сектор --</mat-option>
+        <ng-container *ngFor="let i of demographicData.listSectors">
+          <mat-option [value]="i.optionValue">{{ i.optionText }}</mat-option>
+        </ng-container>
+      </mat-select>
     </div>
 
-    <div class="form-group mb-4 col-6 pr-0">
+    <div class="form-group mb-4 col-4 pr-0">
       <label for="subsector">Підсектор</label>
-      <select [ngClass]="{ 'alert-danger' : !demographicData.subsector }" class="form-control" id="subsector"
-        tabindex="0" name="subsector" [(ngModel)]="demographicData.subsector" (change)="update($event)">
-        <option [ngValue]="null">-- Виберіть підсектор --</option>
-        <option *ngFor="let i of demographicData.listSubsectors" [ngValue]="i.optionValue"
-          [selected]="i.optionValue === demographicData?.subsector">
-          {{ i.optionText }}
-        </option>
-      </select>
+      <mat-select class="form-control" id="subsector" name="subsector" tabindex="0"
+        [(ngModel)]="demographicData.subsector" (selectionChange)="onChangeSubsector($event)">
+        <mat-option [value]="0">-- Виберіть підсектор --</mat-option>
+        <ng-container *ngFor="let i of demographicData.listSubsectors">
+          <mat-option [value]="i.optionValue">{{ i.optionText }}</mat-option>
+        </ng-container>
+      </mat-select>
     </div>
+
+    <div class="form-group mb-4 col-4 pr-0">
+      <label for="mainServiceType">Тип основної послуги</label>
+      <mat-select class="form-control" id="mainServiceType" name="mainServiceType" tabindex="0"
+        [(ngModel)]="demographicData.mainServiceType" (selectionChange)="update($event)">
+        <mat-option [value]="0">-- Виберіть тип основної послуги --</mat-option>
+        <ng-container *ngFor="let i of demographicData.listMainServiceTypes">
+          <mat-option [value]="i.optionValue">{{ i.optionText }}</mat-option>
+        </ng-container>
+      </mat-select>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="sectoralBody">Секторальний орган у сфері захисту критичної інфраструктури</label>
+    <input class="form-control" autocomplete="off" tabindex="0" type="text" maxlength="50" name="sectoralBody"
+      id="sectoralBody" disabled [value]="selectedSectoralBody">
   </div>
 
   <!-- #1 -->
@@ -85,14 +99,14 @@
     <label for="numberEmployees" *ngIf="demographicData.organizationType !== 1">
       Кількість працівників державного органу?
     </label>
-    <select [ngClass]="{ 'alert-danger' : !demographicData.numberEmployeesTotal }" class="form-control"
-      id="numberEmployeesTotal" tabindex="0" name="numberEmployeesTotal"
-      [(ngModel)]="demographicData.numberEmployeesTotal" (change)="update($event)">
-      <option [ngValue]="null">-- Виберіть --</option>
-      <option *ngFor="let i of demographicData.listNumberEmployeeTotal" [ngValue]="i.optionValue">
-        {{ i.optionText }}
-      </option>
-    </select>
+    <mat-select [ngClass]="{ 'alert-danger' : !demographicData.numberEmployeesTotal }" class="form-control"
+      id="numberEmployeesTotal" name="numberEmployeesTotal" tabindex="0"
+      [(ngModel)]="demographicData.numberEmployeesTotal" (selectionChange)="update($event)">
+      <mat-option [value]="0">-- Виберіть --</mat-option>
+      <ng-container *ngFor="let i of demographicData.listNumberEmployeeTotal">
+        <mat-option [value]="i.optionValue">{{ i.optionText }}</mat-option>
+      </ng-container>
+    </mat-select>
   </div>
 
   <!-- #2 -->
@@ -100,22 +114,21 @@
     <ng-container *ngIf="demographicData.organizationType === 1">
       <label for="numberEmployeesUnit"> Кількість працівників у підрозділі?</label>
       <div class="font-italic my-2">
-        Виберіть Н/Д, якщо підрозділ і загальна організація збігаються.
+        Виберіть Н/З, якщо підрозділ і загальна організація збігаються.
       </div>
     </ng-container>
     <ng-container *ngIf="demographicData.organizationType !== 1">
       <label for="numberEmployeesUnit"> Кількість працівників у відділі? </label>
-      <div class="font-italic my-2">Виберіть Н/Д, якщо відділ і загальна організація збігаються.</div>
+      <div class="font-italic my-2">Виберіть Н/З, якщо відділ і загальна організація збігаються.</div>
     </ng-container>
-    <select [ngClass]="{ 'alert-danger' : !demographicData.numberEmployeesUnit }" class="form-control"
-      id="numberEmployeesUnit" tabindex="0" name="numberEmployeesUnit" [(ngModel)]="demographicData.numberEmployeesUnit"
-      (change)="update($event)">
-      <option [ngValue]="null">-- Виберіть --</option>
-      <option *ngFor="let i of demographicData.listNumberEmployeeUnit" [ngValue]="i.optionValue"
-        [selected]="i.optionValue === demographicData.numberEmployeesUnit">
-        {{ i.optionText }}
-      </option>
-    </select>
+    <mat-select [ngClass]="{ 'alert-danger' :  !demographicData.numberEmployeesUnit }" class="form-control"
+      id="numberEmployeesUnit" name="numberEmployeesUnit" tabindex="0" [(ngModel)]="demographicData.numberEmployeesUnit"
+      (selectionChange)="update($event)">
+      <mat-option [value]="0">-- Виберіть --</mat-option>
+      <ng-container *ngFor="let i of demographicData.listNumberEmployeeUnit">
+        <mat-option [value]="i.optionValue">{{ i.optionText }}</mat-option>
+      </ng-container>
+    </mat-select>
   </div>
 
   <!-- #3 -->
@@ -128,14 +141,14 @@
         Який загальний річний обсяг фінансування вашої урядової організації чи агентства?
       </label>
     </ng-container>
-    <select [ngClass]="{ 'alert-danger' : !demographicData.annualRevenue }" class="form-control" id="totalAnnualRevenue"
-      tabindex="0" name="totalAnnualRevenue" [(ngModel)]="demographicData.annualRevenue" (change)="update($event)">
-      <option [ngValue]="null">-- Виберіть --</option>
-      <option *ngFor="let i of demographicData.listRevenueAmounts" [ngValue]="i.optionValue"
-        [selected]="i.optionValue === demographicData.annualRevenue">
-        {{ i.optionText }}
-      </option>
-    </select>
+    <mat-select [ngClass]="{ 'alert-danger' :  !demographicData.annualRevenue }" class="form-control"
+      id="totalAnnualRevenue" name="totalAnnualRevenue" tabindex="0" [(ngModel)]="demographicData.annualRevenue"
+      (selectionChange)="update($event)">
+      <mat-option [value]="0">-- Виберіть --</mat-option>
+      <ng-container *ngFor="let i of demographicData.listRevenueAmounts">
+        <mat-option [value]="i.optionValue">{{ i.optionText }}</mat-option>
+      </ng-container>
+    </mat-select>
   </div>
 
   <!-- #4, #5, and #6 are located on the iod assessment configuration page with the other critical service fields -->
@@ -278,7 +291,8 @@
   <!-- #10 -->
   <div class="form-group">
     <label for="assetValue">
-      Будь ласка, виберіть дві найбільш суттєві перешкоди або проблеми, які обмежують участь вашої організації в групах або ініціативах з обміну інформацією з кібербезпеки.
+      Будь ласка, виберіть дві найбільш суттєві перешкоди або проблеми, які обмежують участь вашої організації в групах
+      або ініціативах з обміну інформацією з кібербезпеки.
     </label>
     <div class="ml-5">
       <div class="font-italic my-2">

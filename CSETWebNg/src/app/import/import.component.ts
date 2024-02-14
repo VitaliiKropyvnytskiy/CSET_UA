@@ -214,7 +214,6 @@ export class ImportComponent implements OnInit, OnDestroy {
         }
       },
       e => {
-        console.log(e)
         for (let key in e.error.errors) {
           this.errors.push(`${e.error.errors[key]}`);
         }

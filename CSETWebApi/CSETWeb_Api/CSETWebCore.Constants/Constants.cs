@@ -5,6 +5,9 @@
 // 
 //////////////////////////////// 
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CSETWebCore.Constants
 {
@@ -437,5 +440,23 @@ namespace CSETWebCore.Constants
         public const string DEFAULT_LAYER_NAME = "Background";
 
         public const int FIREWALL = 8;
+
+        public static List<string> UnneccessaryCSFFields = new List<string>()
+        {
+            "CriticalServiceDescription",
+            "ItIcsName",
+            "BudgetBasis",
+            "AuthorizedOrganizationalUserCount",
+            "AuthorizedNonOrganizationalUserCount",
+            "CustomersCount",
+            "ItIcsStaffCount",
+            "CybersecurityItIcsStaffCount",
+            "NetworksDescription",
+            "ServicesDescription",
+            "ApplicationsDescription",
+            "ConnectionsDescription",
+            "PersonnelDescription",
+            "PrimaryDefiningSystem"
+        };
     }
 }

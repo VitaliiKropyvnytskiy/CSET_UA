@@ -186,7 +186,7 @@ export class ExecutiveCMMC2Component implements OnInit, AfterViewInit {
         case 'U':
         return'Без відповіді'
         case 'NA':
-        return'НД'
+        return'НЗ'
     }
     return answer
   }

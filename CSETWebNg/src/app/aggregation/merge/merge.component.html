@@ -79,7 +79,7 @@
               <label class="btn btn-na form-check-label" [class.answer-selected]="q.defaultAnswer === 'NA'"
                 (click)="storeAnswer(q, 'NA')">
                 <input name="q_{{q.questionId}}" class="form-check-input" type="radio" autocomplete="off"
-                  [checked]="q.defaultAnswer === 'NA'">Н/Д
+                  [checked]="q.defaultAnswer === 'NA'">Н/З
               </label>
               <label class="btn btn-alt form-check-label" [class.answer-selected]="q.defaultAnswer === 'A'"
                 (click)="storeAnswer(q, 'A')">

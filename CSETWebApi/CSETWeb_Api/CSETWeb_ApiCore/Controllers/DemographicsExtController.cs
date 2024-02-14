@@ -13,6 +13,7 @@ using CSETWebCore.Interfaces.Helpers;
 using CSETWebCore.Model.Assessment;
 using CSETWebCore.Model.Demographic;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -59,6 +60,30 @@ namespace CSETWebCore.Api.Controllers
             var mgr = new DemographicExtBusiness(_context);
             var response = mgr.GetSubsectors(id);
             return Ok(response);
+        }
+
+        [HttpGet]
+        [Route("api/demographics/ext2/mainServiceTypes")]
+        public IActionResult GetMainServiceTypes(int? sectorId, int? industryId)
+        {
+            List<ListItem2> list = new List<ListItem2>();
+            if (industryId.HasValue)
+            {
+                list = _context.MAIN_SERVICE_TYPE.Where(mst => mst.IndustryId == industryId).Select(mst=>new ListItem2
+                {
+                    OptionValue=mst.MainServiceTypeId,
+                    OptionText=mst.Title
+                }).ToList();
+            }
+            else if (sectorId.HasValue)
+            {
+                list = _context.MAIN_SERVICE_TYPE.Where(mst => mst.SectorId == sectorId).Select(mst => new ListItem2
+                {
+                    OptionValue = mst.MainServiceTypeId,
+                    OptionText = mst.Title
+                }).ToList();
+            }
+            return Ok(list);
         }
 
 

@@ -58,12 +58,15 @@ namespace CSETWebCore.Helpers
             var sourceDocuments = documents.Where(t => t.IsSource)
                 .Select(s => new CustomDocument { File_Id = s.Gen_File_Id, Title = s.Title, File_Name = s.File_Name, Section_Ref = s.Section_Ref, Is_Uploaded = s.Is_Uploaded ?? false });
             sourceDocList = sourceDocuments.Where(d => availableRefDocs.Contains(d.File_Name) || d.Is_Uploaded).ToList();
-
+            if (!sourceDocList.Any())
+                sourceDocList = sourceDocuments.ToList();
 
             // Additional Resource Documents
             var additionalDocuments = documents.Where(t => !t.IsSource)
                 .Select(s => new CustomDocument { File_Id = s.Gen_File_Id, Title = s.Title, File_Name = s.File_Name, Section_Ref = s.Section_Ref, Is_Uploaded = s.Is_Uploaded ?? false });
             additionalDocList = additionalDocuments.Where(d => availableRefDocs.Contains(d.File_Name) || d.Is_Uploaded).ToList();
+            if(!additionalDocList.Any())
+                additionalDocList= additionalDocuments.ToList();
         }
 
 

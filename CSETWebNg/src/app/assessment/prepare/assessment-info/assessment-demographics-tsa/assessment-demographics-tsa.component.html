@@ -20,7 +20,7 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
 -------------------------->
-<!-- <h4>Демографія</h4> -->
+<!-- <h4>Відомості про організацію</h4> -->
 <form>
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -32,10 +32,10 @@
             </select>
         </div>
         <div class="form-group col-md-6">
-            <label class="mb-1" for="industry">Індустрія</label>
+            <label class="mb-1" for="industry">Підсектор</label>
             <select class="form-control" id="industry" name="industry" tabindex="0" [(ngModel)]="demographicData.industryId"
                 (change)="update($event)">
-                <option [ngValue]="null">-- Виберіть індустрію --</option>
+                <option [ngValue]="null">-- Виберіть підсектор --</option>
                 <option *ngFor="let industry of industryList" [value]="industry.industryId">{{industry.industryName}}</option>
             </select>
         </div>

@@ -32,10 +32,10 @@ namespace CSETWebCore.Api.Controllers
 
         [HttpGet]
         [Route("api/analyticsMaturityDashboard")]
-        public List<AnalyticsMinMaxAvgMedianByGroup> getMaturityDashboardData([FromQuery] int maturity_model_id, int? sectorId, int? industryId)
+        public List<AnalyticsMinMaxAvgMedianByGroup> getMaturityDashboardData([FromQuery] int maturity_model_id, int? sectorId, int? industryId, int mainServiceTypeId)
         {
             int assessmentId = _token.AssessmentForUser();
-            return _analytics.getMaturityDashboardData(maturity_model_id, sectorId, industryId);
+            return _analytics.getMaturityDashboardData(maturity_model_id, sectorId, industryId, mainServiceTypeId);
 
         }
     }

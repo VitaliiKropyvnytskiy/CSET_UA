@@ -40,21 +40,21 @@ namespace CSETWebCore.Business.Demographic
             d.AssessmentId = assessmentId;
             d.AssessmentDate = assessment.Assessment_Date;
 
-            d.OrganizationType = x.Find(z => z.DataItemName == "ORG-TYPE")?.IntValue;
+            d.OrganizationType = x.Find(z => z.DataItemName == "ORG-TYPE")?.IntValue ?? 0;
             d.OrganizationName = info.Facility_Name;
-            d.Sector = x.Find(z => z.DataItemName == "SECTOR")?.IntValue;
-            d.Subsector = x.Find(z => z.DataItemName == "SUBSECTOR")?.IntValue;
-            d.NumberEmployeesTotal = x.Find(z => z.DataItemName == "NUM-EMP-TOTAL")?.IntValue;
-            d.NumberEmployeesUnit = x.Find(z => z.DataItemName == "NUM-EMP-UNIT")?.IntValue;
-
-            d.AnnualRevenue = x.Find(z => z.DataItemName == "ANN-REVENUE")?.IntValue;
-            d.CriticalServiceRevenuePercent = x.Find(z => z.DataItemName == "ANN-REVENUE-PERCENT")?.IntValue;
-            d.NumberPeopleServedByCritSvc = x.Find(z => z.DataItemName == "NUM-PEOPLE-SERVED")?.IntValue;
+            d.Sector = x.Find(z => z.DataItemName == "SECTOR")?.IntValue ?? 0;
+            d.Subsector = x.Find(z => z.DataItemName == "SUBSECTOR")?.IntValue ?? 0;
+            d.MainServiceType = x.Find(z => z.DataItemName == "MAIN-SERVICE-TYPE")?.IntValue ?? 0;
+            d.NumberEmployeesTotal = x.Find(z => z.DataItemName == "NUM-EMP-TOTAL")?.IntValue ?? 0;
+            d.NumberEmployeesUnit = x.Find(z => z.DataItemName == "NUM-EMP-UNIT")?.IntValue ?? 0;
+            d.AnnualRevenue = x.Find(z => z.DataItemName == "ANN-REVENUE")?.IntValue ?? 0;
+            d.CriticalServiceRevenuePercent = x.Find(z => z.DataItemName == "ANN-REVENUE-PERCENT")?.IntValue ?? 0;
+            d.NumberPeopleServedByCritSvc = x.Find(z => z.DataItemName == "NUM-PEOPLE-SERVED")?.IntValue ?? 0;
 
             d.CriticalDependencyIncidentResponseSupport = x.Find(z => z.DataItemName == "CRIT-DEPEND-INCIDENT-RESPONSE")?.StringValue;
 
-            d.DisruptedSector1 = x.Find(z => z.DataItemName == "DISRUPTED-SECTOR1")?.IntValue;
-            d.DisruptedSector2 = x.Find(z => z.DataItemName == "DISRUPTED-SECTOR2")?.IntValue;
+            d.DisruptedSector1 = x.Find(z => z.DataItemName == "DISRUPTED-SECTOR1")?.IntValue ?? 0;
+            d.DisruptedSector2 = x.Find(z => z.DataItemName == "DISRUPTED-SECTOR2")?.IntValue ?? 0;
 
             // body of practice / standard
             d.UsesStandard = x.Find(z => z.DataItemName == "STANDARD-USED")?.BoolValue ?? true;
@@ -95,7 +95,12 @@ namespace CSETWebCore.Business.Demographic
             // get the subsectors for the current sector (if there is one)
             if (d.Sector != null)
             {
+                d.ListMainServiceTypes = GetMainServiceTypes(d.Sector, null);
                 d.ListSubsectors = GetSubsectors((int)d.Sector);
+            }
+            if (d.Subsector != null)
+            {
+                d.ListMainServiceTypes = GetMainServiceTypes(null, d.Subsector);
             }
 
             d.ListNumberEmployeeTotal = opts.Where(opt => opt.DataItemName == "NUM-EMP-TOTAL").Select(opts => new ListItem2()
@@ -152,15 +157,16 @@ namespace CSETWebCore.Business.Demographic
                 OptionText = opts.OptionText
             }).ToList();
 
-            var sectors = _context.SECTOR.Where(x => x.Is_NIPP).ToList().OrderBy(y => y.SectorName);
+            var sectors = _context.SECTOR.Where(x => x.Is_NIPP).ToList();
 
-            d.ListSectors = new List<ListItem2>();
+            d.ListSectors = new List<ListItem3>();
             foreach (var sec in sectors)
             {
-                d.ListSectors.Add(new ListItem2
+                d.ListSectors.Add(new ListItem3
                 {
                     OptionValue = sec.SectorId,
-                    OptionText = sec.SectorName
+                    OptionText = sec.SectorName,
+                    AdditionalText = sec.SectoralBody
                 });
             }
 
@@ -187,6 +193,29 @@ namespace CSETWebCore.Business.Demographic
             return list.Select(x => new ListItem2() { OptionValue = x.IndustryId, OptionText = x.IndustryName }).ToList();
         }
 
+        public List<ListItem2> GetMainServiceTypes(int? sectorId, int? industryId)
+        {
+            List<ListItem2> list = new List<ListItem2>();
+            if (sectorId.HasValue)
+            {
+                list = _context.MAIN_SERVICE_TYPE.Where(mst => mst.SectorId == sectorId).Select(mst => new ListItem2
+                {
+                    OptionValue = mst.MainServiceTypeId,
+                    OptionText = mst.Title
+                }).ToList();
+            }
+
+            if (industryId.HasValue)
+            {
+                list = _context.MAIN_SERVICE_TYPE.Where(mst => mst.IndustryId == industryId).Select(mst => new ListItem2
+                {
+                    OptionValue = mst.MainServiceTypeId,
+                    OptionText = mst.Title
+                }).ToList();
+            }
+            return list;
+        }
+
 
         /// <summary>
         /// 
@@ -209,16 +238,17 @@ namespace CSETWebCore.Business.Demographic
             _context.SaveChanges();
 
 
-            SaveDemoRecord(demographic.AssessmentId, "ORG-TYPE", demographic.OrganizationType);
-            SaveDemoRecord(demographic.AssessmentId, "SECTOR", demographic.Sector);
-            SaveDemoRecord(demographic.AssessmentId, "SUBSECTOR", demographic.Subsector);
-            SaveDemoRecord(demographic.AssessmentId, "NUM-EMP-TOTAL", demographic.NumberEmployeesTotal);
-            SaveDemoRecord(demographic.AssessmentId, "NUM-EMP-UNIT", demographic.NumberEmployeesUnit);
-            SaveDemoRecord(demographic.AssessmentId, "ANN-REVENUE", demographic.AnnualRevenue);
-            SaveDemoRecord(demographic.AssessmentId, "ANN-REVENUE-PERCENT", demographic.CriticalServiceRevenuePercent);
-            SaveDemoRecord(demographic.AssessmentId, "NUM-PEOPLE-SERVED", demographic.NumberPeopleServedByCritSvc);
-            SaveDemoRecord(demographic.AssessmentId, "DISRUPTED-SECTOR1", demographic.DisruptedSector1);
-            SaveDemoRecord(demographic.AssessmentId, "DISRUPTED-SECTOR2", demographic.DisruptedSector2);
+            SaveDemoRecord(demographic.AssessmentId, "ORG-TYPE", demographic.OrganizationType != 0 ? demographic.OrganizationType : null);
+            SaveDemoRecord(demographic.AssessmentId, "SECTOR", demographic.Sector != 0 ? demographic.Sector : null);
+            SaveDemoRecord(demographic.AssessmentId, "MAIN-SERVICE-TYPE", demographic.MainServiceType != 0 ? demographic.MainServiceType : null);
+            SaveDemoRecord(demographic.AssessmentId, "SUBSECTOR", demographic.Subsector != 0 ? demographic.Subsector : null);
+            SaveDemoRecord(demographic.AssessmentId, "NUM-EMP-TOTAL", demographic.NumberEmployeesTotal != 0 ? demographic.NumberEmployeesTotal : null);
+            SaveDemoRecord(demographic.AssessmentId, "NUM-EMP-UNIT", demographic.NumberEmployeesUnit != 0 ? demographic.NumberEmployeesUnit : null);
+            SaveDemoRecord(demographic.AssessmentId, "ANN-REVENUE", demographic.AnnualRevenue != 0 ? demographic.AnnualRevenue : null);
+            SaveDemoRecord(demographic.AssessmentId, "ANN-REVENUE-PERCENT", demographic.CriticalServiceRevenuePercent != 0 ? demographic.CriticalServiceRevenuePercent : null);
+            SaveDemoRecord(demographic.AssessmentId, "NUM-PEOPLE-SERVED", demographic.NumberPeopleServedByCritSvc != 0 ? demographic.NumberPeopleServedByCritSvc : null);
+            SaveDemoRecord(demographic.AssessmentId, "DISRUPTED-SECTOR1", demographic.DisruptedSector1 != 0 ? demographic.DisruptedSector1 : 0);
+            SaveDemoRecord(demographic.AssessmentId, "DISRUPTED-SECTOR2", demographic.DisruptedSector2 != 0 ? demographic.DisruptedSector2 : 0);
             SaveDemoRecord(demographic.AssessmentId, "CRIT-DEPEND-INCIDENT-RESPONSE", demographic.CriticalDependencyIncidentResponseSupport);
 
 
@@ -304,8 +334,8 @@ namespace CSETWebCore.Business.Demographic
 
         private void SaveDemoRecord(int assessmentId, string recName, List<int> values)
         {
-            foreach (int value in values) 
-            { 
+            foreach (int value in values)
+            {
                 var rec = new DETAILS_DEMOGRAPHICS()
                 {
                     Assessment_Id = assessmentId,

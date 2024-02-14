@@ -63,7 +63,7 @@ export class ComponentsSummaryComponent implements OnInit {
         case 'No':
         return'Ні'
         case 'Not Applicable':
-        return'Непридатно'
+        return'Не застосовується'
         case 'Alternate':
         return'Альтернативна відповідь'
         case 'Unanswered':

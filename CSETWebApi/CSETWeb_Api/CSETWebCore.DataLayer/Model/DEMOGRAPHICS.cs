@@ -22,6 +22,7 @@ namespace CSETWebCore.DataLayer.Model
         public int Assessment_Id { get; set; }
         public int? SectorId { get; set; }
         public int? IndustryId { get; set; }
+        public int? MainServiceTypeId { get; set; }
         [StringLength(50)]
         public string Size { get; set; }
         [StringLength(50)]
@@ -50,6 +51,7 @@ namespace CSETWebCore.DataLayer.Model
         [InverseProperty("DEMOGRAPHICSFacilitatorNavigation")]
         public virtual ASSESSMENT_CONTACTS FacilitatorNavigation { get; set; }
         public virtual SECTOR_INDUSTRY Industry { get; set; }
+        public virtual MAIN_SERVICE_TYPE MainServiceType { get; set; }
         [ForeignKey("OrganizationType")]
         [InverseProperty("DEMOGRAPHICS")]
         public virtual DEMOGRAPHICS_ORGANIZATION_TYPE OrganizationTypeNavigation { get; set; }

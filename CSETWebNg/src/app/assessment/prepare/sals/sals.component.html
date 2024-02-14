@@ -24,13 +24,13 @@
   <h3 class="mb-3">Рівень безпеки (SAL)</h3>
   <div class="mr-0 d-flex flex-column flex-00a">
     <div class="mb-3">
-      Гарантований рівень безпеки (SAL) визначає кількість питань, які потрібно відповісти, та рівень строгості оцінки.
-      Наприклад, типовий високий SAL буде містити від 350 до 1000 питань, в той час як низький SAL зазвичай міститиме
-      від 30 до 350 питань, в залежності від обраного стандарту.
+      Гарантований рівень безпеки (SAL) встановлює кількість необхідних до відповіді питань та визначає строгість
+      проведення оцінки. Наприклад, високий SAL зазвичай передбачає від 350 до 1000 питань, у той час як низький SAL
+      зазвичай включає від 30 до 350 питань, що залежить від обраного стандарту
     </div>
 
     <div class="mb-3">
-      SAL поширюється на стандартні набори питань і компоненти діаграми.
+      SAL застосовується до стандартних наборів питань та до елементів схеми оцінювання.
     </div>
 
     <span class="mt-3 mb-1 fw-600">Поточний рівень безпеки</span>
@@ -79,13 +79,12 @@
         <input class="form-check-input" type="radio" autocomplete="off" name="sal_type_selector"
           [checked]="selectedSal === 'GENERAL'">Загальний ризик
       </label>
-
-      <label csetid="NistSalLevelSelector" class="btn btn-sal-select btn-rounded form-check-label"
+      <!-- <label csetid="NistSalLevelSelector" class="btn btn-sal-select btn-rounded form-check-label"
         [class.active]="selectedSal === 'NIST'" (click)="changeState('NIST')">
         <input class="form-check-input" type="radio" autocomplete="off" name="sal_type_selector"
           [checked]="selectedSal === 'NIST'">NIST-60
         / FIPS-199
-      </label>
+      </label> -->
     </div>
     <hr class="w-100 hr-sal mt-1 mb-5" />
 

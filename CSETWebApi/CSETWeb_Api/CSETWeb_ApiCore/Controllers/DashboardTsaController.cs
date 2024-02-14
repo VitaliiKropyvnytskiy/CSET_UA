@@ -70,13 +70,13 @@ namespace CSETWebCore.Api.Controllers
 
         [HttpGet]
         [Route("api/TSA/analyticsMaturityDashboard")]
-        public IActionResult analyticsMaturityDashboard(int maturity_model_id,int? sectorId, int? industryId)
+        public IActionResult analyticsMaturityDashboard(int maturity_model_id,int? sectorId, int? industryId, int? mainServiceTypeId)
         {
             int assessmentId = _tokenManager.AssessmentForUser();
 
             ChartDataTSA chartData = new ChartDataTSA();
             
-            var data = _analytics.getMaturityDashboardData(maturity_model_id,sectorId, industryId);
+            var data = _analytics.getMaturityDashboardData(maturity_model_id,sectorId, industryId,mainServiceTypeId);
             var percentage = _analytics
                 .GetMaturityGroupsForAssessment(assessmentId, maturity_model_id).ToList();
             chartData.DataRowsMaturity = data;
@@ -106,7 +106,7 @@ namespace CSETWebCore.Api.Controllers
         }
         [HttpGet]
         [Route("api/TSA/getSectorIndustryStandardsTSA")]
-        public IActionResult GetStandardsResultsByCategory1( int? sectorId, int? industryId)
+        public IActionResult GetStandardsResultsByCategory1( int? sectorId, int? industryId, int? mainServiceType)
         {
             
             int assessmentId = _tokenManager.AssessmentForUser();
@@ -118,7 +118,7 @@ namespace CSETWebCore.Api.Controllers
             {
                 ChartDataTSA chartData = new ChartDataTSA(); 
             
-                var standardMinMaxAvg = _analytics.GetStandardMinMaxAvg(assessmentId,setname.Set_Name,  sectorId, industryId);
+                var standardMinMaxAvg = _analytics.GetStandardMinMaxAvg(assessmentId,setname.Set_Name,  sectorId, industryId, mainServiceType);
                 var standardsingleaverage = _analytics.GetStandardSingleAvg(assessmentId, setname.Set_Name);
            
                 chartData.data = (from a in standardsingleaverage

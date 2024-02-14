@@ -66,6 +66,18 @@ export class DemographicIodService {
     return this.http.get(this.apiUrl + `/subsectors/${sectorId}`);
   }
 
+  getMainServiceTypes(sectorId?: number, industryId?: number) {
+    let queryString = ""
+    if (industryId) {
+      queryString = 'industryId=' + industryId
+    } else if (sectorId) {
+      queryString = 'sectorId=' + sectorId
+    } else {
+      return;
+    }
+    return this.http.get(this.apiUrl + '/mainServiceTypes?' + queryString);
+  }
+
 
   /**
    * POSTs the screen data to the API.

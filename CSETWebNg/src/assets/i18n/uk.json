@@ -23,10 +23,10 @@
 
     "assessment configuration": "Конфігурація оцінювання",
     "assessment information": "Інформація про оцінку",
-    "organization details": "Деталі організації",
+    "organization details": "Короткі відомості",
     "assessment name": "Назва оцінки",
     "assessment date": "Дата оцінювання",
-    "facility name": "Назва закладу",
+    "facility name": "Назва організації",
     "city or site name": "Назва міста або сайту",
     "state province region": "Область/Район",
     "assessment type": "Тип оцінки",
@@ -38,7 +38,7 @@
     "button-label": {
         "Y": "Так",
         "N": "Ні",
-        "NA": "Н/Д",
+        "NA": "Н/З",
         "A": "заміщення",
         "U": "Без відповіді",
         "I": "Неповний",
@@ -64,7 +64,7 @@
     "tooltip": {
         "Y": "Так",
         "N": "Ні",
-        "NA": "Н/Д",
+        "NA": "Н/З",
         "A": "заміщення",
         "U": "Без відповіді [UK]",
         "I": "Неповний",

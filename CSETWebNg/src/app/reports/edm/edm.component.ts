@@ -41,14 +41,22 @@ import { saveAs } from "file-saver";
 })
 export class EdmComponent implements OnInit, AfterContentInit {
 
-  @ViewChild('edm') el : ElementRef;
+  @ViewChild('edm') el: ElementRef;
 
   orgName: string;
   displayName = '...';
   currentDate: Date;
   currentTimeZone: string;
   assesmentInfo: any;
-  demographicData: Demographic = {};
+  demographicData: Demographic = {
+    mainServiceTypeId: 0,
+    sectorId: 0,
+    industryId: 0,
+    facilitator: 0,
+    pointOfContact: 0,
+    size: 0,
+    assetValue: 0
+  };
 
   print = false;
   preparingForPrint = false;
@@ -90,7 +98,7 @@ export class EdmComponent implements OnInit, AfterContentInit {
     }
   }
 
-  getReportPdf(){
+  getReportPdf() {
     //this.reportSvc.getPdf(this.el.nativeElement.innerHTML);
     this.reportSvc.getPdf(this.el.nativeElement.innerHTML, "None").subscribe(data => {
       saveAs(data, "edm.pdf");

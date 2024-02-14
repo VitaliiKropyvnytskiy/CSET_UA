@@ -66,7 +66,7 @@ export class MvraSummaryComponent implements OnInit {
       this.flattenedModel.push(goal);
       m.push(goal);
       element.levelScores.forEach(level=>{
-        let credit = level.totalTiers > 0 ? level.credit + '%' : 'Н/Д';
+        let credit = level.totalTiers > 0 ? level.credit + '%' : 'Н/З';
         var dGoal = {title: level.level, credit: credit, totalPassed: level.totalPassed, totalTiers: level.totalTiers, function: false }
         m.push(dGoal)
       })

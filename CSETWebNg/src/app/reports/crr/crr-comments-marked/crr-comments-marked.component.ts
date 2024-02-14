@@ -51,7 +51,7 @@ export class CrrCommentsMarkedComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.titleService.setTitle("Коментарі та позначено для перегляду - CISA CRR");
+    this.titleService.setTitle("Коментарі та потребує огляду - CISA CRR");
     this.keyToCategory = this.crrSvc.keyToCategory;
 
     let appCode = this.configSvc.installationMode;

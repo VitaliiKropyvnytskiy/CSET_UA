@@ -48,7 +48,7 @@ export class CisCommentsmarkedComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.titleService.setTitle("Коментарі та позначено для перегляду - CISA CIS");
+    this.titleService.setTitle("Коментарі та потребує огляду - CISA CIS");
 
     this.maturitySvc.getCommentsMarked().subscribe(
       (r: any) => {

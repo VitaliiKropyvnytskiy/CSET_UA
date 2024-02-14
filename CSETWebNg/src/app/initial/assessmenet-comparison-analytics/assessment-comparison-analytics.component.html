@@ -59,29 +59,43 @@
             <div class="form-group col-12 text-wrap mt-2">
               <p><strong>Фільтрувати за </strong> </p>
               <label class="mb-1" for="sector">Сектор</label>
-              <select class="form-control" id="sector" name="sector" tabindex="0"
-                (change)="onSelectSector($event.target.value)" [(ngModel)]="demographicData.sectorId">
-                <option [ngValue]="null">-- Виберіть сектор --</option>
-                <option *ngFor="let sector of sectorsList" [value]="sector.sectorId">{{sector.sectorName}}
-                </option>
-              </select>
+              <mat-select class="form-control" id="sector" name="sector" tabindex="0"
+                [(ngModel)]="demographicData.sectorId" (selectionChange)="onSelectSector($event.value)">
+                <mat-option [value]="0">-- Виберіть сектор --</mat-option>
+                <ng-container *ngFor="let sector of sectorsList">
+                  <mat-option [value]="sector.sectorId">{{sector.sectorName}}</mat-option>
+                </ng-container>
+              </mat-select>
             </div>
             <div class="form-group col-12">
-              <label class="mb-1" for="industry">Індустрія</label>
-              <select class="form-control" id="industry" name="industry" tabindex="0"
-                [(ngModel)]="demographicData.industryId" (change)="update($event)">
-                <option [ngValue]="null">-- Виберіть індустрію --</option>
-                <option *ngFor="let industry of industryList" [value]="industry.industryId">
-                  {{industry.industryName}}</option>
-              </select>
+              <label class="mb-1" for="industry">Підсектор</label>
+              <mat-select class="form-control" id="industry" name="industry" tabindex="0"
+                [(ngModel)]="demographicData.industryId" (selectionChange)="onSelectIndustry($event.value)">
+                <mat-option [value]="0">-- Виберіть підсектор --</mat-option>
+                <ng-container *ngFor="let industry of industryList">
+                  <mat-option [value]="industry.industryId">{{industry.industryName}}</mat-option>
+                </ng-container>
+              </mat-select>
+            </div>
+            <div class="form-group col-12">
+              <label class="mb-1" for="mainServiceType">Тип основної послуги</label>
+              <mat-select class="form-control" id="mainServiceType" name="mainServiceType" tabindex="0"
+                [(ngModel)]="demographicData.mainServiceTypeId" (selectionChange)="update(this.sectorindustryId,$event.value)">
+                <mat-option [value]="0">-- Виберіть тип основної послуги --</mat-option>
+                <ng-container *ngFor="let mainServiceType of mainServiceTypeList">
+                  <mat-option [value]="mainServiceType.mainServiceTypeId">{{mainServiceType.title}}</mat-option>
+                </ng-container>
+              </mat-select>
             </div>
             <div class="form-group col-12">
               <label for="edmOrganizationType">Тип організації</label>
-              <select class="form-control" id="edmOrganizationType" tabindex="0" name="edmOrganizationType"
-                (change)="changeOrgType($event)" [(ngModel)]="demographicData.organizationType">
-                <option [ngValue]="null">-- Виберіть тип --</option>
-                <option *ngFor="let t of orgTypes" [value]="t.organizationTypeId">{{t.organizationType}}</option>
-              </select>
+              <mat-select class="form-control" id="edmOrganizationType" name="edmOrganizationType" tabindex="0"
+                [(ngModel)]="demographicData.organizationType" (selectionChange)="changeOrgType($event.value)">
+                <mat-option [value]="''">-- Виберіть тип --</mat-option>
+                <ng-container *ngFor="let t of orgTypes">
+                  <mat-option [value]="t.organizationTypeId">{{t.organizationType}}</mat-option>
+                </ng-container>
+              </mat-select>
             </div>
             <div class="col-12 text-right">
               <!-- <button  mat-raised-button class="btnApply" (click)="searchbySectorIndustry()" [disabled]="btnSearch">Apply</button> -->
@@ -97,7 +111,8 @@
       </div>
       <div *ngIf="isMaturity" class="col-12 mb-4">
         <h5>Зрілість </h5>
-        <div *ngIf="answerMaturity">Щоб створити порівняння, дайте відповідь принаймні на кілька питань щодо вибраної моделі зрілості.</div>
+        <div *ngIf="answerMaturity">Щоб створити порівняння, дайте відповідь принаймні на кілька питань щодо вибраної
+          моделі зрілості.</div>
         <div style="height:50%">
           {{"назва моделі: " + maturityModelName}}
           <canvas id="canvasStandardResult1"

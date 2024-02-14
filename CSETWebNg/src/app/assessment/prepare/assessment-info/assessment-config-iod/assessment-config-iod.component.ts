@@ -6,21 +6,33 @@ import { DemographicIodService } from '../../../../services/demographic-iod.serv
 import { DemographicsIod } from '../../../../models/demographics-iod.model';
 import { AssessmentContactsResponse, AssessmentDetail } from '../../../../models/assessment-info.model';
 import { User } from '../../../../models/user.model';
-import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
-import {MAT_MOMENT_DATE_FORMATS, MomentDateAdapter} from '@angular/material-moment-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
 
 @Component({
   selector: 'app-assessment-config-iod',
   templateUrl: './assessment-config-iod.component.html',
   styleUrls: ['./assessment-config-iod.component.scss'],
   providers: [
-    {provide: MAT_DATE_LOCALE, useValue: 'uk'},
-    {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
-    {provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS},
+    { provide: MAT_DATE_LOCALE, useValue: 'uk' },
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
   ]
 })
 export class AssessmentConfigIodComponent implements OnInit {
-  iodDemographics: DemographicsIod = {};
+  iodDemographics: DemographicsIod = {
+    organizationType: 0,
+    sector: 0,
+    subsector: 0,
+    mainServiceType: 0,
+    numberEmployeesTotal: 0,
+    numberEmployeesUnit: 0,
+    annualRevenue: 0,
+    criticalServiceRevenuePercent: 0,
+    numberPeopleServedByCritSvc: 0,
+    disruptedSector1: 0,
+    disruptedSector2: 0
+  };
   demographics: any = {};
   contacts: User[];
   assessment: AssessmentDetail = {};
@@ -31,7 +43,7 @@ export class AssessmentConfigIodComponent implements OnInit {
     private demoSvc: DemographicService,
     private iodDemoSvc: DemographicIodService,
     private configSvc: ConfigService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.minDate = new Date();

@@ -36,8 +36,7 @@
 </div>
 
 <div class="mb-3">
-    Дайте відповіді на наведені нижче запитання, щоб допомогти визначити SAL для вашої оцінки, вибравши потенційний
-    вплив на людей та/або економічні чинники у випадку зламу вашої системи.
+    Щоб визначити SAL для вашої оцінки, будь ласка, відповідайте на запитання нижче, оцінюючи потенційний вплив на людей та/або економічні наслідки у випадку компрометації вашої системи.
 </div>
 
 <div *ngFor="let slider of sliders" class="mb-4">
@@ -46,15 +45,15 @@
         <label class="mb-1" style="border-radius: .5rem">{{slider.onSite.sal_Description}}</label>
 
         <div class="p-2">
-            <div class="sal-slider-label">На сайті {{slider?.offSite?.values[0]}}</div>
-            <div class="sal-slider-label">На сайті {{slider?.offSite?.values[slider?.offSite?.values?.length - 1]}}</div>
+            <div class="sal-slider-label">На локації {{slider?.offSite?.values[0]}}</div>
+            <div class="sal-slider-label">На локації {{slider?.offSite?.values[slider?.offSite?.values?.length - 1]}}</div>
             <ngx-slider [(value)]="slider.onSite.slider_Value"
                 (valueChange)="valueChange($event, slider.onSite.sal_Name)" [options]="slider.onSite.options"
                 [pointer-type]="" class="mx-1 mb-4" [attr.csetid]="slider.onSite.sal_Name">
             </ngx-slider>
 
-            <div class="sal-slider-label">Поза сайтом {{slider?.onSite?.values[0]}}</div>
-            <div class="sal-slider-label">Поза сайтом {{slider?.onSite?.values[slider?.offSite?.values?.length - 1]}}</div>
+            <div class="sal-slider-label">Поза локацією {{slider?.onSite?.values[0]}}</div>
+            <div class="sal-slider-label">Поза локацією {{slider?.onSite?.values[slider?.offSite?.values?.length - 1]}}</div>
             <ngx-slider [(value)]="slider.offSite.slider_Value"
                 (valueChange)="valueChange($event, slider.offSite.sal_Name)" [options]="slider.offSite.options"
                 class="mx-1 mb-4" [attr.csetid]="slider.offSite.sal_Name">

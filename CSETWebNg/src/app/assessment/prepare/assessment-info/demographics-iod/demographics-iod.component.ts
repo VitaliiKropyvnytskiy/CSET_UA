@@ -11,9 +11,22 @@ export class DemographicsIodComponent implements OnInit {
   /**
    * The principal model for this page
    */
-  demographicData: DemographicsIod = {};
+  demographicData: DemographicsIod = {
+    organizationType: 0,
+    sector: 0,
+    subsector: 0,
+    mainServiceType: 0,
+    numberEmployeesTotal: 0,
+    numberEmployeesUnit: 0,
+    annualRevenue: 0,
+    criticalServiceRevenuePercent: 0,
+    numberPeopleServedByCritSvc: 0,
+    disruptedSector1: 0,
+    disruptedSector2: 0
+  };
+  selectedSectoralBody: string = "";
 
-  constructor(public demoSvc: DemographicIodService) {}
+  constructor(public demoSvc: DemographicIodService) { }
 
   /**
    *
@@ -21,6 +34,9 @@ export class DemographicsIodComponent implements OnInit {
   ngOnInit() {
     this.demoSvc.getDemographics().subscribe((data: any) => {
       this.demographicData = data;
+      if (this.demographicData.sector) {
+        this.selectedSectoralBody = this.demographicData.listSectors.find(sl => sl.optionValue == this.demographicData.sector).additionalText
+      }
     });
   }
 
@@ -28,11 +44,29 @@ export class DemographicsIodComponent implements OnInit {
    *
    */
   onChangeSector(evt: any) {
-    this.demographicData.subsector = null;
+    this.demographicData.subsector = 0;
+    this.demographicData.mainServiceType = 0;
+    this.selectedSectoralBody = "";
     this.updateDemographics();
-    if (this.demographicData.sector) {
+    if (this.demographicData.sector && this.demographicData.sector != 0) {
+      this.selectedSectoralBody = this.demographicData.listSectors.find(sl => sl.optionValue == this.demographicData.sector).additionalText
+
       this.demoSvc.getSubsectors(this.demographicData.sector).subscribe((data: any[]) => {
         this.demographicData.listSubsectors = data;
+      });
+
+      this.demoSvc.getMainServiceTypes(this.demographicData.sector, null).subscribe((data: any[]) => {
+        this.demographicData.listMainServiceTypes = data;
+      });
+    }
+  }
+
+  onChangeSubsector(evt: any) {
+    this.demographicData.mainServiceType = 0;
+    this.updateDemographics();
+    if (this.demographicData.subsector && this.demographicData.subsector != 0) {
+      this.demoSvc.getMainServiceTypes(null, this.demographicData.subsector).subscribe((data: any[]) => {
+        this.demographicData.listMainServiceTypes = data;
       });
     }
   }

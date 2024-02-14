@@ -20,51 +20,73 @@
   OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
   SOFTWARE.
 -------------------------->
-<h4>Демографія</h4>
+<h4>Відомості про організацію</h4>
 <form>
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
             <label class="mb-1" for="sector">Сектор<span *ngIf="showAsterisk"> *</span></label>
-            <select class="form-control" id="sector" name="sector" tabindex="0"
-                (change)="onSelectSector($event.target.value)" [(ngModel)]="demographicData.sectorId">
-                <option [ngValue]="null">-- Виберіть сектор --</option>
-                <option *ngFor="let sector of sectorsList" [value]="sector.sectorId">{{sector.sectorName}}</option>
-            </select>
+            <mat-select class="form-control" id="sector" name="sector" tabindex="0"
+                [(ngModel)]="demographicData.sectorId" (selectionChange)="onSelectSector($event.value)">
+                <mat-option [value]="0">-- Виберіть сектор --</mat-option>
+                <ng-container *ngFor="let sector of sectorsList">
+                    <mat-option [value]="sector.sectorId">{{sector.sectorName}}</mat-option>
+                </ng-container>
+            </mat-select>
         </div>
-        <div class="form-group col-md-6">
-            <label class="mb-1" for="industry">Індустрія<span *ngIf="showAsterisk"> *</span></label>
-            <select class="form-control" id="industry" name="industry" tabindex="0"
-                [(ngModel)]="demographicData.industryId" (change)="update($event)">
-                <option [ngValue]="null">-- Виберіть індустрію --</option>
-                <option *ngFor="let industry of industryList" [value]="industry.industryId">{{industry.industryName}}
-                </option>
-            </select>
+        <div class="form-group col-md-4">
+            <label class="mb-1" for="industry">Підсектор<span *ngIf="showAsterisk"> *</span></label>
+            <mat-select class="form-control" id="industry" name="industry" tabindex="0"
+                [(ngModel)]="demographicData.industryId" (selectionChange)="onSelectIndustry($event.value)">
+                <mat-option [value]="0">-- Виберіть підсектор --</mat-option>
+                <ng-container *ngFor="let industry of industryList">
+                    <mat-option [value]="industry.industryId">{{industry.industryName}}</mat-option>
+                </ng-container>
+            </mat-select>
+        </div>
+        <div class="form-group col-md-4">
+            <label class="mb-1" for="mainServiceType">Тип основної послуги<span *ngIf="showAsterisk"> *</span></label>
+            <mat-select class="form-control" id="mainServiceType" name="mainServiceType" tabindex="0"
+                [(ngModel)]="demographicData.mainServiceTypeId" (selectionChange)="update($event)">
+                <mat-option [value]="0">-- Виберіть тип основної послуги --</mat-option>
+                <ng-container *ngFor="let mainServiceType of mainServiceTypeList">
+                    <mat-option [value]="mainServiceType.mainServiceTypeId">{{mainServiceType.title}}</mat-option>
+                </ng-container>
+            </mat-select>
         </div>
     </div>
     <div class="form-group">
-        <label for="assetValue">Яка валова вартість активу, який ви намагаєтеся захистити?<span
-                *ngIf="showAsterisk"> *</span></label>
-        <select class="form-control" id="assetValue" tabindex="0" name="assetValue" (change)="changeAssetValue($event)">
-            <option selected disabled>Не вибрано</option>
-            <option *ngFor="let asset of assetValues" [value]="asset.demographicsAssetId"
-                [selected]="asset.demographicsAssetId === demographicData.assetValue">{{asset.assetValue}}</option>
-        </select>
+        <label for="sectoralBody">Секторальний орган у сфері захисту критичної інфраструктури</label>
+        <input class="form-control" autocomplete="off" tabindex="0" type="text" maxlength="50" name="sectoralBody"
+            id="sectoralBody" disabled [value]="selectedSectoralBody">
+    </div>
+    <div class="form-group">
+        <label for="assetValue">Яка валова вартість активу, який ви намагаєтеся захистити?<span *ngIf="showAsterisk">
+                *</span></label>
+        <mat-select [(ngModel)]="demographicData.assetValue" class="form-control" id="assetValue" tabindex="0"
+            name="assetValue" (selectionChange)="update($event)">
+            <mat-option [value]="0">Не вибрано</mat-option>
+            <ng-container *ngFor="let asset of assetValues">
+                <mat-option [value]="asset.demographicsAssetId">{{asset.assetValue}}</mat-option>
+            </ng-container>
+        </mat-select>
     </div>
 
     <div class="form-group">
         <label for="size">Який відносний час виконання для цієї оцінки?<span *ngIf="showAsterisk">
                 *</span></label>
-        <select class="form-control" id="size" tabindex="0" name="size" (change)="changeSize($event)"
-            [(ngModel)]="demographicData.size">
-            <option [ngValue]="null">-- Виберіть час виконання --</option>
-            <option *ngFor="let s of sizeList" [value]="s.demographicId">{{s.description}}</option>
-        </select>
+        <mat-select [(ngModel)]="demographicData.size" class="form-control" id="size" tabindex="0" name="size"
+            (selectionChange)="update($event)">
+            <mat-option [value]="0">-- Виберіть час виконання --</mat-option>
+            <ng-container *ngFor="let s of sizeList">
+                <mat-option [value]="s.demographicId">{{s.description}}</mat-option>
+            </ng-container>
+        </mat-select>
     </div>
     <div class="form-group" *ngIf="showOrganizationName()">
         <label for="edmOrganizationName">Назва організації<span *ngIf="showAsterisk"> *</span></label>
         <input class="form-control" autocomplete="off" tabindex="0" type="text" maxlength="150"
             name="edmOrganizationName" id="edmOrganizationName" [(ngModel)]="demographicData.organizationName"
-            #edmOrganizationName="ngModel" placeholder="назва організації" (blur)="changeOrgName($event)">
+            #edmOrganizationName="ngModel" placeholder="Назва організації" (blur)="changeOrgName($event)">
     </div>
     <div class="form-group" *ngIf="showBusinessAgencyName()">
         <label for="edmAgency">Підрозділ/Агентство<span *ngIf="showAsterisk"> *</span></label>
@@ -74,51 +96,58 @@
     </div>
     <div class="form-group">
         <label for="edmOrganizationType">Тип організації<span *ngIf="showAsterisk"> *</span></label>
-        <select *ngIf="isSLTT" class="form-control" id="edmOrganizationType" tabindex="0" name="edmOrganizationType"
-            (change)="changeOrgType($event)" [(ngModel)]="demographicData.organizationType">
-            <option [ngValue]="null">-- Виберіть тип --</option>
-            <option *ngFor="let t of orgTypes" [value]="t.organizationTypeId">{{t.organizationType}}</option>
-        </select>
-        <select *ngIf="!isSLTT" class="form-control" id="edmOrganizationType" tabindex="0" name="edmOrganizationType"
-            (change)="changeOrgType($event)" [(ngModel)]="demographicData.organizationType">
-            <option [ngValue]="null" [value]="0">-- Виберіть тип --</option>
+        <mat-select [(ngModel)]="demographicData.organizationType" class="form-control" id="edmOrganizationType"
+            tabindex="0" name="edmOrganizationType" (selectionChange)="update($event)">
+            <mat-option [value]="0">-- Виберіть тип --</mat-option>
             <ng-container *ngFor="let t of orgTypes">
-                <option *ngIf="t.organizationTypeId!==3" [value]="t.organizationTypeId">{{t.organizationType}}</option>
+                <ng-container *ngIf="!isSLTT && t.organizationTypeId!==3">
+                    <mat-option [value]="t.organizationTypeId">{{t.organizationType}}</mat-option>
+                </ng-container>
             </ng-container>
-        </select>
+        </mat-select>
     </div>
-    <div class="form-group" *ngIf="true">
+    <!-- <div class="form-group" *ngIf="true">
         <label class="mb-1" for="orgPointOfContact">Контактна особа організації</label>
-        <select class="form-control" id="orgPointOfContact" tabindex="0" name="orgPointOfContact" (change)="changeOrgPointOfContact($event)"
-            [(ngModel)]="demographicData.orgPointOfContact">
-            <option [ngValue]="null">-- Виберіть контактну особу --</option>
-            <option *ngFor="let contact of contacts" [value]="contact.assessmentContactId">{{contact.firstName}} {{contact.lastName}}</option>
-        </select>
-    </div>
+        <mat-select [(ngModel)]="demographicData.orgPointOfContact" class="form-control" id="orgPointOfContact"
+            tabindex="0" name="orgPointOfContact" (selectionChange)="update($event)">
+            <mat-option [value]="0">-- Виберіть контактну особу --</mat-option>
+            <ng-container *ngFor="let contact of contacts">
+                <mat-option [value]="contact.assessmentContactId">{{contact.firstName}}
+                    {{contact.lastName}}</mat-option>
+            </ng-container>
+        </mat-select>
+    </div> -->
     <div class="form-group" *ngIf="showFacilitator()">
         <label class="mb-1" for="edmFacilitator">Фасилітатор</label>
-        <select class="form-control" id="edmFacilitator" tabindex="0" name="edmFacilitator"
-            (change)="changeFacilitator($event)" [(ngModel)]="demographicData.facilitator">
-            <option [ngValue]="null" [value]="0">-- Виберіть фасилітатора --</option>
-            <option *ngFor="let contact of contacts" [value]="contact.assessmentContactId">{{contact.firstName}}
-                {{contact.lastName}}</option>
-        </select>
+        <mat-select [(ngModel)]="demographicData.facilitator" class="form-control" id="edmFacilitator" tabindex="0"
+            name="edmFacilitator" (selectionChange)="update($event)">
+            <mat-option [value]="0">-- Виберіть фасилітатора --</mat-option>
+            <ng-container *ngFor="let facilitator of facilitators">
+                <mat-option [value]="facilitator.assessmentContactId">{{facilitator.firstName}}
+                    {{facilitator.lastName}}</mat-option>
+            </ng-container>
+        </mat-select>
     </div>
     <div class="form-row" *ngIf="showCriticalService()">
         <div class="form-group col-md-6">
-            <label class="mb-1" for="criticalService">Критична служба</label>
+            <label class="mb-1" for="criticalService">Обмеження оцінювання</label>
             <textarea appAutoSize class="form-control" autocomplete="off" tabindex="0" maxlength="100"
                 name="criticalService" id="criticalService" [(ngModel)]="demographicData.criticalService"
-                placeholder="Критична служба" (blur)="changeCriticalService($event)"></textarea>
+                placeholder="Вкажіть перелік критичних систем та/або їх складових, точки відмови, та відповідні обмеження під час їх оцінювання. Це необхідно для того щоб заходи під час оцінювання не завдали шкоди бізнесу та не призвели до відмови критичних служб і втрат."
+                (blur)="changeCriticalService($event)"></textarea>
         </div>
         <div class="form-group col-md-6">
             <label class="mb-1" for="critSvcPointOfContact">Важлива контактна особа служби підтримки</label>
-            <select class="form-control" id="critSvcPointOfContact" tabindex="0" name="critSvcPointOfContact"
-                (change)="changePointOfContact($event)" [(ngModel)]="demographicData.pointOfContact">
-                <option [ngValue]="null" [value]="0">-- Виберіть контактну особу --</option>
-                <option *ngFor="let contact of contacts" [value]="contact.assessmentContactId">{{contact.firstName}}
-                    {{contact.lastName}}</option>
-            </select>
+            <mat-select [(ngModel)]="demographicData.pointOfContact"  matTooltipPosition="above"
+                matTooltip="Контактна особа яка має доступ до об’єктів, контактів та інформації необхідних для проведення оцінювання та здатна надати допомогу у невідкладних випадках."
+                class="form-control" id="critSvcPointOfContact" tabindex="0" name="critSvcPointOfContact"
+                (selectionChange)="update($event)">
+                <mat-option [value]="0">-- Виберіть контактну особу --</mat-option>
+                <ng-container *ngFor="let contact of contacts">
+                    <mat-option [value]="contact.assessmentContactId">{{contact.firstName}}
+                        {{contact.lastName}}</mat-option>
+                </ng-container>
+            </mat-select>
         </div>
     </div>
     <div class="d-flex flex-column justify-content-between flex-00a" *ngIf="showEdmFields()">

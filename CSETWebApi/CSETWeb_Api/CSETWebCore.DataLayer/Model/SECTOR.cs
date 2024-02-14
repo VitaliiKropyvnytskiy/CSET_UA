@@ -18,6 +18,7 @@ namespace CSETWebCore.DataLayer.Model
         {
             DEMOGRAPHICS = new HashSet<DEMOGRAPHICS>();
             SECTOR_INDUSTRY = new HashSet<SECTOR_INDUSTRY>();
+            MAIN_SERVICE_TYPE= new HashSet<MAIN_SERVICE_TYPE>();
             SECTOR_STANDARD_RECOMMENDATIONS = new HashSet<SECTOR_STANDARD_RECOMMENDATIONS>();
         }
 
@@ -26,6 +27,8 @@ namespace CSETWebCore.DataLayer.Model
         [Required]
         [StringLength(50)]
         public string SectorName { get; set; }
+        [StringLength(50)]
+        public string SectoralBody { get; set; }
         public bool Is_NIPP { get; set; }
         public int? NIPP_sector { get; set; }
 
@@ -33,6 +36,7 @@ namespace CSETWebCore.DataLayer.Model
         public virtual ICollection<DEMOGRAPHICS> DEMOGRAPHICS { get; set; }
         [InverseProperty("Sector")]
         public virtual ICollection<SECTOR_INDUSTRY> SECTOR_INDUSTRY { get; set; }
+        public virtual ICollection<MAIN_SERVICE_TYPE> MAIN_SERVICE_TYPE { get; set; }
         [InverseProperty("Sector")]
         public virtual ICollection<SECTOR_STANDARD_RECOMMENDATIONS> SECTOR_STANDARD_RECOMMENDATIONS { get; set; }
     }

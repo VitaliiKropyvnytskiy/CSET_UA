@@ -58,7 +58,6 @@ export class HydroImpactCategoryComponent implements OnInit {
         while (this.impactData.length != this.domainGroupNames.length) {
           this.impactData.push([0,0,0,0]); // this fills the rest of impactData with blank data
         }
-        console.log(this.impactData)
 
         this.loading = false;
       }

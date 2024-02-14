@@ -87,9 +87,9 @@
         },
         {
             "code": "NA",
-            "buttonLabel": "НД",
+            "buttonLabel": "НЗ",
             "buttonCss": "btn-na",
-            "answerLabel": "Н/Д"
+            "answerLabel": "Не застосовується"
         },
         {
             "code": "A",

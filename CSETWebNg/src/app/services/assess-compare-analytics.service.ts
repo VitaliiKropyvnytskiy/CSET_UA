@@ -116,9 +116,15 @@ export class AssessCompareAnalyticsService {
     return this.http.get<any[]>(this.configSvc.apiUrl + 'TSA/getStandardList');
   }
 
-  getSectorIndustryStandardsTSA(sectorId?: number, industryId?: number): any {
+  getSectorIndustryStandardsTSA(sectorId?: number, industryId?: number, mainServiceTypeId?: number): any {
     var url = this.http.get(this.configSvc.apiUrl + 'TSA/getSectorIndustryStandardsTSA');
-    if (sectorId && industryId) {
+    if (sectorId && industryId && mainServiceTypeId) {
+      url = this.http.get(this.configSvc.apiUrl + 'TSA/getSectorIndustryStandardsTSA?sectorId=' + sectorId + '&industryId=' + industryId + '&mainServiceTypeId=' + mainServiceTypeId);
+    }
+    else if (sectorId && mainServiceTypeId) {
+      url = this.http.get(this.configSvc.apiUrl + 'TSA/getSectorIndustryStandardsTSA?sectorId=' + sectorId + '&mainServiceTypeId=' + mainServiceTypeId);
+    }
+    else if (sectorId && industryId) {
       url = this.http.get(this.configSvc.apiUrl + 'TSA/getSectorIndustryStandardsTSA?sectorId=' + sectorId + '&industryId=' + industryId);
     } else if (!sectorId) {
       url = this.http.get(this.configSvc.apiUrl + 'TSA/getSectorIndustryStandardsTSA');
@@ -130,15 +136,22 @@ export class AssessCompareAnalyticsService {
     return url;
   }
 
-  maturityDashboardByCategory(selectedMaturityModelId: number, sectorId?: number, industryId?: number): any {
+  maturityDashboardByCategory(selectedMaturityModelId: number, sectorId?: number, industryId?: number, mainServiceTypeId?: number): any {
     var url
-    if (!sectorId) {
+    if (!sectorId || sectorId == 0) {
       url = this.http.get(this.configSvc.apiUrl + 'TSA/analyticsMaturityDashboard?maturity_model_id=' + selectedMaturityModelId);
     }
-    else if (sectorId && !industryId) {
-      url = url = this.http.get(this.configSvc.apiUrl + 'TSA/analyticsMaturityDashboard?maturity_model_id=' + selectedMaturityModelId + '&sectorId=' + sectorId);
-    } else if (sectorId && industryId) {
-      url = url = this.http.get(this.configSvc.apiUrl + 'TSA/analyticsMaturityDashboard?maturity_model_id=' + selectedMaturityModelId + '&sectorId=' + sectorId + '&industryId=' + industryId);
+    else if (sectorId && (!industryId || industryId == 0)) {
+      url = this.http.get(this.configSvc.apiUrl + 'TSA/analyticsMaturityDashboard?maturity_model_id=' + selectedMaturityModelId + '&sectorId=' + sectorId);
+    }
+    else if (sectorId > 0 && industryId > 0 && mainServiceTypeId > 0) {
+      url = this.http.get(this.configSvc.apiUrl + 'TSA/analyticsMaturityDashboard?maturity_model_id=' + selectedMaturityModelId + '&sectorId=' + sectorId + '&industryId=' + industryId + '&mainServiceTypeId=' + mainServiceTypeId);
+    }
+    else if (sectorId > 0 && mainServiceTypeId > 0) {
+      url = this.http.get(this.configSvc.apiUrl + 'TSA/analyticsMaturityDashboard?maturity_model_id=' + selectedMaturityModelId + '&sectorId=' + sectorId + '&mainServiceTypeId=' + mainServiceTypeId);
+    }
+    else if (sectorId > 0 && industryId > 0) {
+      url = this.http.get(this.configSvc.apiUrl + 'TSA/analyticsMaturityDashboard?maturity_model_id=' + selectedMaturityModelId + '&sectorId=' + sectorId + '&industryId=' + industryId);
     }
     return url;
   }

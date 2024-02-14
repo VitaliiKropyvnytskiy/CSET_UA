@@ -101,6 +101,7 @@ export interface Demographic {
     assessment_Id?: number;
     sectorId?: number;
     industryId?: number;
+    mainServiceTypeId?:number;
     size?: number;
     assetValue?: number;
     needsPrivacy?: boolean;

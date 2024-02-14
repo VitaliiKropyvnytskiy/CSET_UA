@@ -47,10 +47,11 @@
 
     <div class="form-row">
       <div class="form-group col-md-6">
-        <label class="mb-1" for="criticalService">Критична служба</label>
+        <label class="mb-1" for="criticalService">Обмеження оцінювання</label>
         <textarea [ngClass]="{ 'alert-danger' : !demographics.criticalService }" appAutoSize class="form-control"
           autocomplete="off" tabindex="0" maxlength="100" name="criticalService" id="criticalService"
-          [(ngModel)]="demographics.criticalService" placeholder="Критична служба"
+          [(ngModel)]="demographics.criticalService"
+          placeholder="Вкажіть перелік критичних систем та/або їх складових, точки відмови, та відповідні обмеження під час їх оцінювання. Це необхідно для того щоб заходи під час оцінювання не завдали шкоди бізнесу та не призвели до відмови критичних служб і втрат."
           (blur)="changeCriticalService($event)"></textarea>
       </div>
 
@@ -59,51 +60,54 @@
         <textarea [ngClass]="{ 'alert-danger' : !iodDemographics.criticalDependencyIncidentResponseSupport }"
           appAutoSize class="form-control" autocomplete="off" tabindex="0" maxlength="100" name="criticalDependency"
           id="criticalDependency" [(ngModel)]="iodDemographics.criticalDependencyIncidentResponseSupport"
-          placeholder="Критична залежність для підтримки реагування на інциденти" (blur)="updateIodDemographics()"></textarea>
+          placeholder="Критична залежність для підтримки реагування на інциденти"
+          (blur)="updateIodDemographics()"></textarea>
       </div>
     </div>
 
     <div class="form-group">
       <label class="mb-1" for="critSvcPointOfContact">Важлива контактна особа служби підтримки</label>
-      <select class="form-control" id="critSvcPointOfContact" tabindex="0" name="critSvcPointOfContact"
-        (change)="changePointOfContact($event)" [(ngModel)]="demographics.pointOfContact">
-        <option [ngValue]="null">-- Виберіть контактну особу --</option>
-        <option *ngFor="let contact of contacts" [ngValue]="contact.assessmentContactId">
-          {{ contact.firstName }} {{ contact.lastName }}
-        </option>
-      </select>
+      <mat-select [(ngModel)]="demographics.pointOfContact" matTooltipPosition="above"
+        matTooltip="Контактна особа яка має доступ до об’єктів, контактів та інформації необхідних для проведення оцінювання та здатна надати допомогу у невідкладних випадках."
+        class="form-control" id="critSvcPointOfContact" tabindex="0" name="critSvcPointOfContact"
+        (selectionChange)="updateDemographics()">
+        <mat-option [value]="0">-- Виберіть контактну особу --</mat-option>
+        <ng-container *ngFor="let contact of contacts">
+          <mat-option [value]="contact.assessmentContactId">{{contact.firstName}}
+            {{contact.lastName}}</mat-option>
+        </ng-container>
+      </mat-select>
     </div>
     <!-- #4 -->
     <div class="form-group mb-4">
       <label for="percentageRevenue">
         Оцініть відсоток річного доходу вашої організації, який залежить від критично важливої послуги.
       </label>
-      <select [ngClass]="{ 'alert-danger' : !iodDemographics.criticalServiceRevenuePercent }" class="form-control"
-        id="percentageRevenue" tabindex="0" name="percentageRevenue"
-        [(ngModel)]="iodDemographics.criticalServiceRevenuePercent" (change)="updateIodDemographics()">
-        <option [ngValue]="null">-- Виберіть--</option>
-        <option *ngFor="let i of iodDemographics.listRevenuePercentages" [ngValue]="i.optionValue"
-          [selected]="i.optionValue === iodDemographics.criticalServiceRevenuePercent">
-          {{ i.optionText }}
-        </option>
-      </select>
+      <mat-select [(ngModel)]="iodDemographics.criticalServiceRevenuePercent"
+        [ngClass]="{ 'alert-danger' : !iodDemographics.criticalServiceRevenuePercent }" class="form-control"
+        id="percentageRevenue" tabindex="0" name="percentageRevenue" (selectionChange)="updateIodDemographics()">
+        <mat-option [value]="0">-- Виберіть --</mat-option>
+        <ng-container *ngFor="let i of iodDemographics.listRevenuePercentages">
+          <mat-option [value]="i.optionValue">{{ i.optionText }}</mat-option>
+        </ng-container>
+      </mat-select>
     </div>
 
     <!-- #5 -->
     <div class="form-group mb-4">
       <label for="NumberPeopleServedByCritSvc">
         Якщо можливо, оцініть кількість людей, які щорічно обслуговуються критично важливою службою. Якщо оцінка
-        недоступна, виберіть Н/Д.
+        недоступна, виберіть Н/З.
       </label>
-      <select [ngClass]="{ 'alert-danger' : !iodDemographics.numberPeopleServedByCritSvc }" class="form-control"
+      <mat-select [(ngModel)]="iodDemographics.numberPeopleServedByCritSvc"
+        [ngClass]="{ 'alert-danger' : !iodDemographics.numberPeopleServedByCritSvc }" class="form-control"
         id="numberPeopleServedByCritSvc" tabindex="0" name="numberPeopleServedByCritSvc"
-        [(ngModel)]="iodDemographics.numberPeopleServedByCritSvc" (change)="updateIodDemographics()">
-        <option [ngValue]="null">-- Виберіть--</option>
-        <option *ngFor="let i of iodDemographics.listNumberPeopleServed" [ngValue]="i.optionValue"
-          [selected]="i.optionValue === iodDemographics.numberPeopleServedByCritSvc">
-          {{ i.optionText }}
-        </option>
-      </select>
+        (selectionChange)="updateIodDemographics()">
+        <mat-option [value]="0">-- Виберіть --</mat-option>
+        <ng-container *ngFor="let i of iodDemographics.listNumberPeopleServed">
+          <mat-option [value]="i.optionValue">{{ i.optionText }}</mat-option>
+        </ng-container>
+      </mat-select>
     </div>
 
     <!-- #6 -->
@@ -117,27 +121,27 @@
       <div>
         <div>
           Найбільш важливо:
-          <select [ngClass]="{ 'alert-danger' : !iodDemographics.disruptedSector1 }" class="form-control mb-3"
-            name="disruptedSector1" tabindex="0" [(ngModel)]="iodDemographics.disruptedSector1"
-            (change)="updateIodDemographics()">
-            <option [ngValue]="null">-- Виберіть--</option>
-            <option *ngFor="let i of iodDemographics.listSectors" [ngValue]="i.optionValue"
-              [selected]="i.optionValue === iodDemographics.disruptedSector1">
-              {{ i.optionText }}
-            </option>
-          </select>
+          <mat-select [(ngModel)]="iodDemographics.disruptedSector1"
+          [ngClass]="{ 'alert-danger' : !iodDemographics.disruptedSector1 }" class="form-control mb-3"
+            id="disruptedSector1" tabindex="0" name="disruptedSector1"
+            (selectionChange)="updateIodDemographics()">
+            <mat-option [value]="0">-- Виберіть --</mat-option>
+            <ng-container *ngFor="let i of iodDemographics.listSectors">
+              <mat-option [value]="i.optionValue">{{ i.optionText }}</mat-option>
+            </ng-container>
+          </mat-select>
         </div>
         <div>
           Друге за важливістю:
-          <select [ngClass]="{ 'alert-danger' : !iodDemographics.disruptedSector2 }" class="form-control mb-3"
-            name="disruptedSector2" tabindex="0" [(ngModel)]="iodDemographics.disruptedSector2"
-            (change)="updateIodDemographics()">
-            <option [ngValue]="null">-- Виберіть--</option>
-            <option *ngFor="let i of iodDemographics.listSectors" [ngValue]="i.optionValue"
-              [selected]="i.optionValue === iodDemographics.disruptedSector2">
-              {{ i.optionText }}
-            </option>
-          </select>
+          <mat-select [(ngModel)]="iodDemographics.disruptedSector2"
+          [ngClass]="{ 'alert-danger' : !iodDemographics.disruptedSector2 }" class="form-control mb-3"
+            id="disruptedSector2" tabindex="0" name="disruptedSector2"
+            (selectionChange)="updateIodDemographics()">
+            <mat-option [value]="0">-- Виберіть --</mat-option>
+            <ng-container *ngFor="let i of iodDemographics.listSectors">
+              <mat-option [value]="i.optionValue">{{ i.optionText }}</mat-option>
+            </ng-container>
+          </mat-select>
         </div>
       </div>
     </div>

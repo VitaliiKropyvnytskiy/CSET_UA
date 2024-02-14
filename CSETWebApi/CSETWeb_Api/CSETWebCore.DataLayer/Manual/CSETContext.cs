@@ -395,7 +395,7 @@ namespace CSETWebCore.DataLayer.Model
             return myrval;
         }
         public virtual IList<AnalyticsStandardMinMaxAvg> analytics_Compute_standard_all(int assessmentId,  string setname, int? sectorId,
-            int? industryId)
+            int? industryId, int? mainServiceTypeId)
         {
      
             IList<AnalyticsStandardMinMaxAvg> myrval = null;
@@ -404,6 +404,7 @@ namespace CSETWebCore.DataLayer.Model
                 .WithSqlParam("set_name", setname)
                 .WithSqlParam("sector_id", sectorId ==null?DBNull.Value:sectorId )
                 .WithSqlParam("industry_id", industryId ==null?DBNull.Value:industryId)
+                .WithSqlParam("main_service_type_id", mainServiceTypeId == null ? DBNull.Value : mainServiceTypeId)
                 // .WithSqlParam("industry_id",industryId ==null?DBNull.Value:industryId)
                 .ExecuteStoredProc((handler) =>
                 {
@@ -425,13 +426,14 @@ namespace CSETWebCore.DataLayer.Model
             return myrval;
         }
         
-        public virtual IList<AnalyticsMinMaxAvgMedianByGroup> analytics_Compute_MaturityAll(int model_id, int? sectorId,int? industryId )
+        public virtual IList<AnalyticsMinMaxAvgMedianByGroup> analytics_Compute_MaturityAll(int model_id, int? sectorId,int? industryId,int? mainServiceTypeId)
         {
             IList<AnalyticsMinMaxAvgMedianByGroup> myrval = null;
             this.LoadStoredProc("analytics_Compute_MaturityAll")
                  .WithSqlParam("maturity_model_id", model_id)
                  .WithSqlParam("sector_id", sectorId ==null?DBNull.Value:sectorId )
                  .WithSqlParam("industry_id", industryId ==null?DBNull.Value:industryId)
+                 .WithSqlParam("main_service_type_id", mainServiceTypeId == null ? DBNull.Value : mainServiceTypeId)
                      .ExecuteStoredProc((handler) =>
                      {
                          myrval = handler.ReadToList<AnalyticsMinMaxAvgMedianByGroup>();

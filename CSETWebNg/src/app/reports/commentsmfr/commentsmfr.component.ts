@@ -61,7 +61,7 @@ export class CommentsMfrComponent implements OnInit {
    */
   ngOnInit(): void {
     this.loading = true;
-    this.titleService.setTitle("Коментарі та позначено для перегляду - Оглядовий звіт");
+    this.titleService.setTitle("Коментарі та потребує огляду - Оглядовий звіт");
 
     this.maturitySvc.getCommentsMarked().subscribe(
       (r: any) => {

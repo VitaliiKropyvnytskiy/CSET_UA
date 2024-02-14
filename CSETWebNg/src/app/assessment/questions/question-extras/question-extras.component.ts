@@ -455,7 +455,6 @@ export class QuestionExtrasComponent implements OnInit {
     if (this.isNullOrWhiteSpace(document.title)) {
       document.title = "натисніть для редагування";
     }
-    console.log('myQuestion',this.myQuestion)
     this.questionsSvc.renameDocument(document.document_Id, this.myQuestion.answer_Id, document.title,this.myQuestion.questionId,this.myQuestion.questionType)
       .subscribe();
   }

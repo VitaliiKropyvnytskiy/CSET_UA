@@ -48,22 +48,26 @@
 </div>
 
 
-<div *ngIf="sourceDocuments.length > 0" class="sub-header-1">Вихідні документи</div>
+<div *ngIf="sourceDocuments.length > 0" class="sub-header-1">{{standards[0] === 'NCSF_V1' ? 'Нормативні посилання' :
+    'Вихідні документи'}}</div>
 <div *ngFor="let doc of sourceDocuments; let lastDoc = last" class="mb-1" [class.mb-4]="lastDoc">
-    {{doc.title}}: 
-    <ng-container *ngFor="let b of doc.bookmarks; let l = last">
-        <a href="{{documentUrl(doc, b)}}" 
-        rel="noopener noreferrer" target="_blank">{{bookmarkDisplay(b)}}</a><ng-container *ngIf="!l">, </ng-container>
+    {{doc.title}}
+    <ng-container *ngIf="standards[0] !== 'NCSF_V1'">:
+        <ng-container *ngFor="let b of doc.bookmarks; let l = last">
+            <a href="{{documentUrl(doc, b)}}" rel="noopener noreferrer"
+                target="_blank">{{bookmarkDisplay(b)}}</a><ng-container *ngIf="!l">, </ng-container>
+        </ng-container>
     </ng-container>
 </div>
 
 
-<div *ngIf="additionalDocuments.length > 0" class="sub-header-1">Додаткові документи</div>
+<div *ngIf="additionalDocuments.length > 0" class="sub-header-1">{{standards[0] === 'NCSF_V1' ? 'Довідкові посилання' :
+    'Додаткові документи'}}</div>
 <div *ngFor="let doc of additionalDocuments; let lastDoc = last" class="mb-1" [class.mb-4]="lastDoc">
-    {{doc.title}}<ng-container *ngIf="doc.fileName">:
+    {{doc.title}}<ng-container *ngIf="doc.fileName && standards[0] !== 'NCSF_V1'">:
         <ng-container *ngFor="let b of doc.bookmarks; let l = last">
-            <a href="{{documentUrl(doc, b)}}" 
-            rel="noopener noreferrer" target="_blank">{{bookmarkDisplay(b)}}</a><ng-container *ngIf="!l">, </ng-container>
+            <a href="{{documentUrl(doc, b)}}" rel="noopener noreferrer"
+                target="_blank">{{bookmarkDisplay(b)}}</a><ng-container *ngIf="!l">, </ng-container>
         </ng-container>
     </ng-container>
 </div>

@@ -60,7 +60,6 @@ export class RraAnswerCountsComponent implements OnInit {
       }
 
       var p = level.series.find(x => x.name == element.answer_Full_Name);
-      console.log('p',p)
       p.value = element.qc;
     });
     this.answerCountsByLevel = levelList;

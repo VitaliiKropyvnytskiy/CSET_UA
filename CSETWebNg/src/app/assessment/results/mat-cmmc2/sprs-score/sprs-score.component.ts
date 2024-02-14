@@ -65,7 +65,7 @@ export class SprsScoreComponent implements OnInit {
         case 'N':
         return 'Ні'
         case 'NA':
-        return 'НД'
+        return 'НЗ'
         case 'U':
         return 'Без відповіді'
     }

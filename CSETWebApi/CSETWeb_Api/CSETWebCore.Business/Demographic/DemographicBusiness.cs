@@ -51,18 +51,18 @@ namespace CSETWebCore.Business.Demographic
             var hit = query.FirstOrDefault();
             if (hit != null)
             {
-                demographics.SectorId = hit.ddd.SectorId;
-                demographics.IndustryId = hit.ddd.IndustryId;
-                demographics.AssetValue = hit.dav?.DemographicsAssetId;
-                demographics.Size = hit.ds?.DemographicId;
+                demographics.SectorId = hit.ddd.SectorId.HasValue ? hit.ddd.SectorId.Value : 0;
+                demographics.IndustryId = hit.ddd.IndustryId.HasValue ? hit.ddd.IndustryId.Value : 0;
+                demographics.AssetValue = hit.dav != null ? hit.dav.DemographicsAssetId : 0;
+                demographics.Size = hit.ds != null ? hit.ds.DemographicId : 0;
                 demographics.CriticalService = hit.ddd?.CriticalService;
-                demographics.PointOfContact = hit.ddd?.PointOfContact;
+                demographics.PointOfContact = hit.ddd.PointOfContact.HasValue ? hit.ddd.PointOfContact.Value : 0;
                 demographics.Agency = hit.ddd?.Agency;
-                demographics.Facilitator = hit.ddd?.Facilitator;
+                demographics.Facilitator = hit.ddd.Facilitator.HasValue ? hit.ddd.Facilitator.Value : 0;
                 demographics.IsScoped = hit.ddd?.IsScoped != false;
                 demographics.OrganizationName = hit.ddd?.OrganizationName;
-                demographics.OrganizationType = hit.ddd?.OrganizationType;
-
+                demographics.OrganizationType = hit.ddd.OrganizationType.HasValue ? hit.ddd.OrganizationType.Value : 0;
+                demographics.MainServiceTypeId = hit.ddd.MainServiceTypeId.HasValue ? hit.ddd.MainServiceTypeId.Value : 0;
             }
 
             return demographics;
@@ -134,6 +134,11 @@ namespace CSETWebCore.Business.Demographic
                 demographics.IndustryId = null;
             }
 
+            if (demographics.MainServiceTypeId == 0)
+            {
+                demographics.MainServiceTypeId = null;
+            }
+
             var dbDemographics = _context.DEMOGRAPHICS.Where(x => x.Assessment_Id == demographics.AssessmentId).FirstOrDefault();
             if (dbDemographics == null)
             {
@@ -145,6 +150,7 @@ namespace CSETWebCore.Business.Demographic
                 _context.SaveChanges();
             }
 
+            dbDemographics.MainServiceTypeId = demographics.MainServiceTypeId;
             dbDemographics.IndustryId = demographics.IndustryId;
             dbDemographics.SectorId = demographics.SectorId;
             dbDemographics.Size = assetSize;
@@ -212,6 +218,7 @@ namespace CSETWebCore.Business.Demographic
             if (
                 demographics.SectorId.HasValue ||
                 demographics.IndustryId.HasValue ||
+                demographics.MainServiceTypeId.HasValue ||
                 (demographics.Size != null && demographics.Size != string.Empty) ||
                 (demographics.AssetValue != null && demographics.AssetValue != string.Empty) ||
                 (demographics.OrganizationName != null && demographics.OrganizationName != string.Empty) ||

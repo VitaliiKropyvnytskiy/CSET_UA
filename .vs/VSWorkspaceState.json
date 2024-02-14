@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\CSETWebApi",
+    "\\CSETWebApi\\CSETWeb_Api",
+    "\\CSETWebApi\\CSETWeb_Api\\CSETWeb_ApiCore",
+    "\\CSETWebApi\\CSETWeb_Api\\CSETWeb_ApiCore\\Controllers"
   ],
-  "SelectedNode": "\\D:\\Softlist\\CSET_repo_for_customer",
+  "SelectedNode": "\\CSETWebApi\\CSETWeb_Api\\CSETWeb_ApiCore\\Controllers\\ACETFilterController.cs",
   "PreviewInSolutionExplorer": false
 }

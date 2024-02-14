@@ -189,7 +189,6 @@ export class IseExaminationComponent implements OnInit {
                 this.questionsSvc.getDetails(finding.question.mat_Question_Id, 'Maturity').subscribe(
                   (r: any) => {
                     this.files = r;
-                    console.log(this.files)
 
                     let sourceDocList = this.files?.listTabs[0]?.sourceDocumentsList;
 

@@ -427,7 +427,7 @@ export class ReportAnalysisService {
       case "N":
         return "Ні";
       case "NA":
-        return "Непридатно";
+        return "Не застосовується";
       case "A":
         return "Альтернативна відповідь";
       case "U":

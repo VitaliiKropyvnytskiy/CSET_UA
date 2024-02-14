@@ -25,19 +25,21 @@
 
 export interface DemographicsIod {
     assessmentId?: number;
-    organizationType?: number;
+    organizationType: number;
     organizationName?: string;
     businessUnit?: string;
-    sector?: number;
-    subsector?: number;
-    numberEmployeesTotal?: number;
-    numberEmployeesUnit?: number;
-    annualRevenue?: number;
-    criticalServiceRevenuePercent?: number;
+    sector: number;
+    subsector: number;
+    mainServiceType:number;
+    sectoralBody?:string;
+    numberEmployeesTotal: number;
+    numberEmployeesUnit: number;
+    annualRevenue: number;
+    criticalServiceRevenuePercent: number;
     criticalDependencyIncidentResponseSupport?: string;
-    numberPeopleServedByCritSvc?: number;
-    disruptedSector1?: number;
-    disruptedSector2?: number;
+    numberPeopleServedByCritSvc: number;
+    disruptedSector1: number;
+    disruptedSector2: number;
     usesStandard?: boolean;
     standard1?: string;
     standard2?: string;
@@ -56,6 +58,7 @@ export interface DemographicsIod {
     barrier1?: number;
     barrier2?: number;
 
+    listMainServiceTypes?:any[];
     listOrgTypes?: any[];
     listSectors?: any[];
     listSubsectors?: any[];

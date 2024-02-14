@@ -17,6 +17,7 @@ namespace CSETWebCore.DataLayer.Model
         public SECTOR_INDUSTRY()
         {
             DEMOGRAPHICS = new HashSet<DEMOGRAPHICS>();
+            MAIN_SERVICE_TYPE = new HashSet<MAIN_SERVICE_TYPE>();
         }
 
         [Key]
@@ -34,5 +35,6 @@ namespace CSETWebCore.DataLayer.Model
         [InverseProperty("SECTOR_INDUSTRY")]
         public virtual SECTOR Sector { get; set; }
         public virtual ICollection<DEMOGRAPHICS> DEMOGRAPHICS { get; set; }
+        public virtual ICollection<MAIN_SERVICE_TYPE> MAIN_SERVICE_TYPE { get; set; }
     }
 }

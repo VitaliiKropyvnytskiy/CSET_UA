@@ -24,7 +24,7 @@
 
     <h3 style="text-align: center;">Звіт про огляд кіберстійкості для</h3>
     <br />
-    <p style="text-align: center;">{{ model?.assessmentDetails.facilityName ?? '[Назва закладу]' }}</p>
+    <p style="text-align: center;">{{ model?.assessmentDetails.facilityName ?? '[Назва організації фасилітатора оцінювання]' }}</p>
 
     <br />
 
@@ -33,9 +33,9 @@
     </h4>
     <p>
         {{ model?.assessmentDetails.assessmentDate | date:'dd.MM.yyyy'}}, {{ model?.assessmentDetails.facilityName
-        ?? '[Назва закладу]' }} провели Самооцінку кіберстійкості (CRR). Відповіді на питання
+        ?? '[Назва організації]' }} провели Самооцінку кіберстійкості (CRR). Відповіді на питання
         щодо кібербезпеки були отримані від ключових зацікавлених сторін в межах {{
-        model?.assessmentDetails.facilityName ?? '[Назва закладу]' }} та оцінені.
+        model?.assessmentDetails.facilityName ?? '[Назва організації]' }} та оцінені.
     </p>
 
     <br />
@@ -72,7 +72,7 @@
                 2
             </td>
             <td>
-                Управління контролем
+                Управління заходами
             </td>
         </tr>
         <tr>

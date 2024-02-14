@@ -48,6 +48,14 @@ interface Industry {
 interface Sector {
   sectorId: number;
   sectorName: string;
+  sectoralBody: string;
+}
+
+interface MainServiceType {
+  sectorId: number;
+  industryId: number;
+  mainServiceType: number;
+  title: string;
 }
 
 interface AssessmentSize {
@@ -68,7 +76,7 @@ interface StandardsNames {
 })
 export class AssessmentComparisonAnalyticsComponent implements OnInit {
   assessment: AssessmentDetail = {};
-  selectedSector = "All Sectors";
+  selectedSector = "Усі сектори";
   currentAssessmentId = "";
   currentAssessmentStd = "";
   sampleSize: number = 0;
@@ -88,14 +96,24 @@ export class AssessmentComparisonAnalyticsComponent implements OnInit {
   sizeList: AssessmentSize[];
   assetValues: DemographicsAssetValue[];
   industryList: Industry[];
+  mainServiceTypeList: MainServiceType[];
   btnSearch: boolean = true;
-  demographicData: Demographic = {};
+  demographicData: Demographic = {
+    mainServiceTypeId: 0,
+    sectorId: 0,
+    industryId: 0,
+    facilitator: 0,
+    pointOfContact: 0,
+    size: 0,
+    assetValue: 0
+  };
   orgTypes: any[];
   standards: StandardsNames[];
   standardsChecked: any = [];
   ischecked: boolean = false;
   standardIschecked: boolean = false;
   sectorId: number;
+  mainServiceTypeId: number;
   sectorindustryId: number;
   chartDataArray: any[];
   can_id: Chart<"bar" | "scatter", number, string>;
@@ -137,7 +155,8 @@ export class AssessmentComparisonAnalyticsComponent implements OnInit {
           this.analyticsSvc
             .getSectorIndustryStandardsTSA(
               this.sectorId,
-              this.sectorindustryId
+              this.sectorindustryId,
+              this.mainServiceTypeId
             )
             .subscribe((x) => {
               this.chartDataArray = x;
@@ -149,8 +168,8 @@ export class AssessmentComparisonAnalyticsComponent implements OnInit {
 
       });
     }
-    this.demographicData.organizationType = null;
-    this.demographicData.sectorId = null;
+    this.demographicData.organizationType = "";
+    this.demographicData.sectorId = 0;
     this.currentAssessmentId = this.assessment.id?.toString();
     this.demoSvc.getAllSectors().subscribe(
       (data: Sector[]) => {
@@ -205,9 +224,11 @@ export class AssessmentComparisonAnalyticsComponent implements OnInit {
     this.getOrganizationTypes();
     if (this.demographicData.assessment_Id == null) {
       this.populateIndustryOptions(this.demographicData.sectorId);
-      this.demographicData.industryId = null;
+      this.demographicData.industryId = 0;
+      this.demographicData.mainServiceTypeId = 0;
       this.updateDemographics();
     }
+    console.log("on init", this.demographicData.organizationType)
   }
 
   setupChartStandard(x: any) {
@@ -308,14 +329,16 @@ export class AssessmentComparisonAnalyticsComponent implements OnInit {
   onSelectSector(sectorId: string) {
     this.sectorId = parseInt(sectorId);
     this.populateIndustryOptions(parseInt(sectorId));
+    this.populateMainServiceTypeOptions(parseInt(sectorId), null);
     this.btnSearch = false;
     // invalidate the current Industry, as the Sector list has just changed
-    this.demographicData.industryId = null;
+    this.demographicData.mainServiceTypeId = 0;
+    this.demographicData.industryId = 0;
     this.updateDemographics();
     // update maturity graph
     if (this.assessment.useMaturity) {
       this.analyticsSvc
-        .maturityDashboardByCategory(this.assessment.maturityModel.modelId, this.sectorId, this.sectorindustryId)
+        .maturityDashboardByCategory(this.assessment.maturityModel.modelId, this.sectorId, this.sectorindustryId, this.mainServiceTypeId)
         .subscribe((x) => {
           this.setupChartMaturity(x);
 
@@ -326,7 +349,9 @@ export class AssessmentComparisonAnalyticsComponent implements OnInit {
       this.analyticsSvc
         .getSectorIndustryStandardsTSA(
           this.sectorId,
-          this.sectorindustryId)
+          this.sectorindustryId,
+          this.mainServiceTypeId
+        )
         .subscribe((x) => {
           this.chartDataArray = x;
           this.standardsChecked.forEach(element => {
@@ -342,6 +367,15 @@ export class AssessmentComparisonAnalyticsComponent implements OnInit {
     }
   }
 
+  onSelectIndustry(industryId: number) {
+    if (!isNaN(Number(industryId)))
+      this.populateMainServiceTypeOptions(null, industryId);
+    else if (this.demographicData.sectorId)
+      this.populateMainServiceTypeOptions(this.demographicData.sectorId, null);
+    this.demographicData.mainServiceTypeId = 0;
+    this.update(industryId, null);
+  }
+
   getDemographics() {
     this.demoSvc.getDemographic().subscribe(
       (data: Demographic) => {
@@ -349,6 +383,9 @@ export class AssessmentComparisonAnalyticsComponent implements OnInit {
 
         // populate Industry dropdown based on Sector
         this.populateIndustryOptions(this.demographicData.sectorId);
+        this.populateMainServiceTypeOptions(this.demographicData.sectorId, null)
+        if (this.demographicData.industryId)
+          this.populateMainServiceTypeOptions(null, this.demographicData.industryId)
       },
       (error) =>
         console.log("Demographic load Error: " + (<Error>error).message)
@@ -362,7 +399,8 @@ export class AssessmentComparisonAnalyticsComponent implements OnInit {
   }
 
   populateIndustryOptions(sectorId: number) {
-    if (!sectorId) {
+    if (!sectorId || sectorId == 0) {
+      this.industryList = [];
       return;
     }
     this.demoSvc.getIndustry(sectorId).subscribe(
@@ -380,20 +418,39 @@ export class AssessmentComparisonAnalyticsComponent implements OnInit {
     );
   }
 
-  changeOrgType(event: any) {
-    this.demographicData.organizationType = event.target.value;
+  populateMainServiceTypeOptions(sectorId?: number, industryId?: number) {
+    if ((!sectorId || sectorId == 0) && (!industryId || industryId == 0)) {
+      this.mainServiceTypeList = []
+      return;
+    }
+    this.demoSvc.getMainServiceType(sectorId, industryId).subscribe(
+      (data: MainServiceType[]) => {
+        this.mainServiceTypeList = data;
+      },
+      error => {
+        console.log('Error Getting Main service type: ' + (<Error>error).name + (<Error>error).message);
+        console.log('Error Getting Main service type (cont): ' + (<Error>error).stack);
+      }
+    )
+  }
+
+  changeOrgType(value: any) {
+    this.demographicData.organizationType = value;
 
     // this.updateDemographics();
   }
-  update(event: any) {
-    this.sectorindustryId = event.target.value;
-    if (this.sectorindustryId.toString() == '0: null') {
+  update(sectorindustryId: any, mainServiceTypeId: any) {
+
+    this.sectorindustryId = sectorindustryId;
+    this.mainServiceTypeId = mainServiceTypeId;
+    if (isNaN(Number(sectorindustryId)))
       this.sectorindustryId = null
-    }
+    if (isNaN(Number(mainServiceTypeId)))
+      this.mainServiceTypeId = null
     // update maturity graph
     if (this.assessment.useMaturity) {
       this.analyticsSvc
-        .maturityDashboardByCategory(this.assessment.maturityModel.modelId, this.sectorId, this.sectorindustryId)
+        .maturityDashboardByCategory(this.assessment.maturityModel.modelId, this.sectorId, this.sectorindustryId, this.mainServiceTypeId)
         .subscribe((x) => {
           this.setupChartMaturity(x);
 
@@ -404,7 +461,9 @@ export class AssessmentComparisonAnalyticsComponent implements OnInit {
       this.analyticsSvc
         .getSectorIndustryStandardsTSA(
           this.sectorId,
-          this.sectorindustryId)
+          this.sectorindustryId,
+          this.mainServiceTypeId
+        )
         .subscribe((x) => {
           this.chartDataArray = x;
           this.standardsChecked.forEach(element => {

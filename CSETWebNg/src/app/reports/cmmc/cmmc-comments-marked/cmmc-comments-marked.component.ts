@@ -51,7 +51,7 @@ export class CmmcCommentsMarkedComponent implements OnInit {
   ngOnInit() {
     this.loading = true;
     this.keyToCategory = this.maturitySvc.keyToCategory;
-    this.titleService.setTitle("CMMC Коментарі та позначено для перегляду - " + this.configSvc.behaviors.defaultTitle);
+    this.titleService.setTitle("CMMC Коментарі та потребує огляду - " + this.configSvc.behaviors.defaultTitle);
     let appCode = this.configSvc.installationMode;
 
     this.maturitySvc.getCmmcReportData().subscribe(

@@ -112,7 +112,7 @@ export class SecurityplanComponent implements OnInit {
       case 'A':
         return 'Альтернативна відповідь'
       case 'NA':
-        return 'НД'
+        return 'НЗ'
     }
     return answerCode;
   }

@@ -27,14 +27,14 @@ namespace CSETWebCore.Business.Analytics
         }
         
         
-        public List<AnalyticsMinMaxAvgMedianByGroup> getMaturityDashboardData(int maturity_model_id, int? sectorId, int? industryId)
+        public List<AnalyticsMinMaxAvgMedianByGroup> getMaturityDashboardData(int maturity_model_id, int? sectorId, int? industryId, int? mainServiceTypeId)
         {
            // var minMax = _context.analytics_Compute_MaturityAll(maturity_model_id,sectorId,industryId).ToList();
             // var median = _context.analytics_Compute_MaturityAll_Median(maturity_model_id).ToList();
             // var rvalue =  from a in minMax join b in median on a.Title equals b.Title
             //             select new DataRowsAnalytics() { title=a.Title, avg=(int)a.avg,max=(int)a.max,min=(int)a.min,median=b.median};
             // return rvalue.ToList();
-            return  _context.analytics_Compute_MaturityAll(maturity_model_id,sectorId,industryId).ToList();
+            return  _context.analytics_Compute_MaturityAll(maturity_model_id,sectorId,industryId, mainServiceTypeId).ToList();
         }
 
         public List<AnalyticsgetMedianOverall> GetMaturityGroupsForAssessment(int assessmentId, int maturity_model_id)
@@ -57,9 +57,9 @@ namespace CSETWebCore.Business.Analytics
             return results.ToList();
         }
 
-        public List<AnalyticsStandardMinMaxAvg> GetStandardMinMaxAvg(int assessmentId, string setname, int? sectorId, int? industryId)
+        public List<AnalyticsStandardMinMaxAvg> GetStandardMinMaxAvg(int assessmentId, string setname, int? sectorId, int? industryId, int? mainServiceTypeId)
         {
-            var minmaxavg = _context.analytics_Compute_standard_all(assessmentId,setname, sectorId, industryId);
+            var minmaxavg = _context.analytics_Compute_standard_all(assessmentId,setname, sectorId, industryId, mainServiceTypeId);
             return minmaxavg.ToList();
         }
     }

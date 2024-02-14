@@ -36,7 +36,7 @@ namespace CSETWebCore.Constants
             { "ItIcsStaffCount", "Кількість ІТ/ICS керівництва та персоналу" },
             { "CybersecurityItIcsStaffCount", "Кількість керівних кадрів і персоналу з кібербезпеки IT/ICS" },
             { "NetworksDescription", "Опис мереж" },
-            { "ServicesDescription", "опис сервісів" },
+            { "ServicesDescription", "Опис сервісів" },
             { "ApplicationsDescription", "Опис додатків" },
             { "ConnectionsDescription", "Опис зв'язків" },
             { "PersonnelDescription", "Опис персоналу" },

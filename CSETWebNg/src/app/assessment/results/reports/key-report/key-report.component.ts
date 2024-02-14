@@ -20,7 +20,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class KeyReportComponent {
   assessment: AssessmentDetail = {};
-  demographicData: Demographic = {};
+  demographicData: Demographic = {
+    mainServiceTypeId: 0,
+        sectorId: 0,
+        industryId: 0,
+        facilitator: 0,
+        pointOfContact: 0,
+        size: 0,
+        assetValue: 0
+  };
   contactCount: number;
 
   @ViewChild('pdfTable') pdfTable: ElementRef;

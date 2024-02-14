@@ -50,7 +50,7 @@ export class AcetCommentsmarkedComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.titleService.setTitle("Коментарі та позначено для перегляду - ACET");
+    this.titleService.setTitle("Коментарі та потребує огляду - ACET");
 
     this.maturitySvc.getCommentsMarked().subscribe(
       (r: any) => {

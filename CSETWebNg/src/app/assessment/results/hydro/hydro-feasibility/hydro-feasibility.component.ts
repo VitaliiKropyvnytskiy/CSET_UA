@@ -58,7 +58,6 @@ export class HydroFeasibilityComponent implements OnInit {
         while (this.feasibilityData.length != this.domainGroupNames.length) {
           this.feasibilityData.push([0,0,0]); // this fills the beginning domains (with no data) with blank data
         }
-        console.log(this.feasibilityData)
 
         this.loading = false;
       }

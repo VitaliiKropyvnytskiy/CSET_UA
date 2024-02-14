@@ -36,7 +36,8 @@ export class ReferencesDisplayComponent implements OnInit {
 
   @Input()
   tab: any;
-
+  @Input()
+  standards: any;
   @Input('q')
   question: any;
 

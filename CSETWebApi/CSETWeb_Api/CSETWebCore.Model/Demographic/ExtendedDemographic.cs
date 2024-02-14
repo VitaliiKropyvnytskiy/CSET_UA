@@ -59,6 +59,11 @@ namespace CSETWebCore.Model.Demographic
         public string OptionText { get; set; }
     }
 
+    public class ListItem3: ListItem2
+    {
+        public string AdditionalText { get; set; }
+    }
+
 
     public class GeographicSelections
     {

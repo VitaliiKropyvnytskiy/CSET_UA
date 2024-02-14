@@ -65,7 +65,7 @@ export class StandardsSummaryComponent implements OnInit, AfterViewInit {
         case 'No':
         return'Ні'
         case 'Not Applicable':
-        return'Непридатно'
+        return'Не застосовується'
         case 'Alternate':
         return'Альтернативна відповідь'
         case 'Unanswered':

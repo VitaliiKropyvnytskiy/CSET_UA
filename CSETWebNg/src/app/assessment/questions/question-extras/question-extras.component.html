@@ -367,7 +367,7 @@
                 </table>
             </div>
             <div *ngIf="!assessSvc.isISE()">
-                <app-references-display [tab]="tab" [q]="myQuestion"></app-references-display>
+                <app-references-display [tab]="tab" [q]="myQuestion" [standards]="assessSvc.assessment.standards"></app-references-display>
             </div>
         </div>
 
