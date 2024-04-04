@@ -180,4 +180,8 @@ export class RraDeficiencyComponent implements OnInit {
   formatPercent(x: any) {
     return x + '%';
   }
+
+  printReport() {
+    window.print();
+  }
 }

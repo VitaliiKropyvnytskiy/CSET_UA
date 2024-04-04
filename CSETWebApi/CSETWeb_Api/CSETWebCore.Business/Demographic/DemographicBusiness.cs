@@ -39,7 +39,15 @@ namespace CSETWebCore.Business.Demographic
         {
             Demographics demographics = new Demographics
             {
-                AssessmentId = assessmentId
+                AssessmentId = assessmentId,
+                SectorId = 0,
+                IndustryId = 0,
+                AssetValue = 0,
+                Size = 0,
+                PointOfContact = 0,
+                Facilitator = 0,
+                OrganizationType = 0,
+                MainServiceTypeId = 0
             };
             var query = from ddd in _context.DEMOGRAPHICS
                         from ds in _context.DEMOGRAPHICS_SIZE.Where(x => x.Size == ddd.Size).DefaultIfEmpty()

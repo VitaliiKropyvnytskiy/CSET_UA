@@ -222,7 +222,7 @@
     <!-- Results Phase -->
     <node displaytext="Результати" id="phase-results">
         <!-- Results - Standards -->
-        <node displaytext="Стандратні результати" condition="OPTION:STANDARD">
+        <node displaytext="Стандартні результати" condition="OPTION:STANDARD">
             <node displaytext="Панель аналізу" id="dashboard" path="assessment/{:id}/results/dashboard" />
             <node displaytext="Пріоритети контролю" id="ranked-questions" path="assessment/{:id}/results/ranked-questions" />
             <node displaytext="Підсумок стандартів" id="standards-summary" path="assessment/{:id}/results/standards-summary" />

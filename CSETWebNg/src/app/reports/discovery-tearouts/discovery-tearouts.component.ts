@@ -67,4 +67,7 @@ export class DiscoveryTearoutsComponent implements OnInit {
   private buildTocEntry(individual: any) {
     return "#indiv_" + individual.INDIVIDUALFULLNAME.replace(' ', '_');
   }
+  printReport() {
+    window.print();
+  }
 }

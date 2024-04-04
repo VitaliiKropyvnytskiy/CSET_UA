@@ -191,4 +191,7 @@ export class ExecutiveCMMC2Component implements OnInit, AfterViewInit {
     return answer
   }
 
+  printReport() {
+    window.print();
+  }
 }

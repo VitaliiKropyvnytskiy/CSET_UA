@@ -29,6 +29,7 @@ namespace CSETWebCore.Business.RepositoryLibrary
         private ICSETGlobalProperties globalProperties;
         private CSETContext dbContext;
         private string pdfDirectory;
+        private string htmlDirectory;
         private string xpsDirectory;
         private string xlsxDirectory;
 
@@ -37,6 +38,7 @@ namespace CSETWebCore.Business.RepositoryLibrary
             this.dbContext = dbContext;
             this.globalProperties = globalProperties;
             this.pdfDirectory = Path.Combine(Constants.Constants.DOCUMENT_PATH);
+            this.htmlDirectory = Path.Combine(Constants.Constants.DOCUMENT_PATH);
             this.xpsDirectory = Path.Combine(Constants.Constants.XPS_DOCUMENT_PATH);
             this.xlsxDirectory = Path.Combine(Constants.Constants.XLSX_DOCUMENT_PATH);
             CreateResourceLibraryData(globalProperties.Active_Maturity_Models, globalProperties.Active_Sets);
@@ -155,6 +157,12 @@ namespace CSETWebCore.Business.RepositoryLibrary
                             ResourceNode xslxNode = new XLSXNode(xlsxDirectory, doc);
                             ResourceModelDictionary.Add(xslxNode.ID, xslxNode);
                             listItems.Add(xslxNode);
+                        }
+                        else if (doc.File_Type_Id == 29) //html
+                        {
+                            ResourceNode htmlNode = new HtmlNode(htmlDirectory, doc);
+                            ResourceModelDictionary.Add(htmlNode.ID, htmlNode);
+                            listItems.Add(htmlNode);
                         }
                         else
                         {

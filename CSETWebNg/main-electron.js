@@ -190,10 +190,9 @@ function createWindow() {
       );
     } else if(x.role === 'viewmenu') {
       let newSubmenu = new Menu();
-
       // Remove unnecessary Zoom button from window tab
       x.submenu.items.forEach(y => {
-        if (y.label === 'Zoom In') {
+        if (y.role === 'zoomin') {
           let newZoomIn = new MenuItem({
             role: y.role,
             type: y.type,
@@ -202,7 +201,7 @@ function createWindow() {
             click: y.click
           });
           newSubmenu.append(newZoomIn);
-        } else if (y.label === 'Zoom Out') {
+        } else if (y.role === 'zoomout') {
           let newZoomOut = new MenuItem({
             role: y.role,
             type: y.type,

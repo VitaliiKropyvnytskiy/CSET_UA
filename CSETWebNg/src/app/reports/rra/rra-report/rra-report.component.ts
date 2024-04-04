@@ -248,4 +248,8 @@ export class RraReportComponent implements OnInit {
   formatPercent(x: any) {
     return x + '%';
   }
+
+  printReport() {
+    window.print();
+  }
 }
