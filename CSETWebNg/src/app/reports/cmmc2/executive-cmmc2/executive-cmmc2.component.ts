@@ -190,6 +190,10 @@ export class ExecutiveCMMC2Component implements OnInit, AfterViewInit {
     }
     return answer
   }
+  
+  saveReport() {
+    window.open('/index.html?returnPath=PDF', '_blank');
+  }
 
   printReport() {
     window.print();

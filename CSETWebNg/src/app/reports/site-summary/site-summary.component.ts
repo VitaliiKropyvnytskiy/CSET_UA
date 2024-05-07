@@ -230,6 +230,10 @@ export class SiteSummaryComponent implements OnInit, AfterViewInit {
   usesRAC() {
     return !!this.responseResultsByCategory?.dataSets.find(e => e.label === 'RAC');
   }
+  
+  saveReport() {
+    window.open('/index.html?returnPath=PDF', '_blank');
+  }
 
   printReport() {
     window.print();

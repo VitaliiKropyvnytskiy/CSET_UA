@@ -9,6 +9,8 @@ const findTextPrompt = require('./src/custom-modules/electron-prompt/lib/index')
 const gotTheLock = app.requestSingleInstanceLock();
 const merge = require('lodash').merge;
 
+const fs = require('node:fs')
+
 let config = require('./dist/assets/settings/config.json');
 
 /**
@@ -24,7 +26,7 @@ const installationMode = config.installationMode;
 
 let clientCode;
 let appCode;
-switch(installationMode) {
+switch (installationMode) {
   case 'ACET':
     clientCode = 'NCUA';
     appCode = 'ACET';
@@ -188,7 +190,7 @@ function createWindow() {
           submenu: newSubmenu,
         })
       );
-    } else if(x.role === 'viewmenu') {
+    } else if (x.role === 'viewmenu') {
       let newSubmenu = new Menu();
       // Remove unnecessary Zoom button from window tab
       x.submenu.items.forEach(y => {
@@ -236,7 +238,7 @@ function createWindow() {
               ok: 'Знайти далі'
             }
           }, currentWindow).then(r => {
-            if(r === null) {
+            if (r === null) {
               // text search is done here
             }
           }).catch(e => {
@@ -288,8 +290,8 @@ function createWindow() {
           log.error(error);
           mainWindow.loadFile(path.join(__dirname, '/dist/assets/app-startup-error.html'));
         } else {
-           // Load the index.html of the app
-           mainWindow.loadURL(
+          // Load the index.html of the app
+          mainWindow.loadURL(
             url.format({
               pathname: path.join(__dirname, 'dist/index.html'),
               protocol: 'file:',
@@ -354,39 +356,57 @@ function createWindow() {
       childWindow.webContents.setWindowOpenHandler(details => {
         if (!details.url.startsWith('file:///')) {
           shell.openExternal(details.url);
-          return {action: 'deny'};
+          return { action: 'deny' };
+        }
+
+        if (details.url.includes('returnPath=PDF')) {
+          dialog.showSaveDialog(childWindow, {defaultPath:'Звіт', filters: [{ name: 'Adobe PDF', extensions: ['pdf'] }] }).then(result => {
+            if (!result.canceled) {
+              childWindow.webContents.printToPDF({}).then(data => {
+                fs.writeFile(result.filePath, data, (error) => {
+                  if (error) throw error
+                  console.log(`Wrote PDF successfully to ${result.filePath}`)
+                })
+              }).catch(error => {
+                console.log(`Failed to write PDF to ${result.filePath}: `, error)
+              })
+            }
+          }).catch(err => {
+            console.log('dialog err: ', err)
+          })
+
         }
       });
 
-      return {action: 'deny'};
+      return { action: 'deny' };
 
-    // navigating to help section; prevent additional popup windows
+      // navigating to help section; prevent additional popup windows
     } else if (details.url.includes('htmlhelp')) {
-        let childWindow = new BrowserWindow({
-          parent: mainWindow,
-          webPreferences: { nodeIntegration: true },
-          icon: path.join(__dirname, 'dist/favicon_' + installationMode.toLowerCase() + '.ico'),
-        })
+      let childWindow = new BrowserWindow({
+        parent: mainWindow,
+        webPreferences: { nodeIntegration: true },
+        icon: path.join(__dirname, 'dist/favicon_' + installationMode.toLowerCase() + '.ico'),
+      })
 
-        childWindow.loadURL(details.url);
+      childWindow.loadURL(details.url);
 
-        // Setup external links in child windows
-        childWindow.webContents.setWindowOpenHandler(details => {
-          if (!details.url.startsWith('file:///')) {
-            shell.openExternal(details.url);
-            return {action: 'deny'};
-          } else {
-            childWindow.loadURL(newUrl);
-            return {action: 'deny'};
-          }
-        });
+      // Setup external links in child windows
+      childWindow.webContents.setWindowOpenHandler(details => {
+        if (!details.url.startsWith('file:///')) {
+          shell.openExternal(details.url);
+          return { action: 'deny' };
+        } else {
+          childWindow.loadURL(newUrl);
+          return { action: 'deny' };
+        }
+      });
 
       return { action: 'deny' };
 
-    // Navigating to external url if not using file protocol; open in web browser
+      // Navigating to external url if not using file protocol; open in web browser
     } else if (!details.url.startsWith('file:///')) {
       shell.openExternal(details.url);
-      return {action: 'deny'};
+      return { action: 'deny' };
     }
     return {
       action: 'allow',
@@ -476,7 +496,7 @@ app.on('window-all-closed', () => {
 
 function launchAPI(exeDir, fileName, port, window) {
   let exe = exeDir + '/' + fileName;
-  let options = {cwd:exeDir};
+  let options = { cwd: exeDir };
   let args = ['--urls', config.api.protocol + '://' + config.api.url + ':' + port]
   let apiProcess = child(exe, args, options, (error) => {
     if (error) {
@@ -520,22 +540,22 @@ let retryApiConnection = (() => {
 
   return (max, timeout, port, next) => {
     request.get(
-    {
-      url:'http://localhost:' + port + '/api/IsRunning'
-    },
-    (error, response) => {
-      if (error || response.statusCode !== 200) {
-        if (count++ < max - 1) {
-          return setTimeout(() => {
-            retryApiConnection(max, timeout, port, next);
-          }, timeout);
-        } else {
-          return next(new Error('Max API connection retries reached'));
+      {
+        url: 'http://localhost:' + port + '/api/IsRunning'
+      },
+      (error, response) => {
+        if (error || response.statusCode !== 200) {
+          if (count++ < max - 1) {
+            return setTimeout(() => {
+              retryApiConnection(max, timeout, port, next);
+            }, timeout);
+          } else {
+            return next(new Error('Max API connection retries reached'));
+          }
         }
-      }
 
-      log.info('Successful connection to API established. Loading ' + installationMode.toUpperCase() + ' main window...');
-      next(null);
-    });
+        log.info('Successful connection to API established. Loading ' + installationMode.toUpperCase() + ' main window...');
+        next(null);
+      });
   }
 })();

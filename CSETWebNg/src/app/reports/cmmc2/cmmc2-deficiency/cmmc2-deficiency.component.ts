@@ -86,6 +86,10 @@ export class Cmmc2DeficiencyComponent implements OnInit {
   getFullAnswerText(abb: string) {
     return this.questionsSvc.answerDisplayLabel('CMMC2', abb);
   }
+  
+  saveReport() {
+    window.open('/index.html?returnPath=PDF', '_blank');
+  }
 
   printReport() {
     window.print();

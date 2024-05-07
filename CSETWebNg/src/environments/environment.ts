@@ -33,8 +33,8 @@ export const environment = {
   apiUrl: 'https://localhost:5001/api/',
   docUrl: 'https://localhost:5001/Documents/',
   appCode: 'CSET',
-  visibleVersion: '12.1.3.3',
-  version: '12.1.3.3',
+  visibleVersion: '12.1.5.1',
+  version: '12.1.5.1',
   helpContactEmail: 'cset@cisa.dhs.gov',
   helpContactPhone: ''
 };

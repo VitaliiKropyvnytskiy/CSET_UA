@@ -91,6 +91,10 @@ export class CmmcDeficiencyComponent implements OnInit {
   getFullAnswerText(abb: string) {
     return this.questionsSvc.answerDisplayLabel('CMMC', abb);
   }
+  
+  saveReport() {
+    window.open('/index.html?returnPath=PDF', '_blank');
+  }
 
   printReport() {
     window.print();

@@ -167,18 +167,16 @@ namespace CSETWebCore.DatabaseManager
             // Create the new version folder in local app data folder
             Directory.CreateDirectory(Path.GetDirectoryName(destDBFile));
 
-            CopyDBWithinServer(localDbInfo);
+            //CopyDBWithinServer(localDbInfo);
 
             try
             {
-                _upgrader.UpgradeOnly(NewVersion, localDbInfo.ConnectionString);
+                ForceCloseAndDetach(localDbInfo.MasterConnectionString, DatabaseCode);
+                AttachCleanDatabase(destDBFile, destLogFile, localDbInfo);
             }
             catch (DatabaseUpgradeException e)
             {
                 _logger.Error(e.Message);
-                // Attach clean database here if something goes wrong with database upgrade
-                ForceCloseAndDetach(localDbInfo.MasterConnectionString, DatabaseCode);
-                AttachCleanDatabase(destDBFile, destLogFile, localDbInfo);
             }
 
             // Verify that the database has been copied over and exists now

@@ -70,6 +70,10 @@ export class CrrReportComponent implements OnInit {
       error => console.log('Error loading CRR report: ' + (<Error>error).message)
     );
   }
+  
+  saveReport() {
+    window.open('/index.html?returnPath=PDF', '_blank');
+  }
 
   printReport() {
     window.print();

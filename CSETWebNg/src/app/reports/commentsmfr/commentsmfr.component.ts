@@ -83,6 +83,10 @@ export class CommentsMfrComponent implements OnInit {
     return q;
     // return q.split(/(?<=^\S+)\s/)[1];
   }
+  
+  saveReport() {
+    window.open('/index.html?returnPath=PDF', '_blank');
+  }
 
   printReport() {
     window.print();
